@@ -4,7 +4,7 @@
   <title><![CDATA[Co.de.mon.key]]></title>
   <link href="http://malpka.github.io/atom.xml" rel="self"/>
   <link href="http://malpka.github.io/"/>
-  <updated>2014-01-06T15:03:59+01:00</updated>
+  <updated>2014-01-06T15:36:18+01:00</updated>
   <id>http://malpka.github.io/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -14,96 +14,18 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Migracja Jogger - Octopress]]></title>
-    <link href="http://malpka.github.io/2014/01/05/migracja-jogger-octopress/"/>
-    <updated>2014-01-05T17:06:00+01:00</updated>
-    <id>http://malpka.github.io/2014/01/05/migracja-jogger-octopress</id>
-    <content type="html"><![CDATA[<h2>tl;dr</h2>
-
-<p><a href="#skrypt">Skrypt</a> w pythonie 3 przetwarzający plik xml z danymi Joggera na pliki .markdown gotowe do wrzucenia do <code>source/_posts/</code> w Octopressie</p>
-
-<h2>Pobieranie danych z Joggera</h2>
-
-<p>Dane z Joggera można pobrać z panelu administracyjnego: <code>Opcje → Eksport → Wygeneruj eksport → Pobierz</code>
-Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się jak poniżej:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;jogger&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;user&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;domain&gt;</span>malpka<span class="nt">&lt;/domain&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;alias/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/user&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;entry&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;date&gt;</span>2007-01-11 00:29:07<span class="nt">&lt;/date&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;level_id&gt;</span>1<span class="nt">&lt;/level_id&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;comment_mode&gt;</span>0<span class="nt">&lt;/comment_mode&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;subject&gt;</span>temat<span class="nt">&lt;/subject&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      <span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>tresc tresc tresc<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;tags/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;permalink&gt;</span>temat<span class="nt">&lt;/permalink&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;trackback/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Ogólne<span class="nt">&lt;/category&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Inna kategoria<span class="nt">&lt;/category&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;comment&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;date&gt;</span>2007-01-11 03:35:52<span class="nt">&lt;/date&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;nick&gt;</span>NickKomentujacy<span class="nt">&lt;/nick&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;nick_url&gt;</span>http://google.pl<span class="nt">&lt;/nick_url&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;body&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>*wpadłem bo spać nie mogę :)*<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;ip&gt;</span>127.0.0.1<span class="nt">&lt;/ip&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;trackback/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/comment&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/entry&gt;</span>
-</span><span class='line'>    ...
-</span><span class='line'><span class="nt">&lt;/jogger&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Oczywiście wartość gałęzi <code>body</code> to escapowany html wpisu. Ponieważ</p>
-
-<h2>Tworzenie schematu XSD z XML*</h2>
-
-<p>(*tak na marginesie)</p>
-
-<p>Ponieważ rzuciłem szybko okiem na początek pliku eksportu, a chciałem się upewnić, czy w XMLu nie czekają na mnie żadne niespodzianki, to za pomocą
+    <title type="html"><![CDATA[Tworzenie schematu XSD z XML]]></title>
+    <link href="http://malpka.github.io/2014/01/06/tworzenie-schematu-xsd-z-xml/"/>
+    <updated>2014-01-06T15:13:53+01:00</updated>
+    <id>http://malpka.github.io/2014/01/06/tworzenie-schematu-xsd-z-xml</id>
+    <content type="html"><![CDATA[<p>Przy okazji <a href="http://malpka.github.io/2014/01/05/migracja-jogger-octopress/">migracji danych z Joggera na Octopress</a>
+potrzebowałem szybko dostać schemat struktury całego XML&#8217;a eksportu, aby się upewnić, czy w
+XML&#8217;u nie czekają na mnie żadne niespodzianki.
+Są dostępne różne narzędzia, łącznie z tymi <a href="http://www.freeformatter.com/xsd-generator.html">online</a>,
+ale okazało się że szybko da się to wykonać z wykorzystaniem klasy
 <a href="http://msdn.microsoft.com/en-us/library/system.xml.schema.xmlschemainference.aspx">XmlSchemaInference</a> z .NET:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Pobieranie XSD z XML w C#</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -124,7 +46,7 @@ Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>otrzymałem XSD joggerowego eksportu.</p>
+<p>otrzymałem XSD, oczywiście bardzo ogólny, joggerowego eksportu:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -220,6 +142,93 @@ Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się 
 </span><span class='line'><span class="nt">&lt;/xs:schema&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Migracja Jogger - Octopress]]></title>
+    <link href="http://malpka.github.io/2014/01/05/migracja-jogger-octopress/"/>
+    <updated>2014-01-05T17:06:00+01:00</updated>
+    <id>http://malpka.github.io/2014/01/05/migracja-jogger-octopress</id>
+    <content type="html"><![CDATA[<h2>tl;dr</h2>
+
+<p><a href="#skrypt">Skrypt</a> w pythonie 3 przetwarzający plik xml z danymi Joggera na pliki .markdown gotowe do wrzucenia do <code>source/_posts/</code> w Octopressie</p>
+
+<h2>Pobieranie danych z Joggera</h2>
+
+<p>Dane z Joggera można pobrać z panelu administracyjnego: <code>Opcje → Eksport → Wygeneruj eksport → Pobierz</code>
+Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się jak poniżej:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;jogger&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;user&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;domain&gt;</span>malpka<span class="nt">&lt;/domain&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;alias/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/user&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;entry&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;date&gt;</span>2007-01-11 00:29:07<span class="nt">&lt;/date&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;level_id&gt;</span>1<span class="nt">&lt;/level_id&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;comment_mode&gt;</span>0<span class="nt">&lt;/comment_mode&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;subject&gt;</span>temat<span class="nt">&lt;/subject&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      <span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>tresc tresc tresc<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;tags/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;permalink&gt;</span>temat<span class="nt">&lt;/permalink&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;trackback/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Ogólne<span class="nt">&lt;/category&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Inna kategoria<span class="nt">&lt;/category&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;comment&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;date&gt;</span>2007-01-11 03:35:52<span class="nt">&lt;/date&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;nick&gt;</span>NickKomentujacy<span class="nt">&lt;/nick&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;nick_url&gt;</span>http://google.pl<span class="nt">&lt;/nick_url&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;body&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>*wpadłem bo spać nie mogę :)*<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span><span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ip&gt;</span>127.0.0.1<span class="nt">&lt;/ip&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;trackback/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/comment&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/entry&gt;</span>
+</span><span class='line'>    ...
+</span><span class='line'><span class="nt">&lt;/jogger&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Oczywiście wartość gałęzi <code>body</code> to escapowany html wpisu.</p>
+
+<p>W razie czego można wygenerować sobie <a href="http://malpka.github.io/2014/01/06/tworzenie-schematu-xsd-z-xml/">XSD z XML</a>.</p>
 
 <h2>Przetwarzanie danych eksportu na wpisy Octopressa</h2>
 
@@ -2061,124 +2070,6 @@ Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie ni
 
 
 <p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automatyczne pobieranie z Rapidshare na Windowsie z wykorzystaniem Cygwina.]]></title>
-    <link href="http://malpka.github.io/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/"/>
-    <updated>2009-03-01T14:39:00+01:00</updated>
-    <id>http://malpka.github.io/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin</id>
-    <content type="html"><![CDATA[<p>Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco:</p>
-
-
-<ul>
-<li>klikasz na link / wklejasz jako adres w przeglądarce</li>
-<li>Naciskasz przycisk &#8220;Free User&#8221;</li>
-<li>Niecierpliwie czekasz aż cyferki dojdą do zera, a następnie znowu klikasz w przycisk Download.</li>
-</ul>
-
-
-<p>O ile w przypadku pojedynczych plików da się to zaakceptować, to gdy jest do pobrania kilkadziesiąt części nazwanych part[0-9]+.rar dochodzi problem oczekiwania do 30 minut między pobieraniem, oraz konieczność kontrolowania całego procesu pobierania i powtarzania wyżej wspomnianych kroków (stan na dzień 2009-03-01).</p>
-
-
-<p><EXCERPT><p>Użytkownicy systemów *nixowych mają od jakiegoś czasu możliwość skorzystania ze znakomitego i cały czas uaktualnianego skryptu rsget-mod którego autorem jest <a href="nerdblog.pl">d4rky</a></p></p>
-
-<p><a href="http://rs.nerdblog.pl/">rsget-mod - strona projektu</a></p>
-
-
-<p>Skrypt umożliwia pełną automatyzację procesu pobierania zarówno pojedynczego linku, jak i zbioru adresów zapisanych w pliku.</p>
-
-
-<p>Jeżeli jesteś użytkownikiem Windowsa &#8230; cóż, najpierw chociaż wypróbuj Linuxa ;), a jeśli dojdziesz do wniosku, że Ci nie odpowiada, możesz skorzystać z Cygwina, który jest linuksopodobnym środowiskiem działającym pod kontrolą systemu Microsoftu, emulującym funkcje API Linuxa.</p>
-
-
-<p><a href="http://www.cygwin.com/">Oficjalna strona projektu Cygwin</a></p>
-
-
-<p>Instalacja jest intuicyjna, ale aby przyszłe wersje skryptu były obsługiwane warto zatrzymać się przy wyborze pakietów i upewnić się, że będą instalowane:</p>
-
-
-<p></p>
-
-
-<ul>
-<li>Base / grep</li>
-<li>Net / wget</li>
-<li>Net / curl</li>
-</ul>
-
-
-<p></p>
-
-
-<p><img src="http://i40.tinypic.com/2ciei3l.jpg"></p>
-
-
-<p>Po zakończeniu instalacji można już uruchomić środowisko, które powita nas ślicznym promptem.</p>
-
-
-<p><img src="http://i44.tinypic.com/s3q25v.jpg"></p>
-
-
-<p>Cygwin to dobre środowisko dla osób, które chcą rozpocząć przygodę z linuxem, bądź wykorzystać jego zalety, m.in. jak w naszym przypadku możliwości skryptowe. Jednak nic nie stoi na przeszkodzie, aby emulować również środowisko graficzne za pomocą <a href="http://kde-cygwin.sourceforge.net/">Kde on Cygwin</a></p>
-
-
-<p>Wróćmy jednak do tematu. Skrypt wymaga kilku kroków przygotowawczych. Wygodniej będzie na przykład umieścić go w katalogu dostępnym przez zmienną PATH, by uprościć jego wywoływanie. Ponadto należy mu nadać atrybut wykonywalności.</p>
-
-
-<p><code>cd /usr/local/bin<br>
-wget http://rs.nerdblog.pl/stable/latest/rsget-mod.sh<br>
-chmod +x rsget-mod.sh</code></p>
-
-
-<p>Uwaga! W przypadku korzystania z serwera proxy należy wcześniej ustawić zmienną http_proxy:</p>
-
-
-<p><code>export http_proxy="http://adres_serwera:port/"</code></p>
-
-
-<p>lub</p>
-
-
-<p><code>export http_proxy="http://użytkownik:hasło@adres_serwera:port/"</code></p>
-
-
-<p>Sprawdzamy czy wszystko jest tam, gdzie trzeba i wywołujemy skrypt po raz pierwszy.</p>
-
-
-<p><img src="http://i42.tinypic.com/28c2hs2.jpg"></p>
-
-
-<p>Wersja unstable stworzy dodatkowo w katalogu domowym użytkownika swój podkatalog z ustawieniami oraz plikami pomocniczymi.</p>
-
-
-<p>Teraz wystarczy jedynie nakarmić skrypt linkami do pobierania:</p>
-
-
-<p><code>cat &gt; ~/linki.txt<br>
-http://rs123.rapidshare.com/files/1234567891/BigFile_part1.rar<br>
-http://rs123.rapidshare.com/files/1234567892/BigFile_part2.rar<br>
-http://rs123.rapidshare.com/files/1234567893/BigFile_part2.rar<br>
-[Ctrl+D]</code></p>
-
-
-<p>Inicjujemy ściąganie za pomocą</p>
-
-
-<p><code>rsget-mod.sh ~/linki.txt</code></p>
-
-
-<p><img src="http://i44.tinypic.com/332xo2o.jpg"></p>
-
-
-<p><img src="http://i40.tinypic.com/1055p51.jpg"></p>
-
-
-<p>Od teraz skrypt zajmie się wszystkimi czynnościami związanymi z obsługa pobierania i oczekiwania. Nam pozostaje tylko zostawić maszynę i wybrać się na spacer lub wycieczkę rowerową.</p>
 
 
 

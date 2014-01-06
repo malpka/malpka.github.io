@@ -187,132 +187,9 @@ Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się 
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Oczywiście wartość gałęzi <code>body</code> to escapowany html wpisu. Ponieważ</p>
+<p>Oczywiście wartość gałęzi <code>body</code> to escapowany html wpisu.</p>
 
-<h2>Tworzenie schematu XSD z XML*</h2>
-
-<p>(*tak na marginesie)</p>
-
-<p>Ponieważ rzuciłem szybko okiem na początek pliku eksportu, a chciałem się upewnić, czy w XMLu nie czekają na mnie żadne niespodzianki, to za pomocą
-<a href="http://msdn.microsoft.com/en-us/library/system.xml.schema.xmlschemainference.aspx">XmlSchemaInference</a> z .NET:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">XmlReader</span> <span class="n">reader</span> <span class="p">=</span> <span class="n">XmlReader</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="s">&quot;jogger_eksport.xml&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="n">XmlSchemaSet</span> <span class="n">schemaSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSchemaSet</span><span class="p">();</span>
-</span><span class='line'><span class="n">XmlSchemaInference</span> <span class="n">schema</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSchemaInference</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">schemaSet</span> <span class="p">=</span> <span class="n">schema</span><span class="p">.</span><span class="n">InferSchema</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">using</span> <span class="p">(</span><span class="n">TextWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="n">CreateText</span><span class="p">(</span><span class="s">&quot;jogger_eksport.xsd&quot;</span><span class="p">))</span>
-</span><span class='line'>  <span class="k">foreach</span> <span class="p">(</span><span class="n">XmlSchema</span> <span class="n">s</span> <span class="k">in</span> <span class="n">schemaSet</span><span class="p">.</span><span class="n">Schemas</span><span class="p">())</span>
-</span><span class='line'>    <span class="n">s</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">writer</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>otrzymałem XSD joggerowego eksportu.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1250&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;xs:schema</span> <span class="na">attributeFormDefault=</span><span class="s">&quot;unqualified&quot;</span> <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span> <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;jogger&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;xs:complexType&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;xs:sequence&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;user&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;xs:complexType&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;xs:sequence&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;jid&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;domain&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;alias&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/xs:sequence&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/xs:complexType&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/xs:element&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">name=</span><span class="s">&quot;entry&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;xs:complexType&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;xs:sequence&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;jid&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;level_id&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:unsignedByte&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;comment_mode&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:unsignedByte&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;subject&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;body&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;tags&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;permalink&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;trackback&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">name=</span><span class="s">&quot;category&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">name=</span><span class="s">&quot;comment&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;xs:complexType&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;xs:sequence&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;nick&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;nick_url&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;body&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;ip&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;trackback&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'>                  <span class="nt">&lt;/xs:sequence&gt;</span>
-</span><span class='line'>                <span class="nt">&lt;/xs:complexType&gt;</span>
-</span><span class='line'>              <span class="nt">&lt;/xs:element&gt;</span>
-</span><span class='line'>            <span class="nt">&lt;/xs:sequence&gt;</span>
-</span><span class='line'>          <span class="nt">&lt;/xs:complexType&gt;</span>
-</span><span class='line'>        <span class="nt">&lt;/xs:element&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;/xs:sequence&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/xs:complexType&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/xs:element&gt;</span>
-</span><span class='line'><span class="nt">&lt;/xs:schema&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
+<p>W razie czego można wygenerować sobie <a href="/2014/01/06/tworzenie-schematu-xsd-z-xml/">XSD z XML</a>.</p>
 
 <h2>Przetwarzanie danych eksportu na wpisy Octopressa</h2>
 
@@ -437,6 +314,8 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
         <a class="basic-alignment left" href="/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/" title="Previous Post: Wyrażenia regularne w praktyce - wyszukiwanie i zamiana">&laquo; Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a>
       
       
+        <a class="basic-alignment right" href="/2014/01/06/tworzenie-schematu-xsd-z-xml/" title="Next Post: Tworzenie schematu XSD z XML">Tworzenie schematu XSD z XML &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -456,6 +335,10 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/01/06/tworzenie-schematu-xsd-z-xml/">Tworzenie schematu XSD z XML</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/05/migracja-jogger-octopress/">Migracja Jogger - Octopress</a>
       </li>
     
@@ -469,10 +352,6 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
     
       <li class="post">
         <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/">Pyhon - hurtowa zmiana atrybutów w xml</a>
       </li>
     
   </ul>
@@ -538,6 +417,21 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
   </script>
 
 
+
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(["trackPageView"]);
+    _paq.push(["enableLinkTracking"]);
+    (function() {
+      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.codemonkey.pl/";
+      _paq.push(["setTrackerUrl", u+"piwik.php"]);
+      _paq.push(["setSiteId", "6"]);
+      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+      g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
 
 
 
