@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Uczelnia | Co.de.mon.key]]></title>
+  <link href="http://malpka.github.io/categories/uczelnia/atom.xml" rel="self"/>
+  <link href="http://malpka.github.io/"/>
+  <updated>2014-01-06T15:03:59+01:00</updated>
+  <id>http://malpka.github.io/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Jak uczestniczyć w programie MSDNAA na PŚk]]></title>
+    <link href="http://malpka.github.io/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/"/>
+    <updated>2007-04-17T17:37:00+02:00</updated>
+    <id>http://malpka.github.io/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk</id>
+    <content type="html"><![CDATA[<p><b>Jak uczestniczyć w programie MSDNAA na naszej uczelni.</b></p>
+
+
+<p>Jak wcześniej wspomniałem sprawa tego programu wywołała na naszym wydziale sporo kontrowersji. Prowadzący zajęcia podobno od dłuższego czasu korzystali z dobrodziejstw tego programu, który omijał nas studentów. Całe szczęście, że na ostatnim semestrze ostatniego roku coraz więcej osób zaczęło się interesować sprawą i zrobiło się o niej na tyle głośno, że zajmujący się nia ludzie nie mieli wyboru i udostępniło możliwość zapisywania się do programu także studentów.</p>
+
+
+<p>Przypomnijmy:<br>
+Program umożliwia uczestnikom na otrzymanie <b>BEZPŁATNEJ</b> dożywotniej licencji na produkty Microsoftu z których można przykładowo wymienić <b>Windows XP PL</b> (wersja Professional 32 i 64 bitowa) <b>Windows 2003 Server</b>, <b>Windows Vista Business</b>, ...</p>
+
+
+<p>Oczywiście nie jest to tak prosta sprawa, więc krótko opiszę co trzeba zrobić:</p>
+
+
+<p></p>
+
+
+<p><b>1. Należy posiadać konto na jednym z serwerów uczelnianych (*.tu.kielce.pl)</b></p>
+
+
+<p>Sprawa dość klopotliwa bo trzeba się nachodzić (choć jeśli ktoś ma znajomości wśród kadry pedagogicznej to może sobie załatwić;))<br>
+Otóż uczelnia od dawna (napewno na 1 roku już było można) daje możliwość założenia sobie konta shellowego na serwerze student.tu.kielce.pl<br>
+oprócz '$' dostajemy oczywiście konto mailowe, o co właśnie nam chodzi.<br>
+Podanie o takie konto można pobrać z budynku B z tego piętra, gdzie mieszczą się pokoje ludzi od języków. Po wyjściu z windy należy kierować się korytarzem w lewo, ostatnie drzwi na lewo. (pok. 301 bud. B). Wniosek jest dostępny <a href="http://komputer.tu.kielce.pl/student-wniosek.pdf">tutaj</a> Wybieramy login (stałe są literka od nazwy wydziału i numer roku/sem, pozostałe 5 znaków dobieramy sami: np e12piwo)<br>
+Ważne jest dołączenie <b>zaświadczenia</b> że jesteśmy jeszcze studentami uczelni - do pobrania w dziekanacie.</p>
+
+
+<p>Na założenie konta czeka się tak do tygodnia, dostajemy tymczasowe hasło i mamy upragniony mail.<br>
+<i>Do czytania poczty pod konsolą polecam program 'mutt'.</i></p>
+
+
+<p><b>2. Wypełnić formularz na <a href="http://teleinfo.tu.kielce.pl//index.php?id=39">http://teleinfo.tu.kielce.pl//index.php?id=39</a></b></p>
+
+
+<p>Ważne jest że po jego wypełnieniu nie dostajemy dosłownie nic, żadnego potwierdzenia ani błędu. Formularz wysyła po prostu maila do gościa w pokoju numer 7 w bud. D że jest kolejny chętny do zabawy. Człowiek ten w zależności od swojego humoru i ilości zgłoszeń w krótszym lub dłuższym czasie założy nam konto i prześle odpowiedź na uczelnianego maila. Na odpowiedź musiałem czekać 2 tygodnie:|. Być może teraz będzie to szło sprawniej. Dostaniemy w nim adres stronki na której mamy się zalogować, login (nazwa konta mailowego) i hasło.</p>
+
+
+<p><b>3. Zamówić wybrane pozycje na <a href="http://msdn63.e-academy.com/pswiet_eai">http://msdn63.e-academy.com/pswiet_eai</a></b></p>
+
+
+<p>Dostępne są następujące tytuły:<br></p>
+
+
+<ul>
+<li>MSDN Library - January 2005 (Full)</li>
+<li># Visio Professional 2003</li>
+<li>Visual Studio .NET 2003 Professional - Full Install</li>
+<li># Windows 2000 Professional (Polish)</li>
+<li>Windows 2000 SP 4 (Polish)</li>
+<li>Windows 98 Second Edition (Polish)</li>
+<li># Windows Server 2003 Enterprise Edition (Polish)</li>
+<li># Windows Vista Business CD1 (Polish)</li>
+<li># Windows XP Professional (Single User)</li>
+<li># Windows XP Professional (Single User) 64bit Edition</li>
+</ul>
+
+
+<p>Krzyżykiem zaznaczyłem te produkty, dla których dostajemy numer seryjny.</p>
+
+
+<p></p>
+
+
+<p>Zamówienie należy zlożyć dodając produkty do koszyka (wszystkie!?:)) i potwierdzając zamówienie<br>
+Klucze pojawiają się pod linkami "Wypozyczenie nosnika." w dziale "My Software"<br>
+<a href="http://www.tnij.org/xzb">Screenshot</a></p>
+
+
+<p><b>4. Zdobyć kopię nośników instalacyjnych</b></p>
+
+
+<p>W akwarium (siedziba koła naukowego teleinformatyk) na dole przy szatni w budynku D. mają ok. 30 płyt z produktami, które można sobie na miejscu skopiować. Dobrze jest przyjść z laptopem i zrobić obrazy;) Można również poszukac osób które te płyty już mają. Są one jednakowe dla wszystkich więc nie ma znaczenia ich źródło pochodzenia.</p>
+
+
+<p><b>5. Cieszyć się oryginalnymi i bezpłatnymi produktami na swoim komputerku (komputerkach)</b></p>
+
+
+<p>Oczywiście polecam lekturę licencji przy zamawianiu oprogramowania i faq na stronie msdnaa. Są tam przykładowo informacje, że zdobyte oprogramowanie możemy używać na dowolnej liczbie swoich komputerów, że oprogramowania możemy używać dożywotnio, jednak po zakończeniu studiów nie przysługują nam aktualizacje (swoją drogą zastanawiam się jak tym zarządzają, bo jeśli na zdjęcie statusu studenta będę czekał podobnie jak na założenie konta to jestem spokojny;))</p>
+
+
+<p>Na koniec trochę humoru: <a href="http://blog.bdcc.info/2007/01/03/malpka">link</a></p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zaliczenia]]></title>
+    <link href="http://malpka.github.io/2007/01/22/zaliczenia/"/>
+    <updated>2007-01-22T00:36:00+01:00</updated>
+    <id>http://malpka.github.io/2007/01/22/zaliczenia</id>
+    <content type="html"><![CDATA[<p>Projekt z Inżynierii Programowania to jeden z najdziwniejszych w jakich przyszło mi brać udział. Nadal nie wiem o co tak dokładnie w nim chodziło, ale ocenione zostało na maxa więc nie będę narzekał. Co tydzień chodziliśmy na zajęcia projektowe i "wykonywaliśmy" założone zadania. W praktyce na zajęciach wszyscy zajmowali się swoimi sprawami: oglądaniem kolejnego trailera Lostów, komentowaniem ostatniego odcinka Magdy M, wychodzeniem po frytki czy kawę / herbatę itd. Ogólny luz, podczas którego metodą, która najbardziej przypominała słynne "Ctrl+C Ctrl+V" wykonywaliśmy stronkę w JSP / MVC. Ocena projektów zaczęła się słowami: "Ja Waszą grupę bardzo lubię, jesteście solidni ....."</p>
+
+
+<p>Co do zaliczenia z Prawa Patentowego (nie jestem dokładnie pewien czy ten przedmiot się tak nazywa) to tak powinno wyglądać zaliczenie z przedmiotu "pozaprogramowego" na uczelni technicznej. Podczas egzaminu gość nie dość że wyszedł z sali to zapomniał, że drzwi nie otwierają się od zewnątrz i miał problemy w dostaniem się z powrotem:) Studenci wielkodusznie postanowili go jednak wpuścić.</p>
+
+
+<p>Tu przypomniał mi się kawał znaleziony ostatnio w sieci:<br>
+Pisemny egzamin...<br>
+Profesor czyta gazetę, wszyscy jak się należy spodziewać aktywnie zżynają.<br>
+Rok I<br>
+Profesor powoli chowa gazetę... wszystkie ściągi są szybko chowane.<br>
+Rok II<br>
+Profesor powoli chowa gazetę... wszystkie ściągi są zasłaniane dłońmi.<br>
+Rok III<br>
+Profesor powoli chowa gazetę... studenci chowają książki.<br>
+Rok IV<br>
+Profesor powoli chowa gazetę... studenci zamykają książki.<br>
+Rok V<br>
+Profesor powoli chowa gazetę... z sali rozlega się "ekhm-ekhm" profesor wyciąga z powrotem gazetę.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Akredytacja WEAiI na Politechnice Świętokrzyskiej]]></title>
+    <link href="http://malpka.github.io/2007/01/11/akredytacja-weaii-na-politechnice-swietokrzyskiej/"/>
+    <updated>2007-01-11T20:42:00+01:00</updated>
+    <id>http://malpka.github.io/2007/01/11/akredytacja-weaii-na-politechnice-swietokrzyskiej</id>
+    <content type="html"><![CDATA[<p>Od mniej więcej tygodnia wykładowcy i prowadzący zajęcia z drżeniem w głosie prosili nas o pojawianie się na zajęciach (nawet projektowych). W powietrzu czuć było zbliżającą się grozę. Wszystko z powodu akredytacji Wydziału Elektrotechniki Automatyki i Informatyki na Politechnice Świętokrzyskiej</p>
+
+
+<p>Na dzisiejszym porywającym wykładzie z Javy (coraz więcej osób przynosi swoje laptopy, wypełniając czas pisaniem projektów / oglądaniem wiewióry :* / podziwianie skąpo ubranych pań w teledyskach) w sali wykładowej zjawił się dziekan i zaprosił nas na spotkanie z Komisją Akredytacyjną.<br>
+Sala została wypełniona po brzegi studentami prawie ze wszystkich lat (o dziwo pominięto pierwszy rocznik. Czyżby nie mieli nic do powiedzenia?:))<br>
+Pytania dotyczyły procesu studiowania oraz całej biurokratycznej i administracyjnej otoczki wokół niego.</p>
+
+
+<p>Osobiście byłem i nadal jestem powiedzmy że zadowolony z uczelni, jednak podczas spotkania wyszło na jaw kilka bulwersujących spraw.</p>
+
+
+<p>Dowiedziałem się m.in. że posiadając wystarczające wyniki mam możliwość (w zasadzie będąc na 5 roku studiów to miałem) skorzystania z <b>indywidualnego toku nauczania</b> - uzgodnionym oczywiście z władzami wydziału. Zawsze przerażała mnie ilość godzin, które poświęciliśmy dla przedmiotów, które w żadnym stopniu nie przydadzą mi się w przyszłości (najlepszy przykład - Transputery - sprzęt który aktualnie widywany jest raczej w muzeach techniki).</p>
+
+
+<p>Mac uświadomił studentów, że PŚk należy do <a href="http://www.microsoft.com/poland/edukacja/uczelnie/default.mspx" class="external" rel="external">MSDN Academic Alliance</a> czyli powinna udostępnić studentom klucze licencyjne na specjalnie udostępnione oprogramowanie firmy Microsoft (w tym systemy operacyjne - jak Windows XP). Tyle mówi się o piractwie komputerowym w Polsce, a jeżeli coś można mieć legalnie i za darmo to wszyscy milczą jak zaklęci.<br>
+Jak dowiedziałem się od Maca po dotarciu z naprawdę wielkim trudem do osoby teoretycznie zajmującej się tym programem na WEAiI dostał odpowiedź że klucze przeznaczone są jedynie dla pracowników uczelni, co oczywiście jest nieprawdą. A reakcja typu: "A skąd się Pan o tym dowiedział?" jest już śmieszna.</p>
+
+
+<p>Poruszone było kilka innych spraw typu koszty życia studenta, ocena nauczycieli, dziekanatu. Dowiedziałem się, że jestem członkiem Samorządu Studenckiego:).</p>
+
+
+<p>Co do kwestii stypendiów naukowych padła kwestia sprawiedliwości przydziału. Na naszej uczelni stypendia te są przydzielane określonemu procentowi najlepszych studentów na danym roku na podstawie średniej z 2 semestrów <b>oddzielnie dla każdej ze specjalizacji</b>. Z uwagi na wysoki poziom naszej grupy;) zdarzyły się osoby ze średnią 92! punkty które takowego stypendium nie dostały. Możnaby się zastanowić nad rozwiązaniem stosowanym w AŚ gdzie jedynym kryterium jest średnia, jednak wydaje mi się, że wtedy osoby na innych specjalizacjach z ogólnie mniejszą średnią (przykładowo przez wykładowcę, który lubi się 'powyżywać' na studentach) byłyby odcięte od pieniążków.</p>
+
+
+<p>Kwestia stypendium sportowego również jest co najmniej dziwna. Okazuje się bowiem, że jednym z kryteriów jego otrzymania jest odpowiedni poziom wyników w nauce. Zaraz zaraz .. czy nie od tego nie są przypadkiem stypendia naukowe. W naszej grupie mamy kolegę, który poświęca ok 10h tygodniowo na treningi. Jest mistrzem Polski, jednak stypendium mu nie przysługuje, ponieważ ma braki w zaliczeniach.</p>
+
+
+<p>Podsumowując. Uczelnia wydaje się działać zgodnie z hasłem Student dobry - student nieświadomy. Ja jednak przetrwam jakoś ten ostatni semestr zadowolony z naszej Alma Mater ;)</p>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

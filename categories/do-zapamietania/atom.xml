@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Do zapamiętania | Co.de.mon.key]]></title>
+  <link href="http://malpka.github.io/categories/do-zapamietania/atom.xml" rel="self"/>
+  <link href="http://malpka.github.io/"/>
+  <updated>2014-01-06T15:03:59+01:00</updated>
+  <id>http://malpka.github.io/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Pyhon - hurtowa zmiana atrybutów w xml]]></title>
+    <link href="http://malpka.github.io/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/"/>
+    <updated>2011-01-03T12:33:00+01:00</updated>
+    <id>http://malpka.github.io/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml</id>
+    <content type="html"><![CDATA[<p>Kolejne kilka linijek, które ułatwią mi kiedyś życie.</p>
+
+
+<p>Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B.C.D. W moim przypadku biblioteki stworzone chyba w delphi miały zwyczaj stosować przecinki zamiast kropek, albo dodawać spacje między liczbami.</p>
+
+
+<p>Ponieważ korzystam z narzędzia, które generuje mi do xmla listę plików w katalogu, z uwzględnieniem sumy kontrolnej i wersji, a nie miałem jego źródeł, trzeba było napisać szybką łatkę na wygenerowane dane.</p>
+
+
+<p></p>
+
+
+<pre>
+from xml.dom import minidom
+DOMTree = minidom.parse('filelist.xml')
+cNodes = DOMTree.childNodes
+for i in cNodes[0].getElementsByTagName("File"):
+        version = i.getAttribute("version")
+        version = version.replace(",", ".")
+        version = version.replace(" ", "")
+        i.setAttribute("version", version)
+
+f = open('filelist.xml', 'w')
+DOMTree.writexml(f)
+f.close()
+</pre>
+
+
+<p></p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Konwersja galerii phpBB z wersji 2 na 3]]></title>
+    <link href="http://malpka.github.io/2010/04/21/konwersja-galerii-phpbb-z-wersji-2-na-3/"/>
+    <updated>2010-04-21T12:53:00+02:00</updated>
+    <id>http://malpka.github.io/2010/04/21/konwersja-galerii-phpbb-z-wersji-2-na-3</id>
+    <content type="html"><![CDATA[<p></p>
+
+
+<pre>
+update phpbb3_gallery_images p3
+join phpbb_album p2 on CONCAT(p3.image_name, '.jpg') = p2.pic_filename
+set p3.image_name_clean = p2.pic_title,
+p3.image_desc = p2.pic_desc,
+p3.image_user_id = p2.pic_user_id,
+p3.image_username = p2.pic_username
+p3.image_time = p2.pic_time
+p3.image_view_count = p2.pic_view_count
+ip3.mage_id = p2.pic_id 
+</pre>
+
+
+<p><p>
+<p>Przy okazji kod do zmiany kodowania:</p>
+<p></p>
+<pre>
+UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&rsquo;, &lsquo;ń&rsquo;)
+</pre>
+<p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MPlayer - Instalacja kodeków rmvb (i nie tylko) pod linuksem]]></title>
+    <link href="http://malpka.github.io/2010/03/09/mplayer-instalacja-kodekow-rmvb-i-nie-tylko-pod-linuksem/"/>
+    <updated>2010-03-09T17:46:00+01:00</updated>
+    <id>http://malpka.github.io/2010/03/09/mplayer-instalacja-kodekow-rmvb-i-nie-tylko-pod-linuksem</id>
+    <content type="html"><![CDATA[<p></p>
+
+
+<pre>
+cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.bz2<br>sudo mkdir /usr/lib/codecs<br>sudo ln -s /usr/lib/codecs /usr/lib/codecs-win32<br>tar jxvf all-20061022.tar.bz2<br>sudo mv all-20061022/* /usr/lib/codecs<br><br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/rp9codecs-20050115.tar.bz2<br>sudo mkdir /usr/lib/real<br>tar jxvf rp9codecs-20050115.tar.bz2<br>sudo mv rp9codecs-20050115/* /usr/lib/real
+</pre>
+
+
+<p><p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf]]></title>
+    <link href="http://malpka.github.io/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/"/>
+    <updated>2009-12-29T09:01:00+01:00</updated>
+    <id>http://malpka.github.io/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto</id>
+    <content type="html"><![CDATA[<p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
+
+
+<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
+
+
+<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
+
+
+<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
+
+
+<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
+
+
+<p>Sam długo używałem zmiany parametru "Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie" w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatyczna zamiana nazw plików i zawartości]]></title>
+    <link href="http://malpka.github.io/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/"/>
+    <updated>2009-10-23T12:20:00+02:00</updated>
+    <id>http://malpka.github.io/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci</id>
+    <content type="html"><![CDATA[<p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
+
+
+<p>Rozwiązanie</p>
+
+
+<p>Zamiana zawartości:</p>
+
+
+<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
+
+
+<p>Zmiana nazw plików</p>
+
+
+<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
+
+
+<p>To ostatnie wywołać kilka razy</p>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>
