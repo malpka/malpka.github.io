@@ -435,58 +435,13 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
     text_file.close()</code></pre></noscript></div>
 
 
+<p>TODO:</p>
 
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/">Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-04T15:51:00+01:00" pubdate data-updated="true">2014-01-04</time>
-        
-           | <a href="/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/#disqus_thread"
-             data-disqus-identifier="http://malpka.github.io/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>RegEx są na prawdę przydatne do przetważania wszelkiego rodzaju danych tekstowych.</p>
-
-<p>Potrzebne mi były dane z <a href="http://www.ovh.pl/domeny/cennik_domen.xml">cennika domen OVH</a>,
-ale w formie możliwej do przekazania do arkusza kalkulacyjnego. Bezpośrednie wklejenie
-tabeli do LibreOffice nie wygląda najlepiej:</p>
-
-<p><img src="https://lh6.googleusercontent.com/-0bI9_6gW98g/Sdj0w1QGWcI/AAAAAAAABt4/gdLqSJf4ZTs/s144/IMG_1940.JPG" width="600" height="300" title="Cennik OVH xls" >
-<img src="http://placekitten.com/890/280"></p>
-
-<p>Zlikwiduję całkowicie znaki końca linii:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>^(\.[a-zA-Z \*\.]+)\t\( ([0-9,]+).*\( ([0-9,]+).*</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>zachowanie treści szkiców (to już trzeba ręcznie)</li>
+<li>zamiana &lt;EXCERPT&rt; na &lt;!&mdash; more &mdash;&gt;</li>
+<li>zmiana treści na markdown</li>
+</ul>
 
 </div>
   
@@ -725,42 +680,49 @@ f.close()
   <div class="entry-content"><p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
 
 
-<p><br></p>
-
-
 <p>Firmy uczestniczące w akcji są wymienione w formie adresów internetowych stron, bez odsyłaczy. Poza bardziej znanymi partnerami akcji jak gram.pl, Vobis, Helion, Komputronik czy Megastore jest sporo sklepów, o których działalności niewiele można powiedzieć po samym adresie internetowym. Parę przykładów - Fnak.pl, DeeZee.pl, Maminek.pl, KissMyKicks.pl czy KolorowaKrowa.pl ! :)</p>
-
-
-<p><br></p>
 
 
 <p>W celu szybkiego sprawdzenia tematyki każdego ze sklepów popełniłem mały skypcik w <b>pythonie</b>, w którym widać łatwość z jaką można wkroczyć w tematykę zwaną <a href="http://en.wikipedia.org/wiki/Web_scraping">Web scraping</a></p>
 
 
-<p><EXCERPT><pre class="pythonCode" style="margin-top:20px;margin-bottom:20px">
-import urllib, sys, BeautifulSoup</p>
 
-<p>adresDDD = &ldquo;<a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>&rdquo;
-soup = BeautifulSoup.BeautifulSoup(urllib.urlopen(adresDDD))</p>
 
-<p>for li in soup.findAll(&lsquo;li&rsquo;):</p>
-
-<pre><code>    try:
-            a2 = li.contents[0].strip(" \t\n").decode('utf8')
-            print "[http://" + a2+ "]"
-
-            soup2 = BeautifulSoup.BeautifulSoup(urllib.urlopen("http://"+a2))
-            try:
-                    print unicode(soup2.head.title)
-            except:
-                    print soup2.head.title
-    except:
-            continue
-</code></pre>
-
-<p></pre></p>
-
-<p><br></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">BeautifulSoup</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">adresDDD</span> <span class="o">=</span> <span class="s">&quot;http://dziendarmowejdostawy.pl/&quot;</span>
+</span><span class='line'><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">adresDDD</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;li&#39;</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">a2</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&quot; </span><span class="se">\t\n</span><span class="s">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">print</span> <span class="s">&quot;[http://&quot;</span> <span class="o">+</span> <span class="n">a2</span><span class="o">+</span> <span class="s">&quot;]&quot;</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">soup2</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&quot;http://&quot;</span><span class="o">+</span><span class="n">a2</span><span class="p">))</span>
+</span><span class='line'>                <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>                        <span class="k">print</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">soup2</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>                        <span class="k">print</span> <span class="n">soup2</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span>
+</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>                <span class="k">continue</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><br></p>
@@ -1264,19 +1226,13 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
   <div class="entry-content"><p>Korzystając z hype na latanie/lotnictwo w ostatnim tygodniu umieszczam orientacyjne koszty lotów Ryanair z Krakowa na maj b.r. Stan na 10:30, 16 kwietnia 2010.</p>
 
 
-<p><br></p>
-
-
 <p>Ceny mają charakter orientacyjny i nie stanowią oferty w rozumieniu &#8230; bla bla bla.</p>
-
-
-<p><br></p>
 
 
 <p>Na liście jest kilka lotów, wycenionych w obecnej promocji na 25 zł! W zestawieniu brakuje kilku lotów, muszę pokonać niedoskonałości mojego narzędzia, a przy okazji zoptymalizować zapytania aby operator nie blokował wyników wyszukiwania ;)</p>
 
 
-<p><EXCERPT><p><br></p></p>
+
 
 <p>Umieszczam dla dobra potomności, może komuś się przyda bardziej niż mnie. Dane można wykorzystać np. do ustalenia opłacalności kierunków lotów.</p>
 
@@ -2079,6 +2035,51 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/03/15/sesja-zdjeciowa/">Sesja zdjęciowa</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-15T00:00:00+01:00" pubdate data-updated="true">2010-03-15</time>
+        
+           | <a href="/2010/03/15/sesja-zdjeciowa/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/2010/03/15/sesja-zdjeciowa/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Bardzo mi się nie chce spać i postrzelałem trochę fotek widoku za oknem. Przez szybę. Canonem A510.</p>
+
+
+<p><a href="http://i.imgur.com/VJBI4.jpg"><img src="http://i.imgur.com/VJBI4s.jpg"></a> <a href="http://i.imgur.com/RQNgw.jpg"><img src="http://i.imgur.com/RQNgws.jpg"></a> <a href="http://i.imgur.com/qH43P.jpg"><img src="http://i.imgur.com/qH43Ps.jpg"></a> <a href="http://i.imgur.com/Z9lzB.jpg"><img src="http://i.imgur.com/Z9lzBs.jpg"></a> <a href="http://i.imgur.com/jaaMm.jpg"><img src="http://i.imgur.com/jaaMms.jpg"></a> <a href="http://i.imgur.com/StvGQ.jpg"><img src="http://i.imgur.com/StvGQs.jpg"></a> <a href="http://i.imgur.com/2BKis.jpg"><img src="http://i.imgur.com/2BKiss.jpg"></a></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -2102,15 +2103,15 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
       </li>
     
       <li class="post">
-        <a href="/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/">Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a>
-      </li>
-    
-      <li class="post">
         <a href="/2014/01/03/hello-world/">Hello World</a>
       </li>
     
       <li class="post">
         <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/">Pyhon - hurtowa zmiana atrybutów w xml</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Co.de.mon.key]]></title>
   <link href="http://malpka.github.io/atom.xml" rel="self"/>
   <link href="http://malpka.github.io/"/>
-  <updated>2014-01-06T15:36:18+01:00</updated>
+  <updated>2014-01-06T18:16:55+01:00</updated>
   <id>http://malpka.github.io/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -308,28 +308,13 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
     text_file.close()</code></pre></noscript></div>
 
 
+<p>TODO:</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Wyrażenia regularne w praktyce - wyszukiwanie i zamiana]]></title>
-    <link href="http://malpka.github.io/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/"/>
-    <updated>2014-01-04T15:51:00+01:00</updated>
-    <id>http://malpka.github.io/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana</id>
-    <content type="html"><![CDATA[<p>RegEx są na prawdę przydatne do przetważania wszelkiego rodzaju danych tekstowych.</p>
-
-<p>Potrzebne mi były dane z <a href="http://www.ovh.pl/domeny/cennik_domen.xml">cennika domen OVH</a>,
-ale w formie możliwej do przekazania do arkusza kalkulacyjnego. Bezpośrednie wklejenie
-tabeli do LibreOffice nie wygląda najlepiej:</p>
-
-<p><img src="https://lh6.googleusercontent.com/-0bI9_6gW98g/Sdj0w1QGWcI/AAAAAAAABt4/gdLqSJf4ZTs/s144/IMG_1940.JPG" width="600" height="300" title="Cennik OVH xls" >
-<img src="http://placekitten.com/890/280"></p>
-
-<p>Zlikwiduję całkowicie znaki końca linii:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>^(\.[a-zA-Z \*\.]+)\t\( ([0-9,]+).*\( ([0-9,]+).*</span></code></pre></td></tr></table></div></figure>
+<ul>
+<li>zachowanie treści szkiców (to już trzeba ręcznie)</li>
+<li>zamiana &lt;EXCERPT&rt; na &lt;!&mdash; more &mdash;&gt;</li>
+<li>zmiana treści na markdown</li>
+</ul>
 
 ]]></content>
   </entry>
@@ -448,42 +433,49 @@ f.close()
     <content type="html"><![CDATA[<p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
 
 
-<p><br></p>
-
-
 <p>Firmy uczestniczące w akcji są wymienione w formie adresów internetowych stron, bez odsyłaczy. Poza bardziej znanymi partnerami akcji jak gram.pl, Vobis, Helion, Komputronik czy Megastore jest sporo sklepów, o których działalności niewiele można powiedzieć po samym adresie internetowym. Parę przykładów - Fnak.pl, DeeZee.pl, Maminek.pl, KissMyKicks.pl czy KolorowaKrowa.pl ! :)</p>
-
-
-<p><br></p>
 
 
 <p>W celu szybkiego sprawdzenia tematyki każdego ze sklepów popełniłem mały skypcik w <b>pythonie</b>, w którym widać łatwość z jaką można wkroczyć w tematykę zwaną <a href="http://en.wikipedia.org/wiki/Web_scraping">Web scraping</a></p>
 
 
-<p><EXCERPT><pre class="pythonCode" style="margin-top:20px;margin-bottom:20px">
-import urllib, sys, BeautifulSoup</p>
 
-<p>adresDDD = &ldquo;<a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>&rdquo;
-soup = BeautifulSoup.BeautifulSoup(urllib.urlopen(adresDDD))</p>
 
-<p>for li in soup.findAll(&lsquo;li&rsquo;):</p>
-
-<pre><code>    try:
-            a2 = li.contents[0].strip(" \t\n").decode('utf8')
-            print "[http://" + a2+ "]"
-
-            soup2 = BeautifulSoup.BeautifulSoup(urllib.urlopen("http://"+a2))
-            try:
-                    print unicode(soup2.head.title)
-            except:
-                    print soup2.head.title
-    except:
-            continue
-</code></pre>
-
-<p></pre></p>
-
-<p><br></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">BeautifulSoup</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">adresDDD</span> <span class="o">=</span> <span class="s">&quot;http://dziendarmowejdostawy.pl/&quot;</span>
+</span><span class='line'><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">adresDDD</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;li&#39;</span><span class="p">):</span>
+</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">a2</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&quot; </span><span class="se">\t\n</span><span class="s">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">print</span> <span class="s">&quot;[http://&quot;</span> <span class="o">+</span> <span class="n">a2</span><span class="o">+</span> <span class="s">&quot;]&quot;</span>
+</span><span class='line'>
+</span><span class='line'>                <span class="n">soup2</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&quot;http://&quot;</span><span class="o">+</span><span class="n">a2</span><span class="p">))</span>
+</span><span class='line'>                <span class="k">try</span><span class="p">:</span>
+</span><span class='line'>                        <span class="k">print</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">soup2</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+</span><span class='line'>                <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>                        <span class="k">print</span> <span class="n">soup2</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span>
+</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
+</span><span class='line'>                <span class="k">continue</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><br></p>
@@ -897,19 +889,13 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
     <content type="html"><![CDATA[<p>Korzystając z hype na latanie/lotnictwo w ostatnim tygodniu umieszczam orientacyjne koszty lotów Ryanair z Krakowa na maj b.r. Stan na 10:30, 16 kwietnia 2010.</p>
 
 
-<p><br></p>
-
-
 <p>Ceny mają charakter orientacyjny i nie stanowią oferty w rozumieniu &#8230; bla bla bla.</p>
-
-
-<p><br></p>
 
 
 <p>Na liście jest kilka lotów, wycenionych w obecnej promocji na 25 zł! W zestawieniu brakuje kilku lotów, muszę pokonać niedoskonałości mojego narzędzia, a przy okazji zoptymalizować zapytania aby operator nie blokował wyników wyszukiwania ;)</p>
 
 
-<p><EXCERPT><p><br></p></p>
+
 
 <p>Umieszczam dla dobra potomności, może komuś się przyda bardziej niż mnie. Dane można wykorzystać np. do ustalenia opłacalności kierunków lotów.</p>
 
@@ -2070,6 +2056,124 @@ Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie ni
 
 
 <p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatyczne pobieranie z Rapidshare na Windowsie z wykorzystaniem Cygwina.]]></title>
+    <link href="http://malpka.github.io/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/"/>
+    <updated>2009-03-01T14:39:00+01:00</updated>
+    <id>http://malpka.github.io/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin</id>
+    <content type="html"><![CDATA[<p>Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco:</p>
+
+
+<ul>
+<li>klikasz na link / wklejasz jako adres w przeglądarce</li>
+<li>Naciskasz przycisk &#8220;Free User&#8221;</li>
+<li>Niecierpliwie czekasz aż cyferki dojdą do zera, a następnie znowu klikasz w przycisk Download.</li>
+</ul>
+
+
+<p>O ile w przypadku pojedynczych plików da się to zaakceptować, to gdy jest do pobrania kilkadziesiąt części nazwanych part[0-9]+.rar dochodzi problem oczekiwania do 30 minut między pobieraniem, oraz konieczność kontrolowania całego procesu pobierania i powtarzania wyżej wspomnianych kroków (stan na dzień 2009-03-01).</p>
+
+
+<p><EXCERPT><p>Użytkownicy systemów *nixowych mają od jakiegoś czasu możliwość skorzystania ze znakomitego i cały czas uaktualnianego skryptu rsget-mod którego autorem jest <a href="nerdblog.pl">d4rky</a></p></p>
+
+<p><a href="http://rs.nerdblog.pl/">rsget-mod - strona projektu</a></p>
+
+
+<p>Skrypt umożliwia pełną automatyzację procesu pobierania zarówno pojedynczego linku, jak i zbioru adresów zapisanych w pliku.</p>
+
+
+<p>Jeżeli jesteś użytkownikiem Windowsa &#8230; cóż, najpierw chociaż wypróbuj Linuxa ;), a jeśli dojdziesz do wniosku, że Ci nie odpowiada, możesz skorzystać z Cygwina, który jest linuksopodobnym środowiskiem działającym pod kontrolą systemu Microsoftu, emulującym funkcje API Linuxa.</p>
+
+
+<p><a href="http://www.cygwin.com/">Oficjalna strona projektu Cygwin</a></p>
+
+
+<p>Instalacja jest intuicyjna, ale aby przyszłe wersje skryptu były obsługiwane warto zatrzymać się przy wyborze pakietów i upewnić się, że będą instalowane:</p>
+
+
+<p></p>
+
+
+<ul>
+<li>Base / grep</li>
+<li>Net / wget</li>
+<li>Net / curl</li>
+</ul>
+
+
+<p></p>
+
+
+<p><img src="http://i40.tinypic.com/2ciei3l.jpg"></p>
+
+
+<p>Po zakończeniu instalacji można już uruchomić środowisko, które powita nas ślicznym promptem.</p>
+
+
+<p><img src="http://i44.tinypic.com/s3q25v.jpg"></p>
+
+
+<p>Cygwin to dobre środowisko dla osób, które chcą rozpocząć przygodę z linuxem, bądź wykorzystać jego zalety, m.in. jak w naszym przypadku możliwości skryptowe. Jednak nic nie stoi na przeszkodzie, aby emulować również środowisko graficzne za pomocą <a href="http://kde-cygwin.sourceforge.net/">Kde on Cygwin</a></p>
+
+
+<p>Wróćmy jednak do tematu. Skrypt wymaga kilku kroków przygotowawczych. Wygodniej będzie na przykład umieścić go w katalogu dostępnym przez zmienną PATH, by uprościć jego wywoływanie. Ponadto należy mu nadać atrybut wykonywalności.</p>
+
+
+<p><code>cd /usr/local/bin<br>
+wget http://rs.nerdblog.pl/stable/latest/rsget-mod.sh<br>
+chmod +x rsget-mod.sh</code></p>
+
+
+<p>Uwaga! W przypadku korzystania z serwera proxy należy wcześniej ustawić zmienną http_proxy:</p>
+
+
+<p><code>export http_proxy="http://adres_serwera:port/"</code></p>
+
+
+<p>lub</p>
+
+
+<p><code>export http_proxy="http://użytkownik:hasło@adres_serwera:port/"</code></p>
+
+
+<p>Sprawdzamy czy wszystko jest tam, gdzie trzeba i wywołujemy skrypt po raz pierwszy.</p>
+
+
+<p><img src="http://i42.tinypic.com/28c2hs2.jpg"></p>
+
+
+<p>Wersja unstable stworzy dodatkowo w katalogu domowym użytkownika swój podkatalog z ustawieniami oraz plikami pomocniczymi.</p>
+
+
+<p>Teraz wystarczy jedynie nakarmić skrypt linkami do pobierania:</p>
+
+
+<p><code>cat &gt; ~/linki.txt<br>
+http://rs123.rapidshare.com/files/1234567891/BigFile_part1.rar<br>
+http://rs123.rapidshare.com/files/1234567892/BigFile_part2.rar<br>
+http://rs123.rapidshare.com/files/1234567893/BigFile_part2.rar<br>
+[Ctrl+D]</code></p>
+
+
+<p>Inicjujemy ściąganie za pomocą</p>
+
+
+<p><code>rsget-mod.sh ~/linki.txt</code></p>
+
+
+<p><img src="http://i44.tinypic.com/332xo2o.jpg"></p>
+
+
+<p><img src="http://i40.tinypic.com/1055p51.jpg"></p>
+
+
+<p>Od teraz skrypt zajmie się wszystkimi czynnościami związanymi z obsługa pobierania i oczekiwania. Nam pozostaje tylko zostawić maszynę i wybrać się na spacer lub wycieczkę rowerową.</p>
 
 
 

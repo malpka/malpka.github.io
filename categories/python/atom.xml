@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Co.de.mon.key]]></title>
   <link href="http://malpka.github.io/categories/python/atom.xml" rel="self"/>
   <link href="http://malpka.github.io/"/>
-  <updated>2014-01-06T15:36:18+01:00</updated>
+  <updated>2014-01-06T18:16:55+01:00</updated>
   <id>http://malpka.github.io/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -61,19 +61,13 @@ f.close()
     <content type="html"><![CDATA[<p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
 
 
-<p><br></p>
-
-
 <p>Firmy uczestniczące w akcji są wymienione w formie adresów internetowych stron, bez odsyłaczy. Poza bardziej znanymi partnerami akcji jak gram.pl, Vobis, Helion, Komputronik czy Megastore jest sporo sklepów, o których działalności niewiele można powiedzieć po samym adresie internetowym. Parę przykładów - Fnak.pl, DeeZee.pl, Maminek.pl, KissMyKicks.pl czy KolorowaKrowa.pl ! :)</p>
-
-
-<p><br></p>
 
 
 <p>W celu szybkiego sprawdzenia tematyki każdego ze sklepów popełniłem mały skypcik w <b>pythonie</b>, w którym widać łatwość z jaką można wkroczyć w tematykę zwaną <a href="http://en.wikipedia.org/wiki/Web_scraping">Web scraping</a></p>
 
 
-<p><EXCERPT><pre class="pythonCode" style="margin-top:20px;margin-bottom:20px">
+<p>``` python
 import urllib, sys, BeautifulSoup</p>
 
 <p>adresDDD = &ldquo;<a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>&rdquo;
@@ -94,10 +88,7 @@ soup = BeautifulSoup.BeautifulSoup(urllib.urlopen(adresDDD))</p>
             continue
 </code></pre>
 
-<p></pre></p>
-
-<p><br></p>
-
+<p>```</p>
 
 <p><br></p>
 

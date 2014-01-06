@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | Co.de.mon.key]]></title>
   <link href="http://malpka.github.io/categories/linux/atom.xml" rel="self"/>
   <link href="http://malpka.github.io/"/>
-  <updated>2014-01-06T15:36:18+01:00</updated>
+  <updated>2014-01-06T18:16:55+01:00</updated>
   <id>http://malpka.github.io/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -278,10 +278,11 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
     <link href="http://malpka.github.io/2008/10/04/tricki-w-debianie/"/>
     <updated>2008-10-04T08:54:00+02:00</updated>
     <id>http://malpka.github.io/2008/10/04/tricki-w-debianie</id>
-    <content type="html"><![CDATA[<p>Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów: <code>apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'`</code> Takie rzeczy w dystrybucjach debianopochodnych są po prostu cudowne</p>
+    <content type="html"><![CDATA[<p>Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów:</p>
 
+<p><code>apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'`</code></p>
 
-
+<p>Takie rzeczy w dystrybucjach debianopochodnych są po prostu cudowne</p>
 ]]></content>
   </entry>
   

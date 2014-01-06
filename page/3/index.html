@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco: klikasz na link / wklejasz jako adres w &hellip;">
+  <meta name="description" content="Postanowiłem zaskoczyć moją Ukochaną i samodzielnie sklecić jakiś prezent. Ostatnio wpadł mi w łapki filmik instruktażowy samodzielnego wykonania &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -88,154 +88,6 @@ margin: 0 0 0;
       
   <header>
     
-      <h1 class="entry-title"><a href="/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/">Automatyczne pobieranie z Rapidshare na Windowsie z wykorzystaniem Cygwina.</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-03-01T14:39:00+01:00" pubdate data-updated="true">2009-03-01</time>
-        
-           | <a href="/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/#disqus_thread"
-             data-disqus-identifier="http://malpka.github.io/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco:</p>
-
-
-<ul>
-<li>klikasz na link / wklejasz jako adres w przeglądarce</li>
-<li>Naciskasz przycisk &#8220;Free User&#8221;</li>
-<li>Niecierpliwie czekasz aż cyferki dojdą do zera, a następnie znowu klikasz w przycisk Download.</li>
-</ul>
-
-
-<p>O ile w przypadku pojedynczych plików da się to zaakceptować, to gdy jest do pobrania kilkadziesiąt części nazwanych part[0-9]+.rar dochodzi problem oczekiwania do 30 minut między pobieraniem, oraz konieczność kontrolowania całego procesu pobierania i powtarzania wyżej wspomnianych kroków (stan na dzień 2009-03-01).</p>
-
-
-<p><EXCERPT><p>Użytkownicy systemów *nixowych mają od jakiegoś czasu możliwość skorzystania ze znakomitego i cały czas uaktualnianego skryptu rsget-mod którego autorem jest <a href="nerdblog.pl">d4rky</a></p></p>
-
-<p><a href="http://rs.nerdblog.pl/">rsget-mod - strona projektu</a></p>
-
-
-<p>Skrypt umożliwia pełną automatyzację procesu pobierania zarówno pojedynczego linku, jak i zbioru adresów zapisanych w pliku.</p>
-
-
-<p>Jeżeli jesteś użytkownikiem Windowsa &#8230; cóż, najpierw chociaż wypróbuj Linuxa ;), a jeśli dojdziesz do wniosku, że Ci nie odpowiada, możesz skorzystać z Cygwina, który jest linuksopodobnym środowiskiem działającym pod kontrolą systemu Microsoftu, emulującym funkcje API Linuxa.</p>
-
-
-<p><a href="http://www.cygwin.com/">Oficjalna strona projektu Cygwin</a></p>
-
-
-<p>Instalacja jest intuicyjna, ale aby przyszłe wersje skryptu były obsługiwane warto zatrzymać się przy wyborze pakietów i upewnić się, że będą instalowane:</p>
-
-
-<p></p>
-
-
-<ul>
-<li>Base / grep</li>
-<li>Net / wget</li>
-<li>Net / curl</li>
-</ul>
-
-
-<p></p>
-
-
-<p><img src="http://i40.tinypic.com/2ciei3l.jpg"></p>
-
-
-<p>Po zakończeniu instalacji można już uruchomić środowisko, które powita nas ślicznym promptem.</p>
-
-
-<p><img src="http://i44.tinypic.com/s3q25v.jpg"></p>
-
-
-<p>Cygwin to dobre środowisko dla osób, które chcą rozpocząć przygodę z linuxem, bądź wykorzystać jego zalety, m.in. jak w naszym przypadku możliwości skryptowe. Jednak nic nie stoi na przeszkodzie, aby emulować również środowisko graficzne za pomocą <a href="http://kde-cygwin.sourceforge.net/">Kde on Cygwin</a></p>
-
-
-<p>Wróćmy jednak do tematu. Skrypt wymaga kilku kroków przygotowawczych. Wygodniej będzie na przykład umieścić go w katalogu dostępnym przez zmienną PATH, by uprościć jego wywoływanie. Ponadto należy mu nadać atrybut wykonywalności.</p>
-
-
-<p><code>cd /usr/local/bin<br>
-wget http://rs.nerdblog.pl/stable/latest/rsget-mod.sh<br>
-chmod +x rsget-mod.sh</code></p>
-
-
-<p>Uwaga! W przypadku korzystania z serwera proxy należy wcześniej ustawić zmienną http_proxy:</p>
-
-
-<p><code>export http_proxy="http://adres_serwera:port/"</code></p>
-
-
-<p>lub</p>
-
-
-<p><code>export http_proxy="http://użytkownik:hasło@adres_serwera:port/"</code></p>
-
-
-<p>Sprawdzamy czy wszystko jest tam, gdzie trzeba i wywołujemy skrypt po raz pierwszy.</p>
-
-
-<p><img src="http://i42.tinypic.com/28c2hs2.jpg"></p>
-
-
-<p>Wersja unstable stworzy dodatkowo w katalogu domowym użytkownika swój podkatalog z ustawieniami oraz plikami pomocniczymi.</p>
-
-
-<p>Teraz wystarczy jedynie nakarmić skrypt linkami do pobierania:</p>
-
-
-<p><code>cat &gt; ~/linki.txt<br>
-http://rs123.rapidshare.com/files/1234567891/BigFile_part1.rar<br>
-http://rs123.rapidshare.com/files/1234567892/BigFile_part2.rar<br>
-http://rs123.rapidshare.com/files/1234567893/BigFile_part2.rar<br>
-[Ctrl+D]</code></p>
-
-
-<p>Inicjujemy ściąganie za pomocą</p>
-
-
-<p><code>rsget-mod.sh ~/linki.txt</code></p>
-
-
-<p><img src="http://i44.tinypic.com/332xo2o.jpg"></p>
-
-
-<p><img src="http://i40.tinypic.com/1055p51.jpg"></p>
-
-
-<p>Od teraz skrypt zajmie się wszystkimi czynnościami związanymi z obsługa pobierania i oczekiwania. Nam pozostaje tylko zostawić maszynę i wybrać się na spacer lub wycieczkę rowerową.</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/2009/02/14/walentynkowy-labedz/">Walentynkowy łabędź</a></h1>
     
     
@@ -281,9 +133,6 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
 
 
 <p><a href="http://i40.tinypic.com/4r2sch.jpg" target="_blank"><img src="http://i40.tinypic.com/4r2sch.jpg" border="0" alt="Image and video hosting by TinyPic" style="width:100px;height:130px;"></a> <a href="http://i43.tinypic.com/281aqmq.jpg" target="_blank"><img src="http://i43.tinypic.com/281aqmq.jpg" border="0" alt="Image and video hosting by TinyPic" style="width:100px;height:130px;"></a> <a href="http://i43.tinypic.com/9qdw7t.jpg" target="_blank"><img src="http://i43.tinypic.com/9qdw7t.jpg" border="0" alt="Image and video hosting by TinyPic" style="width:100px;height:130px;"></a> <a href="http://i39.tinypic.com/20uvb4x.jpg" target="_blank"><img src="http://i39.tinypic.com/20uvb4x.jpg" border="0" alt="Image and video hosting by TinyPic" style="width:100px;height:130px;"></a></p>
-
-
-<p>To dla Ciebie, Gosiu. Kocham Cię.</p>
 
 
 <p>&nbsp;</p>
@@ -459,10 +308,11 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
   </header>
 
 
-  <div class="entry-content"><p>Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów: <code>apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'`</code> Takie rzeczy w dystrybucjach debianopochodnych są po prostu cudowne</p>
+  <div class="entry-content"><p>Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów:</p>
 
+<p><code>apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'`</code></p>
 
-
+<p>Takie rzeczy w dystrybucjach debianopochodnych są po prostu cudowne</p>
 </div>
   
   
@@ -763,6 +613,127 @@ odezwał się exception o braku możliwości połączenia z bazą, mimo że był
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/">Jak uczestniczyć w programie MSDNAA na PŚk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-04-17T17:37:00+02:00" pubdate data-updated="true">2007-04-17</time>
+        
+           | <a href="/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><b>Jak uczestniczyć w programie MSDNAA na naszej uczelni.</b></p>
+
+
+<p>Jak wcześniej wspomniałem sprawa tego programu wywołała na naszym wydziale sporo kontrowersji. Prowadzący zajęcia podobno od dłuższego czasu korzystali z dobrodziejstw tego programu, który omijał nas studentów. Całe szczęście, że na ostatnim semestrze ostatniego roku coraz więcej osób zaczęło się interesować sprawą i zrobiło się o niej na tyle głośno, że zajmujący się nia ludzie nie mieli wyboru i udostępniło możliwość zapisywania się do programu także studentów.</p>
+
+
+<p>Przypomnijmy:<br>
+Program umożliwia uczestnikom na otrzymanie <b>BEZPŁATNEJ</b> dożywotniej licencji na produkty Microsoftu z których można przykładowo wymienić <b>Windows XP PL</b> (wersja Professional 32 i 64 bitowa) <b>Windows 2003 Server</b>, <b>Windows Vista Business</b>, &#8230;</p>
+
+
+<p>Oczywiście nie jest to tak prosta sprawa, więc krótko opiszę co trzeba zrobić:</p>
+
+
+<p></p>
+
+
+<p><b>1. Należy posiadać konto na jednym z serwerów uczelnianych (*.tu.kielce.pl)</b></p>
+
+
+<p>Sprawa dość klopotliwa bo trzeba się nachodzić (choć jeśli ktoś ma znajomości wśród kadry pedagogicznej to może sobie załatwić;))<br>
+Otóż uczelnia od dawna (napewno na 1 roku już było można) daje możliwość założenia sobie konta shellowego na serwerze student.tu.kielce.pl<br>
+oprócz &#8216;$&#8217; dostajemy oczywiście konto mailowe, o co właśnie nam chodzi.<br>
+Podanie o takie konto można pobrać z budynku B z tego piętra, gdzie mieszczą się pokoje ludzi od języków. Po wyjściu z windy należy kierować się korytarzem w lewo, ostatnie drzwi na lewo. (pok. 301 bud. B). Wniosek jest dostępny <a href="http://komputer.tu.kielce.pl/student-wniosek.pdf">tutaj</a> Wybieramy login (stałe są literka od nazwy wydziału i numer roku/sem, pozostałe 5 znaków dobieramy sami: np e12piwo)<br>
+Ważne jest dołączenie <b>zaświadczenia</b> że jesteśmy jeszcze studentami uczelni - do pobrania w dziekanacie.</p>
+
+
+<p>Na założenie konta czeka się tak do tygodnia, dostajemy tymczasowe hasło i mamy upragniony mail.<br>
+<i>Do czytania poczty pod konsolą polecam program &#8216;mutt&#8217;.</i></p>
+
+
+<p><b>2. Wypełnić formularz na <a href="http://teleinfo.tu.kielce.pl//index.php?id=39">http://teleinfo.tu.kielce.pl//index.php?id=39</a></b></p>
+
+
+<p>Ważne jest że po jego wypełnieniu nie dostajemy dosłownie nic, żadnego potwierdzenia ani błędu. Formularz wysyła po prostu maila do gościa w pokoju numer 7 w bud. D że jest kolejny chętny do zabawy. Człowiek ten w zależności od swojego humoru i ilości zgłoszeń w krótszym lub dłuższym czasie założy nam konto i prześle odpowiedź na uczelnianego maila. Na odpowiedź musiałem czekać 2 tygodnie:|. Być może teraz będzie to szło sprawniej. Dostaniemy w nim adres stronki na której mamy się zalogować, login (nazwa konta mailowego) i hasło.</p>
+
+
+<p><b>3. Zamówić wybrane pozycje na <a href="http://msdn63.e-academy.com/pswiet_eai">http://msdn63.e-academy.com/pswiet_eai</a></b></p>
+
+
+<p>Dostępne są następujące tytuły:<br></p>
+
+
+<ul>
+<li>MSDN Library - January 2005 (Full)</li>
+<li># Visio Professional 2003</li>
+<li>Visual Studio .NET 2003 Professional - Full Install</li>
+<li># Windows 2000 Professional (Polish)</li>
+<li>Windows 2000 SP 4 (Polish)</li>
+<li>Windows 98 Second Edition (Polish)</li>
+<li># Windows Server 2003 Enterprise Edition (Polish)</li>
+<li># Windows Vista Business CD1 (Polish)</li>
+<li># Windows XP Professional (Single User)</li>
+<li># Windows XP Professional (Single User) 64bit Edition</li>
+</ul>
+
+
+<p>Krzyżykiem zaznaczyłem te produkty, dla których dostajemy numer seryjny.</p>
+
+
+<p></p>
+
+
+<p>Zamówienie należy zlożyć dodając produkty do koszyka (wszystkie!?:)) i potwierdzając zamówienie<br>
+Klucze pojawiają się pod linkami &#8220;Wypozyczenie nosnika.&#8221; w dziale &#8220;My Software&#8221;<br>
+<a href="http://www.tnij.org/xzb">Screenshot</a></p>
+
+
+<p><b>4. Zdobyć kopię nośników instalacyjnych</b></p>
+
+
+<p>W akwarium (siedziba koła naukowego teleinformatyk) na dole przy szatni w budynku D. mają ok. 30 płyt z produktami, które można sobie na miejscu skopiować. Dobrze jest przyjść z laptopem i zrobić obrazy;) Można również poszukac osób które te płyty już mają. Są one jednakowe dla wszystkich więc nie ma znaczenia ich źródło pochodzenia.</p>
+
+
+<p><b>5. Cieszyć się oryginalnymi i bezpłatnymi produktami na swoim komputerku (komputerkach)</b></p>
+
+
+<p>Oczywiście polecam lekturę licencji przy zamawianiu oprogramowania i faq na stronie msdnaa. Są tam przykładowo informacje, że zdobyte oprogramowanie możemy używać na dowolnej liczbie swoich komputerów, że oprogramowania możemy używać dożywotnio, jednak po zakończeniu studiów nie przysługują nam aktualizacje (swoją drogą zastanawiam się jak tym zarządzają, bo jeśli na zdjęcie statusu studenta będę czekał podobnie jak na założenie konta to jestem spokojny;))</p>
+
+
+<p>Na koniec trochę humoru: <a href="http://blog.bdcc.info/2007/01/03/malpka">link</a></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -788,15 +759,15 @@ odezwał się exception o braku możliwości połączenia z bazą, mimo że był
       </li>
     
       <li class="post">
-        <a href="/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/">Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a>
-      </li>
-    
-      <li class="post">
         <a href="/2014/01/03/hello-world/">Hello World</a>
       </li>
     
       <li class="post">
         <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/">Pyhon - hurtowa zmiana atrybutów w xml</a>
       </li>
     
   </ul>
