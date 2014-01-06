@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ogólne | Co.de.mon.key]]></title>
+  <link href="http://malpka.github.io/blog/categories/ogolne/atom.xml" rel="self"/>
+  <link href="http://malpka.github.io/"/>
+  <updated>2014-01-06T13:47:11+01:00</updated>
+  <id>http://malpka.github.io/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Wybór klawiatury]]></title>
+    <link href="http://malpka.github.io/blog/2010/05/11/wybor-klawiatury/"/>
+    <updated>2010-05-11T21:32:00+02:00</updated>
+    <id>http://malpka.github.io/blog/2010/05/11/wybor-klawiatury</id>
+    <content type="html"><![CDATA[<p>Zastanawiam się nad następującymi:</p>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<ul>
+<li><a href="http://www.agito.pl/klawiatury/a4-tech-klawiatura-evo-slim-tablet.0.32613.html">a4tech evo slim tablet hub i audio</a></li>
+<li><a href="http://www.ceneo.pl/953431">logitech wave</a></li>
+<li><a href="http://www.microsoft.com/hardware/mouseandkeyboard/productdetails.aspx?pid=040">microsoft comfort curve 2000 slim ergo</a></li>
+<li><del><a href="http://www.microsoft.com/hardware/mouseandkeyboard/productdetails.aspx?pid=043">MICROSOFT Natural Ergonomic Keyboard 4000</a></del></li>
+</ul>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<p>I <a href="http://www.ceneo.pl/ProductsComparison.aspx?categoryId=440&amp;productId=2746263&amp;productId=3666142&amp;productId=2649925">monitorem</a></p>
+
+
+<p></p>
+
+
+<p>I obudową</p>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<ul>
+<li><a href="http://allegro.pl/item1099589923_obudowa_matx_qoltec_amber_9108b_420w_fvat_wwa.html">obudowa_matx_qoltec_amber_9108b_420w_fvat_wwa.html</a></li>
+<li><a href="http://allegro.pl/item1098785748_obudowa_aerocool_pgs_qs_200_matx_czarna.html">obudowa_aerocool_pgs_qs_200_matx_czarna.html</a></li>
+<li><a href="http://allegro.pl/item1099047254_obudowa_matx_i_box_fornax_500w_6pin_pcie_usb_lcd.html">obudowa_matx_i_box_fornax_500w_6pin_pcie_usb_lcd.html</a></li>
+<li><a href="http://allegro.pl/item1101505013_aerocool_racer_cube_matx_czarno_czerwony_tanio.html">aerocool_racer_cube_matx_czarno_czerwony_tanio.html</a></li>
+</ul>
+
+
+<p></p>
+
+
+<p>A i jeszcze kartą graficzną:</p>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<ul>
+<li>ATI Radeon 4850 512Mb ddr3</li>
+<li>HiS Radeon HD 4670 512 MB IceQ</li>
+<li>GeForce 9600 GT</li>
+</ul>
+
+
+<p></p>
+
+
+<p>Bo <a href="http://www.morele.net/procesor-amd-phenom-ii-x2-555-black-edition-am3-3-2-ghz-7mb-80w-box-hdz555wfgmbox-302620/">procesor</a>, <a href="http://www.morele.net/plyta-glowna-gigabyte-ga-ma785gmt-ud2h-243661/">płytę główną</a> i <a href="http://www.morele.net/pamiec-good-ram-ddr3-2048mb-pc1333-cl9-gr1333d364l9-2g-244558/">pamięć</a> już sobie na imieniny sprawiłem ;)</p>
+
+
+<p>Obecna konfiguracja:</p>
+
+
+<p></p>
+
+
+<ul>
+<li>AMD Phenom II X2 555 Black Edition, AM3, 3,2 GHz, 7MB , 80W, BOX (HDZ555WFGMBOX) - 399 zł</li>
+<li>Gigabyte GA-MA785GMT-UD2H - 324 zł</li>
+<li>Good Ram DDR3 2048MB PC1333 CL9 (GR1333D364L9/2G) - 109 zł</li>
+<li>Good Ram DDR3 4096MB PC1333 CL9 (GR1333D364L9/4G) - 119 zł (lipiec 2013)</li>
+<li>WD Caviar GP-16 1TB WD10EADS 32 MB Green Power 295 zł</li>
+<li>Corsair CMPSU-520HXEU 520W - 239 zł</li>
+<li><a href="http://www.ceneo.pl/10967184">MSI Radeon HD6870 Hawk - 688 zł</a></li>
+</ul>
+
+
+<p></p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Import projektu z VSS do Bazaar z zachowaniem (częściowym) chronologii zmian]]></title>
+    <link href="http://malpka.github.io/blog/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/"/>
+    <updated>2010-02-26T09:23:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr</id>
+    <content type="html"><![CDATA[<p>Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies.</p>
+
+
+<p>Code snippet for january :)</p>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<pre>
+@echo Off<br><br>set SSDIR=Y:\<br>set SSUSER=username<br>set SSPWD=<br><br>bzr init<br><br>FOR /L %%d in (1, 1, 31) do (<br>"C:\Program Files\Microsoft Visual SourceSafe\ss.exe" get $/Project -R -GTU -Vd2010/1/%%d<br>bzr add<br>bzr del<br>bzr ci -m "2010/1/%%d"<br>pause<br>)<br>
+</pre>
+
+
+<p><p>
+<p></p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf]]></title>
+    <link href="http://malpka.github.io/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/"/>
+    <updated>2009-12-29T09:01:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto</id>
+    <content type="html"><![CDATA[<p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
+
+
+<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
+
+
+<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
+
+
+<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
+
+
+<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
+
+
+<p>Sam długo używałem zmiany parametru "Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie" w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Refleksje - przeniesienie domeny z netart do ovh]]></title>
+    <link href="http://malpka.github.io/blog/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/"/>
+    <updated>2009-05-23T12:51:00+02:00</updated>
+    <id>http://malpka.github.io/blog/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh</id>
+    <content type="html"><![CDATA[<p>Z uwagi na brak reakcji firmy NetArt na <a href="http://webhosting.pl/NASK.obniza.ceny.odnowien.dla.domen.w.rejestrze..pl">obniżkę cen odnowienia domeny .pl wprowadzoną przez NASK 1 stycznia 2009 r.</a> zdecydowałem się przenieść swoją do ogólnie polecanego na joggerze ovh.</p>
+
+
+<p>Dla porównania obecne cenniki przedłużenia (ceny brutto dla klientów indywidualnych bez promocji, stan na 23.05.2009):<br></p>
+
+
+<ul>
+<li>54,9PLN - ovh.pl</li>
+<li>120,78PLN - home.pl</li>
+<li>120,78PLN - az.pl</li>
+<li>121,99PLN - domeny.pl</li>
+<li>122,00PLN - nazwa.pl</li>
+</ul>
+
+
+<p></p>
+
+
+<p>Wrażenia z procesu z podziałem na obie strony</p>
+
+
+<p><b>OVH</b></p>
+
+
+<p>Rejestracja bezproblemowa. Panel tragiczny na pierwszy rzut oka, aby znaleźć przekierowanie na ip musiałem sięgnąć do googla; za to duża możliwość konfiguracji - konkretnie pola A, MX, CNAME, ... Można powiedzieć że się przyzwyczaiłem, jednak nadal wygląd razi.<br>
+Bardzo dużo powiadomień na maila (sumarycznie w trakcie całego procesu dostałem aż 9 od ovh - powiadomienia o logowaniu, transfer, problem z operacją DomainContactUpdate czyli brak numeru telefonu, faktura na 0PN, zmiana dns, znowu problem, dokonanie płatności za przedłużenie, przypomnienie o wygaśnięciu uff)</p>
+
+
+<p><b>NETART</b></p>
+
+
+<p>Sprowadzało się do uzyskania AuthInfo, nie wiedziałem że sprawa jest tak problematyczna. Znaleziony w FAQ sposób to przesłanie faksem lub pocztą zwyczajną wniosku o udostępnienie kodu. Sam wniosek nie jest dostępny gdzieś w dokumentach do pobrania, ale trzeba o niego poprosić w BOK. Odpowiedź wysyłana jest również pocztą tradycyjną, listem poleconym.<br>
+Mimo tych wszystkich kroków operacja trwała tutaj dość szybko, około 5 dni w tym weekend, ale może dlatego tak to odbieram, że zapobiegliwie chciałem załatwić sprawę na miesiąc przed wygaśnięciem.</p>
+
+
+<p><b>DNS</b></p>
+
+
+<p>Można jeszcze wspomnieć o kontakcie ze strony dns.pl, który polegał na mailu, w którym należało kliknąć na link potwierdzający transfer. Tak... to zdecydowanie bardziej komfortowe podejście.</p>
+
+
+<p>Ogólnie obsługę i konfigurację domeny oraz współpracę z NetArt wspominam bardzo miło, nigdy nie stwarzali problemów, jeżeli wprowadzą rozsądne ceny to może do nich wrócę.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zmiana firmware WRT54GL z Tomato na DD-WRT]]></title>
+    <link href="http://malpka.github.io/blog/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/"/>
+    <updated>2009-03-28T20:11:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt</id>
+    <content type="html"><![CDATA[<p>Zdziwiło mnie, że aktualizacja oprogramowania przebiegła pomyślnie.</p>
+
+
+<p>Mogło się nie udać na przykład z tego powodu że wersja DD-WRT którą wybrałem (dd-wrt.v24_vpn_generic.bin) zajmowała 3,52 MB, a Tomato raportował, że ilość pamięci dostępnej na cache'owanie procesu aktualizacji to około 2,1 MB</p>
+
+
+<p>Na stronie DD wyczytałem, że czasami wymagane jest zainstalowanie najpierw wersji mini, dlatego przezornie ją pobrałem, ale ponieważ "jestem hardcorem" zainstalowałem od razu oprogramowanie docelowe.</p>
+
+
+<p>Nie dość, że proces przeszedł pomyślnie, to okazało się że prawie wszystkie ustawienia zostały przywrócone. Chodzi tu m.in. o statyczne DHCP, konfigurację sieci bezprzewodowej - ssid, wep, ... . Jeszcze muszę poszukać gdzie jest przekierowanie portów.</p>
+
+
+<p>Na DD-WRT przeszedłem, bo potrzebny mi VPN, ale też chciałem zobaczyć jak wygląda coś innego niż domyślne oprogramowanie oraz Tomato.</p>
+
+
+<p>Jedyne, co mnie zirytowało to polskie tłumaczenie, często pomieszane z angielskim, albo wplecione w angielski szyk zdania. Szybko przełączyłem się na eng;)</p>
+
+
+<p>Wielkie podziękowania za tak sprawnie działający firmware dla twórców!</p>
+
+
+<p></p>
+
+
+<p>--------- Edit 29.03.2009</p>
+
+
+<p>W nowym oprogramowaniu umieszczenie funkcji jest mniej intuicyjne niż w poprzednim. Myślałem że to kwestia przyzwyczajenia, ale po tych 2 dniach zabawy nadal ciężko mi znaleźć opcję której szukam.<br>
+Jednak konfiguracja przekierowania portów się nie zachowała.</p>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

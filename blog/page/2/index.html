@@ -1,0 +1,956 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Co.de.mon.key</title>
+  <meta name="author" content="malpka">
+
+  
+  <meta name="description" content="cd ~wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.bz2sudo mkdir /usr/lib/codecssudo ln -s /usr/lib/codecs /usr/lib/codecs- &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://malpka.github.io/blog/page/2">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Co.de.mon.key" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<style type="text/css">
+/*.highlight {
+  background: none !important;
+}*/
+/*.line_numbers {
+  line-height: 18px;
+  font-size: 13px;
+}*/
+.gist div {
+margin: 0 0 0;
+}
+
+.gist .line-data
+{
+ font-size: 13px;
+ width: 100%;
+}
+</style>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Co.de.mon.key</a></h1>
+  
+    <h2>Weblog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:malpka.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/03/09/mplayer-instalacja-kodekow-rmvb-i-nie-tylko-pod-linuksem/">MPlayer - Instalacja kodeków rmvb (i nie tylko) pod linuksem</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-03-09T17:46:00+01:00" pubdate data-updated="true">2010-03-09</time>
+        
+           | <a href="/blog/2010/03/09/mplayer-instalacja-kodekow-rmvb-i-nie-tylko-pod-linuksem/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2010/03/09/mplayer-instalacja-kodekow-rmvb-i-nie-tylko-pod-linuksem/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p></p>
+
+
+<pre>
+cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.bz2<br>sudo mkdir /usr/lib/codecs<br>sudo ln -s /usr/lib/codecs /usr/lib/codecs-win32<br>tar jxvf all-20061022.tar.bz2<br>sudo mv all-20061022/* /usr/lib/codecs<br><br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/rp9codecs-20050115.tar.bz2<br>sudo mkdir /usr/lib/real<br>tar jxvf rp9codecs-20050115.tar.bz2<br>sudo mv rp9codecs-20050115/* /usr/lib/real
+</pre>
+
+
+<p><p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/">Import projektu z VSS do Bazaar z zachowaniem (częściowym) chronologii zmian</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-26T09:23:00+01:00" pubdate data-updated="true">2010-02-26</time>
+        
+           | <a href="/blog/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies.</p>
+
+
+<p>Code snippet for january :)</p>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<pre>
+@echo Off<br><br>set SSDIR=Y:\<br>set SSUSER=username<br>set SSPWD=<br><br>bzr init<br><br>FOR /L %%d in (1, 1, 31) do (<br>"C:\Program Files\Microsoft Visual SourceSafe\ss.exe" get $/Project -R -GTU -Vd2010/1/%%d<br>bzr add<br>bzr del<br>bzr ci -m "2010/1/%%d"<br>pause<br>)<br>
+</pre>
+
+
+<p><p>
+<p></p></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-29T09:01:00+01:00" pubdate data-updated="true">2009-12-29</time>
+        
+           | <a href="/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
+
+
+<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
+
+
+<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
+
+
+<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
+
+
+<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
+
+
+<p>Sam długo używałem zmiany parametru &#8220;Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie&#8221; w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Automatyczna zamiana nazw plików i zawartości</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-23T12:20:00+02:00" pubdate data-updated="true">2009-10-23</time>
+        
+           | <a href="/blog/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
+
+
+<p>Rozwiązanie</p>
+
+
+<p>Zamiana zawartości:</p>
+
+
+<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
+
+
+<p>Zmiana nazw plików</p>
+
+
+<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
+
+
+<p>To ostatnie wywołać kilka razy</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/">Do zapamiętania: Linuks - szyfrowanie za pomocą dm-crypt / luks</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-08-19T07:56:00+02:00" pubdate data-updated="true">2009-08-19</time>
+        
+           | <a href="/blog/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem <a href="http://mlawire.blogspot.com/2009/07/encrypted-filesystem-on-loop-device.html">stronę</a> na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś pracy ale tym razem to będzie prywatnie dla mnie do zapamiętania.</p>
+
+
+<p><code>modprobe dm_mod</code></p>
+
+
+<h3>Tworzenie zaszyfrowanego systemu plików:</h3>
+
+
+<p><code># create a 10M file<br>
+$ dd if=/dev/urandom of=testfs bs=1M count=10<br>
+<br>
+# associate it with the loop device<br>
+$ losetup /dev/loop0 testfs<br>
+<br>
+# encrypt it (will ask for password to use)<br>
+$ cryptsetup luksFormat /dev/loop0<br>
+<br>
+# open the encrypted loop device<br>
+$ cryptsetup luksOpen /dev/loop0 testfs<br>
+<br>
+# format it with ext2 (or whatever you prefer)<br>
+$ mkfs.ext2 /dev/mapper/testfs<br>
+<br>
+# mount it<br>
+$ mount /dev/mapper/testfs /mnt/test<br>
+<br>
+# confirm mount<br>
+$ df -h /mnt/test<br>
+Filesystem Size Used Avail Use% Mounted on<br>
+/dev/mapper/testfs 9.2M 88K 8.7M 1% /mnt/test</code></p>
+
+
+<h3>Odmontowanie systemu plików:</h3>
+
+
+<p><code># unmount it<br>
+$ umount /mnt/test<br>
+<br>
+# close encryption<br>
+$ cryptsetup luksClose /dev/mapper/testfs<br>
+<br>
+# release loop device<br>
+$ losetup -d /dev/loop0</code></p>
+
+
+<h3>Montowanie szyfrowanego systemu plików:</h3>
+
+
+<p><code><br>
+# associate file with the loop device<br>
+$ losetup /dev/loop0 testfs<br>
+<br>
+# open the encrypted loop device<br>
+$ cryptsetup luksOpen /dev/loop0 testfs<br>
+<br>
+# mount it<br>
+$ mount /dev/mapper/testfs /mnt/test<br></code></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/">Refleksje - przeniesienie domeny z netart do ovh</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-05-23T12:51:00+02:00" pubdate data-updated="true">2009-05-23</time>
+        
+           | <a href="/blog/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Z uwagi na brak reakcji firmy NetArt na <a href="http://webhosting.pl/NASK.obniza.ceny.odnowien.dla.domen.w.rejestrze..pl">obniżkę cen odnowienia domeny .pl wprowadzoną przez NASK 1 stycznia 2009 r.</a> zdecydowałem się przenieść swoją do ogólnie polecanego na joggerze ovh.</p>
+
+
+<p>Dla porównania obecne cenniki przedłużenia (ceny brutto dla klientów indywidualnych bez promocji, stan na 23.05.2009):<br></p>
+
+
+<ul>
+<li>54,9PLN - ovh.pl</li>
+<li>120,78PLN - home.pl</li>
+<li>120,78PLN - az.pl</li>
+<li>121,99PLN - domeny.pl</li>
+<li>122,00PLN - nazwa.pl</li>
+</ul>
+
+
+<p></p>
+
+
+<p>Wrażenia z procesu z podziałem na obie strony</p>
+
+
+<p><b>OVH</b></p>
+
+
+<p>Rejestracja bezproblemowa. Panel tragiczny na pierwszy rzut oka, aby znaleźć przekierowanie na ip musiałem sięgnąć do googla; za to duża możliwość konfiguracji - konkretnie pola A, MX, CNAME, &#8230; Można powiedzieć że się przyzwyczaiłem, jednak nadal wygląd razi.<br>
+Bardzo dużo powiadomień na maila (sumarycznie w trakcie całego procesu dostałem aż 9 od ovh - powiadomienia o logowaniu, transfer, problem z operacją DomainContactUpdate czyli brak numeru telefonu, faktura na 0PN, zmiana dns, znowu problem, dokonanie płatności za przedłużenie, przypomnienie o wygaśnięciu uff)</p>
+
+
+<p><b>NETART</b></p>
+
+
+<p>Sprowadzało się do uzyskania AuthInfo, nie wiedziałem że sprawa jest tak problematyczna. Znaleziony w FAQ sposób to przesłanie faksem lub pocztą zwyczajną wniosku o udostępnienie kodu. Sam wniosek nie jest dostępny gdzieś w dokumentach do pobrania, ale trzeba o niego poprosić w BOK. Odpowiedź wysyłana jest również pocztą tradycyjną, listem poleconym.<br>
+Mimo tych wszystkich kroków operacja trwała tutaj dość szybko, około 5 dni w tym weekend, ale może dlatego tak to odbieram, że zapobiegliwie chciałem załatwić sprawę na miesiąc przed wygaśnięciem.</p>
+
+
+<p><b>DNS</b></p>
+
+
+<p>Można jeszcze wspomnieć o kontakcie ze strony dns.pl, który polegał na mailu, w którym należało kliknąć na link potwierdzający transfer. Tak&#8230; to zdecydowanie bardziej komfortowe podejście.</p>
+
+
+<p>Ogólnie obsługę i konfigurację domeny oraz współpracę z NetArt wspominam bardzo miło, nigdy nie stwarzali problemów, jeżeli wprowadzą rozsądne ceny to może do nich wrócę.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/04/02/latex-gdy-zawodzi-renderowanie-tuz-po-instalacji/">LaTeX - gdy zawodzi renderowanie tuż po instalacji</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-04-02T08:26:00+02:00" pubdate data-updated="true">2009-04-02</time>
+        
+           | <a href="/blog/2009/04/02/latex-gdy-zawodzi-renderowanie-tuz-po-instalacji/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/04/02/latex-gdy-zawodzi-renderowanie-tuz-po-instalacji/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Można spróbować</p>
+
+
+<p><code>updmap --verbose<br>
+fc-cache</code></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/">Zmiana firmware WRT54GL z Tomato na DD-WRT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-28T20:11:00+01:00" pubdate data-updated="true">2009-03-28</time>
+        
+           | <a href="/blog/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Zdziwiło mnie, że aktualizacja oprogramowania przebiegła pomyślnie.</p>
+
+
+<p>Mogło się nie udać na przykład z tego powodu że wersja DD-WRT którą wybrałem (dd-wrt.v24_vpn_generic.bin) zajmowała 3,52 MB, a Tomato raportował, że ilość pamięci dostępnej na cache&#8217;owanie procesu aktualizacji to około 2,1 MB</p>
+
+
+<p>Na stronie DD wyczytałem, że czasami wymagane jest zainstalowanie najpierw wersji mini, dlatego przezornie ją pobrałem, ale ponieważ &#8220;jestem hardcorem&#8221; zainstalowałem od razu oprogramowanie docelowe.</p>
+
+
+<p>Nie dość, że proces przeszedł pomyślnie, to okazało się że prawie wszystkie ustawienia zostały przywrócone. Chodzi tu m.in. o statyczne DHCP, konfigurację sieci bezprzewodowej - ssid, wep, &#8230; . Jeszcze muszę poszukać gdzie jest przekierowanie portów.</p>
+
+
+<p>Na DD-WRT przeszedłem, bo potrzebny mi VPN, ale też chciałem zobaczyć jak wygląda coś innego niż domyślne oprogramowanie oraz Tomato.</p>
+
+
+<p>Jedyne, co mnie zirytowało to polskie tłumaczenie, często pomieszane z angielskim, albo wplecione w angielski szyk zdania. Szybko przełączyłem się na eng;)</p>
+
+
+<p>Wielkie podziękowania za tak sprawnie działający firmware dla twórców!</p>
+
+
+<p></p>
+
+
+<p>&#8212;&#8212;&#8212; Edit 29.03.2009</p>
+
+
+<p>W nowym oprogramowaniu umieszczenie funkcji jest mniej intuicyjne niż w poprzednim. Myślałem że to kwestia przyzwyczajenia, ale po tych 2 dniach zabawy nadal ciężko mi znaleźć opcję której szukam.<br>
+Jednak konfiguracja przekierowania portów się nie zachowała.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/13/bluetooth-na-iphone-ibluetooth/">Bluetooth na iPhone (iBluetooth)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-13T22:28:00+01:00" pubdate data-updated="true">2009-03-13</time>
+        
+           | <a href="/blog/2009/03/13/bluetooth-na-iphone-ibluetooth/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/03/13/bluetooth-na-iphone-ibluetooth/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.<br>
+Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie niezależny od Apple system operacyjny, oczywiście oparty na Linuxie (http://www.iphonelinux.org), tak jak to jest na przykład na PSP.</p>
+
+
+<p><small>W takich momentach podziwiam możliwości ludzkiego umysłu, który udowadnia, że nie ma rzeczy niemożliwych, a wszystko jest tylko kwestią zaangażowania i poświęconego czasu.</small></p>
+
+
+<p>W Cydii pojawiła się paczka o nazwie <b>iBluetooth</b>, która daje możliwość korzystania z podstawowego protokołu (hmm, jak by tu stack przetłumaczyć) do transmisji plików - OBEX. Aplikacja jest płatna, kosztuje 3,99 Euro, ale w chwili edycji wpisu serwer płatności jest niedostępny (czyżby za dużo chętnych?;))</p>
+
+
+<p>Tak jak niespodziewanie pojawiła się sama aplikacja, tak szybko pojawił się &#8220;bugfix&#8221;, który poprawia błąd, który powodował zawieszanie się aplikacji na brzydkim nagscreenie.</p>
+
+
+<p></p>
+
+
+<p>Cechy aplikacji:</p>
+
+
+<ul>
+<li>ustawienie nazwy urządzenia</li>
+<li>konfiguracja autoryzacji za pomocą PINu, możliwa automatyzacja kodem domyślnym</li>
+<li>poruszanie się po systemie plików telefonu w celu wyboru rzeczy do wysłania</li>
+<li>ustawienie nazwy urządzenia</li>
+<li>osobna opcja do wysyłania zdjęć, zawiera ładny podgląd</li>
+<li>historia transferu</li>
+</ul>
+
+
+<p></p>
+
+
+<p>Screeny z działania:</p>
+
+
+<p><strong>PC</strong></p>
+
+
+<p><img src="http://i39.tinypic.com/25fls7b.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i41.tinypic.com/30u8nq1.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i39.tinypic.com/1zgufqg.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i44.tinypic.com/huqahk.jpg" alt="screenshot"></p>
+
+
+<p><strong>Telefon</strong></p>
+
+
+<p><img src="http://i44.tinypic.com/11imm8i.png" alt="screenshot"></p>
+
+
+<p><img src="http://i43.tinypic.com/e04axe.png" alt="screenshot"></p>
+
+
+<p><img src="http://i40.tinypic.com/dpd6x5.png" alt="screenshot"></p>
+
+
+<p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/">Automatyczne pobieranie z Rapidshare na Windowsie z wykorzystaniem Cygwina.</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-01T14:39:00+01:00" pubdate data-updated="true">2009-03-01</time>
+        
+           | <a href="/blog/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io/blog/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco:</p>
+
+
+<ul>
+<li>klikasz na link / wklejasz jako adres w przeglądarce</li>
+<li>Naciskasz przycisk &#8220;Free User&#8221;</li>
+<li>Niecierpliwie czekasz aż cyferki dojdą do zera, a następnie znowu klikasz w przycisk Download.</li>
+</ul>
+
+
+<p>O ile w przypadku pojedynczych plików da się to zaakceptować, to gdy jest do pobrania kilkadziesiąt części nazwanych part[0-9]+.rar dochodzi problem oczekiwania do 30 minut między pobieraniem, oraz konieczność kontrolowania całego procesu pobierania i powtarzania wyżej wspomnianych kroków (stan na dzień 2009-03-01).</p>
+
+
+<p><EXCERPT><p>Użytkownicy systemów *nixowych mają od jakiegoś czasu możliwość skorzystania ze znakomitego i cały czas uaktualnianego skryptu rsget-mod którego autorem jest <a href="nerdblog.pl">d4rky</a></p></p>
+
+<p><a href="http://rs.nerdblog.pl/">rsget-mod - strona projektu</a></p>
+
+
+<p>Skrypt umożliwia pełną automatyzację procesu pobierania zarówno pojedynczego linku, jak i zbioru adresów zapisanych w pliku.</p>
+
+
+<p>Jeżeli jesteś użytkownikiem Windowsa &#8230; cóż, najpierw chociaż wypróbuj Linuxa ;), a jeśli dojdziesz do wniosku, że Ci nie odpowiada, możesz skorzystać z Cygwina, który jest linuksopodobnym środowiskiem działającym pod kontrolą systemu Microsoftu, emulującym funkcje API Linuxa.</p>
+
+
+<p><a href="http://www.cygwin.com/">Oficjalna strona projektu Cygwin</a></p>
+
+
+<p>Instalacja jest intuicyjna, ale aby przyszłe wersje skryptu były obsługiwane warto zatrzymać się przy wyborze pakietów i upewnić się, że będą instalowane:</p>
+
+
+<p></p>
+
+
+<ul>
+<li>Base / grep</li>
+<li>Net / wget</li>
+<li>Net / curl</li>
+</ul>
+
+
+<p></p>
+
+
+<p><img src="http://i40.tinypic.com/2ciei3l.jpg"></p>
+
+
+<p>Po zakończeniu instalacji można już uruchomić środowisko, które powita nas ślicznym promptem.</p>
+
+
+<p><img src="http://i44.tinypic.com/s3q25v.jpg"></p>
+
+
+<p>Cygwin to dobre środowisko dla osób, które chcą rozpocząć przygodę z linuxem, bądź wykorzystać jego zalety, m.in. jak w naszym przypadku możliwości skryptowe. Jednak nic nie stoi na przeszkodzie, aby emulować również środowisko graficzne za pomocą <a href="http://kde-cygwin.sourceforge.net/">Kde on Cygwin</a></p>
+
+
+<p>Wróćmy jednak do tematu. Skrypt wymaga kilku kroków przygotowawczych. Wygodniej będzie na przykład umieścić go w katalogu dostępnym przez zmienną PATH, by uprościć jego wywoływanie. Ponadto należy mu nadać atrybut wykonywalności.</p>
+
+
+<p><code>cd /usr/local/bin<br>
+wget http://rs.nerdblog.pl/stable/latest/rsget-mod.sh<br>
+chmod +x rsget-mod.sh</code></p>
+
+
+<p>Uwaga! W przypadku korzystania z serwera proxy należy wcześniej ustawić zmienną http_proxy:</p>
+
+
+<p><code>export http_proxy="http://adres_serwera:port/"</code></p>
+
+
+<p>lub</p>
+
+
+<p><code>export http_proxy="http://użytkownik:hasło@adres_serwera:port/"</code></p>
+
+
+<p>Sprawdzamy czy wszystko jest tam, gdzie trzeba i wywołujemy skrypt po raz pierwszy.</p>
+
+
+<p><img src="http://i42.tinypic.com/28c2hs2.jpg"></p>
+
+
+<p>Wersja unstable stworzy dodatkowo w katalogu domowym użytkownika swój podkatalog z ustawieniami oraz plikami pomocniczymi.</p>
+
+
+<p>Teraz wystarczy jedynie nakarmić skrypt linkami do pobierania:</p>
+
+
+<p><code>cat &gt; ~/linki.txt<br>
+http://rs123.rapidshare.com/files/1234567891/BigFile_part1.rar<br>
+http://rs123.rapidshare.com/files/1234567892/BigFile_part2.rar<br>
+http://rs123.rapidshare.com/files/1234567893/BigFile_part2.rar<br>
+[Ctrl+D]</code></p>
+
+
+<p>Inicjujemy ściąganie za pomocą</p>
+
+
+<p><code>rsget-mod.sh ~/linki.txt</code></p>
+
+
+<p><img src="http://i44.tinypic.com/332xo2o.jpg"></p>
+
+
+<p><img src="http://i40.tinypic.com/1055p51.jpg"></p>
+
+
+<p>Od teraz skrypt zajmie się wszystkimi czynnościami związanymi z obsługa pobierania i oczekiwania. Nam pozostaje tylko zostawić maszynę i wybrać się na spacer lub wycieczkę rowerową.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/05/migracja-jogger-octopress/">Migracja Jogger - Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/">Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/03/hello-world/">Hello World</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/">Pyhon - hurtowa zmiana atrybutów w xml</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - malpka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'co-de-mon-key';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

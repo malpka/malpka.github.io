@@ -1,0 +1,545 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Migracja Jogger - Octopress - Co.de.mon.key</title>
+  <meta name="author" content="malpka">
+
+  
+  <meta name="description" content="tl;dr Skrypt w pythonie 3 przetwarzający plik xml z danymi Joggera na pliki .markdown gotowe do wrzucenia do source/_posts/ w Octopressie Pobieranie &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://malpka.github.io/blog/2014/01/05/migracja-jogger-octopress">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Co.de.mon.key" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<style type="text/css">
+/*.highlight {
+  background: none !important;
+}*/
+/*.line_numbers {
+  line-height: 18px;
+  font-size: 13px;
+}*/
+.gist div {
+margin: 0 0 0;
+}
+
+.gist .line-data
+{
+ font-size: 13px;
+ width: 100%;
+}
+</style>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Co.de.mon.key</a></h1>
+  
+    <h2>Weblog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:malpka.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Migracja Jogger - Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-05T17:06:00+01:00" pubdate data-updated="true">2014-01-05</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://malpka.github.io">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>tl;dr</h2>
+
+<p><a href="#skrypt">Skrypt</a> w pythonie 3 przetwarzający plik xml z danymi Joggera na pliki .markdown gotowe do wrzucenia do <code>source/_posts/</code> w Octopressie</p>
+
+<h2>Pobieranie danych z Joggera</h2>
+
+<p>Dane z Joggera można pobrać z panelu administracyjnego: <code>Opcje → Eksport → Wygeneruj eksport → Pobierz</code>
+Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się jak poniżej:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;jogger&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;user&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;domain&gt;</span>malpka<span class="nt">&lt;/domain&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;alias/&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/user&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;entry&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;date&gt;</span>2007-01-11 00:29:07<span class="nt">&lt;/date&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;level_id&gt;</span>1<span class="nt">&lt;/level_id&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;comment_mode&gt;</span>0<span class="nt">&lt;/comment_mode&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;subject&gt;</span>temat<span class="nt">&lt;/subject&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
+</span><span class='line'>      <span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>tresc tresc tresc<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;tags/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;permalink&gt;</span>temat<span class="nt">&lt;/permalink&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;trackback/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Ogólne<span class="nt">&lt;/category&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Inna kategoria<span class="nt">&lt;/category&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;comment&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;date&gt;</span>2007-01-11 03:35:52<span class="nt">&lt;/date&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;nick&gt;</span>NickKomentujacy<span class="nt">&lt;/nick&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;nick_url&gt;</span>http://google.pl<span class="nt">&lt;/nick_url&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;body&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>*wpadłem bo spać nie mogę :)*<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span><span class="nt">&lt;/body&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;ip&gt;</span>127.0.0.1<span class="nt">&lt;/ip&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;trackback/&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/comment&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/entry&gt;</span>
+</span><span class='line'>    ...
+</span><span class='line'><span class="nt">&lt;/jogger&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Oczywiście wartość gałęzi <code>body</code> to escapowany html wpisu. Ponieważ</p>
+
+<h2>Tworzenie schematu XSD z XML*</h2>
+
+<p>(*tak na marginesie)</p>
+
+<p>Ponieważ rzuciłem szybko okiem na początek pliku eksportu, a chciałem się upewnić, czy w XMLu nie czekają na mnie żadne niespodzianki, to za pomocą
+<a href="http://msdn.microsoft.com/en-us/library/system.xml.schema.xmlschemainference.aspx">XmlSchemaInference</a> z .NET:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">XmlReader</span> <span class="n">reader</span> <span class="p">=</span> <span class="n">XmlReader</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="s">&quot;jogger_eksport.xml&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="n">XmlSchemaSet</span> <span class="n">schemaSet</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSchemaSet</span><span class="p">();</span>
+</span><span class='line'><span class="n">XmlSchemaInference</span> <span class="n">schema</span> <span class="p">=</span> <span class="k">new</span> <span class="n">XmlSchemaInference</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">schemaSet</span> <span class="p">=</span> <span class="n">schema</span><span class="p">.</span><span class="n">InferSchema</span><span class="p">(</span><span class="n">reader</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">using</span> <span class="p">(</span><span class="n">TextWriter</span> <span class="n">writer</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="n">CreateText</span><span class="p">(</span><span class="s">&quot;jogger_eksport.xsd&quot;</span><span class="p">))</span>
+</span><span class='line'>  <span class="k">foreach</span> <span class="p">(</span><span class="n">XmlSchema</span> <span class="n">s</span> <span class="k">in</span> <span class="n">schemaSet</span><span class="p">.</span><span class="n">Schemas</span><span class="p">())</span>
+</span><span class='line'>    <span class="n">s</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="n">writer</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>otrzymałem XSD joggerowego eksportu.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;windows-1250&quot;?&gt;</span>
+</span><span class='line'><span class="nt">&lt;xs:schema</span> <span class="na">attributeFormDefault=</span><span class="s">&quot;unqualified&quot;</span> <span class="na">elementFormDefault=</span><span class="s">&quot;qualified&quot;</span> <span class="na">xmlns:xs=</span><span class="s">&quot;http://www.w3.org/2001/XMLSchema&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;jogger&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;xs:complexType&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;xs:sequence&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;user&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;xs:complexType&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;xs:sequence&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;jid&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;domain&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;alias&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/xs:sequence&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/xs:complexType&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/xs:element&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">name=</span><span class="s">&quot;entry&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;xs:complexType&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;xs:sequence&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;jid&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;level_id&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:unsignedByte&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;comment_mode&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:unsignedByte&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;subject&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;body&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;tags&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;permalink&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;trackback&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">name=</span><span class="s">&quot;category&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;xs:element</span> <span class="na">minOccurs=</span><span class="s">&quot;0&quot;</span> <span class="na">maxOccurs=</span><span class="s">&quot;unbounded&quot;</span> <span class="na">name=</span><span class="s">&quot;comment&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;xs:complexType&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;xs:sequence&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;date&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;nick&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;nick_url&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;body&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;ip&quot;</span> <span class="na">type=</span><span class="s">&quot;xs:string&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                    <span class="nt">&lt;xs:element</span> <span class="na">name=</span><span class="s">&quot;trackback&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>                  <span class="nt">&lt;/xs:sequence&gt;</span>
+</span><span class='line'>                <span class="nt">&lt;/xs:complexType&gt;</span>
+</span><span class='line'>              <span class="nt">&lt;/xs:element&gt;</span>
+</span><span class='line'>            <span class="nt">&lt;/xs:sequence&gt;</span>
+</span><span class='line'>          <span class="nt">&lt;/xs:complexType&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;/xs:element&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/xs:sequence&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/xs:complexType&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/xs:element&gt;</span>
+</span><span class='line'><span class="nt">&lt;/xs:schema&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Przetwarzanie danych eksportu na wpisy Octopressa</h2>
+
+<p>Skoro już wiadomo co i jak, można pokusić się o wyciągnięcie podstawowych informacji z XML&#8217;a: daty, tytułu, permalinka (który potraktuję jako część nazwy pliku), kategorii i treści wpisu.
+Przy okazji wyszło, że Jogger pozwalał na ustawienie pustego tytułu wpisu, co skutkuje brakiem wartości taga <code>&lt;subject/&gt;</code>.</p>
+
+<p>Tym razem python 3.</p>
+
+<p><a name="skrypt"></a>
+Sposób użycia:</p>
+
+<ul>
+<li>rozpakować plik z danymi eksportu jako <code>jogger_eksport.xml</code>, najlepiej do osobnego katalogu</li>
+<li>umieścić skrypt razem z plikiem</li>
+<li>uruchomić skrypt</li>
+<li>w katalogu dla każdego wpisu powstanie osobny plik <code>.markdown</code>, nazwany zgodnie z regułami Octopressa, z uzupełnionymi polami: tytuł, data, kategorie, oraz z treścią posta wpisaną w HTML&#8217;u</li>
+</ul>
+
+
+<div><script src='https://gist.github.com/8273337.js'></script>
+<noscript><pre><code>import re
+import codecs
+from xml.dom import minidom
+from html.parser import HTMLParser
+
+XMLFILENAME = &#39;jogger_eksport.xml&#39;
+
+def createFileName(date, permalink, subject):
+    &quot;&quot;&quot;Data wymagana, w formacie YYYY-mm-dd&quot;&quot;&quot;
+    fileName = date[:10] + &#39;-&#39;
+    if permalink != None:
+        fileName += permalink
+    else:
+        fileName += re.sub(r&#39;[^a-zA-Z\d\.-]&#39;, &#39;_&#39;, subject.lower())
+    return fileName + &#39;.markdown&#39;
+
+
+DOMTree = minidom.parse(XMLFILENAME)
+cNodes = DOMTree.childNodes
+
+postNo = 1
+for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
+
+    date = i.getElementsByTagName(&quot;date&quot;)[0].childNodes[0].toxml()
+
+    subject = &#39;Bez tytułu &#39;+str(postNo)
+    postNo = postNo + 1
+    if i.getElementsByTagName(&quot;subject&quot;)[0].firstChild != None:
+        subject = i.getElementsByTagName(&quot;subject&quot;)[0].firstChild.toxml()
+
+    permalink = None
+    if i.getElementsByTagName(&quot;permalink&quot;)[0].firstChild != None:
+        permalink = i.getElementsByTagName(&quot;permalink&quot;)[0].firstChild.toxml()
+
+    fileName = createFileName(date, permalink, subject)
+
+    body = &#39;&#39;
+    if i.getElementsByTagName(&quot;body&quot;)[0].firstChild != None:
+        body = i.getElementsByTagName(&quot;body&quot;)[0].firstChild.toxml()
+    body = HTMLParser().unescape(body)
+
+    categories = []
+    for cat in i.getElementsByTagName(&quot;category&quot;):
+        categories.append(cat.firstChild.nodeValue)
+
+    text_file = codecs.open(fileName, &quot;w&quot;, &quot;utf-8&quot;)
+    text_file.write(&#39;---\n&#39;)
+    text_file.write(&#39;layout: post\n&#39;)
+    text_file.write(&#39;title: &quot;&#39; + subject + &#39;&quot;\n&#39;)
+    text_file.write(&#39;date: &#39; + date[:16] + &#39;\n&#39;)
+    text_file.write(&#39;comments: true\n&#39;)
+    text_file.write(&#39;categories:\n&#39;)
+    for cat in categories:
+        text_file.write(&#39;- &#39; + cat + &#39;\n&#39;)
+    text_file.write(&#39;---\n&#39;)
+    text_file.write(body)
+    text_file.close()</code></pre></noscript></div>
+
+
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">malpka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-05T17:06:00+01:00" pubdate data-updated="true">2014-01-05</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://malpka.github.io/blog/2014/01/05/migracja-jogger-octopress/" data-via="m_alpka" data-counturl="http://malpka.github.io/blog/2014/01/05/migracja-jogger-octopress/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/" title="Previous Post: Wyrażenia regularne w praktyce - wyszukiwanie i zamiana">&laquo; Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2014/01/05/migracja-jogger-octopress/">Migracja Jogger - Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/04/wyrazenia-regularne-w-praktyce-wyszukiwanie-i-zamiana/">Wyrażenia regularne w praktyce - wyszukiwanie i zamiana</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2014/01/03/hello-world/">Hello World</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/">Pyhon - hurtowa zmiana atrybutów w xml</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - malpka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'co-de-mon-key';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://malpka.github.io/blog/2014/01/05/migracja-jogger-octopress/';
+        var disqus_url = 'http://malpka.github.io/blog/2014/01/05/migracja-jogger-octopress/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

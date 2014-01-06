@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Programowanie | Co.de.mon.key]]></title>
+  <link href="http://malpka.github.io/blog/categories/programowanie/atom.xml" rel="self"/>
+  <link href="http://malpka.github.io/"/>
+  <updated>2014-01-06T13:47:11+01:00</updated>
+  <id>http://malpka.github.io/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu]]></title>
+    <link href="http://malpka.github.io/blog/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
+    <updated>2012-10-08T10:41:00+02:00</updated>
+    <id>http://malpka.github.io/blog/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
+    <content type="html"><![CDATA[<p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
+
+
+<p></p>
+
+
+<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
+
+
+<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować... ;)</p>
+
+
+<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
+
+
+<p>Przykładowe wyjście:</p>
+
+
+<p><code>Microsoft.Practices.CompositeUI.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.CompositeUI.WinForms.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
+version: v2.0.50727</code></p>
+
+
+<p></p>
+
+
+<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
+
+
+<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dzień Darmowej Dostawy w Polsce - opisy sklepów.]]></title>
+    <link href="http://malpka.github.io/blog/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/"/>
+    <updated>2010-11-18T10:09:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow</id>
+    <content type="html"><![CDATA[<p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
+
+
+<p><br></p>
+
+
+<p>Firmy uczestniczące w akcji są wymienione w formie adresów internetowych stron, bez odsyłaczy. Poza bardziej znanymi partnerami akcji jak gram.pl, Vobis, Helion, Komputronik czy Megastore jest sporo sklepów, o których działalności niewiele można powiedzieć po samym adresie internetowym. Parę przykładów - Fnak.pl, DeeZee.pl, Maminek.pl, KissMyKicks.pl czy KolorowaKrowa.pl ! :)</p>
+
+
+<p><br></p>
+
+
+<p>W celu szybkiego sprawdzenia tematyki każdego ze sklepów popełniłem mały skypcik w <b>pythonie</b>, w którym widać łatwość z jaką można wkroczyć w tematykę zwaną <a href="http://en.wikipedia.org/wiki/Web_scraping">Web scraping</a></p>
+
+
+<p><EXCERPT><pre class="pythonCode" style="margin-top:20px;margin-bottom:20px">
+import urllib, sys, BeautifulSoup</p>
+
+<p>adresDDD = &ldquo;<a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>&rdquo;
+soup = BeautifulSoup.BeautifulSoup(urllib.urlopen(adresDDD))</p>
+
+<p>for li in soup.findAll(&lsquo;li&rsquo;):</p>
+
+<pre><code>    try:
+            a2 = li.contents[0].strip(" \t\n").decode('utf8')
+            print "[http://" + a2+ "]"
+
+            soup2 = BeautifulSoup.BeautifulSoup(urllib.urlopen("http://"+a2))
+            try:
+                    print unicode(soup2.head.title)
+            except:
+                    print soup2.head.title
+    except:
+            continue
+</code></pre>
+
+<p></pre></p>
+
+<p><br></p>
+
+
+<p><br></p>
+
+
+<p>Na przykładzie widać najprostsze wyciąganie danych za pomocą <a href="http://www.python.org/">pythona</a> i biblioteki <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>.</p>
+
+
+<p>Po delikatnym przeformatowaniu w npp można uzyskać coś takiego:</p>
+
+
+<p><br></p>
+
+
+<ul>
+<li><a href="http://Gram.pl">http://Gram.pl</a> - gram.pl - Recenzje, Zapowiedzi, Newsy, Poradniki, Dema. Gry na PC, PS3, X360.</li>
+<li><a href="http://Onepress.pl">http://Onepress.pl</a> - Księgarnia biznesowa Onepress.pl - książki klasy business</li>
+<li><a href="http://Rebel.pl">http://Rebel.pl</a> - Sklep z grami REBEL.pl :: Największy polski sklep z grami - gry rpg, gry planszowe, gry karciane i inne</li>
+<li><a href="http://Pixers.pl">http://Pixers.pl</a> - Fototapety, Obrazy na ścianę, Plakaty, Naklejki, Zdjęcia na płótnie - najciekawszy sklep w Europie - PIXERS</li>
+<li><a href="http://GameClub.pl">http://GameClub.pl</a> - Sklep z grami planszowymi • GameClub.pl</li>
+<li><a href="http://BycMama.pl">http://BycMama.pl</a> - Odzież ciążowa - Akcesoria dla Mam - Moda dla Mam</li>
+<li><a href="http://HandyChart.pl">http://HandyChart.pl</a> - Handy Chart - dla kreatywnych!</li>
+<li><a href="http://NeoSport.pl">http://NeoSport.pl</a> - NIKE - buty nike - sklep nike - plecaki nike - koszulki nike - piłki nike - obuwie nike - hurtownia nike - monotox - buty converse - buty dziecięce - buty reebok - buty sportowe - caterpillar - converse - diverse - hurtownia piłkarska - koszulki reprezentacji - Adidas - obuwie sportowe - puma - reebok - sklepy sportowe - and1 - asics - ecco - kappa - lacoste - merrell - skechers - timberland - umbro</li>
+<li><a href="http://Tuszmarkt.pl">http://Tuszmarkt.pl</a> - Wysyłka w ciągu 24 godzin, niskie koszty wysyłki - TUSZMARKT.PL</li>
+<li><a href="http://Mrock.pl">http://Mrock.pl</a> - gadżety muzyczne - miniaturki instrumentów: gitary, perkusje</li>
+<li><a href="http://ModnyBrzuszek.pl">http://ModnyBrzuszek.pl</a> - odzież ciążowa ubrania ciążowe biustonosz do karmienia</li>
+<li><a href="http://iLoko.pl">http://iLoko.pl</a> - ILOKO.PL - szale, szaliki, kominy, biżuteria i dodatki do ubrań</li>
+<li><a href="http://Sklep.Marynistyka.org">http://Sklep.Marynistyka.org</a> - Sklep żeglarski, morskie antyki, żeglarskie prezenty, nautyki, styl marynistyczny, morski wystrój.</li>
+<li><a href="http://Drukuj24.pl">http://Drukuj24.pl</a> - Drukuj24.pl - Tusze i Tonery w 24h</li>
+<li><a href="http://KolorowaKrowa.pl">http://KolorowaKrowa.pl</a> - Zabawki dla dzieci, zabawki, gry dla dzieci - Kolorowa Krowa</li>
+<li><a href="http://SwiezoPalona.pl">http://SwiezoPalona.pl</a> - Świeżo Palona Kawa - Jedyny sklep z tak świeżą kawą</li>
+<li><a href="http://MojaPerfumeria.pl">http://MojaPerfumeria.pl</a> - Perfumeria - MojaPerfumeria.pl</li>
+<li><a href="http://Godi.pl">http://Godi.pl</a> - Książki, Księgarnia internetowa Godi.pl</li>
+<li><a href="http://4gift.pl">http://4gift.pl</a> - GadÅ¼ety, prezenty, upominki. Warszawa.</li>
+<li><a href="http://Picco.pl">http://Picco.pl</a> - PICCO.pl - prezenty i gadżety</li>
+<li><a href="http://4mycar.pl">http://4mycar.pl</a> - 4myCar.pl - kosmetyki i akcesoria samochodowe, oleje silnikowe | Strona główna</li>
+<li><a href="http://Aromatella.pl">http://Aromatella.pl</a> - aromatella.pl - mmm... co tak pachnie?</li>
+<li><a href="http://AleDobre.pl">http://AleDobre.pl</a> - Ale dobre!. Dla domu i ogrodu. Wysoka jakość, niskie ceny.</li>
+<li><a href="http://Naturalny-Kolagen.pl">http://Naturalny-Kolagen.pl</a> - Warszawskie Centrum Kolagenu. Kolagen Colway</li>
+<li><a href="http://SklepKamil.pl">http://SklepKamil.pl</a> - SklepKamil.pl - Buty, Obuwie Na Każdą porę, Sklep internetowy</li>
+<li><a href="http://AktywnySmyk.pl">http://AktywnySmyk.pl</a> - AktywnySmyk.pl - największy wybór rowerków biegowych w sieci!</li>
+<li><a href="http://EkoStrefa.pl">http://EkoStrefa.pl</a> - Kosmetyki naturalne, sklep kosmetyki naturalne, kosmetyki męskie, kosmetyki damskie, olejki, balsamy, gąbki, pumeksy, żele intymne, kremy do twarzy, sklep internetowy kosmetyki</li>
+<li><a href="http://Tolle.pl">http://Tolle.pl</a> - Księgarnia internetowa Tolle.pl - książki warte Twojego czasu</li>
+<li><a href="http://Seduci.pl">http://Seduci.pl</a> - Seduci.pl. Bielizna i odzież damska. Bielizna bliska Twemu ciału.</li>
+<li><a href="http://KrainaHerbaty.pl">http://KrainaHerbaty.pl</a> - Herbata - SKLEP Z HERBATĄ - Kraina Herbaty: herbata zielona, herbata czerwona, herbata biała</li>
+<li><a href="http://KrainaKawy.pl">http://KrainaKawy.pl</a> - Kawa - SKLEP Z KAWĄ - Kraina Kawy: kawa ziarnista, kawa zielona, kawa rozpuszczalna</li>
+<li><a href="http://KrainaZiol.pl">http://KrainaZiol.pl</a> - Zioła - SKLEP Z ZIOŁAMI - Kraina Ziół: zioła zdrowotne, zioła pobudzające, przyprawy</li>
+<li><a href="http://FrankHerbert.pl">http://FrankHerbert.pl</a> - FrankHerbert.pl - Piękne rzeczy w Twoim domu</li>
+<li><a href="http://Fripers.pl">http://Fripers.pl</a> - Fripers.pl Profesjonalny Sklep Foto, FREEPERS - FRIPERS - FOTO - HURT - DETAL</li>
+<li><a href="http://PinkiBaby.pl">http://PinkiBaby.pl</a> - Pinki Baby - ubranka dla dzieci, ubranka dla niemowląt,</li>
+<li><a href="http://ITsklep.pl">http://ITsklep.pl</a> - ITSklep.pl</li>
+<li><a href="http://Maciejkowo.pl">http://Maciejkowo.pl</a> - Maciejkowo.pl - Edukacja dziecka | Wszystko dla rozwoju dziecka zabawki Boikido | zabawki K’s Kids</li>
+<li><a href="http://Palona.pl">http://Palona.pl</a> - Palona.pl - sklep z kawą</li>
+<li><a href="http://Antykwariat.nepo.pl">http://Antykwariat.nepo.pl</a> - antykwariat.nepo.pl, antykwariat internetowy</li>
+<li><a href="http://Fiorente.pl">http://Fiorente.pl</a> - Perfumeria internetowa Fiorente – perfumy damskie, perfumy męskie</li>
+<li><a href="http://Herbatkowo.com.pl">http://Herbatkowo.com.pl</a> - Herbatkowo.com.pl | yerba mate sklep | zielona herbata | czarna herbata | czerwona herbata | vilcacora | lapacho | catuaba | bombilla | tykwa |</li>
+<li><a href="http://MeskaBizuteria.pl">http://MeskaBizuteria.pl</a> - Nowoczesna biżuteria męska</li>
+<li><a href="http://IdeDoSzkoly.pl">http://IdeDoSzkoly.pl</a> - Idę do szkoły - sklep</li>
+<li><a href="http://DeeZee.pl">http://DeeZee.pl</a> - DeeZee.pl - sklep z butami, buty damskie, Paris Hilton, obuwie angielskie, emu, ugg, chix, balerinki, Omenaa, kozaki, buty.</li>
+<li><a href="http://FotoKoszyk.pl">http://FotoKoszyk.pl</a> - Albumy Fotograficzne | Tradycyjne Albumy na zdjęcia ślubne | Ramki do zdjęć</li>
+<li><a href="http://Karnisz.net">http://Karnisz.net</a> - karnisz.net - Najtańsze markowe karnisze! Sprzedajemy karnisze Bojanek, firanki i paski dekoracyjne także na raty.</li>
+<li><a href="http://Fitness.Shop.pl">http://Fitness.Shop.pl</a> - Sklep Fitness.Shop.pl - sprzęt fitness, sprzęt sportowy, rower treningowy</li>
+<li><a href="http://KissMyKicks.pl">http://KissMyKicks.pl</a> - kissmykicks.pl - buty supra warszawa</li>
+<li><a href="http://SwaggerLizard.com">http://SwaggerLizard.com</a> - Swagger Lizard / Street wear - Lifestyle - Fashion</li>
+<li><a href="http://Sklep.Richmont.pl">http://Sklep.Richmont.pl</a> - Richmont - herbata świata</li>
+<li><a href="http://Sklep.Coffea.pl">http://Sklep.Coffea.pl</a> - Kawa - SKLEP Z KAWĄ - sklep.coffea.pl: arabica ziarnista i mielona, kawy aromatyzowane</li>
+<li><a href="http://BikeTires.pl">http://BikeTires.pl</a> - BikeTires.pl Opony Rowerowe, Koła Rowerowe, Maratony MTB</li>
+<li><a href="http://ZeroDC.pl">http://ZeroDC.pl</a> - Artykuły dla psów ZeroDC ZeroDC.pl</li>
+<li><a href="http://Sklep.Harlequin.pl">http://Sklep.Harlequin.pl</a> - Oficjalna Księgarnia Internetowa Wydawnictwa Harlequin: najlepsze romanse</li>
+<li><a href="http://Skorzana.com">http://Skorzana.com</a> - Torebki Sklep - aktówki skórzane | teczki skórzane | portfele skórzane | torby skórzane | torebka ze skóry naturalnej | torebki skóra | torebki skórzane | torebki ze skóry</li>
+<li><a href="http://Cyklotur.com">http://Cyklotur.com</a> - rowery - CYKLOTUR - sklep i serwis rowerowy</li>
+<li><a href="http://RallyShop.pl">http://RallyShop.pl</a> - RallyShop - AKCESORIA - RAJDOWE - TUNINGOWE - Sklep</li>
+<li><a href="http://Bokado.pl">http://Bokado.pl</a> - Piękne prezenty dla dzieci, na baby shower, dla młodej mamy. Designerskie dodatki, fantastyczne zabawki | Bokado</li>
+<li><a href="http://Cynamonki.pl">http://Cynamonki.pl</a> - Cynamonki.pl. Przyprawy i smakołyki z całego świata.</li>
+<li><a href="http://MniamMniam.pl/sklep">http://MniamMniam.pl/sklep</a> - Sklep MniamMniam.pl. Produkty spożywcze i akcesoria kuchenne.</li>
+<li><a href="http://FotoRimex.pl">http://FotoRimex.pl</a> - Aparaty Cyfrowe, Obiektywy - Sklep FotoRimex.pl</li>
+<li><a href="http://eMobilne.pl">http://eMobilne.pl</a> - eMobilne.pl</li>
+<li><a href="http://InTheBox.pl">http://InTheBox.pl</a> - InTheBox.pl</li>
+<li><a href="http://MMO.pl">http://MMO.pl</a> - Szybkie i skuteczne odchudzanie, leki odchudzające, leki na odchudzanie - mmo.pl</li>
+<li><a href="http://FitBay.pl">http://FitBay.pl</a> - Sklep sportowy Fitbay.pl - sprzęt sportowy, sprzęt fitness</li>
+<li><a href="http://Intymnie.com">http://Intymnie.com</a> - Intymnie.com. Bielizna i odzież damska. Intymnie.com, Twój sklep z modą</li>
+<li><a href="http://BezOkularow.pl">http://BezOkularow.pl</a> - Soczewki kontaktowe (szkła kontaktowe) - www.bezokularow.pl / Strona główna</li>
+<li><a href="http://ebras.pl">http://ebras.pl</a> - Bielizna na każdy biust, największy wybór biustonoszy, profesjonalny brafitting czyli dobór rozmiaru biustonosza</li>
+<li><a href="http://Matana.pl">http://Matana.pl</a> - Matana.pl. Prezenty i upominki na każdą okazję.</li>
+<li><a href="http://Odia.pl">http://Odia.pl</a> - Odia.pl. Książki audio (audiobooki).</li>
+<li><a href="http://">http://</a> - Proxy+ WWW Admin interface</li>
+<li><a href="http://Sklep-Grene.pl">http://Sklep-Grene.pl</a></li>
+<li><a href="http://Fnak.pl">http://Fnak.pl</a> - Lampy, Zegary, Dekoracje, Prezenty - FNAK.PL</li>
+<li><a href="http://Historian.pl">http://Historian.pl</a> - Historian.pl - repliki broni, miecze, szable, zbroje, tarcze, modele</li>
+<li><a href="http://ambilion.pl">http://ambilion.pl</a> - Sporty ekstremalne: trikke, ochraniacze, zbroja, trampolina - Ambilion.pl sklep internetowy</li>
+<li><a href="http://HomeLiving.eu">http://HomeLiving.eu</a> - HOME &amp; LIVING</li>
+<li><a href="http://Jefferson.pl">http://Jefferson.pl</a> - Księgarnia internetowa Jefferson.pl - wiedza dla przedsiębiorczych</li>
+<li><a href="http://notjustshop.com">http://notjustshop.com</a> - Koszulki z własnym nadrukiem, nadruki na koszulki - notjustshop.com</li>
+<li><a href="http://e-lady.pl">http://e-lady.pl</a> - Bielizna, bielizna damska i męska - e-Lady.pl - sklep internetowy, bielizna</li>
+<li><a href="http://KrainaKsiazek.pl">http://KrainaKsiazek.pl</a> - Księgarnia Internetowa Kraina Książek :: Książki z zagranicy :: Książki zagraniczne :: Sprowadzanie książek :: Import książek, publikacji i wydawnictw :: Książki z USA, z Anglii, Niemiec</li>
+<li><a href="http://Hiper-okazja.pl">http://Hiper-okazja.pl</a> - Hiper-Okazja - outlet z końcówkami promocji. Najtaniej w sieci! - hiper-okazja.pl</li>
+<li><a href="http://Beta24.pl">http://Beta24.pl</a> - Ubrania robocze i obuwie, narzędzia oraz meble warsztatowe - tylko dla profesjonalistów - sklep internetowy www.beta24.pl</li>
+<li><a href="http://Znaki24.pl">http://Znaki24.pl</a> - Znaki informacyjne, znaki ewakuacyjne, oznakowanie dościenne, oznakowanie ppoż, oznakowanie przestrzenne, tablice informacyjne, tablice budowlane, zawieszki, piktogramy, nalepki, herby, godła... - sklep www.znaki24.pl</li>
+<li><a href="http://SklepRatownik24.pl">http://SklepRatownik24.pl</a> - sklep RATOWNIK - wyposażenie dla ratownictwa wodnego - sklep internetowy www.sklepratownik24.pl</li>
+<li><a href="http://GTV24.pl">http://GTV24.pl</a> - Sklep GTV Strona główna</li>
+<li><a href="http://Gedore24.pl">http://Gedore24.pl</a> - Narzędzia i meble warsztatowe - najwyższa niemiecka jakość i solidność - sklep internetowy www.gedore24.pl</li>
+<li><a href="http://Rems24.pl">http://Rems24.pl</a> - REMS - maszyny i narzędzia do obróbki rur - Rems24.pl</li>
+<li><a href="http://Kosmetic.pl">http://Kosmetic.pl</a> - Drogeria Internetowa; Sklep Kosmetyczny - kosmetic.pl</li>
+<li><a href="http://Ladys-Nails.eu">http://Ladys-Nails.eu</a> - Paznokcie tipsy Lady's Nails Cosmetics - sklep hurtownia kosmetyczna LNC.</li>
+<li><a href="http://StrefaKursow.pl">http://StrefaKursow.pl</a> - StrefaKursów - Wydawnictwo Praktycznych Filmów Instruktażowych - kursy komputerowe</li>
+<li><a href="http://Vitasense.pl">http://Vitasense.pl</a> - VITASENSE.PL - profesjonalna higiena jamy ustnej OPALESCENCE SUPERSMILE CURAPROX BEYOND BLANX</li>
+<li><a href="http://LoveMum.pl">http://LoveMum.pl</a> - Bielizna ciążowa i odzież: HOT milk, Cake lingerie, Alles</li>
+<li><a href="http://solo24.pl">http://solo24.pl</a> - AGD, RTV, sprzęt Audio-Video, Laptopy, Komputery, Podzespoły pc, Foto | sklep internetowy Solo24</li>
+<li><a href="http://Willsoor-shop.pl">http://Willsoor-shop.pl</a> - Krawaty, Swetry, Koszule MÄ™skie Willsoor â€“ Sklep Internetowy</li>
+<li><a href="http://Sortmund.pl">http://Sortmund.pl</a> - Internetowy sklep mundurowy.</li>
+<li><a href="http://Rolmarket.pl">http://Rolmarket.pl</a> - Rolmarket - ogrodniczy sklep internetowy - agrotkaniny, agrowlokniny, siatki przeciw kretom, siatki cieniujace</li>
+<li><a href="http://Bombki.pl">http://Bombki.pl</a> - Bombki.pl - Bombki, zamów bombka z imieniem, bombki z dedykacją, bombki na zamówienie, fabryka bombek, zwiedzanie fabryki bombek, idealny prezent na gwiazdkę</li>
+<li><a href="http://Replikator.pl">http://Replikator.pl</a> - REPLIKATOR.pl - Sklep z grami, Warszawa: gry planszowe i towarzyskie.</li>
+<li><a href="http://Wedkarski.com">http://Wedkarski.com</a> - Internetowy Sklep Wędkarski | - Mikado - Dragon - Jaxon - Daiwa - wędki - kołowrotki - spławiki - woblery - żyłki - Wedkarski.com</li>
+<li><a href="http://sklep.gildia.pl">http://sklep.gildia.pl</a> - Komiksy, książki, rpg - sklep.gildia.pl</li>
+<li><a href="http://tublu.pl">http://tublu.pl</a> - Tublu.pl - Nosidełka Bondolino, chusty Hoppediz, łóżeczka turystyczne Samsonite, najwyższej jakości artykuły dla dzieci i niemowląt</li>
+<li><a href="http://folkhome.pl">http://folkhome.pl</a> - Folkhome</li>
+<li><a href="http://ShivaSklep.pl">http://ShivaSklep.pl</a> - "Sklep Orientalny, Biżuteria Orientalna, Tso Moriri, Olejki, Organique, Prezent, Prezenty, Trafiony prezent, Oryginalny prezent, Mydła glicerynowe, Bollywood, Poszewki, Aromaterapia, Bransoletki, Aleppo, Organique,Sklep Indyjski,Taniec Brzucha, Chusty, Belly dance"</li>
+<li><a href="http://sonyericsson-sklep.pl">http://sonyericsson-sklep.pl</a> - Sony Ericsson X10 mini pro, Sony Ericsson vivaz pro, aspen, elm ,hazel, forum, fanklub.se</li>
+<li><a href="http://Koralki.pl">http://Koralki.pl</a> - Koralki</li>
+<li><a href="http://JustSport.pl">http://JustSport.pl</a> - Artykuły Dla Trudnej Młodzieży</li>
+<li><a href="http://AktywnySmyk.pl">http://AktywnySmyk.pl</a> - AktywnySmyk.pl - największy wybór rowerków biegowych w sieci!</li>
+<li><a href="http://PodPierzyna.pl">http://PodPierzyna.pl</a> - Pościel satynowa, koce, prześcieradła, ręczniki, poduszki, kołdry, narzuty | podPIERZYNĄ.pl :: Komfort w Twojej sypialni</li>
+<li><a href="http://Sesile.pl">http://Sesile.pl</a> - Odzież ciążowa, ubrania, sukienki i spodnie ciążowe, biustonosz do karmienia - sklep Sesile.pl</li>
+<li><a href="http://MamaBebe.pl">http://MamaBebe.pl</a> - Sklep internetowy z artykułami dla niemowląt - MamaBebe.pl</li>
+<li><a href="http://oswietlenie.dom.pl">http://oswietlenie.dom.pl</a> - Lampy, oświetlenie, lampki, żyrandole - Dom.pl</li>
+<li><a href="http://Planszoweczka.pl">http://Planszoweczka.pl</a> - Planszóweczka.pl Twoje Gry planszowe</li>
+<li><a href="http://Maminek.pl">http://Maminek.pl</a> - Chusty do noszenia dzieci, ekologiczne pieluszki wielorazowe - Maminek Warszawa</li>
+<li><a href="http://Kursy-Komputerowe.pl">http://Kursy-Komputerowe.pl</a> - Kursy komputerowe Kurs Access, Kurs Corel, Kurs Excel, Kurs AutoCAD, Kurs C++, Kurs Flash, Kurs Joomla, darmowe kursy, Kurs pozycjonowania</li>
+<li><a href="http://Floks.pl">http://Floks.pl</a> - Floks - internetowy sklep ogrodniczy</li>
+<li><a href="http://ZyrafyzSzafy.pl">http://ZyrafyzSzafy.pl</a> - Żyrafy z szafy :: Fajne rzeczy do dekoracji pokoi dziecięcych.</li>
+<li><a href="http://BumZabawki.pl">http://BumZabawki.pl</a> - Bum - klasyczne i nowoczesne zabawki drewniane dla dzieci</li>
+<li><a href="http://pphuadma.pl">http://pphuadma.pl</a> - Strona główna</li>
+<li><a href="http://Komputronik.pl">http://Komputronik.pl</a> - Notebooki, komputery, laptopy, monitory, karty graficzne - Komputronik internetowy sklep komputerowy</li>
+<li><a href="http://Atticus.pl">http://Atticus.pl</a> - Antykwariat Atticus</li>
+<li><a href="http://SweetPrint.pl">http://SweetPrint.pl</a> - Sweetprint.pl personalizowane kartki i zaproszenia.</li>
+<li><a href="http://SportMania.gd.pl">http://SportMania.gd.pl</a> - Sport Mania</li>
+<li><a href="http://MultiPerfumeria.pl">http://MultiPerfumeria.pl</a> - MultiPerfumeria.pl | Perfumeria internetowa. Perfumy damskie, perfumy męskie.</li>
+<li><a href="http://MamaGama.pl">http://MamaGama.pl</a> - mamagama - mamy dla mam</li>
+<li><a href="http://KoszykOpon.pl">http://KoszykOpon.pl</a> - Opony zimowe, opony letnie, opony motocyklowe, felgi - Koszyk Opon</li>
+<li><a href="http://SklepPirelli.pl">http://SklepPirelli.pl</a> - Opony Pirelli letnie zimowe całoroczne</li>
+<li><a href="http://Vobis.pl">http://Vobis.pl</a></li>
+<li><a href="http://Hit.pl">http://Hit.pl</a> - Laptopy, komputery, multimedia - Hit.pl - sklep internetowy</li>
+<li><a href="http://Multideco.pl">http://Multideco.pl</a> - Karnawał, dekoracje karnawałowe, dekoracje sylwestrowe, stroje dla dzieci, dodatki sylwestrowe</li>
+<li><a href="http://Cyfrowe.pl">http://Cyfrowe.pl</a> - Aparaty cyfrowe, kamery cyfrowe, projektory, akcesoria - Sklep Cyfrowe.pl</li>
+<li><a href="http://CzerwonaMaszyna.pl">http://CzerwonaMaszyna.pl</a> - CzerwonaMaszyna.pl - PREZENTY, WYPOSAŻENIE i DEKORACJA WNĘTRZ</li>
+<li><a href="http://OkularywSieci.pl">http://OkularywSieci.pl</a> - Okulary korekcyjne, okulary przeciwsłonecznie i oprawki, tanie okulary</li>
+<li><a href="http://BeautyandtheBib.pl">http://BeautyandtheBib.pl</a> - Beauty and the Bib - Brudasek na bajerze - śliniaki, czapeczki</li>
+<li><a href="http://SklepDlaManagera.pl">http://SklepDlaManagera.pl</a> - Sklep Dla Managera</li>
+<li><a href="http://">http://</a> - Proxy+ WWW Admin interface</li>
+<li><a href="http://Kwiateo.pl">http://Kwiateo.pl</a> - Internetowe Centrum Ogrodnicze - Å Ã³dÅº - AleksandrÃ³w Å Ã³dzki - Wola Grzymkowa - Kwiateo.pl</li>
+<li><a href="http://3kawy.pl">http://3kawy.pl</a> - 3kawy - Sklep trzy kawy</li>
+<li><a href="http://OTTO.pl">http://OTTO.pl</a> - OTTO | Stylowe i modne ubrania</li>
+<li><a href="http://GaleriaLimonka.pl">http://GaleriaLimonka.pl</a></li>
+<li><a href="http://AptekawSieci.pl">http://AptekawSieci.pl</a> - Apteka internetowa: leki, tanie leki, kosmetyki, vichy, crescina - Apteka 'Pod Różami'</li>
+<li><a href="http://Santic24.pl">http://Santic24.pl</a> - Notebooki, Komputery, Laptopy, Monitory, RTV, AGD - sklep internetowy. - santic24.pl</li>
+<li><a href="http://mp3store.pl">http://mp3store.pl</a> - Odtwarzacze MP3 w MP3Store.pl | Wyróżnij się - Odtwarzacze Flash, HDD, akcesoria</li>
+<li><a href="http://SuperBag.pl">http://SuperBag.pl</a> - superbag.pl - torebki damskie | hurtownia torebek damskich | sklep z torebkami damskimi | importer torebek</li>
+<li><a href="http://sklep.SPRYTNE.pl">http://sklep.SPRYTNE.pl</a> - Sklep "Sprytne Programy" po polsku! Do tworzenia stron WWW, galerii zdjęć, antyspam, odzyskiwania danych, zdjęć, dysków, oglądania filmów, słuchania muzyki z PC na TV (DLNA), konwersji filmów video avi na mpg, dvd i inne. Pajączek, Galernik, SpamRebel, Recover My Photos, Recover My Files, DownloadStudio, Mezzmo, AVS Video Converter</li>
+<li><a href="http://avon.biz.pl">http://avon.biz.pl</a> - AVON sklep Internetowy AVON najstarszy w Polsce</li>
+<li><a href="http://MamaCare.pl">http://MamaCare.pl</a> - Sklep Mamacare.pl - Chusty do noszenia dzieci - Strona główna</li>
+<li><a href="http://Adria.com.pl">http://Adria.com.pl</a> - Adria Twoja Drogeria Internetowa</li>
+<li><a href="http://IdealnaBielizna.pl">http://IdealnaBielizna.pl</a> - bielizna, biustonosze, majteczki, stroje kąpielowe, gorsety - Sklep internetowy z bielizną idealnabielizna.pl</li>
+<li><a href="http://MotoEgo.pl">http://MotoEgo.pl</a> - MOTOEGO.PL - Market motoryzacyjny nr 1 - Opony, Części samochodowe, Części do tuningu, Boxy i bagażniki dachowe, Ogrzewanie postojowe DEFA, Akcesoria do samochodów, LPG, Off-Road</li>
+<li><a href="http://esklep.fachowyelektryk.pl">http://esklep.fachowyelektryk.pl</a> - Strona główna</li>
+<li><a href="http://e-antur.pl">http://e-antur.pl</a> - Antur i Synowie Turlej</li>
+<li><a href="http://Traweo.pl">http://Traweo.pl</a> - Internetowe Centrum Ogrodnicze - Trawniki - Ogrody - Wszystko Co Potrzebne Jest Do Założenia Konserwacji Opieki - Łódź - Aleksandrów Łódzki - Wola Grzymkowa - Traweo.pl</li>
+<li><a href="http://Selkar.pl">http://Selkar.pl</a> - 302 Found</li>
+<li><a href="http://Ultime.pl">http://Ultime.pl</a> - Ultime Tuning Wear - koszulki i bluzy dla fanów motoryzacji</li>
+<li><a href="http://Baby-Shop.pl">http://Baby-Shop.pl</a> - Artykuły dziecięce - foteliki samochodowe | wózki | zabawki</li>
+<li><a href="http://e-smoczek.pl">http://e-smoczek.pl</a> - Smoczek - ubranka dla dzieci | body | odzież dziecięca i niemowlęca | zabawki pluszowe</li>
+<li><a href="http://SuperWnetrze.pl">http://SuperWnetrze.pl</a> - Prezenty, wyposażenie wnętrz, prezenty dla niej, prezenty dla niego, wystrój wnętrz, dekoracja domu.</li>
+<li><a href="http://PerfectFresh.com">http://PerfectFresh.com</a> - KOSMETYKI PERFUMY Drogeria internetowa PERFECT FRESH</li>
+<li><a href="http://StrefaHobby.pl">http://StrefaHobby.pl</a> - Sklep modelarski STREFAHOBBY: samoloty, samochody, modele RC. Łodzie, helikoptery zdalnie sterowane</li>
+<li><a href="http://Helion.pl">http://Helion.pl</a> - Helion SA -- wydawnictwo informatyczne, księgarnia helion.pl</li>
+<li><a href="http://SalonFitness.pl">http://SalonFitness.pl</a></li>
+<li><a href="http://CzaryMary.pl">http://CzaryMary.pl</a> - Profesjonalny Sklep Ezoteryczny CzaryMary.pl</li>
+<li><a href="http://BagHouse.pl">http://BagHouse.pl</a> - Sklep torebki damskie, duży wybór torebek włoskich, francuskich - www.BagHouse.pl</li>
+<li><a href="http://Sensus.pl">http://Sensus.pl</a> - Księgarnia internetowa Sensus.pl Osobowość OdNowa</li>
+<li><a href="http://Stanikowa-Alternatywa.pl">http://Stanikowa-Alternatywa.pl</a> - Stanikowa Alternatywa, Łęczna bielizna damska - Stanikowa-Alternatywa</li>
+<li><a href="http://lifestory.pl">http://lifestory.pl</a> - lifestory :: designerski butik online</li>
+<li><a href="http://Zadowolenie.pl">http://Zadowolenie.pl</a> - RTV AGD Telewizory LED LCD Pralki - Zadowolenie.pl</li>
+<li><a href="http://bhp.pl">http://bhp.pl</a> - publikacje dla bhp - sklep bhp.pl</li>
+<li><a href="http://Interni.pl">http://Interni.pl</a> - Sklep interni.pl</li>
+<li><a href="http://Mixelectronics.pl">http://Mixelectronics.pl</a> - Telewizory LED, LCD, plazmowe, pralki, lodówki, sklep RTV AGD - mixelectronics.pl</li>
+<li><a href="http://Novamed.pl">http://Novamed.pl</a> - Sklep medyczny Novamed - inhalatory, stetoskopy, cisnieniomierze, artykuly medyczne</li>
+<li><a href="http://SmakHerbaty.pl">http://SmakHerbaty.pl</a> - Sklep z herbatą i vortal o herbacie</li>
+<li><a href="http://Zgrami.pl">http://Zgrami.pl</a> - Sklep Zgrami.pl - gry planszowe, łamigłówki, kostka Rubika, Scrabble, Carcassonne, Monopoly</li>
+<li><a href="http://Sklep-WPH.com.pl">http://Sklep-WPH.com.pl</a> - WPH Sklep Internetowy</li>
+<li><a href="http://QPUJ.com">http://QPUJ.com</a> - Tania księgarnia internetowa - QPUJ.com</li>
+<li><a href="http://Tiferet.pl">http://Tiferet.pl</a> - Spinki do mankietów, spinki do krawata, biżuteria męska - Tiferet</li>
+<li><a href="http://Sklep.WydawnictwoGramel.pl">http://Sklep.WydawnictwoGramel.pl</a> - Wydawnictwo Gramel - sklep</li>
+<li><a href="http://Codopiwa.pl">http://Codopiwa.pl</a> - Niebanalne przekąski do piwa</li>
+<li><a href="http://sklep.lederzentrum.pl">http://sklep.lederzentrum.pl</a> - sklep.lederzentrum.pl - Czyszczenie skóry</li>
+<li><a href="http://meble.vox.pl">http://meble.vox.pl</a> - VOX - meble, jadalnie, sypialnie, meble do pokoju, salonu, sypialni, jadalni, artykuły dekoracyjne, meble pokojowe</li>
+<li><a href="http://drzwiipodlogi.vox.pl">http://drzwiipodlogi.vox.pl</a> - Drzwi i podłogi VOX - drzwi zewnętrzne, deski barlineckie, podłoga drewniana, drzwi wewnętrzne</li>
+<li><a href="http://UdekorujDom.pl">http://UdekorujDom.pl</a> - Start - Udekorujdom</li>
+<li><a href="http://MyTummy.pl">http://MyTummy.pl</a> - MyTummy- Wasza wspólna koszulka</li>
+<li><a href="http://Inecoo.pl">http://Inecoo.pl</a> - Kosmetyki naturalne i ekologiczne kosmetyki organiczne - INECOO.pl :: Najlepsze kosmetyki bez konserwantów</li>
+<li><a href="http://SkladBlawatny.pl">http://SkladBlawatny.pl</a> - Skład Bławatny - tkanina nadaje sens - Strona główna</li>
+<li><a href="http://TKsport.pl">http://TKsport.pl</a> - Sklep internetowy | TKsport.pl | sprzęt sportowy, turystyczny i fitness</li>
+<li><a href="http://Oponeo.pl">http://Oponeo.pl</a> - Opony • Opony Letnie • Opony Zimowe » DOSTAWA GRATIS • Oponeo.pl™</li>
+<li><a href="http://Q-workshop.com">http://Q-workshop.com</a> - Q-workshop.com-UNUSUAL RPG DICE, D&amp;D; DICE, D20, CUSTOM DICE, Manufacturer, Producer</li>
+<li><a href="http://MartaDiamonds.pl">http://MartaDiamonds.pl</a> - BŁĄD: Żądany URL nie może zostać sprowadzony</li>
+<li><a href="http://UlubionaBielizna.pl">http://UlubionaBielizna.pl</a> - Sklep z bielizną Ulubionabielizna. Seksowna bielizna: damska, intymna, nocna, erotyczna, ślubna (sklep internetowy).</li>
+<li><a href="http://ComTrade.pl">http://ComTrade.pl</a> - Comtrade - komputery, monitory, drukarki, laptopy. Tanie. Poleasingowe</li>
+<li><a href="http://Rozwojowe.pl">http://Rozwojowe.pl</a> - puzzle drewniane - zabawki edukacyjne</li>
+<li><a href="http://miau-hau.com">http://miau-hau.com</a> - miau-hau.com - zoologiczny sklep internetowy</li>
+<li><a href="http://eksiegarnia.pl">http://eksiegarnia.pl</a> - Księgarnia internetowa, księgarnia wysyłkowa, podręczniki - eKsięgarnia</li>
+<li><a href="http://Ergonauta.pl">http://Ergonauta.pl</a> - Ergonauta.pl - zdrowa i wygodna praca | artykuły biurowe | ergonomia | podnóżki | podkładki żelowe | podstawy na notebooki | ramiona na monitory | krzesła biurowe | niszczarki | przybory szkolne</li>
+<li><a href="http://SklepFitness.com">http://SklepFitness.com</a></li>
+<li><a href="http://SlubneZakupy.pl">http://SlubneZakupy.pl</a> - Dekoracje ślubne, dekoracje weselne - SlubneZakupy.pl</li>
+<li><a href="http://SklepKolekcjonera.pl">http://SklepKolekcjonera.pl</a> - Numizmatyka, monety kolekcjonerskie, złote, sklep numizmatyczny, Sklep Kolekcjonera</li>
+<li><a href="http://DoSluchania.pl">http://DoSluchania.pl</a> - Audiobooki, książki do słuchania, słuchowiska, mp3.</li>
+<li><a href="http://eDVD.pl">http://eDVD.pl</a> - Sklep internetowy - edvd - bestsellery filmowe - nowości filmowe - Sklep eDVD.pl</li>
+<li><a href="http://eZabawki.pl">http://eZabawki.pl</a> - Zabawki – Internetowy sklep z zabawkami – eZabawki.pl</li>
+<li><a href="http://Stereo.pl">http://Stereo.pl</a> - Stereo.pl - sklep internetowy Muzyka, Film, Książki, Gry, Kolekcje, Elektronika, Perfumy</li>
+<li><a href="http://Mareno.pl">http://Mareno.pl</a> - Księgarnia internetowa - mareno - bestsellery książkowe - nowości książkowe - Sklep Mareno.pl</li>
+<li><a href="http://Pstryk.pl">http://Pstryk.pl</a> - Sklep Fotograficzny PSTRYK.PL</li>
+<li><a href="http://StrefaPiekna.pl">http://StrefaPiekna.pl</a> - Sklep internetowy StrefaPiekna.pl -</li>
+<li><a href="http://Wec.com.pl">http://Wec.com.pl</a> - Biżuteria ślubna : obrączki ślubne, złote pierścionki zaręczynowe - Firma jubilerska - WęC-Twój Jubiler</li>
+<li><a href="http://Glori.pl">http://Glori.pl</a> - Bielizna Triumph - Glori.pl - sklep internetowy</li>
+<li><a href="http://MEGAstore.pl">http://MEGAstore.pl</a> - Megastore</li>
+<li><a href="http://HighClass.pl">http://HighClass.pl</a> - HighClass.pl - Portfele, Teczki, Pióra, Długopisy, Walizki, Torebki. Prezenty i upominki!</li>
+<li><a href="http://Outdoorzy.pl">http://Outdoorzy.pl</a> - Sklep turystyczny, buty, czapki zimowe, namioty, śpiwory, plecaki, kaski, gogle narciarskie - Outdoorzy.pl</li>
+<li><a href="http://KDC.pl">http://KDC.pl</a> - Książki, Księgarnia Internetowa - Sklep Internetowy, tania książka, Wysyłka GRATIS - KDC.pl</li>
+<li><a href="http://Szkla.com">http://Szkla.com</a></li>
+<li><a href="http://Koronka.pl">http://Koronka.pl</a> - Bielizna damska, erotyczna, biustonosze - Sklep Koronka.pl</li>
+<li><a href="http://DomZapachow.pl">http://DomZapachow.pl</a> - Perfumeria internetowa, perfumy męskie, perfumy damskie</li>
+<li><a href="http://Okulary.Szkla.com">http://Okulary.Szkla.com</a> - Szkla.com - okulary korekcyjne, przeciwsłoneczne</li>
+<li><a href="http://KasperskySklep.pl">http://KasperskySklep.pl</a> - Kaspersky Sklep - Oprogramowanie antywirusowe Kaspersky Lab online</li>
+<li><a href="http://megaoutdoor.pl">http://megaoutdoor.pl</a> - Sklep sportowy megaoutdoor.pl - YOUR WAY TO FREEDOM - Sklep turystyczny | Sklep narciarski | Buty trekkingowe | Buty sportowe | Plecaki | Namioty | Narty | Biwak | Camping | Bieganie</li>
+<li><a href="http://Mepi.pl">http://Mepi.pl</a> - mepi.pl - multimedialna edukacja przez internet</li>
+<li><a href="http://Nene.pl">http://Nene.pl</a> - Zabawki, artykuły, ubranka dla dzieci i niemowląt - sklep internetowy nene.pl</li>
+<li><a href="http://Bellissima.net.pl/sklep/">http://Bellissima.net.pl/sklep/</a></li>
+<li><a href="http://Okazje.info">http://Okazje.info</a> - Porównywarka cen Okazje.info.pl - porównaj ceny, znajdź promocje!</li>
+<li><a href="http://IAI-Shop.com">http://IAI-Shop.com</a> - Oprogramowanie sklepu internetowego IAI-Shop.com: Załóż własny sklep internetowy w chmurze.</li>
+<li><a href="http://eTradePro.pl">http://eTradePro.pl</a> - e-Trade Pro - Twój własny darmowy sklep internetowy</li>
+<li><a href="http://Zubibu.com">http://Zubibu.com</a> - zubibu - your mobile shop</li>
+<li><a href="http://SklepyFirmowe.pl">http://SklepyFirmowe.pl</a> - Sklepyfirmowe.pl - Oprogramowanie sklepu internetowego</li>
+<li><a href="http://Trusted%20Shops">http://Trusted Shops</a> - BŁĄD: Żądany URL nie może zostać sprowadzony</li>
+<li><a href="http://BrandStyle.pl">http://BrandStyle.pl</a> - BrandStyle - Brands come true | Media relations, social pr, komunikacja</li>
+</ul>
+
+
+<p><br></p>
+
+
+<p>Skrypt wyciąga trochę za dużo - kolejne pozycje to partnerzy akcji:</p>
+
+
+<p><br></p>
+
+
+<ul>
+<li><a href="http://SEOstyle.pl">http://SEOstyle.pl</a> - SEOStyle – Agencja SEM &amp; SEO, Pozycjonowanie stron internetowych&nbsp;|&nbsp;Pozycjonowanie i optymalizacja stron www. Marketing w wyszukiwarkach. Linki sponsorowane. ↑ Zwiększamy pozycje → Sprawdź!</li>
+<li><a href="http://cStore.pl">http://cStore.pl</a> - Sklepy Internetowe cStore - najszybsze oprogramowanie sklepu internetowego!</li>
+<li><a href="http://100sklepow.pl">http://100sklepow.pl</a> - 100sklepów – oprogramowanie, zakładanie sklepu internetowego</li>
+<li><a href="http://Selly.pl">http://Selly.pl</a> - Oprogramowanie sklepu internetowego - Selly</li>
+<li><a href="http://eCommerce24h.pl">http://eCommerce24h.pl</a> - eCommerce24h.pl - platforma sprzedaży online</li>
+<li><a href="http://Shoper.pl">http://Shoper.pl</a> - Profesjonalny Sklep Internetowy — Rozpocznij sprzedaż już dziś.</li>
+<li><a href="http://Ceneo.pl">http://Ceneo.pl</a> - Ceneo - porównanie cen, sklepy, perfumy, agd, rtv, komputery</li>
+<li><a href="http://Ideacto.pl">http://Ideacto.pl</a></li>
+<li><a href="http://Divante.pl">http://Divante.pl</a> - eCommerce, Intranet, aplikacje internetowe. Użyteczne oprogramowanie biznesowe - Divante</li>
+</ul>
+
+
+<p></p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatyczna zamiana nazw plików i zawartości]]></title>
+    <link href="http://malpka.github.io/blog/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/"/>
+    <updated>2009-10-23T12:20:00+02:00</updated>
+    <id>http://malpka.github.io/blog/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci</id>
+    <content type="html"><![CDATA[<p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
+
+
+<p>Rozwiązanie</p>
+
+
+<p>Zamiana zawartości:</p>
+
+
+<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
+
+
+<p>Zmiana nazw plików</p>
+
+
+<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
+
+
+<p>To ostatnie wywołać kilka razy</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Applet i zasoby]]></title>
+    <link href="http://malpka.github.io/blog/2007/01/11/applet-i-zasoby/"/>
+    <updated>2007-01-11T07:23:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2007/01/11/applet-i-zasoby</id>
+    <content type="html"><![CDATA[<p>Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.<br>
+Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:</p>
+
+
+<ul>
+<li>brak możliwości korzystania z lokalnego systemu plików</li>
+<li>możliwość podłączenia jedynie z serwerem z appletem</li>
+</ul>
+
+
+<p>Okazuje się, że aby korzystać w applecie z zewnętrznych danych wystarczy skorzystać z <i>zasobów</i>. Pozwalają na odwoływanie się do systemu plików względem ścieżki w której znajduje się wykonywany plik .class:</p>
+
+
+<p></p>
+
+
+<p>{geshi lang=java}InputStream in = getClass().getResourceAsStream(&ldquo;obrazy/czolg1.png&rdquo;);{/geshi}</p>
+]]></content>
+  </entry>
+  
+</feed>

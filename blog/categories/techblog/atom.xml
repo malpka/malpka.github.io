@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Techblog | Co.de.mon.key]]></title>
+  <link href="http://malpka.github.io/blog/categories/techblog/atom.xml" rel="self"/>
+  <link href="http://malpka.github.io/"/>
+  <updated>2014-01-06T13:47:11+01:00</updated>
+  <id>http://malpka.github.io/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu]]></title>
+    <link href="http://malpka.github.io/blog/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
+    <updated>2012-10-08T10:41:00+02:00</updated>
+    <id>http://malpka.github.io/blog/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
+    <content type="html"><![CDATA[<p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
+
+
+<p></p>
+
+
+<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
+
+
+<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować... ;)</p>
+
+
+<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
+
+
+<p>Przykładowe wyjście:</p>
+
+
+<p><code>Microsoft.Practices.CompositeUI.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.CompositeUI.WinForms.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
+version: v2.0.50727</code></p>
+
+
+<p></p>
+
+
+<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
+
+
+<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf]]></title>
+    <link href="http://malpka.github.io/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/"/>
+    <updated>2009-12-29T09:01:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto</id>
+    <content type="html"><![CDATA[<p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
+
+
+<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
+
+
+<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
+
+
+<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
+
+
+<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
+
+
+<p>Sam długo używałem zmiany parametru "Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie" w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Bluetooth na iPhone (iBluetooth)]]></title>
+    <link href="http://malpka.github.io/blog/2009/03/13/bluetooth-na-iphone-ibluetooth/"/>
+    <updated>2009-03-13T22:28:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2009/03/13/bluetooth-na-iphone-ibluetooth</id>
+    <content type="html"><![CDATA[<p>Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.<br>
+Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie niezależny od Apple system operacyjny, oczywiście oparty na Linuxie (http://www.iphonelinux.org), tak jak to jest na przykład na PSP.</p>
+
+
+<p><small>W takich momentach podziwiam możliwości ludzkiego umysłu, który udowadnia, że nie ma rzeczy niemożliwych, a wszystko jest tylko kwestią zaangażowania i poświęconego czasu.</small></p>
+
+
+<p>W Cydii pojawiła się paczka o nazwie <b>iBluetooth</b>, która daje możliwość korzystania z podstawowego protokołu (hmm, jak by tu stack przetłumaczyć) do transmisji plików - OBEX. Aplikacja jest płatna, kosztuje 3,99 Euro, ale w chwili edycji wpisu serwer płatności jest niedostępny (czyżby za dużo chętnych?;))</p>
+
+
+<p>Tak jak niespodziewanie pojawiła się sama aplikacja, tak szybko pojawił się "bugfix", który poprawia błąd, który powodował zawieszanie się aplikacji na brzydkim nagscreenie.</p>
+
+
+<p></p>
+
+
+<p>Cechy aplikacji:</p>
+
+
+<ul>
+<li>ustawienie nazwy urządzenia</li>
+<li>konfiguracja autoryzacji za pomocą PINu, możliwa automatyzacja kodem domyślnym</li>
+<li>poruszanie się po systemie plików telefonu w celu wyboru rzeczy do wysłania</li>
+<li>ustawienie nazwy urządzenia</li>
+<li>osobna opcja do wysyłania zdjęć, zawiera ładny podgląd</li>
+<li>historia transferu</li>
+</ul>
+
+
+<p></p>
+
+
+<p>Screeny z działania:</p>
+
+
+<p><strong>PC</strong></p>
+
+
+<p><img src="http://i39.tinypic.com/25fls7b.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i41.tinypic.com/30u8nq1.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i39.tinypic.com/1zgufqg.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i44.tinypic.com/huqahk.jpg" alt="screenshot"></p>
+
+
+<p><strong>Telefon</strong></p>
+
+
+<p><img src="http://i44.tinypic.com/11imm8i.png" alt="screenshot"></p>
+
+
+<p><img src="http://i43.tinypic.com/e04axe.png" alt="screenshot"></p>
+
+
+<p><img src="http://i40.tinypic.com/dpd6x5.png" alt="screenshot"></p>
+
+
+<p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Automatyczne pobieranie z Rapidshare na Windowsie z wykorzystaniem Cygwina.]]></title>
+    <link href="http://malpka.github.io/blog/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/"/>
+    <updated>2009-03-01T14:39:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin</id>
+    <content type="html"><![CDATA[<p>Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco:</p>
+
+
+<ul>
+<li>klikasz na link / wklejasz jako adres w przeglądarce</li>
+<li>Naciskasz przycisk "Free User"</li>
+<li>Niecierpliwie czekasz aż cyferki dojdą do zera, a następnie znowu klikasz w przycisk Download.</li>
+</ul>
+
+
+<p>O ile w przypadku pojedynczych plików da się to zaakceptować, to gdy jest do pobrania kilkadziesiąt części nazwanych part[0-9]+.rar dochodzi problem oczekiwania do 30 minut między pobieraniem, oraz konieczność kontrolowania całego procesu pobierania i powtarzania wyżej wspomnianych kroków (stan na dzień 2009-03-01).</p>
+
+
+<p><EXCERPT><p>Użytkownicy systemów *nixowych mają od jakiegoś czasu możliwość skorzystania ze znakomitego i cały czas uaktualnianego skryptu rsget-mod którego autorem jest <a href="nerdblog.pl">d4rky</a></p></p>
+
+<p><a href="http://rs.nerdblog.pl/">rsget-mod - strona projektu</a></p>
+
+
+<p>Skrypt umożliwia pełną automatyzację procesu pobierania zarówno pojedynczego linku, jak i zbioru adresów zapisanych w pliku.</p>
+
+
+<p>Jeżeli jesteś użytkownikiem Windowsa ... cóż, najpierw chociaż wypróbuj Linuxa ;), a jeśli dojdziesz do wniosku, że Ci nie odpowiada, możesz skorzystać z Cygwina, który jest linuksopodobnym środowiskiem działającym pod kontrolą systemu Microsoftu, emulującym funkcje API Linuxa.</p>
+
+
+<p><a href="http://www.cygwin.com/">Oficjalna strona projektu Cygwin</a></p>
+
+
+<p>Instalacja jest intuicyjna, ale aby przyszłe wersje skryptu były obsługiwane warto zatrzymać się przy wyborze pakietów i upewnić się, że będą instalowane:</p>
+
+
+<p></p>
+
+
+<ul>
+<li>Base / grep</li>
+<li>Net / wget</li>
+<li>Net / curl</li>
+</ul>
+
+
+<p></p>
+
+
+<p><img src="http://i40.tinypic.com/2ciei3l.jpg"></p>
+
+
+<p>Po zakończeniu instalacji można już uruchomić środowisko, które powita nas ślicznym promptem.</p>
+
+
+<p><img src="http://i44.tinypic.com/s3q25v.jpg"></p>
+
+
+<p>Cygwin to dobre środowisko dla osób, które chcą rozpocząć przygodę z linuxem, bądź wykorzystać jego zalety, m.in. jak w naszym przypadku możliwości skryptowe. Jednak nic nie stoi na przeszkodzie, aby emulować również środowisko graficzne za pomocą <a href="http://kde-cygwin.sourceforge.net/">Kde on Cygwin</a></p>
+
+
+<p>Wróćmy jednak do tematu. Skrypt wymaga kilku kroków przygotowawczych. Wygodniej będzie na przykład umieścić go w katalogu dostępnym przez zmienną PATH, by uprościć jego wywoływanie. Ponadto należy mu nadać atrybut wykonywalności.</p>
+
+
+<p><code>cd /usr/local/bin<br>
+wget http://rs.nerdblog.pl/stable/latest/rsget-mod.sh<br>
+chmod +x rsget-mod.sh</code></p>
+
+
+<p>Uwaga! W przypadku korzystania z serwera proxy należy wcześniej ustawić zmienną http_proxy:</p>
+
+
+<p><code>export http_proxy="http://adres_serwera:port/"</code></p>
+
+
+<p>lub</p>
+
+
+<p><code>export http_proxy="http://użytkownik:hasło@adres_serwera:port/"</code></p>
+
+
+<p>Sprawdzamy czy wszystko jest tam, gdzie trzeba i wywołujemy skrypt po raz pierwszy.</p>
+
+
+<p><img src="http://i42.tinypic.com/28c2hs2.jpg"></p>
+
+
+<p>Wersja unstable stworzy dodatkowo w katalogu domowym użytkownika swój podkatalog z ustawieniami oraz plikami pomocniczymi.</p>
+
+
+<p>Teraz wystarczy jedynie nakarmić skrypt linkami do pobierania:</p>
+
+
+<p><code>cat &gt; ~/linki.txt<br>
+http://rs123.rapidshare.com/files/1234567891/BigFile_part1.rar<br>
+http://rs123.rapidshare.com/files/1234567892/BigFile_part2.rar<br>
+http://rs123.rapidshare.com/files/1234567893/BigFile_part2.rar<br>
+[Ctrl+D]</code></p>
+
+
+<p>Inicjujemy ściąganie za pomocą</p>
+
+
+<p><code>rsget-mod.sh ~/linki.txt</code></p>
+
+
+<p><img src="http://i44.tinypic.com/332xo2o.jpg"></p>
+
+
+<p><img src="http://i40.tinypic.com/1055p51.jpg"></p>
+
+
+<p>Od teraz skrypt zajmie się wszystkimi czynnościami związanymi z obsługa pobierania i oczekiwania. Nam pozostaje tylko zostawić maszynę i wybrać się na spacer lub wycieczkę rowerową.</p>
+
+
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[RM fail]]></title>
+    <link href="http://malpka.github.io/blog/2009/01/07/rm-fail/"/>
+    <updated>2009-01-07T22:18:00+01:00</updated>
+    <id>http://malpka.github.io/blog/2009/01/07/rm-fail</id>
+    <content type="html"><![CDATA[<p>Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy brak pliku ... ;) )</p>
+
+
+<p><code>quiz:/var/spool/mqueue-client# <b>rm *</b><br>
+-bash: /bin/rm: <b>Lista argumentów za długa</b></code></p>
+
+
+<p><EXCERPT><p>hmmm</p></p>
+
+<p><code>quiz:/var/spool/mqueue-client# ls -1 | wc<br>
+13625 13625 231625</code></p>
+
+
+<p>Trochę ponad 10k plików i się remik gubi.<br>
+Powodem był 'odrobinkę' nieskonfigurowany sendmail</p>
+
+
+<p>Rozwiązaniem może być na przykład skorzystanie z xargs, który wykonuje polecenie z argumentami podanymi przez stdin:</p>
+
+
+<p><code>quiz:/var/spool/mqueue-client# ls -1 | xargs rm ...<br>
+quiz:/var/spool/mqueue-client# ls -1 | wc<br>
+0 0 0</code></p>
+
+
+<p>Mały test innego sposobu: <code># for i in `seq 1 13625` ; do echo "666" &gt; $i; done #tworzenie plikow<br>
+...<br>
+# find . -delete</code><br>
+I co się okazuje:<br>
+<code># time find . -delete<br>
+<br>
+real 0m1.421s<br>
+user 0m0.068s<br>
+sys 0m1.336s<br>
+<br>
+<br>
+# time ls -1 | xargs rm<br>
+<br>
+real 0m2.955s<br>
+user 0m0.440s<br>
+sys 0m2.400s</code><br>
+Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odrobinę dłużej.</p>
+
+
+<p>PS. Niech ktoś coś zrobi z tym certyfikatem ...</p>
+
+
+
+]]></content>
+  </entry>
+  
+</feed>

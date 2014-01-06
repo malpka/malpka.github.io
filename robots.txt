@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: 
+
+Sitemap: http://malpka.github.io/sitemap.xml 
