@@ -4,7 +4,7 @@
   <title><![CDATA[Co.de.mon.key]]></title>
   <link href="http://malpka.github.io/atom.xml" rel="self"/>
   <link href="http://malpka.github.io/"/>
-  <updated>2014-01-06T18:16:55+01:00</updated>
+  <updated>2014-01-06T21:07:27+01:00</updated>
   <id>http://malpka.github.io/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -312,7 +312,7 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
 
 <ul>
 <li>zachowanie treści szkiców (to już trzeba ręcznie)</li>
-<li>zamiana &lt;EXCERPT&rt; na &lt;!&mdash; more &mdash;&gt;</li>
+<li>zamiana &lt;EXCERPT&gt; na &lt;!&mdash; more &mdash;&gt;</li>
 <li>zmiana treści na markdown</li>
 </ul>
 
