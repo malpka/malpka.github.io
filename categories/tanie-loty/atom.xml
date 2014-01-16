@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: tanie loty | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/tanie-loty/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: tanie loty | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/tanie-loty/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Ceny lotów tanich linii lotniczych Ryanair z Krakowa, Maj 2010]]></title>
-    <link href="http://malpka.github.io/2010/04/16/ceny-lotow-tanich-linii-lotniczych-ryanair-z-krakowa-maj-201/"/>
+    <link href="http://blog.codemonkey.pl/2010/04/16/ceny-lotow-tanich-linii-lotniczych-ryanair-z-krakowa-maj-201/"/>
     <updated>2010-04-16T11:47:00+02:00</updated>
-    <id>http://malpka.github.io/2010/04/16/ceny-lotow-tanich-linii-lotniczych-ryanair-z-krakowa-maj-201</id>
+    <id>http://blog.codemonkey.pl/2010/04/16/ceny-lotow-tanich-linii-lotniczych-ryanair-z-krakowa-maj-201</id>
     <content type="html"><![CDATA[<p>Korzystając z hype na latanie/lotnictwo w ostatnim tygodniu umieszczam orientacyjne koszty lotów Ryanair z Krakowa na maj b.r. Stan na 10:30, 16 kwietnia 2010.</p>
 
 

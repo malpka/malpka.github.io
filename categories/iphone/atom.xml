@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: iPhone | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/iphone/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: iPhone | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/iphone/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Bluetooth na iPhone (iBluetooth)]]></title>
-    <link href="http://malpka.github.io/2009/03/13/bluetooth-na-iphone-ibluetooth/"/>
+    <link href="http://blog.codemonkey.pl/2009/03/13/bluetooth-na-iphone-ibluetooth/"/>
     <updated>2009-03-13T22:28:00+01:00</updated>
-    <id>http://malpka.github.io/2009/03/13/bluetooth-na-iphone-ibluetooth</id>
+    <id>http://blog.codemonkey.pl/2009/03/13/bluetooth-na-iphone-ibluetooth</id>
     <content type="html"><![CDATA[<p>Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.<br>
 Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie niezależny od Apple system operacyjny, oczywiście oparty na Linuxie (http://www.iphonelinux.org), tak jak to jest na przykład na PSP.</p>
 
@@ -89,9 +89,9 @@ Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie ni
   
   <entry>
     <title type="html"><![CDATA[Małpka i iPhone - początki]]></title>
-    <link href="http://malpka.github.io/2007/12/13/malpka-i-iphone/"/>
+    <link href="http://blog.codemonkey.pl/2007/12/13/malpka-i-iphone/"/>
     <updated>2007-12-13T11:29:00+01:00</updated>
-    <id>http://malpka.github.io/2007/12/13/malpka-i-iphone</id>
+    <id>http://blog.codemonkey.pl/2007/12/13/malpka-i-iphone</id>
     <content type="html"><![CDATA[<h3>Mój iPhone 1.1.2 OOTB</h3>
 
 

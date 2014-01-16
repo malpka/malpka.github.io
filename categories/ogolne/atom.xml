@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ogólne | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/ogolne/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: Ogólne | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/ogolne/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Wybór klawiatury]]></title>
-    <link href="http://malpka.github.io/2010/05/11/wybor-klawiatury/"/>
+    <link href="http://blog.codemonkey.pl/2010/05/11/wybor-klawiatury/"/>
     <updated>2010-05-11T21:32:00+02:00</updated>
-    <id>http://malpka.github.io/2010/05/11/wybor-klawiatury</id>
+    <id>http://blog.codemonkey.pl/2010/05/11/wybor-klawiatury</id>
     <content type="html"><![CDATA[<p>Zastanawiam się nad następującymi:</p>
 
 
@@ -115,9 +115,9 @@
   
   <entry>
     <title type="html"><![CDATA[Import projektu z VSS do Bazaar z zachowaniem (częściowym) chronologii zmian]]></title>
-    <link href="http://malpka.github.io/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/"/>
+    <link href="http://blog.codemonkey.pl/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/"/>
     <updated>2010-02-26T09:23:00+01:00</updated>
-    <id>http://malpka.github.io/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr</id>
+    <id>http://blog.codemonkey.pl/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr</id>
     <content type="html"><![CDATA[<p>Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies.</p>
 
 
@@ -142,9 +142,9 @@
   
   <entry>
     <title type="html"><![CDATA[Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf]]></title>
-    <link href="http://malpka.github.io/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/"/>
+    <link href="http://blog.codemonkey.pl/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/"/>
     <updated>2009-12-29T09:01:00+01:00</updated>
-    <id>http://malpka.github.io/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto</id>
+    <id>http://blog.codemonkey.pl/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto</id>
     <content type="html"><![CDATA[<p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
 
 
@@ -169,9 +169,9 @@
   
   <entry>
     <title type="html"><![CDATA[Refleksje - przeniesienie domeny z netart do ovh]]></title>
-    <link href="http://malpka.github.io/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/"/>
+    <link href="http://blog.codemonkey.pl/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/"/>
     <updated>2009-05-23T12:51:00+02:00</updated>
-    <id>http://malpka.github.io/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh</id>
+    <id>http://blog.codemonkey.pl/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh</id>
     <content type="html"><![CDATA[<p>Z uwagi na brak reakcji firmy NetArt na <a href="http://webhosting.pl/NASK.obniza.ceny.odnowien.dla.domen.w.rejestrze..pl">obniżkę cen odnowienia domeny .pl wprowadzoną przez NASK 1 stycznia 2009 r.</a> zdecydowałem się przenieść swoją do ogólnie polecanego na joggerze ovh.</p>
 
 
@@ -222,9 +222,9 @@ Mimo tych wszystkich kroków operacja trwała tutaj dość szybko, około 5 dni 
   
   <entry>
     <title type="html"><![CDATA[Zmiana firmware WRT54GL z Tomato na DD-WRT]]></title>
-    <link href="http://malpka.github.io/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/"/>
+    <link href="http://blog.codemonkey.pl/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/"/>
     <updated>2009-03-28T20:11:00+01:00</updated>
-    <id>http://malpka.github.io/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt</id>
+    <id>http://blog.codemonkey.pl/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt</id>
     <content type="html"><![CDATA[<p>Zdziwiło mnie, że aktualizacja oprogramowania przebiegła pomyślnie.</p>
 
 

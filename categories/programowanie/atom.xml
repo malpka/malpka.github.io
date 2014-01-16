@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Programowanie | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/programowanie/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: Programowanie | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/programowanie/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu]]></title>
-    <link href="http://malpka.github.io/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
+    <link href="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
     <updated>2012-10-08T10:41:00+02:00</updated>
-    <id>http://malpka.github.io/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
+    <id>http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
     <content type="html"><![CDATA[<p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
 
 
@@ -61,9 +61,9 @@ version: v2.0.50727</code></p>
   
   <entry>
     <title type="html"><![CDATA[Dzień Darmowej Dostawy w Polsce - opisy sklepów.]]></title>
-    <link href="http://malpka.github.io/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/"/>
+    <link href="http://blog.codemonkey.pl/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/"/>
     <updated>2010-11-18T10:09:00+01:00</updated>
-    <id>http://malpka.github.io/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow</id>
+    <id>http://blog.codemonkey.pl/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow</id>
     <content type="html"><![CDATA[<p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
 
 
@@ -126,9 +126,9 @@ soup = BeautifulSoup.BeautifulSoup(urllib.urlopen(adresDDD))</p>
   
   <entry>
     <title type="html"><![CDATA[Automatyczna zamiana nazw plików i zawartości]]></title>
-    <link href="http://malpka.github.io/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/"/>
+    <link href="http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/"/>
     <updated>2009-10-23T12:20:00+02:00</updated>
-    <id>http://malpka.github.io/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci</id>
+    <id>http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci</id>
     <content type="html"><![CDATA[<p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
 
 
@@ -156,9 +156,9 @@ soup = BeautifulSoup.BeautifulSoup(urllib.urlopen(adresDDD))</p>
   
   <entry>
     <title type="html"><![CDATA[Applet i zasoby]]></title>
-    <link href="http://malpka.github.io/2007/01/11/applet-i-zasoby/"/>
+    <link href="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/"/>
     <updated>2007-01-11T07:23:00+01:00</updated>
-    <id>http://malpka.github.io/2007/01/11/applet-i-zasoby</id>
+    <id>http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby</id>
     <content type="html"><![CDATA[<p>Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.<br>
 Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:</p>
 

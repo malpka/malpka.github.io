@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: C# | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/c-number/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: C# | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/c-number/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu]]></title>
-    <link href="http://malpka.github.io/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
+    <link href="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
     <updated>2012-10-08T10:41:00+02:00</updated>
-    <id>http://malpka.github.io/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
+    <id>http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
     <content type="html"><![CDATA[<p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
 
 

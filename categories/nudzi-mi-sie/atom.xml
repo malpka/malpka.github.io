@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Nudzi mi się | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/nudzi-mi-sie/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: Nudzi mi się | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/nudzi-mi-sie/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Sesja zdjęciowa]]></title>
-    <link href="http://malpka.github.io/2010/03/15/sesja-zdjeciowa/"/>
+    <link href="http://blog.codemonkey.pl/2010/03/15/sesja-zdjeciowa/"/>
     <updated>2010-03-15T00:00:00+01:00</updated>
-    <id>http://malpka.github.io/2010/03/15/sesja-zdjeciowa</id>
+    <id>http://blog.codemonkey.pl/2010/03/15/sesja-zdjeciowa</id>
     <content type="html"><![CDATA[<p>Bardzo mi się nie chce spać i postrzelałem trochę fotek widoku za oknem. Przez szybę. Canonem A510.</p>
 
 

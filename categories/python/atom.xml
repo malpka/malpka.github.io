@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Python | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/python/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: Python | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/python/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Pyhon - hurtowa zmiana atrybutów w xml]]></title>
-    <link href="http://malpka.github.io/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/"/>
+    <link href="http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/"/>
     <updated>2011-01-03T12:33:00+01:00</updated>
-    <id>http://malpka.github.io/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml</id>
+    <id>http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml</id>
     <content type="html"><![CDATA[<p>Kolejne kilka linijek, które ułatwią mi kiedyś życie.</p>
 
 
@@ -55,9 +55,9 @@ f.close()
   
   <entry>
     <title type="html"><![CDATA[Dzień Darmowej Dostawy w Polsce - opisy sklepów.]]></title>
-    <link href="http://malpka.github.io/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/"/>
+    <link href="http://blog.codemonkey.pl/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/"/>
     <updated>2010-11-18T10:09:00+01:00</updated>
-    <id>http://malpka.github.io/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow</id>
+    <id>http://blog.codemonkey.pl/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow</id>
     <content type="html"><![CDATA[<p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
 
 

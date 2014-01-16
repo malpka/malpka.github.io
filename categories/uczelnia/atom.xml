@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Uczelnia | Co.de.mon.key]]></title>
-  <link href="http://malpka.github.io/categories/uczelnia/atom.xml" rel="self"/>
-  <link href="http://malpka.github.io/"/>
-  <updated>2014-01-16T13:28:13+01:00</updated>
-  <id>http://malpka.github.io/</id>
+  <title><![CDATA[Category: Uczelnia | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/uczelnia/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-01-16T14:57:03+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Jak uczestniczyć w programie MSDNAA na PŚk]]></title>
-    <link href="http://malpka.github.io/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/"/>
+    <link href="http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/"/>
     <updated>2007-04-17T17:37:00+02:00</updated>
-    <id>http://malpka.github.io/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk</id>
+    <id>http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk</id>
     <content type="html"><![CDATA[<p><b>Jak uczestniczyć w programie MSDNAA na naszej uczelni.</b></p>
 
 
