@@ -9,8 +9,19 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Przy okazji migracji danych z Joggera na Octopress
-potrzebowałem szybko dostać schemat struktury całego XML&#8217;a eksportu, aby się upewnić, czy w &hellip;">
+  <meta name="description" content="Do wyszukiwania ciągu znaków we wszystkich polach tekstowych w każdej
+tabeli w bazie danych posłuży nam ten fragment kodu: 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +94,192 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Full text serch na całej bazie MS SQL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-17T10:03:45+01:00" pubdate data-updated="true">2014-01-17</time>
+        
+           | <a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Do wyszukiwania ciągu znaków we wszystkich polach tekstowych w każdej
+tabeli w bazie danych posłuży nam ten fragment kodu:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="n">PROC</span> <span class="n">SearchAllTables</span>
+</span><span class='line'><span class="p">(</span>
+</span><span class='line'>    <span class="o">@</span><span class="n">SearchStr</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">AS</span>
+</span><span class='line'><span class="k">BEGIN</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">-- Copyright © 2002 Narayana Vyas Kondreddi. All rights reserved.</span>
+</span><span class='line'>    <span class="c1">-- Purpose: To search all columns of all tables for a given search string</span>
+</span><span class='line'>    <span class="c1">-- Written by: Narayana Vyas Kondreddi</span>
+</span><span class='line'>    <span class="c1">-- Site: http://vyaskn.tripod.com</span>
+</span><span class='line'>    <span class="c1">-- Tested on: SQL Server 7.0 and SQL Server 2000</span>
+</span><span class='line'>    <span class="c1">-- Date modified: 28th July 2002 22:50 GMT</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">#</span><span class="n">Results</span> <span class="p">(</span><span class="n">ColumnName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">370</span><span class="p">),</span> <span class="n">ColumnValue</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">3630</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">SET</span> <span class="n">NOCOUNT</span> <span class="k">ON</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">DECLARE</span> <span class="o">@</span><span class="n">TableName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span> <span class="o">@</span><span class="n">SearchStr2</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">110</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">SET</span>  <span class="o">@</span><span class="n">TableName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">SET</span> <span class="o">@</span><span class="n">SearchStr2</span> <span class="o">=</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="s1">&#39;%&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">SearchStr</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">WHILE</span> <span class="o">@</span><span class="n">TableName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'>    <span class="k">BEGIN</span>
+</span><span class='line'>  <span class="k">SET</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">SET</span> <span class="o">@</span><span class="n">TableName</span> <span class="o">=</span>
+</span><span class='line'>  <span class="p">(</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">QUOTENAME</span><span class="p">(</span><span class="n">TABLE_SCHEMA</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">TABLE_NAME</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">FROM</span>     <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">TABLES</span>
+</span><span class='line'>      <span class="k">WHERE</span>        <span class="n">TABLE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;BASE TABLE&#39;</span>
+</span><span class='line'>      <span class="k">AND</span>  <span class="n">QUOTENAME</span><span class="p">(</span><span class="n">TABLE_SCHEMA</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">TABLE_NAME</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">TableName</span>
+</span><span class='line'>      <span class="k">AND</span>  <span class="n">OBJECTPROPERTY</span><span class="p">(</span>
+</span><span class='line'>          <span class="n">OBJECT_ID</span><span class="p">(</span>
+</span><span class='line'>              <span class="n">QUOTENAME</span><span class="p">(</span><span class="n">TABLE_SCHEMA</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">TABLE_NAME</span><span class="p">)</span>
+</span><span class='line'>               <span class="p">),</span> <span class="s1">&#39;IsMSShipped&#39;</span>
+</span><span class='line'>                 <span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">WHILE</span> <span class="p">(</span><span class="o">@</span><span class="n">TableName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">)</span> <span class="k">AND</span> <span class="p">(</span><span class="o">@</span><span class="n">ColumnName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">BEGIN</span>
+</span><span class='line'>      <span class="k">SET</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">=</span>
+</span><span class='line'>      <span class="p">(</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">QUOTENAME</span><span class="p">(</span><span class="k">COLUMN_NAME</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">FROM</span>     <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">COLUMNS</span>
+</span><span class='line'>      <span class="k">WHERE</span>        <span class="n">TABLE_SCHEMA</span> <span class="o">=</span> <span class="n">PARSENAME</span><span class="p">(</span><span class="o">@</span><span class="n">TableName</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">AND</span>  <span class="k">TABLE_NAME</span>   <span class="o">=</span> <span class="n">PARSENAME</span><span class="p">(</span><span class="o">@</span><span class="n">TableName</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">AND</span>  <span class="n">DATA_TYPE</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;char&#39;</span><span class="p">,</span> <span class="s1">&#39;varchar&#39;</span><span class="p">,</span> <span class="s1">&#39;nchar&#39;</span><span class="p">,</span> <span class="s1">&#39;nvarchar&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">AND</span>  <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">COLUMN_NAME</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">ColumnName</span>
+</span><span class='line'>      <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">IF</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'>      <span class="k">BEGIN</span>
+</span><span class='line'>      <span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">#</span><span class="n">Results</span>
+</span><span class='line'>      <span class="k">EXEC</span>
+</span><span class='line'>      <span class="p">(</span>
+</span><span class='line'>          <span class="s1">&#39;SELECT &#39;&#39;&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">TableName</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">+</span> <span class="s1">&#39;&#39;&#39;, LEFT(&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">+</span> <span class="s1">&#39;, 3630) </span>
+</span><span class='line'><span class="s1">         FROM &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">TableName</span> <span class="o">+</span> <span class="s1">&#39; (NOLOCK) &#39;</span> <span class="o">+</span>
+</span><span class='line'>          <span class="s1">&#39; WHERE &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">+</span> <span class="s1">&#39; LIKE &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">SearchStr2</span>
+</span><span class='line'>      <span class="p">)</span>
+</span><span class='line'>      <span class="k">END</span>
+</span><span class='line'>  <span class="k">END</span>  
+</span><span class='line'>    <span class="k">END</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">SELECT</span> <span class="n">ColumnName</span><span class="p">,</span> <span class="n">ColumnValue</span> <span class="k">FROM</span> <span class="o">#</span><span class="n">Results</span>
+</span><span class='line'><span class="k">END</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wywołanie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">EXEC</span> <span class="n">SearchAllTables</span> <span class="s1">&#39;Computer&#39;</span>
+</span><span class='line'><span class="k">GO</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Źródło: <a href="http://vyaskn.tripod.com/search_all_columns_in_all_tables.htm">http://vyaskn.tripod.com/search_all_columns_in_all_tables.htm</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1790,51 +1987,6 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/03/15/sesja-zdjeciowa/">Sesja zdjęciowa</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-03-15T00:00:00+01:00" pubdate data-updated="true">2010-03-15</time>
-        
-           | <a href="/2010/03/15/sesja-zdjeciowa/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2010/03/15/sesja-zdjeciowa/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Bardzo mi się nie chce spać i postrzelałem trochę fotek widoku za oknem. Przez szybę. Canonem A510.</p>
-
-
-<p><a href="http://i.imgur.com/VJBI4.jpg"><img src="http://i.imgur.com/VJBI4s.jpg"></a> <a href="http://i.imgur.com/RQNgw.jpg"><img src="http://i.imgur.com/RQNgws.jpg"></a> <a href="http://i.imgur.com/qH43P.jpg"><img src="http://i.imgur.com/qH43Ps.jpg"></a> <a href="http://i.imgur.com/Z9lzB.jpg"><img src="http://i.imgur.com/Z9lzBs.jpg"></a> <a href="http://i.imgur.com/jaaMm.jpg"><img src="http://i.imgur.com/jaaMms.jpg"></a> <a href="http://i.imgur.com/StvGQ.jpg"><img src="http://i.imgur.com/StvGQs.jpg"></a> <a href="http://i.imgur.com/2BKis.jpg"><img src="http://i.imgur.com/2BKiss.jpg"></a></p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1850,6 +2002,10 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Full text serch na całej bazie MS SQL</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/06/tworzenie-schematu-xsd-z-xml/">Tworzenie schematu XSD z XML</a>
       </li>
     
@@ -1863,10 +2019,6 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
     
       <li class="post">
         <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/">Pyhon - hurtowa zmiana atrybutów w xml</a>
       </li>
     
   </ul>

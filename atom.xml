@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-01-16T14:57:03+01:00</updated>
+  <updated>2014-01-18T10:13:09+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,162 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Full text serch na całej bazie MS SQL]]></title>
+    <link href="http://blog.codemonkey.pl/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/"/>
+    <updated>2014-01-17T10:03:45+01:00</updated>
+    <id>http://blog.codemonkey.pl/2014/01/17/full-text-serch-na-calej-bazie-ms-sql</id>
+    <content type="html"><![CDATA[<p>Do wyszukiwania ciągu znaków we wszystkich polach tekstowych w każdej
+tabeli w bazie danych posłuży nam ten fragment kodu:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">CREATE</span> <span class="n">PROC</span> <span class="n">SearchAllTables</span>
+</span><span class='line'><span class="p">(</span>
+</span><span class='line'>    <span class="o">@</span><span class="n">SearchStr</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">AS</span>
+</span><span class='line'><span class="k">BEGIN</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1">-- Copyright © 2002 Narayana Vyas Kondreddi. All rights reserved.</span>
+</span><span class='line'>    <span class="c1">-- Purpose: To search all columns of all tables for a given search string</span>
+</span><span class='line'>    <span class="c1">-- Written by: Narayana Vyas Kondreddi</span>
+</span><span class='line'>    <span class="c1">-- Site: http://vyaskn.tripod.com</span>
+</span><span class='line'>    <span class="c1">-- Tested on: SQL Server 7.0 and SQL Server 2000</span>
+</span><span class='line'>    <span class="c1">-- Date modified: 28th July 2002 22:50 GMT</span>
+</span><span class='line'>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">#</span><span class="n">Results</span> <span class="p">(</span><span class="n">ColumnName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">370</span><span class="p">),</span> <span class="n">ColumnValue</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">3630</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">SET</span> <span class="n">NOCOUNT</span> <span class="k">ON</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">DECLARE</span> <span class="o">@</span><span class="n">TableName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span> <span class="o">@</span><span class="n">SearchStr2</span> <span class="n">nvarchar</span><span class="p">(</span><span class="mi">110</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">SET</span>  <span class="o">@</span><span class="n">TableName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>    <span class="k">SET</span> <span class="o">@</span><span class="n">SearchStr2</span> <span class="o">=</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="s1">&#39;%&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">SearchStr</span> <span class="o">+</span> <span class="s1">&#39;%&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;&#39;&#39;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">WHILE</span> <span class="o">@</span><span class="n">TableName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'>    <span class="k">BEGIN</span>
+</span><span class='line'>  <span class="k">SET</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+</span><span class='line'>  <span class="k">SET</span> <span class="o">@</span><span class="n">TableName</span> <span class="o">=</span>
+</span><span class='line'>  <span class="p">(</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">QUOTENAME</span><span class="p">(</span><span class="n">TABLE_SCHEMA</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">TABLE_NAME</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">FROM</span>     <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">TABLES</span>
+</span><span class='line'>      <span class="k">WHERE</span>        <span class="n">TABLE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;BASE TABLE&#39;</span>
+</span><span class='line'>      <span class="k">AND</span>  <span class="n">QUOTENAME</span><span class="p">(</span><span class="n">TABLE_SCHEMA</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">TABLE_NAME</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">TableName</span>
+</span><span class='line'>      <span class="k">AND</span>  <span class="n">OBJECTPROPERTY</span><span class="p">(</span>
+</span><span class='line'>          <span class="n">OBJECT_ID</span><span class="p">(</span>
+</span><span class='line'>              <span class="n">QUOTENAME</span><span class="p">(</span><span class="n">TABLE_SCHEMA</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">TABLE_NAME</span><span class="p">)</span>
+</span><span class='line'>               <span class="p">),</span> <span class="s1">&#39;IsMSShipped&#39;</span>
+</span><span class='line'>                 <span class="p">)</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">WHILE</span> <span class="p">(</span><span class="o">@</span><span class="n">TableName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">)</span> <span class="k">AND</span> <span class="p">(</span><span class="o">@</span><span class="n">ColumnName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">BEGIN</span>
+</span><span class='line'>      <span class="k">SET</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">=</span>
+</span><span class='line'>      <span class="p">(</span>
+</span><span class='line'>      <span class="k">SELECT</span> <span class="k">MIN</span><span class="p">(</span><span class="n">QUOTENAME</span><span class="p">(</span><span class="k">COLUMN_NAME</span><span class="p">))</span>
+</span><span class='line'>      <span class="k">FROM</span>     <span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">COLUMNS</span>
+</span><span class='line'>      <span class="k">WHERE</span>        <span class="n">TABLE_SCHEMA</span> <span class="o">=</span> <span class="n">PARSENAME</span><span class="p">(</span><span class="o">@</span><span class="n">TableName</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">AND</span>  <span class="k">TABLE_NAME</span>   <span class="o">=</span> <span class="n">PARSENAME</span><span class="p">(</span><span class="o">@</span><span class="n">TableName</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">AND</span>  <span class="n">DATA_TYPE</span> <span class="k">IN</span> <span class="p">(</span><span class="s1">&#39;char&#39;</span><span class="p">,</span> <span class="s1">&#39;varchar&#39;</span><span class="p">,</span> <span class="s1">&#39;nchar&#39;</span><span class="p">,</span> <span class="s1">&#39;nvarchar&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="k">AND</span>  <span class="n">QUOTENAME</span><span class="p">(</span><span class="k">COLUMN_NAME</span><span class="p">)</span> <span class="o">&gt;</span> <span class="o">@</span><span class="n">ColumnName</span>
+</span><span class='line'>      <span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="n">IF</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="k">IS</span> <span class="k">NOT</span> <span class="k">NULL</span>
+</span><span class='line'>      <span class="k">BEGIN</span>
+</span><span class='line'>      <span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">#</span><span class="n">Results</span>
+</span><span class='line'>      <span class="k">EXEC</span>
+</span><span class='line'>      <span class="p">(</span>
+</span><span class='line'>          <span class="s1">&#39;SELECT &#39;&#39;&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">TableName</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">+</span> <span class="s1">&#39;&#39;&#39;, LEFT(&#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">+</span> <span class="s1">&#39;, 3630) </span>
+</span><span class='line'><span class="s1">         FROM &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">TableName</span> <span class="o">+</span> <span class="s1">&#39; (NOLOCK) &#39;</span> <span class="o">+</span>
+</span><span class='line'>          <span class="s1">&#39; WHERE &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">ColumnName</span> <span class="o">+</span> <span class="s1">&#39; LIKE &#39;</span> <span class="o">+</span> <span class="o">@</span><span class="n">SearchStr2</span>
+</span><span class='line'>      <span class="p">)</span>
+</span><span class='line'>      <span class="k">END</span>
+</span><span class='line'>  <span class="k">END</span>  
+</span><span class='line'>    <span class="k">END</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">SELECT</span> <span class="n">ColumnName</span><span class="p">,</span> <span class="n">ColumnValue</span> <span class="k">FROM</span> <span class="o">#</span><span class="n">Results</span>
+</span><span class='line'><span class="k">END</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wywołanie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">EXEC</span> <span class="n">SearchAllTables</span> <span class="s1">&#39;Computer&#39;</span>
+</span><span class='line'><span class="k">GO</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Źródło: <a href="http://vyaskn.tripod.com/search_all_columns_in_all_tables.htm">http://vyaskn.tripod.com/search_all_columns_in_all_tables.htm</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Tworzenie schematu XSD z XML]]></title>
@@ -1811,124 +1967,6 @@ Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie ni
 
 
 <p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automatyczne pobieranie z Rapidshare na Windowsie z wykorzystaniem Cygwina.]]></title>
-    <link href="http://blog.codemonkey.pl/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin/"/>
-    <updated>2009-03-01T14:39:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2009/03/01/automatyczne-pobieranie-z-rapidshare-windows-cygwin</id>
-    <content type="html"><![CDATA[<p>Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco:</p>
-
-
-<ul>
-<li>klikasz na link / wklejasz jako adres w przeglądarce</li>
-<li>Naciskasz przycisk &#8220;Free User&#8221;</li>
-<li>Niecierpliwie czekasz aż cyferki dojdą do zera, a następnie znowu klikasz w przycisk Download.</li>
-</ul>
-
-
-<p>O ile w przypadku pojedynczych plików da się to zaakceptować, to gdy jest do pobrania kilkadziesiąt części nazwanych part[0-9]+.rar dochodzi problem oczekiwania do 30 minut między pobieraniem, oraz konieczność kontrolowania całego procesu pobierania i powtarzania wyżej wspomnianych kroków (stan na dzień 2009-03-01).</p>
-
-
-<p><EXCERPT><p>Użytkownicy systemów *nixowych mają od jakiegoś czasu możliwość skorzystania ze znakomitego i cały czas uaktualnianego skryptu rsget-mod którego autorem jest <a href="nerdblog.pl">d4rky</a></p></p>
-
-<p><a href="http://rs.nerdblog.pl/">rsget-mod - strona projektu</a></p>
-
-
-<p>Skrypt umożliwia pełną automatyzację procesu pobierania zarówno pojedynczego linku, jak i zbioru adresów zapisanych w pliku.</p>
-
-
-<p>Jeżeli jesteś użytkownikiem Windowsa &#8230; cóż, najpierw chociaż wypróbuj Linuxa ;), a jeśli dojdziesz do wniosku, że Ci nie odpowiada, możesz skorzystać z Cygwina, który jest linuksopodobnym środowiskiem działającym pod kontrolą systemu Microsoftu, emulującym funkcje API Linuxa.</p>
-
-
-<p><a href="http://www.cygwin.com/">Oficjalna strona projektu Cygwin</a></p>
-
-
-<p>Instalacja jest intuicyjna, ale aby przyszłe wersje skryptu były obsługiwane warto zatrzymać się przy wyborze pakietów i upewnić się, że będą instalowane:</p>
-
-
-<p></p>
-
-
-<ul>
-<li>Base / grep</li>
-<li>Net / wget</li>
-<li>Net / curl</li>
-</ul>
-
-
-<p></p>
-
-
-<p><img src="http://i40.tinypic.com/2ciei3l.jpg"></p>
-
-
-<p>Po zakończeniu instalacji można już uruchomić środowisko, które powita nas ślicznym promptem.</p>
-
-
-<p><img src="http://i44.tinypic.com/s3q25v.jpg"></p>
-
-
-<p>Cygwin to dobre środowisko dla osób, które chcą rozpocząć przygodę z linuxem, bądź wykorzystać jego zalety, m.in. jak w naszym przypadku możliwości skryptowe. Jednak nic nie stoi na przeszkodzie, aby emulować również środowisko graficzne za pomocą <a href="http://kde-cygwin.sourceforge.net/">Kde on Cygwin</a></p>
-
-
-<p>Wróćmy jednak do tematu. Skrypt wymaga kilku kroków przygotowawczych. Wygodniej będzie na przykład umieścić go w katalogu dostępnym przez zmienną PATH, by uprościć jego wywoływanie. Ponadto należy mu nadać atrybut wykonywalności.</p>
-
-
-<p><code>cd /usr/local/bin<br>
-wget http://rs.nerdblog.pl/stable/latest/rsget-mod.sh<br>
-chmod +x rsget-mod.sh</code></p>
-
-
-<p>Uwaga! W przypadku korzystania z serwera proxy należy wcześniej ustawić zmienną http_proxy:</p>
-
-
-<p><code>export http_proxy="http://adres_serwera:port/"</code></p>
-
-
-<p>lub</p>
-
-
-<p><code>export http_proxy="http://użytkownik:hasło@adres_serwera:port/"</code></p>
-
-
-<p>Sprawdzamy czy wszystko jest tam, gdzie trzeba i wywołujemy skrypt po raz pierwszy.</p>
-
-
-<p><img src="http://i42.tinypic.com/28c2hs2.jpg"></p>
-
-
-<p>Wersja unstable stworzy dodatkowo w katalogu domowym użytkownika swój podkatalog z ustawieniami oraz plikami pomocniczymi.</p>
-
-
-<p>Teraz wystarczy jedynie nakarmić skrypt linkami do pobierania:</p>
-
-
-<p><code>cat &gt; ~/linki.txt<br>
-http://rs123.rapidshare.com/files/1234567891/BigFile_part1.rar<br>
-http://rs123.rapidshare.com/files/1234567892/BigFile_part2.rar<br>
-http://rs123.rapidshare.com/files/1234567893/BigFile_part2.rar<br>
-[Ctrl+D]</code></p>
-
-
-<p>Inicjujemy ściąganie za pomocą</p>
-
-
-<p><code>rsget-mod.sh ~/linki.txt</code></p>
-
-
-<p><img src="http://i44.tinypic.com/332xo2o.jpg"></p>
-
-
-<p><img src="http://i40.tinypic.com/1055p51.jpg"></p>
-
-
-<p>Od teraz skrypt zajmie się wszystkimi czynnościami związanymi z obsługa pobierania i oczekiwania. Nam pozostaje tylko zostawić maszynę i wybrać się na spacer lub wycieczkę rowerową.</p>
 
 
 
