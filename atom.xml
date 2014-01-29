@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-01-18T10:13:09+01:00</updated>
+  <updated>2014-01-29T10:11:33+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Usuwanie danych z tabeli w nHibernate]]></title>
+    <link href="http://blog.codemonkey.pl/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/"/>
+    <updated>2014-01-29T10:00:49+01:00</updated>
+    <id>http://blog.codemonkey.pl/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate</id>
+    <content type="html"><![CDATA[<p>Najbardziej generalny sposób, na jaki trafiłem.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CleanUpTable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">ISessionFactory</span> <span class="n">sessionFactory</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="kt">var</span> <span class="n">metadata</span> <span class="p">=</span> <span class="n">sessionFactory</span><span class="p">.</span><span class="n">GetClassMetadata</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">T</span><span class="p">))</span> <span class="k">as</span> <span class="n">NHibernate</span><span class="p">.</span><span class="n">Persister</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">AbstractEntityPersister</span><span class="p">;</span>
+</span><span class='line'>    <span class="kt">string</span> <span class="n">table</span> <span class="p">=</span> <span class="n">metadata</span><span class="p">.</span><span class="n">TableName</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">using</span> <span class="p">(</span><span class="n">ISession</span> <span class="n">session</span> <span class="p">=</span> <span class="n">sessionFactory</span><span class="p">.</span><span class="n">OpenSession</span><span class="p">())</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">transaction</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">BeginTransaction</span><span class="p">())</span>
+</span><span class='line'>        <span class="p">{</span>
+</span><span class='line'>            <span class="kt">string</span> <span class="n">deleteAll</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;DELETE FROM \&quot;{0}\&quot;&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">);</span>
+</span><span class='line'>            <span class="n">session</span><span class="p">.</span><span class="n">CreateSQLQuery</span><span class="p">(</span><span class="n">deleteAll</span><span class="p">).</span><span class="n">ExecuteUpdate</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>            <span class="n">transaction</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
+</span><span class='line'>        <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Sposób użycia:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">CleanUpTable</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;(</span><span class="n">sessionFactory</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://stackoverflow.com/a/16861155/1434646">Źródło</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Full text serch na całej bazie MS SQL]]></title>
@@ -1893,80 +1946,6 @@ fc-cache</code></p>
 
 <p>W nowym oprogramowaniu umieszczenie funkcji jest mniej intuicyjne niż w poprzednim. Myślałem że to kwestia przyzwyczajenia, ale po tych 2 dniach zabawy nadal ciężko mi znaleźć opcję której szukam.<br>
 Jednak konfiguracja przekierowania portów się nie zachowała.</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Bluetooth na iPhone (iBluetooth)]]></title>
-    <link href="http://blog.codemonkey.pl/2009/03/13/bluetooth-na-iphone-ibluetooth/"/>
-    <updated>2009-03-13T22:28:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2009/03/13/bluetooth-na-iphone-ibluetooth</id>
-    <content type="html"><![CDATA[<p>Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.<br>
-Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie niezależny od Apple system operacyjny, oczywiście oparty na Linuxie (http://www.iphonelinux.org), tak jak to jest na przykład na PSP.</p>
-
-
-<p><small>W takich momentach podziwiam możliwości ludzkiego umysłu, który udowadnia, że nie ma rzeczy niemożliwych, a wszystko jest tylko kwestią zaangażowania i poświęconego czasu.</small></p>
-
-
-<p>W Cydii pojawiła się paczka o nazwie <b>iBluetooth</b>, która daje możliwość korzystania z podstawowego protokołu (hmm, jak by tu stack przetłumaczyć) do transmisji plików - OBEX. Aplikacja jest płatna, kosztuje 3,99 Euro, ale w chwili edycji wpisu serwer płatności jest niedostępny (czyżby za dużo chętnych?;))</p>
-
-
-<p>Tak jak niespodziewanie pojawiła się sama aplikacja, tak szybko pojawił się &#8220;bugfix&#8221;, który poprawia błąd, który powodował zawieszanie się aplikacji na brzydkim nagscreenie.</p>
-
-
-<p></p>
-
-
-<p>Cechy aplikacji:</p>
-
-
-<ul>
-<li>ustawienie nazwy urządzenia</li>
-<li>konfiguracja autoryzacji za pomocą PINu, możliwa automatyzacja kodem domyślnym</li>
-<li>poruszanie się po systemie plików telefonu w celu wyboru rzeczy do wysłania</li>
-<li>ustawienie nazwy urządzenia</li>
-<li>osobna opcja do wysyłania zdjęć, zawiera ładny podgląd</li>
-<li>historia transferu</li>
-</ul>
-
-
-<p></p>
-
-
-<p>Screeny z działania:</p>
-
-
-<p><strong>PC</strong></p>
-
-
-<p><img src="http://i39.tinypic.com/25fls7b.jpg" alt="screenshot"></p>
-
-
-<p><img src="http://i41.tinypic.com/30u8nq1.jpg" alt="screenshot"></p>
-
-
-<p><img src="http://i39.tinypic.com/1zgufqg.jpg" alt="screenshot"></p>
-
-
-<p><img src="http://i44.tinypic.com/huqahk.jpg" alt="screenshot"></p>
-
-
-<p><strong>Telefon</strong></p>
-
-
-<p><img src="http://i44.tinypic.com/11imm8i.png" alt="screenshot"></p>
-
-
-<p><img src="http://i43.tinypic.com/e04axe.png" alt="screenshot"></p>
-
-
-<p><img src="http://i40.tinypic.com/dpd6x5.png" alt="screenshot"></p>
-
-
-<p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
 
 
 

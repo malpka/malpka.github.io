@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Jeżeli jesteś osobą korzystającą serwisu Rapidshare pewnie Twoja zabawa z nim wygląda następująco: klikasz na link / wklejasz jako adres w &hellip;">
+  <meta name="description" content="Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.
+Według mnie to było kwestią czasu, tak &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +83,110 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/13/bluetooth-na-iphone-ibluetooth/">Bluetooth na iPhone (iBluetooth)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-13T22:28:00+01:00" pubdate data-updated="true">2009-03-13</time>
+        
+           | <a href="/2009/03/13/bluetooth-na-iphone-ibluetooth/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/03/13/bluetooth-na-iphone-ibluetooth/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.<br>
+Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie niezależny od Apple system operacyjny, oczywiście oparty na Linuxie (http://www.iphonelinux.org), tak jak to jest na przykład na PSP.</p>
+
+
+<p><small>W takich momentach podziwiam możliwości ludzkiego umysłu, który udowadnia, że nie ma rzeczy niemożliwych, a wszystko jest tylko kwestią zaangażowania i poświęconego czasu.</small></p>
+
+
+<p>W Cydii pojawiła się paczka o nazwie <b>iBluetooth</b>, która daje możliwość korzystania z podstawowego protokołu (hmm, jak by tu stack przetłumaczyć) do transmisji plików - OBEX. Aplikacja jest płatna, kosztuje 3,99 Euro, ale w chwili edycji wpisu serwer płatności jest niedostępny (czyżby za dużo chętnych?;))</p>
+
+
+<p>Tak jak niespodziewanie pojawiła się sama aplikacja, tak szybko pojawił się &#8220;bugfix&#8221;, który poprawia błąd, który powodował zawieszanie się aplikacji na brzydkim nagscreenie.</p>
+
+
+<p></p>
+
+
+<p>Cechy aplikacji:</p>
+
+
+<ul>
+<li>ustawienie nazwy urządzenia</li>
+<li>konfiguracja autoryzacji za pomocą PINu, możliwa automatyzacja kodem domyślnym</li>
+<li>poruszanie się po systemie plików telefonu w celu wyboru rzeczy do wysłania</li>
+<li>ustawienie nazwy urządzenia</li>
+<li>osobna opcja do wysyłania zdjęć, zawiera ładny podgląd</li>
+<li>historia transferu</li>
+</ul>
+
+
+<p></p>
+
+
+<p>Screeny z działania:</p>
+
+
+<p><strong>PC</strong></p>
+
+
+<p><img src="http://i39.tinypic.com/25fls7b.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i41.tinypic.com/30u8nq1.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i39.tinypic.com/1zgufqg.jpg" alt="screenshot"></p>
+
+
+<p><img src="http://i44.tinypic.com/huqahk.jpg" alt="screenshot"></p>
+
+
+<p><strong>Telefon</strong></p>
+
+
+<p><img src="http://i44.tinypic.com/11imm8i.png" alt="screenshot"></p>
+
+
+<p><img src="http://i43.tinypic.com/e04axe.png" alt="screenshot"></p>
+
+
+<p><img src="http://i40.tinypic.com/dpd6x5.png" alt="screenshot"></p>
+
+
+<p>Na zdjęciu pomieszczenie socjalne w miejscu pracy ;)</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -708,59 +813,6 @@ Panel administracyjny (Tomcat, JSP, Struts, Hibernate) miesza w bazie danych (Or
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/">Serwer MySQL dostępny z zewnątrz</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-07-05T11:35:00+02:00" pubdate data-updated="true">2007-07-05</time>
-        
-           | <a href="/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Uczę się obecnie Hibernate i podczas pisania najprostszego programu który operował na pojedynczej tabeli wystąpił błąd połączenia z bazą danych</p>
-
-
-<p>Przy korzystaniu ze standardowego connectora do bazy po sieci lokalnej:<br>
-<code>jdbc:mysql://10.0.1.4:3306/quiz</code><br>
-odezwał się exception o braku możliwości połączenia z bazą, mimo że była ona skonfigurowana poprawnie i normalne wykorzystywanie jej jako wsparcie la apache odbywało się bez problemów</p>
-
-
-<p>Okazuje się że MySQL jest na tyle restrykcyjny przy instalacji, że zabrania połączenia z adresów innych niż localhost.</p>
-
-
-<p>Aby to zmienić należy w pliku <b>/etc/mysql/my.cnf</b> zakomentarzować dyrektywę <b>skip-networking</b></p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -778,6 +830,10 @@ odezwał się exception o braku możliwości połączenia z bazą, mimo że był
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Full text serch na całej bazie MS SQL</a>
       </li>
     
@@ -791,10 +847,6 @@ odezwał się exception o braku możliwości połączenia z bazą, mimo że był
     
       <li class="post">
         <a href="/2014/01/03/hello-world/">Hello World</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
       </li>
     
   </ul>

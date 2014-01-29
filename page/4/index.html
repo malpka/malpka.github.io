@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Jak uczestniczyć w programie MSDNAA na naszej uczelni. Jak wcześniej wspomniałem sprawa tego programu wywołała na naszym wydziale sporo kontrowersji &hellip;">
+  <meta name="description" content="Uczę się obecnie Hibernate i podczas pisania najprostszego programu który operował na pojedynczej tabeli wystąpił błąd połączenia z bazą danych Przy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -82,6 +82,59 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/">Serwer MySQL dostępny z zewnątrz</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-05T11:35:00+02:00" pubdate data-updated="true">2007-07-05</time>
+        
+           | <a href="/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Uczę się obecnie Hibernate i podczas pisania najprostszego programu który operował na pojedynczej tabeli wystąpił błąd połączenia z bazą danych</p>
+
+
+<p>Przy korzystaniu ze standardowego connectora do bazy po sieci lokalnej:<br>
+<code>jdbc:mysql://10.0.1.4:3306/quiz</code><br>
+odezwał się exception o braku możliwości połączenia z bazą, mimo że była ona skonfigurowana poprawnie i normalne wykorzystywanie jej jako wsparcie la apache odbywało się bez problemów</p>
+
+
+<p>Okazuje się że MySQL jest na tyle restrykcyjny przy instalacji, że zabrania połączenia z adresów innych niż localhost.</p>
+
+
+<p>Aby to zmienić należy w pliku <b>/etc/mysql/my.cnf</b> zakomentarzować dyrektywę <b>skip-networking</b></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -655,55 +708,6 @@ Do konfiguracji interesującego nas interfejsu należy dopisać:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/01/12/aktualizacja-czasu-w-linuxie/">Aktualizacja czasu w linuxie</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-12T00:08:00+01:00" pubdate data-updated="true">2007-01-12</time>
-        
-           | <a href="/2007/01/12/aktualizacja-czasu-w-linuxie/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/12/aktualizacja-czasu-w-linuxie/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Niby mała rzecz a przydatna<br>
-aby zaktualizować czas za pomocą protokołu ntp należy użyć polecenia <b>ntpdate</b></p>
-
-
-<p><code>ntpdate nt.task.gda.pl</code></p>
-
-
-<p>&nbsp;</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -721,6 +725,10 @@ aby zaktualizować czas za pomocą protokołu ntp należy użyć polecenia <b>nt
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Full text serch na całej bazie MS SQL</a>
       </li>
     
@@ -734,10 +742,6 @@ aby zaktualizować czas za pomocą protokołu ntp należy użyć polecenia <b>nt
     
       <li class="post">
         <a href="/2014/01/03/hello-world/">Hello World</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a>
       </li>
     
   </ul>
