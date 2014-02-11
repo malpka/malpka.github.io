@@ -9,8 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Niby mała rzecz a przydatna
-aby zaktualizować czas za pomocą protokołu ntp należy użyć polecenia ntpdate ntpdate nt.task.gda.pl &nbsp; ">
+  <meta name="description" content="Prosty skrypt konfiguracji sieci bezprzewodowej echo '#!/bin/bash' &gt; /etc/init.d/wlanstart
+echo 'iwconfig wlan0 essid malpka mode Ad-Hoc channel &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +83,65 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/">Debian - dodawanie usług uruchamianych podczas startu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-12T18:35:00+01:00" pubdate data-updated="true">2007-01-12</time>
+        
+           | <a href="/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Prosty skrypt konfiguracji sieci bezprzewodowej</p>
+
+
+<p><code>echo '#!/bin/bash' &gt; /etc/init.d/wlanstart<br>
+echo 'iwconfig wlan0 essid malpka mode Ad-Hoc channel 11' &gt;&gt; /etc/init.d/wlanstart<br>
+chmod +x /etc/init.d/wlanstart<br>
+update-rc.d wlanstart defaults</code></p>
+
+
+<p>Serwer mi padł po 7 dniach uptime bo w gniazdku zaczęło mi się iskrzyć. Już naprawione, ale po podniesieniu się systemu wlan nie działał i internetu w całym domu nie miałem .. straszne.</p>
+
+
+<p>edit:<br>
+Poprawka .. kod ustawiający wlan nie powinien być wrzucony do init.d ale do /etc/network/interfaces<br>
+Do konfiguracji interesującego nas interfejsu należy dopisać:</p>
+
+
+<p><code>up /usr/local/bin/wlanstart</code></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -298,6 +357,10 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/">Octopress zamiast Wordpressa - statyczna generacja bloga</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a>
       </li>
     
@@ -311,10 +374,6 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     
       <li class="post">
         <a href="/2014/01/05/migracja-jogger-octopress/">Migracja Jogger - Octopress</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/03/hello-world/">Hello World</a>
       </li>
     
   </ul>

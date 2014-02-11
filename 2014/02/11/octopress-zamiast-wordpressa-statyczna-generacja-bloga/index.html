@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Octopress zamiast Wordpressa - statyczna generacja bloga - co.de.mon.key</title>
+  <meta name="author" content="malpka">
+
+  
+  <meta name="description" content="Obecnie rozpoczęcie blogowania nie nastręcza wielu trudności &ndash; trzeba zdecydować się na jedną z platform blogowych, jak Blogger czy Wordpress. &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<style type="text/css">
+/*.highlight {
+  background: none !important;
+}*/
+/*.line_numbers {
+  line-height: 18px;
+  font-size: 13px;
+}*/
+.gist div {
+margin: 0 0 0;
+}
+
+.gist .line-data
+{
+ font-size: 13px;
+ width: 100%;
+}
+</style>
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">co.de.mon.key</a></h1>
+  
+    <h2>Weblog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.codemonkey.pl" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Octopress zamiast Wordpressa - statyczna generacja bloga</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-11T21:16:45+01:00" pubdate data-updated="true">2014-02-11</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Obecnie rozpoczęcie blogowania nie nastręcza wielu trudności &ndash; trzeba zdecydować się na jedną z platform blogowych, jak Blogger czy Wordpress.com, poświęcić chwilkę na konfigurację oraz wybranie skórki i można zacząć pisać. To wystarcza w zupełności do dzielenia się ze społecznością internetową swoimi przemyśleniami, nawet zespołowo.</p>
+
+<p>W przypadku gdy możliwości platformy przestają wystarczać, reklamy dokuczać, zasięg i poczytność bloga zwiększają się czy w planach jest komercyjne wykorzystanie tworzonych treści, wymagające odpowiedniego zastosowania SEO czy statystyk użytkowników piszący zazwyczaj decyduje się na przejście &ldquo;na swoje&rdquo;: wykupienie domeny, hostingu z PHP i MySQL oraz postawieniu na nim silnika &ndash; tu nikogo nie zaskoczę &ndash; <strong>Wordrpress.org</strong>.</p>
+
+<h2>Wordpress</h2>
+
+<p>Standardowa zautomatyzowana instalacja: &ldquo;ZACZYNAMY&rdquo;, baza nazwa, hasło, użytkownik, prefiks, DALEJ, tytuł witryny, użytkownik, hasło, mail, DALEJ, logowanie &hellip; i co, to już? Gdzie tu zabawa, gdzie konfiguracja, ile razy można? ;&ndash;)</p>
+
+<p>Przy wyborze swojego miejsca do notowania zacząłem oczywiście od wyszukania rozwiązań alternatywnych i niebanalnych, co pozwoliło mi trafić na zupełnie inne podejście do generowania blogów.</p>
+
+<p>Zacznijmy może od pytania:</p>
+
+<h3>Z czego składa się blog?</h3>
+
+<p>Pytanie proste, odpowiedź raczej też, ale ma znaczenie przy dalszych rozważaniach. Przy opisie będę się opierał na WP.</p>
+
+<ol>
+<li><strong>Wpisy</strong>
+
+<ul>
+<li>tytuł</li>
+<li>data wpisu (na jej podstawie tworzone jest archiwum / kalendarium bloga)</li>
+<li>treść (tekst, obrazki)</li>
+<li>kategoria (przekłada się na listę kategorii z odnośnikami do wpisów)</li>
+<li>tagi (j.w.)</li>
+</ul>
+</li>
+<li><strong>Strony</strong></li>
+<li><strong>Komentarze do wpisów</strong></li>
+<li><strong>Menu</strong></li>
+<li><em>Motyw wyglądu</em></li>
+<li><em>Inne treści &ndash; widgety</em></li>
+<li><em>Panel konfiguracyjny</em></li>
+</ol>
+
+
+<p>Pogrubieniem zaznaczyłem pozycje istotne z punktu widzenia samej treści bloga.</p>
+
+<p>Biorąc teraz pod uwagę, że Wordpress to skrypty PHP i leżąca pod spodem baza danych można zadać drugie pytanie:</p>
+
+<h3>Jak działa Wordpress?</h3>
+
+<p>Jeden prosty <code>GET / HTTP/1.0</code> do pojedynczego wpisu na blogu opartym na WP to szereg zdarzeń na hostingu, będących w rzeczywistości wykonaniem skryptów PHP, pobieraniem danych z MySQLa oraz prezentacji wyników jako stronę WWW.</p>
+
+<ul>
+<li>wczytanie konfiguracji</li>
+<li>połączenie PHP do bazy z zapytaniem o strukturę Menu i wyświetlenie jej</li>
+<li>pobranie z MySQLa listy zazwyczaj 3-5+ wpisów, ucinanie do <code>&lt;!-- more --&gt;</code></li>
+<li>pobranie listy kategorii z countami po liczbie wpisów,</li>
+<li>PHP &ndash;> MySQL &ndash;> <code>select * from wp_comments where comment_post_ID = ...</code></li>
+<li>&hellip; itd</li>
+</ul>
+
+
+<p>Sporo kodu, zapytań bazodanowych jedynie po to by pobrać statyczną treść jednego wpisu, trochę więcej zmieniające się komentarze i kilku informacji dodatkowych.</p>
+
+<p>A przecież zawartość tych struktur, oraz strony, na jakie mają wpływ, zmienia się <strong>tylko podczas dodawania wpisu</strong>, a komentarze przeważnie w pewnym zakresie czasu od daty publikacji. Dodatkowo sporo osób decyduje się na wprowadzenie <a href="http://disqus.com/">Disqus</a> czy FB jako osobnego silnika komentarzy.</p>
+
+<p>Dla bloga, na którym wpis pojawia się raz dziennie, oraz który odwiedza w ciągu tego jednego dnia 100 użytkowników to <strong>aż 99 niepotrzebnych</strong> przegenerowań stron na dzień.</p>
+
+<h3>Przyspieszanie Wordpressa &ndash; unikanie zbędnej generacji stron</h3>
+
+<p>Oczywiście WP jako dojrzała platforma blogowa, która obsługuje w niektórych przypadkach pewnie i setki tysięcy żądań na dzień posiada <a href="http://codex.wordpress.org/WordPress_Optimization/Caching">zalecenia</a> dotyczące wydajności, które zawierają m.in.</p>
+
+<ul>
+<li>instalację pluginów cache&#8217;ujących &ndash; W3 Total Cache czy WP Super Cache</li>
+<li>cache w przeglądarkach klientów, przydatne dla powracających (HTTP Cache-Control)</li>
+<li>cache po stronie serwera: Varnish, Reverse proxy, Alternative PHP Cache (APC)</li>
+</ul>
+
+
+<p>jednak rozwiązania takie dalej bazują na PHP i danych w bazie i są zależne od wydajności hostingu.</p>
+
+<h2>Alternatywa &ndash; statyczne generowanie stron</h2>
+
+<p>Konkurencyjny pomysł jest prosty &ndash; zamiast ciągłego przetwarzania PHP + MySQL można przegenerować bloga lub inną stronę w trakcie dodawania treści. Silnik generacji, uzupełniony o szablony struktury , wyglądu (CSS), zapisana w umówionym formacie treść oraz komentarze w zewnętrznym serwisie typu Disqus to wszystko co trzeba aby stworzyć w pełni funkcjonalnego bloga. <em>Unikamy oczywiście drastycznego pomysłu ręcznego dodawania strony html ;)</em></p>
+
+<p><a href="http://jekyllrb.com/"><img class="right" src="http://jekyllrb.com/img/logo-2x.png" width="249" height="115" title="'Jekyll logo'" ></a></p>
+
+<h3>Jekyll</h3>
+
+<p>Przykładem tego podejścia jest <a href="http://jekyllrb.com/">Jekyll</a>, napisany w ruby zestaw generatorów oraz skryptów wykonujących całą brudną robotę.</p>
+
+<p>Cechy generatora to, cytując stronę:</p>
+
+<ul>
+<li>prostota &ndash; <em>&ldquo;bez baz danych, moderacji komentarzy ani nieznośnych aktualizacji &ndash; tylko Twoja treść&rdquo;</em></li>
+<li>statyczność &ndash; <em>&ldquo;<a href="http://daringfireball.net/projects/markdown/">Markdown</a> (lub <a href="http://textile.sitemonks.com/">Textile</a>) jako format wpisów, <a href="http://wiki.shopify.com/Liquid">Liquid</a> jako silnik szablonów, HTML &amp; CSS. Wyjściem generacji są statyczne witryny gotowe do publikacji.&rdquo;</em></li>
+<li>przygotowany pod blogi &ndash; <em>&ldquo;permalinki, kategorie, strony, wpisy, własne motywy.&rdquo;</em></li>
+</ul>
+
+
+<p>Projekt jest bardzo dobrze udokumentowany, strona prezentuje się bardzo przyjemnie i tłumaczy krok po kroku w instalację oraz sposób publikacji treści.</p>
+
+<p>Quickstart jest imponująco krótki:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>~ <span class="nv">$ </span>gem install jekyll
+</span><span class='line'>~ <span class="nv">$ </span>jekyll new myblog
+</span><span class='line'>~ <span class="nv">$ </span><span class="nb">cd </span>myblog
+</span><span class='line'>~/myblog <span class="nv">$ </span>jekyll serve
+</span><span class='line'><span class="c"># =&gt; Now browse to http://localhost:4000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>i już można podziwiać działającą stronę.</p>
+
+<p>To oczywiście dopiero początek, pozostała praca przy szablonie wizualnym bloga w Liquid.</p>
+
+<p>Same posty to pliki w katalogu <code>_posts</code> o nazwie w postaci <code>YEAR-MONTH-DAY-title.MARKUP</code>, np:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>2011-12-31-new-years-eve-is-awesome.md
+</span><span class='line'>2012-09-12-how-to-write-a-blog.textile
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Tekst piszemy w Markdown lub Textile, dokładając na początku pliku <a href="http://jekyllrb.com/docs/frontmatter/">YAML-owy nagłówek</a> zawierający np. kategorie, tagi i inne informacje dodatkowe. Zawsze można dorzucić fragment HTMLa.</p>
+
+<p><a href="http://octopress.org"><img class="right" src="http://octopress.org/images/logo.png" width="227" height="227" title="'Octopress logo'" ></a></p>
+
+<h3>Jeszcze szybszy start &ndash; Octopress</h3>
+
+<p>Aby jeszcze bardziej ułatwić tworzenie nowego bloga na bazie Jekylla powstał framework zawierający gotową konfigurację, skrypty, szablony wizualne i kod w Javascripcie &ndash; <a href="http://octopress.org">Octopress</a></p>
+
+<p><em>Out of the box</em> mamy:</p>
+
+<ul>
+<li>Gotowy szablon HTML5,</li>
+<li>Zorientowany na platformy mobilne &ldquo;responsywny&rdquo; layout,</li>
+<li>Wbudowane wsparcie dla Twittera, Google Plus One, komentarzy Disqus, Pinboarda, Delicious, oraz Google Analytics,</li>
+<li>Łatwe wdrażanie przy użyciu Github pages lub Rsync,</li>
+<li>Wsparcie dla serwerów POW and Rack dla podglądu wyników pracy,</li>
+<li>Proste szablony wizualne &ndash; Compass i Sass</li>
+<li>Podświetlanie składni kodu &ndash; <a href="http://ethanschoonover.com/solarized">Solarized</a></li>
+</ul>
+
+
+<p>Dodatkowo sporo wtyczek zewnętrznych oraz aktywność społeczności.</p>
+
+<p>Po instalacji:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>git clone git://github.com/imathis/octopress.git octopress
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>octopress
+</span><span class='line'><span class="c"># gem install bundler</span>
+</span><span class='line'><span class="c"># rbenv rehash # If you use rbenv, rehash to be able to run the bundle command</span>
+</span><span class='line'><span class="c"># bundle install </span>
+</span><span class='line'><span class="nv">$ </span>rake install
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://octopress.org/docs/deploying/">konfigurujemy deployment</a> na Githubie, Heroku lub rsync-em, <a href="http://octopress.org/docs/configuring/">główne parametry bloga</a> jak tytuł, tagi meta, rss itp. oraz dodajemy treść:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake new_post<span class="o">[</span><span class="s2">&quot;Octopress zamiast Wordpressa&quot;</span><span class="o">]</span>
+</span><span class='line'>mkdir -p <span class="nb">source</span>/_posts
+</span><span class='line'>Creating new post: <span class="nb">source</span>/_posts/2014-02-11-octopress-zamiast-wordpressa.markdown
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>---
+</span><span class='line'>layout: post
+</span><span class='line'>title: <span class="s2">&quot;Octopress zamiast Wordpressa - statyczna generacja bloga&quot;</span>
+</span><span class='line'>date: 2014-02-11 21:20
+</span><span class='line'>comments: <span class="nb">true</span>
+</span><span class='line'>categories: Octopress
+</span><span class='line'>---
+</span><span class='line'><span class="c"># Octopress zamiast Wordpressa - statyczna generacja bloga </span>
+</span><span class='line'>
+</span><span class='line'><span class="c">## Blogowanie dziś  </span>
+</span><span class='line'>
+</span><span class='line'>Obecnie rozpoczęcie blogowania nie nastręcza wielu trudności ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Generujemy stronę oraz uruchamiamy serwer testowy, domyślnie na porcie 4000</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake generate <span class="o">&amp;&amp;</span> rake preview
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ostatecznie publikujemy wcześniej skonfigurowanym mechanizmem:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake deploy
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Alternatywy</h3>
+
+<p>Statyczne generatory stron to temat rozległy, wystarczy spojrzeć na stronę <a href="http://staticsitegenerators.net/">http://staticsitegenerators.net/</a>, gdzie obecnie jest 224 wpisów. Ciągle pojawiają się nowe, jak np <a href="http://jekyllbootstrap.com">http://jekyllbootstrap.com</a> v0.2 na który trafiłem podczas pisania.</p>
+
+<h2>Podsumowanie</h2>
+
+<h3>Zalety</h3>
+
+<ul>
+<li>statyczne generowanie stron &ndash; przeważnie raz na wpis &rarr; szybkość działania,</li>
+<li>posiada wszystkie ważne funkcje bloga: wpisy, strony, komentarze, tagi, kategorie, permalinki</li>
+<li>nie wymaga hostingu z PHP i MySQL,</li>
+<li>wbudowane publikowanie np. na darmowych github pages, do których można podłączyć swoją domenę,</li>
+<li>uniezależnienie się od Wordpressa <em>(bo ileż można?)</em>,</li>
+<li>na prawdę proste zamieszczanie kodu źródłowego który dodatkowo ładnie wygląda,</li>
+<li>szybkie pisanie postów na konsoli: <code>rake new_post["tytuł wpisu"]</code> + treść w Markdown/Textile</li>
+<li>możliwość automatyzacji &ndash; np. posty przez maila, posty na bazie innej strony.</li>
+</ul>
+
+
+<h3>Wady</h3>
+
+<ul>
+<li>wymagana większa wiedza techniczna <em>(ale w końcu to &ldquo;blogging framework for hackers.&rdquo;)</em>,</li>
+<li>konieczność przygotowania środowiska w ruby dla samego generatora,</li>
+<li>konieczność stworzenia własnego szablonu, dostępnych jest kilkadziesiąt(set), w porównaniu do kilku(dziesięciu) tysięcy na WP</li>
+<li>nie ma wygodnego panelu administracyjnego, posty edytujemy jako pliki</li>
+<li>brak wygodnego zamieszczania zdjęć, trzeba dodać <a href="http://octopress.org/docs/plugins/image-tag/">link bezpośredni</a></li>
+<li>odrębny mechanizm komentarzy &ndash; Disqus</li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">malpka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-11T21:16:45+01:00" pubdate data-updated="true">2014-02-11</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/" title="Previous Post: Usuwanie danych z tabeli w nHibernate">&laquo; Usuwanie danych z tabeli w nHibernate</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Ostatnie wpisy</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/">Octopress zamiast Wordpressa - statyczna generacja bloga</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Full text serch na całej bazie MS SQL</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/06/tworzenie-schematu-xsd-z-xml/">Tworzenie schematu XSD z XML</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/05/migracja-jogger-octopress/">Migracja Jogger - Octopress</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>Twitter</h1>
+<a class="twitter-timeline"  href="https://twitter.com/m_alpka"  data-widget-id="420512026947883008">Tweets by @m_alpka</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>BTC Donate</h1>
+  <p style="font-size: 85%">13pSs3BpnyqKGuopsQAeL69nPvtP1y1sML</p>
+  <img src="https://blockchain.info/qr?data=13pSs3BpnyqKGuopsQAeL69nPvtP1y1sML&size=220"/>
+</section>
+<section>
+  <h1>YouTube Playlist</h1>
+
+  <iframe width="260" height="355" src="//www.youtube.com/embed/HJQOr4Vm-8M?list=PLVUMM_JT8VXu7oy--4l5BIrdRV3pGfEE9" frameborder="0" allowfullscreen></iframe>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - malpka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'co-de-mon-key';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(["trackPageView"]);
+    _paq.push(["enableLinkTracking"]);
+    (function() {
+      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.codemonkey.pl/";
+      _paq.push(["setTrackerUrl", u+"piwik.php"]);
+      _paq.push(["setSiteId", "6"]);
+      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+      g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+
+
+
+</body>
+</html>
