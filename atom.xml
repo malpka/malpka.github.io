@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-02-11T22:35:56+01:00</updated>
+  <updated>2014-02-11T22:43:52+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -95,7 +95,7 @@
 
 <p>Konkurencyjny pomysł jest prosty &ndash; zamiast ciągłego przetwarzania PHP + MySQL można przegenerować bloga lub inną stronę w trakcie dodawania treści. Silnik generacji, uzupełniony o szablony struktury , wyglądu (CSS), zapisana w umówionym formacie treść oraz komentarze w zewnętrznym serwisie typu Disqus to wszystko co trzeba aby stworzyć w pełni funkcjonalnego bloga. <em>Unikamy oczywiście drastycznego pomysłu ręcznego dodawania strony html ;)</em></p>
 
-<p><a href="http://jekyllrb.com/"><img class="right" src="http://jekyllrb.com/img/logo-2x.png" width="249" height="115" title="'Jekyll logo'" ></a></p>
+<p><a href="http://jekyllrb.com/"><img class="right" src="http://jekyllrb.com/img/logo-2x.png" width="249" height="115" title="Jekyll logo" ></a></p>
 
 <h3>Jekyll</h3>
 
@@ -142,7 +142,7 @@
 
 <p>Tekst piszemy w Markdown lub Textile, dokładając na początku pliku <a href="http://jekyllrb.com/docs/frontmatter/">YAML-owy nagłówek</a> zawierający np. kategorie, tagi i inne informacje dodatkowe. Zawsze można dorzucić fragment HTMLa.</p>
 
-<p><a href="http://octopress.org"><img class="right" src="http://octopress.org/images/logo.png" width="227" height="227" title="'Octopress logo'" ></a></p>
+<p><a href="http://octopress.org"><img class="right" src="http://octopress.org/images/logo.png" width="227" height="227" title="Octopress logo" ></a></p>
 
 <h3>Jeszcze szybszy start &ndash; Octopress</h3>
 
