@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-02-11T22:28:46+01:00</updated>
+  <updated>2014-02-11T22:35:56+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -233,6 +233,8 @@
 </pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>rake deploy
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Polecam zapoznanie się z wygenerowaną strukturą stron na <a href="https://github.com/malpka/malpka.github.io">https://github.com/malpka/malpka.github.io</a></p>
 
 <h3>Alternatywy</h3>
 
