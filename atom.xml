@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-03-11T10:31:28+01:00</updated>
+  <updated>2014-03-11T11:37:30+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C# Generowanie obiektów z zakresu - Enumerable.Range()]]></title>
+    <link href="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/"/>
+    <updated>2014-03-11T10:37:13+01:00</updated>
+    <id>http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu</id>
+    <content type="html"><![CDATA[<p>Do stworzenia kolekcji obiektów na podstawie zdefiniowanego zakresu liczbowego zamiast używania pętli:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;</span> <span class="n">PobierzDane</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;</span> <span class="n">dane</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;();</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">2000</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">2015</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>    <span class="n">dane</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">RokKalendarzowy</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">dane</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>można wykorzystać <code>Enumerable.Range(int, int)</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;</span> <span class="n">PobierzLata</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span> <span class="m">15</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">RokKalendarzowy</span><span class="p">(</span><span class="n">x</span><span class="p">)).</span><span class="n">ToList</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Prawda że ładniej? Może nie jest to <a href="http://docs.python.org/2/library/itertools.html">itertools z Pythona</a> ale robi to co trzeba.</p>
+
+<p>Oczywiście metodę można wykorzystać do tworzenia różnego rodzaju ciągów:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">ciagArytmetyczny1</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">5</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="m">3</span> <span class="p">+</span> <span class="m">2</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 2, 5, 8, 11, 14</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">var</span> <span class="n">ciagKwadratow</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">6</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="n">x</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 1, 4, 9, 16, 25, 36</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">var</span> <span class="n">potegiDwojki</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="n">Pow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">x</span><span class="p">)).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 1, 2, 4, 8, 16, 32, 64, 128, 256, 512</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>również znakowych:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">procenty</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="m">10</span> <span class="p">*</span> <span class="n">x</span><span class="p">)</span> <span class="p">+</span> <span class="s">&quot;%&quot;</span> <span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// &quot;0%&quot;, &quot;10%&quot;, &quot;20%&quot;, &quot;30%&quot;, &quot;40%&quot;, &quot;50%&quot;, &quot;60%&quot;, &quot;70%&quot;, &quot;80%&quot;, &quot;90%&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Eksperymentalne pobieranie wszystkich małych liter ASCII wygląda następująco:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">znaki</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;z&#39;</span> <span class="p">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;a&#39;</span> <span class="p">+</span> <span class="m">1</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">x</span><span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, ..., &#39;y&#39;, &#39;z&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress zamiast Wordpressa - statyczna generacja bloga]]></title>
@@ -2147,22 +2227,6 @@ Mimo tych wszystkich kroków operacja trwała tutaj dość szybko, około 5 dni 
 
 
 <p>Ogólnie obsługę i konfigurację domeny oraz współpracę z NetArt wspominam bardzo miło, nigdy nie stwarzali problemów, jeżeli wprowadzą rozsądne ceny to może do nich wrócę.</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LaTeX - gdy zawodzi renderowanie tuż po instalacji]]></title>
-    <link href="http://blog.codemonkey.pl/2009/04/02/latex-gdy-zawodzi-renderowanie-tuz-po-instalacji/"/>
-    <updated>2009-04-02T08:26:00+02:00</updated>
-    <id>http://blog.codemonkey.pl/2009/04/02/latex-gdy-zawodzi-renderowanie-tuz-po-instalacji</id>
-    <content type="html"><![CDATA[<p>Można spróbować</p>
-
-
-<p><code>updmap --verbose<br>
-fc-cache</code></p>
 
 
 

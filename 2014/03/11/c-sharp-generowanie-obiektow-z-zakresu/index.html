@@ -1,0 +1,378 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>C# Generowanie obiektów z zakresu - Enumerable.Range() - co.de.mon.key</title>
+  <meta name="author" content="malpka">
+
+  
+  <meta name="description" content="Tworzenie kolekcji obiektów na podstawie zdefiniowanego zakresu liczbowego - Enumerable.Range">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<style type="text/css">
+/*.highlight {
+  background: none !important;
+}*/
+/*.line_numbers {
+  line-height: 18px;
+  font-size: 13px;
+}*/
+.gist div {
+margin: 0 0 0;
+}
+
+.gist .line-data
+{
+ font-size: 13px;
+ width: 100%;
+}
+</style>
+
+<meta property="og:title" content="C# Generowanie obiektów z zakresu - Enumerable.Range()" />
+<meta property="og:site_name" content="co.de.mon.key" />
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/" />
+<meta property="og:description" content="Tworzenie kolekcji obiektów na podstawie zdefiniowanego zakresu liczbowego - Enumerable.Range" />
+
+<meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">co.de.mon.key</a></h1>
+  
+    <h2>Weblog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.codemonkey.pl" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">C# Generowanie obiektów z zakresu - Enumerable.Range()</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T10:37:13+01:00" pubdate data-updated="true">2014-03-11</time>
+        
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Do stworzenia kolekcji obiektów na podstawie zdefiniowanego zakresu liczbowego zamiast używania pętli:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;</span> <span class="n">PobierzDane</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;</span> <span class="n">dane</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;();</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">2000</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">2015</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>    <span class="n">dane</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">RokKalendarzowy</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">dane</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>można wykorzystać <code>Enumerable.Range(int, int)</code></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;</span> <span class="n">PobierzLata</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span> <span class="m">15</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">RokKalendarzowy</span><span class="p">(</span><span class="n">x</span><span class="p">)).</span><span class="n">ToList</span><span class="p">&lt;</span><span class="n">RokKalendarzowy</span><span class="p">&gt;();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Prawda że ładniej? Może nie jest to <a href="http://docs.python.org/2/library/itertools.html">itertools z Pythona</a> ale robi to co trzeba.</p>
+
+<p>Oczywiście metodę można wykorzystać do tworzenia różnego rodzaju ciągów:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">ciagArytmetyczny1</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">5</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="m">3</span> <span class="p">+</span> <span class="m">2</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 2, 5, 8, 11, 14</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">var</span> <span class="n">ciagKwadratow</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">6</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="n">x</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 1, 4, 9, 16, 25, 36</span>
+</span><span class='line'>
+</span><span class='line'><span class="kt">var</span> <span class="n">potegiDwojki</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="n">Pow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">x</span><span class="p">)).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 1, 2, 4, 8, 16, 32, 64, 128, 256, 512</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>również znakowych:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">procenty</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="m">10</span> <span class="p">*</span> <span class="n">x</span><span class="p">)</span> <span class="p">+</span> <span class="s">&quot;%&quot;</span> <span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// &quot;0%&quot;, &quot;10%&quot;, &quot;20%&quot;, &quot;30%&quot;, &quot;40%&quot;, &quot;50%&quot;, &quot;60%&quot;, &quot;70%&quot;, &quot;80%&quot;, &quot;90%&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Eksperymentalne pobieranie wszystkich małych liter ASCII wygląda następująco:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">znaki</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;z&#39;</span> <span class="p">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;a&#39;</span> <span class="p">+</span> <span class="m">1</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">x</span><span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, ..., &#39;y&#39;, &#39;z&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">malpka</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T10:37:13+01:00" pubdate data-updated="true">2014-03-11</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/c-number/'>C#</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/" title="Previous Post: Octopress zamiast Wordpressa - statyczna generacja bloga">&laquo; Octopress zamiast Wordpressa - statyczna generacja bloga</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Ostatnie wpisy</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/">C# Generowanie obiektów z zakresu - Enumerable.Range()</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/">Octopress zamiast Wordpressa - statyczna generacja bloga</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/17/full-text-serch-na-calej-bazie-ms-sql/">Full text serch na całej bazie MS SQL</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/06/tworzenie-schematu-xsd-z-xml/">Tworzenie schematu XSD z XML</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+<section>
+<h1>Twitter</h1>
+<a class="twitter-timeline"  href="https://twitter.com/m_alpka"  data-widget-id="420512026947883008">Tweets by @m_alpka</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+</section>
+<section>
+  <h1>BTC Donate</h1>
+  <p style="font-size: 85%">13pSs3BpnyqKGuopsQAeL69nPvtP1y1sML</p>
+  <img src="https://blockchain.info/qr?data=13pSs3BpnyqKGuopsQAeL69nPvtP1y1sML&size=220"/>
+</section>
+<section>
+  <h1>YouTube Playlist</h1>
+
+  <iframe width="260" height="355" src="//www.youtube.com/embed/HJQOr4Vm-8M?list=PLVUMM_JT8VXu7oy--4l5BIrdRV3pGfEE9" frameborder="0" allowfullscreen></iframe>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - malpka -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'co-de-mon-key';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+  <script type="text/javascript">
+    var _paq = _paq || [];
+    _paq.push(["trackPageView"]);
+    _paq.push(["enableLinkTracking"]);
+    (function() {
+      var u=(("https:" == document.location.protocol) ? "https" : "http") + "://piwik.codemonkey.pl/";
+      _paq.push(["setTrackerUrl", u+"piwik.php"]);
+      _paq.push(["setSiteId", "6"]);
+      var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+      g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+    })();
+  </script>
+
+
+
+</body>
+</html>
