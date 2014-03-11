@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-03-11T11:37:30+01:00</updated>
+  <updated>2014-03-11T11:56:45+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,7 +18,13 @@
     <link href="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/"/>
     <updated>2014-03-11T10:37:13+01:00</updated>
     <id>http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu</id>
-    <content type="html"><![CDATA[<p>Do stworzenia kolekcji obiektów na podstawie zdefiniowanego zakresu liczbowego zamiast używania pętli:</p>
+    <content type="html"><![CDATA[<p><img class="left" src="http://i.imgur.com/ICOO5p6.png" width="128" height="128" title="C Sharp" ></p>
+
+<p>Czasami zachodzi potrzeba utworzenia kolekcji liczb/obiektów na podstawie zdefiniowanego zakresu liczbowego.</p>
+
+<p>Zamiast definiowania tablicy oraz używania pętli:</p>
+
+<p>&nbsp;</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
