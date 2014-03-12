@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C# | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/c-number/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-03-11T15:11:46+01:00</updated>
+  <updated>2014-03-12T10:21:19+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -39,7 +39,7 @@ public static List<YearClass> LoadData()
 }
 ```</p>
 
-<p>można wykorzystać <code>Enumerable.Range(int, int)</code></p>
+<p>można wykorzystać <code>Enumerable.Range(int, int)</code> <a href="http://msdn.microsoft.com/pl-pl/library/system.linq.enumerable.range%28v=vs.110%29.aspx">link MSDN</a></p>
 
 <p><code>c#
 public static List&lt;YearClass&gt; LoadData()
