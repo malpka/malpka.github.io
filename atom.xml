@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-03-16T15:51:51+01:00</updated>
+  <updated>2014-03-16T16:11:33+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -81,6 +81,7 @@
 <li>API dostępne</li>
 <li>konieczność rejestracji</li>
 <li>sporo aplikacji do zarządzania w <a href="http://www.flickr.com/services/">The App Garden</a></li>
+<li>edit: jednak nie lubią hostować obrazków innych niż zdjęcia, ani być hotlinkowanym <a href="https://www.flickr.com/guidelines.gne">link</a></li>
 </ul>
 </li>
 <li><a href="http://imgur.com/">imgur</a> <a href="http://imgur.com/faq"><sup>5</sup></a> &ndash; używany na reddicie <img class="right" src="http://www.skylark95.com/wp-content/uploads/2012/04/Imgur_Logo_Icon_normal.png" width="128" height="128" title="imgur" >
