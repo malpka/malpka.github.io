@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-03-16T16:11:33+01:00</updated>
+  <updated>2014-03-16T19:25:48+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -237,7 +237,7 @@
 
 <h2>TODO</h2>
 
-<p>Aktualizacja w przyszłości, wrażenia po rejestracji, zebranie wyników w ładną tabelkę.</p>
+<p>Aktualizacja w przyszłości, wrażenia po rejestracji, zebranie wyników w ładną tabelkę, opisanie pluginów do obsługi zewnętrznych serwisów <a href="https://github.com/neilk/octopress-flickr">np takiego do flickr'a</a></p>
 ]]></content>
   </entry>
   
