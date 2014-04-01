@@ -5,12 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Applet i zasoby - co.de.mon.key</title>
+  <title>GANZ PixelPro secondary RTSP stream - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.
-Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona &hellip;">
+  <meta name="description" content="GANZ PixelPro ZN-MB243M IP surveillance Camera supports two live streams (RTSP or MJPEG), that can be enabled and configured directly from control &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +18,7 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona &
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -49,11 +48,11 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Applet i zasoby" />
+<meta property="og:title" content="GANZ PixelPro secondary RTSP stream" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/" />
-<meta property="og:description" content="Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.
-Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona: brak możliwości korzystania z lokalnego systemu &hellip;" />
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/" />
+<meta property="og:description" content="GANZ PixelPro ZN-MB243M IP surveillance Camera supports two live streams (RTSP or MJPEG), that can be enabled and configured directly from control web panel.
+However the manual doesn&rsquo;t mention &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -94,7 +93,7 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona: 
   
   <header>
     
-      <h1 class="entry-title">Applet i zasoby</h1>
+      <h1 class="entry-title">GANZ PixelPro secondary RTSP stream</h1>
     
     
       <p class="meta">
@@ -110,7 +109,7 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona: 
   
 
 
-<time datetime="2007-01-11T07:23:00+01:00" pubdate data-updated="true">2007-01-11</time>
+<time datetime="2014-04-01T15:38:55+02:00" pubdate data-updated="true">2014-04-01</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -120,25 +119,25 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona: 
   </header>
 
 
-<div class="entry-content"><p>Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.<br>
-Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:</p>
+<div class="entry-content"><p>GANZ PixelPro ZN-MB243M IP surveillance Camera supports two live streams (RTSP or MJPEG), that can be enabled and configured directly from control web panel.
+However the manual doesn&rsquo;t mention about direct stream URL&rsquo;s.</p>
+
+<p>The first one is quite easy to find on the Internet webpages with list of available camera streams (like <a href="http://www.ispyconnect.com/sources.aspx#info">1</a> or <a href="http://www.bluecherrydvr.com/2012/01/technical-information-list-of-mjpeg-and-rtsp-paths-for-network-cameras/">2</a>):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://ADMIN:1234@IP:554/gnz_media/main</span></code></pre></td></tr></table></div></figure>
 
 
-<ul>
-<li>brak możliwości korzystania z lokalnego systemu plików</li>
-<li>możliwość podłączenia jedynie z serwerem z appletem</li>
-</ul>
+<p>But the second stream is a MYSTERY! I <a href="http://www.google.pl/search?q=%22gnz_media%2Fsecond%22">found only one</a> &ndash; march 2014 (+few autocrawlers) with it. It is an Excel file on some russian page: <a href="http://freudgroup.ru/userfiles/ipcameras.xls">http://freudgroup.ru/userfiles/ipcameras.xls</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://ADMIN:1234@IP:554/gnz_media/second</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Okazuje się, że aby korzystać w applecie z zewnętrznych danych wystarczy skorzystać z <i>zasobów</i>. Pozwalają na odwoływanie się do systemu plików względem ścieżki w której znajduje się wykonywany plik .class:</p>
+<p>To be exact there is a third MJPEG stream, that is displayed on the Live Preview page, but it only accepts one connection at a time.</p>
 
-
-<p></p>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;obrazy/czolg1.png&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://IP/cgi-bin/jpg.fcgi?count=-1</span></code></pre></td></tr></table></div></figure>
 
 </div>
 
@@ -162,21 +161,15 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:<
   
 
 
-<time datetime="2007-01-11T07:23:00+01:00" pubdate data-updated="true">2007-01-11</time>
+<time datetime="2014-04-01T15:38:55+02:00" pubdate data-updated="true">2014-04-01</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/categories/programowanie/'>Programowanie</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/" >Tweet</a>
   
   
   
@@ -187,10 +180,8 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:<
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/01/10/poczatek/" title="Previous Post: Początek">&laquo; Początek</a>
+        <a class="basic-alignment left" href="/2014/03/16/przeglad-darmowych-hostingow-obrazow-marzec-2014/" title="Previous Post: Przegląd darmowych hostingów obrazów - marzec 2014">&laquo; Przegląd darmowych hostingów obrazów - marzec 2014</a>
       
-      
-        <a class="basic-alignment right" href="/2007/01/11/list-otwarty-do-ministra-oswiaty-link/" title="Next Post: List otwarty do ministra oświaty - link">List otwarty do ministra oświaty - link &raquo;</a>
       
     </p>
   </footer>
@@ -271,8 +262,8 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:<
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/';
         var disqus_script = 'embed.js';
       
     (function () {

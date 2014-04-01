@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-03-17T09:30:41+01:00</updated>
+  <updated>2014-04-01T16:13:22+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[GANZ PixelPro secondary RTSP stream]]></title>
+    <link href="http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/"/>
+    <updated>2014-04-01T15:38:55+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/04/01/ganz-pixelpro-secondary-rtsp-stream</id>
+    <content type="html"><![CDATA[<p>GANZ PixelPro ZN-MB243M IP surveillance Camera supports two live streams (RTSP or MJPEG), that can be enabled and configured directly from control web panel.
+However the manual doesn&rsquo;t mention about direct stream URL&rsquo;s.</p>
+
+<p>The first one is quite easy to find on the Internet webpages with list of available camera streams (like <a href="http://www.ispyconnect.com/sources.aspx#info">1</a> or <a href="http://www.bluecherrydvr.com/2012/01/technical-information-list-of-mjpeg-and-rtsp-paths-for-network-cameras/">2</a>):</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://ADMIN:1234@IP:554/gnz_media/main</span></code></pre></td></tr></table></div></figure>
+
+
+<p>But the second stream is a MYSTERY! I <a href="http://www.google.pl/search?q=%22gnz_media%2Fsecond%22">found only one</a> &ndash; march 2014 (+few autocrawlers) with it. It is an Excel file on some russian page: <a href="http://freudgroup.ru/userfiles/ipcameras.xls">http://freudgroup.ru/userfiles/ipcameras.xls</a></p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://ADMIN:1234@IP:554/gnz_media/second</span></code></pre></td></tr></table></div></figure>
+
+
+<p>To be exact there is a third MJPEG stream, that is displayed on the Live Preview page, but it only accepts one connection at a time.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://IP/cgi-bin/jpg.fcgi?count=-1</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Przegląd darmowych hostingów obrazów - marzec 2014]]></title>
@@ -225,6 +253,8 @@
 <li><a href="http://www.freeimagehosting.net/">http://www.freeimagehosting.net/</a></li>
 <li><a href="http://postimage.org/">http://postimage.org/</a></li>
 <li><a href="http://wstaw.org/">http://wstaw.org/</a></li>
+<li><a href="http://www.imagebam.com/">http://www.imagebam.com/</a></li>
+<li><a href="http://www.otofotki.pl/">http://www.otofotki.pl/</a> &ndash; chętnie używane na chomiku</li>
 </ul>
 
 
@@ -2346,75 +2376,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
 
 
 <p>To ostatnie wywołać kilka razy</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Do zapamiętania: Linuks - szyfrowanie za pomocą dm-crypt / luks]]></title>
-    <link href="http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/"/>
-    <updated>2009-08-19T07:56:00+02:00</updated>
-    <id>http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks</id>
-    <content type="html"><![CDATA[<p>Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem <a href="http://mlawire.blogspot.com/2009/07/encrypted-filesystem-on-loop-device.html">stronę</a> na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś pracy ale tym razem to będzie prywatnie dla mnie do zapamiętania.</p>
-
-
-<p><code>modprobe dm_mod</code></p>
-
-
-<h3>Tworzenie zaszyfrowanego systemu plików:</h3>
-
-
-<p><code># create a 10M file<br>
-$ dd if=/dev/urandom of=testfs bs=1M count=10<br>
-<br>
-# associate it with the loop device<br>
-$ losetup /dev/loop0 testfs<br>
-<br>
-# encrypt it (will ask for password to use)<br>
-$ cryptsetup luksFormat /dev/loop0<br>
-<br>
-# open the encrypted loop device<br>
-$ cryptsetup luksOpen /dev/loop0 testfs<br>
-<br>
-# format it with ext2 (or whatever you prefer)<br>
-$ mkfs.ext2 /dev/mapper/testfs<br>
-<br>
-# mount it<br>
-$ mount /dev/mapper/testfs /mnt/test<br>
-<br>
-# confirm mount<br>
-$ df -h /mnt/test<br>
-Filesystem Size Used Avail Use% Mounted on<br>
-/dev/mapper/testfs 9.2M 88K 8.7M 1% /mnt/test</code></p>
-
-
-<h3>Odmontowanie systemu plików:</h3>
-
-
-<p><code># unmount it<br>
-$ umount /mnt/test<br>
-<br>
-# close encryption<br>
-$ cryptsetup luksClose /dev/mapper/testfs<br>
-<br>
-# release loop device<br>
-$ losetup -d /dev/loop0</code></p>
-
-
-<h3>Montowanie szyfrowanego systemu plików:</h3>
-
-
-<p><code><br>
-# associate file with the loop device<br>
-$ losetup /dev/loop0 testfs<br>
-<br>
-# open the encrypted loop device<br>
-$ cryptsetup luksOpen /dev/loop0 testfs<br>
-<br>
-# mount it<br>
-$ mount /dev/mapper/testfs /mnt/test<br></code></p>
 
 
 
