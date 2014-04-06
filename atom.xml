@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-01T20:59:54+02:00</updated>
+  <updated>2014-04-06T16:10:35+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania]]></title>
+    <link href="http://blog.codemonkey.pl/2014/04/06/windows-uruchamianie-bat-jako-administrator/"/>
+    <updated>2014-04-06T15:47:03+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/04/06/windows-uruchamianie-bat-jako-administrator</id>
+    <content type="html"><![CDATA[<p><img class="left" src="http://i.imgur.com/mNHnpU9.png" width="256" height="256" title="cmd" ></p>
+
+<p>W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako administrator.
+Domyślnie zamiast katalogu bieżącego jest to:</p>
+
+<p><code>%SYSTEM%</code></p>
+
+<p>czyli na przykład</p>
+
+<p><code>C:\Windows\system32</code></p>
+
+<p>Aby przywrócić funkcjonalność starych skryptów można zastosować na początku  przejście do katalogu wywołania:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>setlocal enableextensions
+</span><span class='line'>@cd /d "%~dp0"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>gdzie:</p>
+
+<p><code>@setlocal enableextensions</code> &ndash; <a href="http://ss64.com/nt/setlocal.html">umożliwia dostęp do rozszerzenia CMD</a></p>
+
+<p>Ponieważ:  <code>%0</code> to pełna ścieżka do wywoływanego programu (skryptu)</p>
+
+<p>to:</p>
+
+<p><code>@cd /d "%~dp0"</code> &ndash; przejście do katalogu wywołania, wykorzystujące <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">dodatkowe zmienne skryptowe</a></p>
+
+<p><code>%0</code> to standardowo nazwa pliku (skryptu) wykonywalnego wraz ze ścieżką, a <code>~dp</code> wyciągnięcie z niej litery dysku oraz samej ścieżki do katalogu.</p>
+
+<p><a href="http://www.codeproject.com/Tips/119828/Running-a-bat-file-as-administrator-Correcting-cur">Źródło</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[GANZ PixelPro secondary RTSP stream]]></title>
@@ -2346,36 +2386,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
 
 
 <p>Sam długo używałem zmiany parametru &#8220;Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie&#8221; w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Automatyczna zamiana nazw plików i zawartości]]></title>
-    <link href="http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/"/>
-    <updated>2009-10-23T12:20:00+02:00</updated>
-    <id>http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci</id>
-    <content type="html"><![CDATA[<p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
-
-
-<p>Rozwiązanie</p>
-
-
-<p>Zamiana zawartości:</p>
-
-
-<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
-
-
-<p>Zmiana nazw plików</p>
-
-
-<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
-
-
-<p>To ostatnie wywołać kilka razy</p>
 
 
 

@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem stronę na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś &hellip;">
+  <meta name="description" content="Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/3/" />
-<meta property="og:description" content="Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem stronę na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś pracy ale tym razem to będzie prywatnie dla mnie &hellip;" />
+<meta property="og:description" content="Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,66 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Automatyczna zamiana nazw plików i zawartości</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-23T12:20:00+02:00" pubdate data-updated="true">2009-10-23</time>
+        
+           | <a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
+
+
+<p>Rozwiązanie</p>
+
+
+<p>Zamiana zawartości:</p>
+
+
+<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
+
+
+<p>Zmiana nazw plików</p>
+
+
+<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
+
+
+<p>To ostatnie wywołać kilka razy</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -834,49 +894,6 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2008/10/04/tricki-w-debianie/">Tricki w Debianie</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2008-10-04T08:54:00+02:00" pubdate data-updated="true">2008-10-04</time>
-        
-           | <a href="/2008/10/04/tricki-w-debianie/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2008/10/04/tricki-w-debianie/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów:</p>
-
-<p><code>apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'`</code></p>
-
-<p>Takie rzeczy w dystrybucjach debianopochodnych są po prostu cudowne</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -894,6 +911,10 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/">GANZ PixelPro secondary RTSP stream</a>
       </li>
     
@@ -907,10 +928,6 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
     
       <li class="post">
         <a href="/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/">Octopress zamiast Wordpressa - statyczna generacja bloga</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a>
       </li>
     
   </ul>
