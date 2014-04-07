@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-06T16:10:35+02:00</updated>
+  <updated>2014-04-07T20:09:28+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -64,19 +64,19 @@ However the manual doesn&rsquo;t mention about direct stream URL&rsquo;s.</p>
 <p>The first one is quite easy to find on the Internet webpages with list of available camera streams (like <a href="http://www.ispyconnect.com/sources.aspx#info">1</a> or <a href="http://www.bluecherrydvr.com/2012/01/technical-information-list-of-mjpeg-and-rtsp-paths-for-network-cameras/">2</a>):</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://ADMIN:1234@IP:554/gnz_media/main</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://IP:554/gnz_media/main</span></code></pre></td></tr></table></div></figure>
 
 
 <p>But the second stream is a MYSTERY! I <a href="http://www.google.pl/search?q=%22gnz_media%2Fsecond%22">found only one google result</a> &ndash; march 2014 (+few autocrawlers) with it. It is an Excel file on some russian page: <a href="http://freudgroup.ru/userfiles/ipcameras.xls">http://freudgroup.ru/userfiles/ipcameras.xls</a></p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://ADMIN:1234@IP:554/gnz_media/second</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rtsp://IP:554/gnz_media/second</span></code></pre></td></tr></table></div></figure>
 
 
 <p>To be exact there is a third MJPEG stream, that is displayed on the Live Preview page, but it only accepts one connection at a time.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>http://IP/cgi-bin/jpg.fcgi?count=-1</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>http://ADMIN:1234@IP/cgi-bin/jpg.fcgi?count=-1</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
