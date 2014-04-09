@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-09T09:17:20+02:00</updated>
+  <updated>2014-04-09T21:43:42+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,82 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python bruteforce password generator]]></title>
+    <link href="http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/"/>
+    <updated>2014-04-09T21:38:35+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator</id>
+    <content type="html"><![CDATA[<p>Generating char combinations is extremely easy with Python&rsquo;s itertools.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">string</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">itertools</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">dict_gen_up_to_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s">&#39;!@#$%^&amp;*()&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">dict_gen_exact_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s">&#39;!@#$%^&amp;*()&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dict_gen_exact_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># aaaaaaaa</span>
+</span><span class='line'><span class="c"># aaaaaaab</span>
+</span><span class='line'><span class="c"># aaaaaaac</span>
+</span><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="c"># ))))))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dict_gen_up_to_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># a</span>
+</span><span class='line'><span class="c"># b</span>
+</span><span class='line'><span class="c"># c</span>
+</span><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="c"># aa</span>
+</span><span class='line'><span class="c"># ab</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Najprostsza instalacja i aktualizacja aplikacji skryptem bat]]></title>
@@ -2380,33 +2456,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
 
 
 <p><p></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Import projektu z VSS do Bazaar z zachowaniem (częściowym) chronologii zmian]]></title>
-    <link href="http://blog.codemonkey.pl/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/"/>
-    <updated>2010-02-26T09:23:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr</id>
-    <content type="html"><![CDATA[<p>Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies.</p>
-
-
-<p>Code snippet for january :)</p>
-
-
-<p></p>
-
-
-<p></p>
-
-
-<pre>
-@echo Off<br><br>set SSDIR=Y:\<br>set SSUSER=username<br>set SSPWD=<br><br>bzr init<br><br>FOR /L %%d in (1, 1, 31) do (<br>"C:\Program Files\Microsoft Visual SourceSafe\ss.exe" get $/Project -R -GTU -Vd2010/1/%%d<br>bzr add<br>bzr del<br>bzr ci -m "2010/1/%%d"<br>pause<br>)<br>
-</pre>
-
-
-<p><p>
-<p></p></p>
 ]]></content>
   </entry>
   

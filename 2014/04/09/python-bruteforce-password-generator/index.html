@@ -5,12 +5,37 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Automatyczny skrypt do łączenia (np FTP) - co.de.mon.key</title>
+  <title>Python bruteforce password generator - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
-jeśli nie to (Ubuntu) ` &hellip;">
+  <meta name="description" content="Generating char combinations is extremely easy with Python&rsquo;s itertools. 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +44,7 @@ jeśli nie to (Ubuntu) ` &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -49,11 +74,10 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Automatyczny skrypt do łączenia (np FTP)" />
+<meta property="og:title" content="Python bruteforce password generator" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" />
-<meta property="og:description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
-jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/" />
+<meta property="og:description" content="Generating char combinations is extremely easy with Python&rsquo;s itertools. 1
 2
 3
 4
@@ -62,7 +86,30 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
 7
 8
 9
-10 &hellip;" />
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+import string
+import itertools def &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -103,7 +150,7 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
   
   <header>
     
-      <h1 class="entry-title">Automatyczny skrypt do łączenia (np FTP)</h1>
+      <h1 class="entry-title">Python bruteforce password generator</h1>
     
     
       <p class="meta">
@@ -119,7 +166,7 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
   
 
 
-<time datetime="2007-03-03T22:33:00+01:00" pubdate data-updated="true">2007-03-03</time>
+<time datetime="2014-04-09T21:38:35+02:00" pubdate data-updated="true">2014-04-09</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -129,11 +176,7 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
   </header>
 
 
-<div class="entry-content"><p>Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)<br>
-jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
-
-
-
+<div class="entry-content"><p>Generating char combinations is extremely easy with Python&rsquo;s itertools.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -146,23 +189,61 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env expect</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">string</span>
+</span><span class='line'><span class="kn">import</span> <span class="nn">itertools</span>
 </span><span class='line'>
-</span><span class='line'><span class="nb">set </span>username yourUsername
-</span><span class='line'><span class="nb">set </span>pass yourPasswd
-</span><span class='line'><span class="nb">set </span>host theHost
+</span><span class='line'><span class="k">def</span> <span class="nf">dict_gen_up_to_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s">&#39;!@#$%^&amp;*()&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
 </span><span class='line'>
-</span><span class='line'>spawn ftp <span class="k">${</span><span class="nv">username</span><span class="k">}</span>@<span class="k">${</span><span class="nv">host</span><span class="k">}</span>
-</span><span class='line'>expect <span class="s2">&quot;Password:&quot;</span>
-</span><span class='line'>send <span class="s2">&quot;${pass}\r&quot;</span>
-</span><span class='line'>expect <span class="s2">&quot;ftp&amp;gt; &quot;</span>
-</span><span class='line'>interact
+</span><span class='line'><span class="k">def</span> <span class="nf">dict_gen_exact_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s">&#39;!@#$%^&amp;*()&#39;</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dict_gen_exact_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># aaaaaaaa</span>
+</span><span class='line'><span class="c"># aaaaaaab</span>
+</span><span class='line'><span class="c"># aaaaaaac</span>
+</span><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="c"># ))))))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dict_gen_up_to_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c"># a</span>
+</span><span class='line'><span class="c"># b</span>
+</span><span class='line'><span class="c"># c</span>
+</span><span class='line'><span class="c"># ...</span>
+</span><span class='line'><span class="c"># aa</span>
+</span><span class='line'><span class="c"># ab</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>`</p>
 
-<p>Szczerze mówiąc potrzebna mi była wersja przerobiona na ssh, w połączeniu z powyższym postem. Jeszcze tylko wrzucenie do autostartu i będzie linuxowy &ldquo;trojan&rdquo; ;) dla osoby znajdującej się za natem</p></p>
 </div>
 
 
@@ -185,21 +266,15 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
   
 
 
-<time datetime="2007-03-03T22:33:00+01:00" pubdate data-updated="true">2007-03-03</time>
+<time datetime="2014-04-09T21:38:35+02:00" pubdate data-updated="true">2014-04-09</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/categories/linux/'>Linux</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/" >Tweet</a>
   
   
   
@@ -210,10 +285,8 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/02/25/konwersja-windows-1250-na-iso-8859-2/" title="Previous Post: Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y)">&laquo; Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y)</a>
+        <a class="basic-alignment left" href="/2014/04/09/najprostsza-autoaktualizacja/" title="Previous Post: Najprostsza instalacja i aktualizacja aplikacji skryptem bat">&laquo; Najprostsza instalacja i aktualizacja aplikacji skryptem bat</a>
       
-      
-        <a class="basic-alignment right" href="/2007/03/03/tunelowanie-zdalnego-pulpitu/" title="Next Post: Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT">Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT &raquo;</a>
       
     </p>
   </footer>
@@ -294,8 +367,8 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/';
         var disqus_script = 'embed.js';
       
     (function () {

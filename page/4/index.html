@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy &hellip;">
+  <meta name="description" content="Problem, oprócz innych czynników, może wynikać z nieprawidłowego ustawienia zmiennej użytkownika PATH Prawym na &#8220;Mój komputer&#8221; / &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/4/" />
-<meta property="og:description" content="Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy brak pliku &#8230; ;) ) quiz:/var/spool/mqueue- &hellip;" />
+<meta property="og:description" content="Problem, oprócz innych czynników, może wynikać z nieprawidłowego ustawienia zmiennej użytkownika PATH Prawym na &#8220;Mój komputer&#8221; / Właściwości / Zakładka zaawansowane / Zmienne środowiskowe &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,48 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/02/09/program-mmc-nie-moze-otworzyc-przystawki-gpedit-msc/">Program mmc nie może otworzyć przystawki gpedit.msc</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-02-09T08:12:00+01:00" pubdate data-updated="true">2009-02-09</time>
+        
+           | <a href="/2009/02/09/program-mmc-nie-moze-otworzyc-przystawki-gpedit-msc/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/02/09/program-mmc-nie-moze-otworzyc-przystawki-gpedit-msc/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Problem, oprócz innych czynników, może wynikać z nieprawidłowego ustawienia zmiennej użytkownika PATH Prawym na &#8220;Mój komputer&#8221; / Właściwości / Zakładka zaawansowane / Zmienne środowiskowe /</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -676,58 +718,6 @@ Grafikiem nie jestem więc wygląda jak wygląda;). Oczywiście chciałem zastos
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/03/03/tunelowanie-zdalnego-pulpitu/">Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-03T22:59:00+01:00" pubdate data-updated="true">2007-03-03</time>
-        
-           | <a href="/2007/03/03/tunelowanie-zdalnego-pulpitu/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/03/03/tunelowanie-zdalnego-pulpitu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><code>$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org<br>
-<br>
-$ rdesktop quiz.game-host.org -p 50000</code><br>
-<br>
-warunek: (GatewayPorts yes w /etc/ssh/sshd_config).<br>
-<br>
-Jeżeli jest wyłączone, to można jeszcze spróbować dodatkowo:<br>
-<br>
-z domu:<br>
-<code>$ ssh -L 3389:localhost:50000 flytothesky@quiz.game-host.org<br>
-$ rdesktop localhost<br></code></p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -745,6 +735,10 @@ $ rdesktop localhost<br></code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/04/09/python-bruteforce-password-generator/">Python bruteforce password generator</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/09/najprostsza-autoaktualizacja/">Najprostsza instalacja i aktualizacja aplikacji skryptem bat</a>
       </li>
     
@@ -758,10 +752,6 @@ $ rdesktop localhost<br></code></p>
     
       <li class="post">
         <a href="/2014/03/16/przeglad-darmowych-hostingow-obrazow-marzec-2014/">Przegląd darmowych hostingów obrazów - marzec 2014</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/">C# Generowanie obiektów z zakresu - Enumerable.Range()</a>
       </li>
     
   </ul>
