@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>ImageMagick convert - łączenie wielu obrazków w jeden - co.de.mon.key</title>
+  <title>Najprostsza instalacja i aktualizacja aplikacji skryptem bat - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Wybierając się do Zakopanego pomyślałem, że przydałaby się mapa tego miejsca. Nie chcąc dać zarobić tym $%^ wyzyskiwaczom (:P) pomyślałem że znajdę &hellip;">
+  <meta name="description" content="Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,10 +49,11 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="ImageMagick convert - łączenie wielu obrazków w jeden" />
+<meta property="og:title" content="Najprostsza instalacja i aktualizacja aplikacji skryptem bat" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/" />
-<meta property="og:description" content="Wybierając się do Zakopanego pomyślałem, że przydałaby się mapa tego miejsca. Nie chcąc dać zarobić tym $%^ wyzyskiwaczom (:P) pomyślałem że znajdę sobie mapkę na necie Szybka akcja w stylu google.pl &hellip;" />
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/" />
+<meta property="og:description" content="Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do których zalogowany użytkownik ma pełne &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -92,7 +94,7 @@ margin: 0 0 0;
   
   <header>
     
-      <h1 class="entry-title">ImageMagick convert - łączenie wielu obrazków w jeden</h1>
+      <h1 class="entry-title">Najprostsza instalacja i aktualizacja aplikacji skryptem bat</h1>
     
     
       <p class="meta">
@@ -108,7 +110,7 @@ margin: 0 0 0;
   
 
 
-<time datetime="2007-12-17T18:53:00+01:00" pubdate data-updated="true">2007-12-17</time>
+<time datetime="2014-04-09T07:43:53+02:00" pubdate data-updated="true">2014-04-09</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -118,45 +120,42 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p>Wybierając się do Zakopanego pomyślałem, że przydałaby się mapa tego miejsca. Nie chcąc dać zarobić tym $%^ wyzyskiwaczom (:P) pomyślałem że znajdę sobie mapkę na necie</p>
+<div class="entry-content"><p>Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do których zalogowany użytkownik ma pełne uprawnienia.
+W sieci lokalnej da się to zrealizować prostym skryptem batch.</p>
+
+<p>Poniższy skrypt jest nawet bardziej &lsquo;inteligentny&rsquo;, gdyż za pomocą xcopy można kopiować jedynie nowsze pliki,
+co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na uruchomienie właściwej aplikacji.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="s2">&quot;Uruchamianie programu, prosze czekac...&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">set</span> <span class="nv">katalog</span><span class="o">=</span><span class="nv">%APPDATA%</span><span class="n">/FolderAplikacji</span>
+</span><span class='line'><span class="k">If</span> NOT <span class="k">exist</span> <span class="s2">&quot;%katalog%&quot;</span> (
+</span><span class='line'> mkdir <span class="s2">&quot;%katalog%&quot;</span>
+</span><span class='line'>)
+</span><span class='line'>xcopy \\<span class="m">192</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>\KatalogZrodlowyAplikacji <span class="s2">&quot;%katalog%&quot;</span> <span class="n">/E</span> <span class="n">/D</span> <span class="n">/C</span> <span class="n">/Y</span>
+</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;%katalog%&quot;</span>
+</span><span class='line'>Aplikacja.exe
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Szybka akcja w stylu google.pl?q=zakopane+mapa doprowadziła mnie do strony:</p>
+<p><a href="http://ss64.com/nt/xcopy.html">xcopy</a>.</p>
 
-
-<p><a href="http://www.mapytatr.net/PRODUKTY/MAPY_TAT/ZAKOPANE/SLICES/zkp_iii.html">http://www.mapytatr.net/PRODUKTY/MAPY_TAT/ZAKOPANE/SLICES/zkp_iii.html</a></p>
-
-
-<p>zapisałem na dysku, jednak doszedłem do wniosku, że lepiej będzie się ją obrabiało gdy będzie w pojedynczym pliku. Parę machnięć w Gimpie i doszedłem do wniosku że nie tędy droga. Przypomniałem sobie że na serwerze mam zainstalowane imagemagick, więc spróbowałem pójść tędy.</p>
-
-
-<p>Początkowa wersja:</p>
-
-
-<p><code>convert +append zkp_01.jpg zkp_02.jpg (...) a.ppm<br>
-convert +append zkp_10.jpg zkp_11.jpg (...) b.ppm</code></p>
-
-
-<p>Cóż, już lepiej, wszystko dzieje się automatycznie, ale nadal czegoś brakuje. Spróbowałem wildcharów / regexpów i okazało się, że poprawna jest konstrukcja:</p>
-
-
-<p><code>convert +append zkp_1[0-8].jpg b.ppm</code></p>
-
-
-<p>Zatem ostatecznie:</p>
-
-
-<p><code>convert +append zkp_0[1-9].jpg a.ppm<br>
-convert +append zkp_1[0-8].jpg b.ppm<br>
-convert +append zkp_19.jpg zkp_2[0-7].jpg c.ppm<br>
-convert +append zkp_2[8-9].jpg zkp_3[0-6].jpg d.ppm<br>
-convert +append zkp_3[7-9].jpg zkp_4[0-5].jpg e.ppm<br>
-convert +append zkp_4[6-9].jpg zkp_5[0-4].jpg f.ppm<br>
-convert +append zkp_5[5-9].jpg zkp_6[0-3].jpg g.ppm<br>
-convert +append zkp_6[4-9].jpg zkp_7[0-2].jpg h.ppm<br>
-convert +append [a-h].ppm mapa.jpg</code></p>
-
-
+<ul>
+<li><code>/D</code> &ndash; kopiuje tylko te pliki, które mają nowszą datę modyfikacji</li>
+<li><code>/E</code> &ndash; kopiuje katalogi, również puste</li>
+<li><code>/C</code> &ndash; kontynuacja przy błędzie</li>
+<li><code>/Y</code> &ndash; automatyczne potwierdzanie nadpisania plików</li>
+</ul>
 
 </div>
 
@@ -180,21 +179,15 @@ convert +append [a-h].ppm mapa.jpg</code></p>
   
 
 
-<time datetime="2007-12-17T18:53:00+01:00" pubdate data-updated="true">2007-12-17</time>
+<time datetime="2014-04-09T07:43:53+02:00" pubdate data-updated="true">2014-04-09</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/categories/linux/'>Linux</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/" >Tweet</a>
   
   
   
@@ -205,10 +198,8 @@ convert +append [a-h].ppm mapa.jpg</code></p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/12/13/malpka-i-iphone/" title="Previous Post: Małpka i iPhone - początki">&laquo; Małpka i iPhone - początki</a>
+        <a class="basic-alignment left" href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/" title="Previous Post: Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania">&laquo; Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania</a>
       
-      
-        <a class="basic-alignment right" href="/2008/10/04/tricki-w-debianie/" title="Next Post: Tricki w Debianie">Tricki w Debianie &raquo;</a>
       
     </p>
   </footer>
@@ -289,8 +280,8 @@ convert +append [a-h].ppm mapa.jpg</code></p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/';
         var disqus_script = 'embed.js';
       
     (function () {

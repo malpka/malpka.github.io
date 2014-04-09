@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora. for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p / &hellip;">
+  <meta name="description" content="Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
+zmagania z &ndash; najczęściej &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/2/" />
-<meta property="og:description" content="Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora. for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version &hellip;" />
+<meta property="og:description" content="Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
+zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +91,56 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/01/03/hello-world/">Hello World</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-01-03T13:24:00+01:00" pubdate data-updated="true">2014-01-03</time>
+        
+           | <a href="/2014/01/03/hello-world/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/01/03/hello-world/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
+zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów raczej nie brak, nawet sporo czeka
+w kolejce na opublikowanie. Jedynie wolny czas będzie ograniczeniem ;&ndash;)</p>
+
+<p>Dodatkowo będzie to miejsce na najciekawsze znaleziska internetowe &ndash; zabawne, praktyczne,
+intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przyszłości a nie ma tego gdzie trzymać
+(obecnie lista zakładek w przeglądarce ma około 880 pozycji, boję się tam zaglądać!).</p>
+
+<p>W planach jest zapoznanie się z <a href="http://daringfireball.net/projects/markdown/">Markdown&#8217;em</a>,
+dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
+<a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
+czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1530,63 +1582,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-29T09:01:00+01:00" pubdate data-updated="true">2009-12-29</time>
-        
-           | <a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
-
-
-<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
-
-
-<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
-
-
-<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
-
-
-<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
-
-
-<p>Sam długo używałem zmiany parametru &#8220;Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie&#8221; w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -1604,6 +1599,10 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/04/09/najprostsza-autoaktualizacja/">Najprostsza instalacja i aktualizacja aplikacji skryptem bat</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania</a>
       </li>
     
@@ -1617,10 +1616,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
     
       <li class="post">
         <a href="/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/">C# Generowanie obiektów z zakresu - Enumerable.Range()</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/02/11/octopress-zamiast-wordpressa-statyczna-generacja-bloga/">Octopress zamiast Wordpressa - statyczna generacja bloga</a>
       </li>
     
   </ul>
