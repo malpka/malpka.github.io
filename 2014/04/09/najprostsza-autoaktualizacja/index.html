@@ -136,15 +136,15 @@ co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na 
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 <span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="s2">&quot;Uruchamianie programu, prosze czekac...&quot;</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="s2">&quot;App is starting, please wait...&quot;</span>
 </span><span class='line'>
-</span><span class='line'><span class="k">set</span> <span class="nv">katalog</span><span class="o">=</span><span class="nv">%APPDATA%</span><span class="n">/FolderAplikacji</span>
-</span><span class='line'><span class="k">If</span> NOT <span class="k">exist</span> <span class="s2">&quot;%katalog%&quot;</span> (
-</span><span class='line'> mkdir <span class="s2">&quot;%katalog%&quot;</span>
+</span><span class='line'><span class="k">set</span> <span class="nv">targetdir</span><span class="o">=</span><span class="nv">%APPDATA%</span><span class="n">/AppFolder</span>
+</span><span class='line'><span class="k">if</span> not <span class="k">exist</span> <span class="s2">&quot;%targetdir%&quot;</span> (
+</span><span class='line'> mkdir <span class="s2">&quot;%targetdir%&quot;</span>
 </span><span class='line'>)
-</span><span class='line'>xcopy \\<span class="m">192</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>\KatalogZrodlowyAplikacji <span class="s2">&quot;%katalog%&quot;</span> <span class="n">/E</span> <span class="n">/D</span> <span class="n">/C</span> <span class="n">/Y</span>
-</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;%katalog%&quot;</span>
-</span><span class='line'>Aplikacja.exe
+</span><span class='line'>xcopy \\<span class="m">192</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>\SourceDir <span class="s2">&quot;%targetdir%&quot;</span> <span class="n">/E</span> <span class="n">/D</span> <span class="n">/C</span> <span class="n">/Y</span>
+</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;%targetdir%&quot;</span>
+</span><span class='line'>App.exe
 </span></code></pre></td></tr></table></div></figure>
 
 
