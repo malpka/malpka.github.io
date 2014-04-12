@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Postanowiłem spróbować prowadzić swojego Joggera. Ostrzegam, że wpisy mogą się pojawiać w bardzo nieregularnych odstępach czasowych. MJogger powstał &hellip;">
+  <meta name="description" content="Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.
+Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/6/" />
-<meta property="og:description" content="Postanowiłem spróbować prowadzić swojego Joggera. Ostrzegam, że wpisy mogą się pojawiać w bardzo nieregularnych odstępach czasowych. MJogger powstał, ponieważ chciałem sprawdzić rozwijającą się w &hellip;" />
+<meta property="og:description" content="Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.
+Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona: brak możliwości korzystania z lokalnego systemu &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +91,64 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/01/11/applet-i-zasoby/">Applet i zasoby</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-11T07:23:00+01:00" pubdate data-updated="true">2007-01-11</time>
+        
+           | <a href="/2007/01/11/applet-i-zasoby/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.<br>
+Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:</p>
+
+
+<ul>
+<li>brak możliwości korzystania z lokalnego systemu plików</li>
+<li>możliwość podłączenia jedynie z serwerem z appletem</li>
+</ul>
+
+
+<p>Okazuje się, że aby korzystać w applecie z zewnętrznych danych wystarczy skorzystać z <i>zasobów</i>. Pozwalają na odwoływanie się do systemu plików względem ścieżki w której znajduje się wykonywany plik .class:</p>
+
+
+<p></p>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;obrazy/czolg1.png&quot;</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -154,6 +214,10 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/">Sieć WiFi nie działa po wyjściu laptopa z uśpienia</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/09/python-bruteforce-password-generator/">Python bruteforce password generator</a>
       </li>
     
@@ -167,10 +231,6 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     
       <li class="post">
         <a href="/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/">GANZ PixelPro secondary RTSP stream</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/03/16/przeglad-darmowych-hostingow-obrazow-marzec-2014/">Przegląd darmowych hostingów obrazów - marzec 2014</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Pyhon - hurtowa zmiana atrybutów w xml - co.de.mon.key</title>
+  <title>Sieć WiFi nie działa po wyjściu laptopa z uśpienia - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Kolejne kilka linijek, które ułatwią mi kiedyś życie. Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B. &hellip;">
+  <meta name="description" content="Przy próbie naprawy połączenia można doszukać się komunikatu: &ldquo;System Windows nie mógł automatycznie powiązać stosu protokołu IP z kartą &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,10 +48,11 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Pyhon - hurtowa zmiana atrybutów w xml" />
+<meta property="og:title" content="Sieć WiFi nie działa po wyjściu laptopa z uśpienia" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/" />
-<meta property="og:description" content="Kolejne kilka linijek, które ułatwią mi kiedyś życie. Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B.C.D. W moim przypadku biblioteki stworzone chyba w &hellip;" />
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/" />
+<meta property="og:description" content="Przy próbie naprawy połączenia można doszukać się komunikatu: &ldquo;System Windows nie mógł automatycznie powiązać stosu protokołu IP z kartą sieciową&rdquo;.
+Dobrze spróbować zresetować protokół &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -92,7 +93,7 @@ margin: 0 0 0;
   
   <header>
     
-      <h1 class="entry-title">Pyhon - hurtowa zmiana atrybutów w xml</h1>
+      <h1 class="entry-title">Sieć WiFi nie działa po wyjściu laptopa z uśpienia</h1>
     
     
       <p class="meta">
@@ -108,7 +109,7 @@ margin: 0 0 0;
   
 
 
-<time datetime="2011-01-03T12:33:00+01:00" pubdate data-updated="true">2011-01-03</time>
+<time datetime="2014-04-12T08:35:16+02:00" pubdate data-updated="true">2014-04-12</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -118,38 +119,17 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p>Kolejne kilka linijek, które ułatwią mi kiedyś życie.</p>
+<div class="entry-content"><p>Przy próbie naprawy połączenia można doszukać się komunikatu: &ldquo;System Windows nie mógł automatycznie powiązać stosu protokołu IP z kartą sieciową&rdquo;.
+Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh int ip reset
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B.C.D. W moim przypadku biblioteki stworzone chyba w delphi miały zwyczaj stosować przecinki zamiast kropek, albo dodawać spacje między liczbami.</p>
+<p>Działa w Windows Vista, 7, 8 i 8.1.</p>
 
-
-<p>Ponieważ korzystam z narzędzia, które generuje mi do xmla listę plików w katalogu, z uwzględnieniem sumy kontrolnej i wersji, a nie miałem jego źródeł, trzeba było napisać szybką łatkę na wygenerowane dane.</p>
-
-
-<p></p>
-
-
-<pre>
-from xml.dom import minidom
-DOMTree = minidom.parse('filelist.xml')
-cNodes = DOMTree.childNodes
-for i in cNodes[0].getElementsByTagName("File"):
-        version = i.getAttribute("version")
-        version = version.replace(",", ".")
-        version = version.replace(" ", "")
-        i.setAttribute("version", version)
-
-f = open('filelist.xml', 'w')
-DOMTree.writexml(f)
-f.close()
-</pre>
-
-
-<p></p>
-
-
-
+<p><a href="http://support.microsoft.com/kb/299357/pl">Źródło</a></p>
 </div>
 
 
@@ -172,21 +152,15 @@ f.close()
   
 
 
-<time datetime="2011-01-03T12:33:00+01:00" pubdate data-updated="true">2011-01-03</time>
+<time datetime="2014-04-12T08:35:16+02:00" pubdate data-updated="true">2014-04-12</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/categories/do-zapamietania/'>Do zapamiętania</a>, <a class='category' href='/categories/python/'>Python</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/" >Tweet</a>
   
   
   
@@ -197,10 +171,8 @@ f.close()
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/" title="Previous Post: Dzień Darmowej Dostawy w Polsce - opisy sklepów.">&laquo; Dzień Darmowej Dostawy w Polsce - opisy sklepów.</a>
+        <a class="basic-alignment left" href="/2014/04/09/python-bruteforce-password-generator/" title="Previous Post: Python bruteforce password generator">&laquo; Python bruteforce password generator</a>
       
-      
-        <a class="basic-alignment right" href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/" title="Next Post: 1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu &raquo;</a>
       
     </p>
   </footer>
@@ -281,8 +253,8 @@ f.close()
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/';
-        var disqus_url = 'http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/';
         var disqus_script = 'embed.js';
       
     (function () {

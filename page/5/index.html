@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org $ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/sshd_config &hellip;">
+  <meta name="description" content="ostatnio w trakcie wykonywania stronki Przeglądu Reklamy Społecznej miałem do wykonania parę przezroczystych obrazków.
+Grafikiem nie jestem więc &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/5/" />
-<meta property="og:description" content="$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org $ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/sshd_config). Jeżeli jest wyłączone, to można jeszcze &hellip;" />
+<meta property="og:description" content="ostatnio w trakcie wykonywania stronki Przeglądu Reklamy Społecznej miałem do wykonania parę przezroczystych obrazków.
+Grafikiem nie jestem więc wygląda jak wygląda;). Oczywiście chciałem zastosować &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +91,49 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/03/08/przezroczyste-png-i-internet-explorer/">przezroczyste PNG i Internet Explorer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-08T10:05:00+01:00" pubdate data-updated="true">2007-03-08</time>
+        
+           | <a href="/2007/03/08/przezroczyste-png-i-internet-explorer/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/03/08/przezroczyste-png-i-internet-explorer/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ostatnio w trakcie wykonywania stronki <a href="http://www.przeglad.free.ngo.pl/">Przeglądu Reklamy Społecznej</a> miałem do wykonania parę przezroczystych obrazków.<br>
+Grafikiem nie jestem więc wygląda jak wygląda;). Oczywiście chciałem zastosować proponowany ostatnio jako lepszy PNG (w założeniach obsługuje przezroczystość, pełną paletę kolorów, kompresje itd) ale jego uniwersalność nie jest aż taka wspaniała. O ile w IE 7 i FF 2 wszystko działa tak jak trzeba to w IE 6 przezroczystość gdzieś znika i widać ohydne, białe tło. Wkurzające i prawdopodobnie będzie trzeba przerobić wszystko na brzydkie 256 kolorowe gify:/ a miało być tak pięknie</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -590,64 +635,6 @@ aby zaktualizować czas za pomocą protokołu ntp należy użyć polecenia <b>nt
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/01/11/applet-i-zasoby/">Applet i zasoby</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-11T07:23:00+01:00" pubdate data-updated="true">2007-01-11</time>
-        
-           | <a href="/2007/01/11/applet-i-zasoby/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/11/applet-i-zasoby/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Jeden ze znajomych miał problem z dołączeniem plików grafiki do appletu.<br>
-Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:</p>
-
-
-<ul>
-<li>brak możliwości korzystania z lokalnego systemu plików</li>
-<li>możliwość podłączenia jedynie z serwerem z appletem</li>
-</ul>
-
-
-<p>Okazuje się, że aby korzystać w applecie z zewnętrznych danych wystarczy skorzystać z <i>zasobów</i>. Pozwalają na odwoływanie się do systemu plików względem ścieżki w której znajduje się wykonywany plik .class:</p>
-
-
-<p></p>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">InputStream</span> <span class="n">in</span> <span class="o">=</span> <span class="n">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">&quot;obrazy/czolg1.png&quot;</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -665,6 +652,10 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:<
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/">Sieć WiFi nie działa po wyjściu laptopa z uśpienia</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/09/python-bruteforce-password-generator/">Python bruteforce password generator</a>
       </li>
     
@@ -678,10 +669,6 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:<
     
       <li class="post">
         <a href="/2014/04/01/ganz-pixelpro-secondary-rtsp-stream/">GANZ PixelPro secondary RTSP stream</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/03/16/przeglad-darmowych-hostingow-obrazow-marzec-2014/">Przegląd darmowych hostingów obrazów - marzec 2014</a>
       </li>
     
   </ul>
