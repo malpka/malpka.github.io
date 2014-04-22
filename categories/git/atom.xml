@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: git | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/git/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-04-22T10:27:51+02:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[git log - list all commits from user]]></title>
+    <link href="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/"/>
+    <updated>2014-04-22T09:50:25+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user</id>
+    <content type="html"><![CDATA[<p><img src="/images/Git-Logo-2Color.png" width="455" height="190" title="git-logo" ></p>
+
+<p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a> is a powerfull command that allows to list all commits with specific criteria.</p>
+
+<p><code>bash
+git log --pretty=format:"%ad:%an:%s" --date=short --reverse --all --since=2.months.ago --author=john | grep -v "Merge branch"
+</code></p>
+
+<ul>
+<li><code>--all</code> &ndash; from all branches</li>
+<li><code>%ad</code> &ndash; date that respects <code>--date</code> specifier</li>
+<li><code>%an</code> &ndash; author name</li>
+<li><code>%s</code> &ndash; subject</li>
+</ul>
+
+
+<p><code>
+...
+2014-04-14:john:Customer entity
+2014-04-15:john:Orders model
+2014-04-18:john:Fixing security flaw
+...
+</code></p>
+
+<p><a href="http://stackoverflow.com/questions/10349302/how-to-git-log-from-all-branches-for-the-author-at-once">source</a></p>
+]]></content>
+  </entry>
+  
+</feed>

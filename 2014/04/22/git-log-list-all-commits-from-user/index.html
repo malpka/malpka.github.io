@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Jak uczestniczyć w programie MSDNAA na PŚk - co.de.mon.key</title>
+  <title>git log - list all commits from user - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Jak uczestniczyć w programie MSDNAA na naszej uczelni. Jak wcześniej wspomniałem sprawa tego programu wywołała na naszym wydziale sporo kontrowersji &hellip;">
+  <meta name="description" content="git log is a powerfull command that allows to list all commits with specific criteria. 1
+git log --pretty=format:&quot;%ad:%an:%s&quot; --date=short &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,11 +49,12 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Jak uczestniczyć w programie MSDNAA na PŚk" />
+<meta property="og:title" content="git log - list all commits from user" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/" />
-<meta property="og:description" content="Jak uczestniczyć w programie MSDNAA na naszej uczelni. Jak wcześniej wspomniałem sprawa tego programu wywołała na naszym wydziale sporo kontrowersji. Prowadzący zajęcia podobno od dłuższego czasu &hellip;" />
-
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/" />
+<meta property="og:description" content="git log is a powerfull command that allows to list all commits with specific criteria. 1
+git log --pretty=format:&quot;%ad:%an:%s&quot; --date=short --reverse --all --since=2.months.ago --author= &hellip;" />
+<meta property="og:image" content="/images/BGit-Logo-2Color.png" />
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
 
@@ -92,7 +94,7 @@ margin: 0 0 0;
   
   <header>
     
-      <h1 class="entry-title">Jak uczestniczyć w programie MSDNAA na PŚk</h1>
+      <h1 class="entry-title">git log - list all commits from user</h1>
     
     
       <p class="meta">
@@ -108,7 +110,7 @@ margin: 0 0 0;
   
 
 
-<time datetime="2007-04-17T17:37:00+02:00" pubdate data-updated="true">2007-04-17</time>
+<time datetime="2014-04-22T09:50:25+02:00" pubdate data-updated="true">2014-04-22</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -118,89 +120,37 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p><b>Jak uczestniczyć w programie MSDNAA na naszej uczelni.</b></p>
+<div class="entry-content"><p><img src="/images/Git-Logo-2Color.png" width="455" height="190" title="git-logo" ></p>
 
+<p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a> is a powerfull command that allows to list all commits with specific criteria.</p>
 
-<p>Jak wcześniej wspomniałem sprawa tego programu wywołała na naszym wydziale sporo kontrowersji. Prowadzący zajęcia podobno od dłuższego czasu korzystali z dobrodziejstw tego programu, który omijał nas studentów. Całe szczęście, że na ostatnim semestrze ostatniego roku coraz więcej osób zaczęło się interesować sprawą i zrobiło się o niej na tyle głośno, że zajmujący się nia ludzie nie mieli wyboru i udostępniło możliwość zapisywania się do programu także studentów.</p>
-
-
-<p>Przypomnijmy:<br>
-Program umożliwia uczestnikom na otrzymanie <b>BEZPŁATNEJ</b> dożywotniej licencji na produkty Microsoftu z których można przykładowo wymienić <b>Windows XP PL</b> (wersja Professional 32 i 64 bitowa) <b>Windows 2003 Server</b>, <b>Windows Vista Business</b>, &#8230;</p>
-
-
-<p>Oczywiście nie jest to tak prosta sprawa, więc krótko opiszę co trzeba zrobić:</p>
-
-
-<p></p>
-
-
-<p><b>1. Należy posiadać konto na jednym z serwerów uczelnianych (*.tu.kielce.pl)</b></p>
-
-
-<p>Sprawa dość klopotliwa bo trzeba się nachodzić (choć jeśli ktoś ma znajomości wśród kadry pedagogicznej to może sobie załatwić;))<br>
-Otóż uczelnia od dawna (napewno na 1 roku już było można) daje możliwość założenia sobie konta shellowego na serwerze student.tu.kielce.pl<br>
-oprócz &#8216;$&#8217; dostajemy oczywiście konto mailowe, o co właśnie nam chodzi.<br>
-Podanie o takie konto można pobrać z budynku B z tego piętra, gdzie mieszczą się pokoje ludzi od języków. Po wyjściu z windy należy kierować się korytarzem w lewo, ostatnie drzwi na lewo. (pok. 301 bud. B). Wniosek jest dostępny <a href="http://komputer.tu.kielce.pl/student-wniosek.pdf">tutaj</a> Wybieramy login (stałe są literka od nazwy wydziału i numer roku/sem, pozostałe 5 znaków dobieramy sami: np e12piwo)<br>
-Ważne jest dołączenie <b>zaświadczenia</b> że jesteśmy jeszcze studentami uczelni - do pobrania w dziekanacie.</p>
-
-
-<p>Na założenie konta czeka się tak do tygodnia, dostajemy tymczasowe hasło i mamy upragniony mail.<br>
-<i>Do czytania poczty pod konsolą polecam program &#8216;mutt&#8217;.</i></p>
-
-
-<p><b>2. Wypełnić formularz na <a href="http://teleinfo.tu.kielce.pl//index.php?id=39">http://teleinfo.tu.kielce.pl//index.php?id=39</a></b></p>
-
-
-<p>Ważne jest że po jego wypełnieniu nie dostajemy dosłownie nic, żadnego potwierdzenia ani błędu. Formularz wysyła po prostu maila do gościa w pokoju numer 7 w bud. D że jest kolejny chętny do zabawy. Człowiek ten w zależności od swojego humoru i ilości zgłoszeń w krótszym lub dłuższym czasie założy nam konto i prześle odpowiedź na uczelnianego maila. Na odpowiedź musiałem czekać 2 tygodnie:|. Być może teraz będzie to szło sprawniej. Dostaniemy w nim adres stronki na której mamy się zalogować, login (nazwa konta mailowego) i hasło.</p>
-
-
-<p><b>3. Zamówić wybrane pozycje na <a href="http://msdn63.e-academy.com/pswiet_eai">http://msdn63.e-academy.com/pswiet_eai</a></b></p>
-
-
-<p>Dostępne są następujące tytuły:<br></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --pretty<span class="o">=</span>format:<span class="s2">&quot;%ad:%an:%s&quot;</span> --date<span class="o">=</span>short --reverse --all --since<span class="o">=</span>2.months.ago --author<span class="o">=</span>john | grep -v <span class="s2">&quot;Merge branch&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <ul>
-<li>MSDN Library - January 2005 (Full)</li>
-<li># Visio Professional 2003</li>
-<li>Visual Studio .NET 2003 Professional - Full Install</li>
-<li># Windows 2000 Professional (Polish)</li>
-<li>Windows 2000 SP 4 (Polish)</li>
-<li>Windows 98 Second Edition (Polish)</li>
-<li># Windows Server 2003 Enterprise Edition (Polish)</li>
-<li># Windows Vista Business CD1 (Polish)</li>
-<li># Windows XP Professional (Single User)</li>
-<li># Windows XP Professional (Single User) 64bit Edition</li>
+<li><code>--all</code> &ndash; from all branches</li>
+<li><code>%ad</code> &ndash; date that respects <code>--date</code> specifier</li>
+<li><code>%an</code> &ndash; author name</li>
+<li><code>%s</code> &ndash; subject</li>
 </ul>
 
 
-<p>Krzyżykiem zaznaczyłem te produkty, dla których dostajemy numer seryjny.</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
+</span><span class='line'>2014-04-14:john:Customer entity
+</span><span class='line'>2014-04-15:john:Orders model
+</span><span class='line'>2014-04-18:john:Fixing security flaw
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p></p>
-
-
-<p>Zamówienie należy zlożyć dodając produkty do koszyka (wszystkie!?:)) i potwierdzając zamówienie<br>
-Klucze pojawiają się pod linkami &#8220;Wypozyczenie nosnika.&#8221; w dziale &#8220;My Software&#8221;<br>
-<a href="http://www.tnij.org/xzb">Screenshot</a></p>
-
-
-<p><b>4. Zdobyć kopię nośników instalacyjnych</b></p>
-
-
-<p>W akwarium (siedziba koła naukowego teleinformatyk) na dole przy szatni w budynku D. mają ok. 30 płyt z produktami, które można sobie na miejscu skopiować. Dobrze jest przyjść z laptopem i zrobić obrazy;) Można również poszukac osób które te płyty już mają. Są one jednakowe dla wszystkich więc nie ma znaczenia ich źródło pochodzenia.</p>
-
-
-<p><b>5. Cieszyć się oryginalnymi i bezpłatnymi produktami na swoim komputerku (komputerkach)</b></p>
-
-
-<p>Oczywiście polecam lekturę licencji przy zamawianiu oprogramowania i faq na stronie msdnaa. Są tam przykładowo informacje, że zdobyte oprogramowanie możemy używać na dowolnej liczbie swoich komputerów, że oprogramowania możemy używać dożywotnio, jednak po zakończeniu studiów nie przysługują nam aktualizacje (swoją drogą zastanawiam się jak tym zarządzają, bo jeśli na zdjęcie statusu studenta będę czekał podobnie jak na założenie konta to jestem spokojny;))</p>
-
-
-<p>Na koniec trochę humoru: <a href="http://blog.bdcc.info/2007/01/03/malpka">link</a></p>
-
-
-
+<p><a href="http://stackoverflow.com/questions/10349302/how-to-git-log-from-all-branches-for-the-author-at-once">source</a></p>
 </div>
 
 
@@ -223,12 +173,12 @@ Klucze pojawiają się pod linkami &#8220;Wypozyczenie nosnika.&#8221; w dziale 
   
 
 
-<time datetime="2007-04-17T17:37:00+02:00" pubdate data-updated="true">2007-04-17</time>
+<time datetime="2014-04-22T09:50:25+02:00" pubdate data-updated="true">2014-04-22</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/categories/uczelnia/'>Uczelnia</a>
+    <a class='category' href='/categories/git/'>git</a>
   
 </span>
 
@@ -237,7 +187,7 @@ Klucze pojawiają się pod linkami &#8220;Wypozyczenie nosnika.&#8221; w dziale 
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/" >Tweet</a>
   
   
   
@@ -248,10 +198,8 @@ Klucze pojawiają się pod linkami &#8220;Wypozyczenie nosnika.&#8221; w dziale 
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/03/08/przezroczyste-png-i-internet-explorer/" title="Previous Post: przezroczyste PNG i Internet Explorer">&laquo; przezroczyste PNG i Internet Explorer</a>
+        <a class="basic-alignment left" href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/" title="Previous Post: Sieć WiFi nie działa po wyjściu laptopa z uśpienia">&laquo; Sieć WiFi nie działa po wyjściu laptopa z uśpienia</a>
       
-      
-        <a class="basic-alignment right" href="/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/" title="Next Post: Serwer MySQL dostępny z zewnątrz">Serwer MySQL dostępny z zewnątrz &raquo;</a>
       
     </p>
   </footer>
@@ -332,8 +280,8 @@ Klucze pojawiają się pod linkami &#8220;Wypozyczenie nosnika.&#8221; w dziale 
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/04/17/jak-uczestniczyc-w-programie-msdnaa-na-psk/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/';
         var disqus_script = 'embed.js';
       
     (function () {

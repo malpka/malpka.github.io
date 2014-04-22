@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-18T18:53:26+02:00</updated>
+  <updated>2014-04-22T10:27:51+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,45 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[git log - list all commits from user]]></title>
+    <link href="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/"/>
+    <updated>2014-04-22T09:50:25+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user</id>
+    <content type="html"><![CDATA[<p><img src="http://blog.codemonkey.pl/images/Git-Logo-2Color.png" width="455" height="190" title="git-logo" ></p>
+
+<p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a> is a powerfull command that allows to list all commits with specific criteria.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --pretty<span class="o">=</span>format:<span class="s2">&quot;%ad:%an:%s&quot;</span> --date<span class="o">=</span>short --reverse --all --since<span class="o">=</span>2.months.ago --author<span class="o">=</span>john | grep -v <span class="s2">&quot;Merge branch&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li><code>--all</code> &ndash; from all branches</li>
+<li><code>%ad</code> &ndash; date that respects <code>--date</code> specifier</li>
+<li><code>%an</code> &ndash; author name</li>
+<li><code>%s</code> &ndash; subject</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
+</span><span class='line'>2014-04-14:john:Customer entity
+</span><span class='line'>2014-04-15:john:Orders model
+</span><span class='line'>2014-04-18:john:Fixing security flaw
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://stackoverflow.com/questions/10349302/how-to-git-log-from-all-branches-for-the-author-at-once">source</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Sieć WiFi nie działa po wyjściu laptopa z uśpienia]]></title>
@@ -2440,21 +2479,6 @@ UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&
 <td>Krakow -&gt; Trapani (Sicily) 29 Maj 228.27 PLN</td>
 </tr>
 </table>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Sesja zdjęciowa]]></title>
-    <link href="http://blog.codemonkey.pl/2010/03/15/sesja-zdjeciowa/"/>
-    <updated>2010-03-15T00:00:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2010/03/15/sesja-zdjeciowa</id>
-    <content type="html"><![CDATA[<p>Bardzo mi się nie chce spać i postrzelałem trochę fotek widoku za oknem. Przez szybę. Canonem A510.</p>
-
-
-<p><a href="http://i.imgur.com/VJBI4.jpg"><img src="http://i.imgur.com/VJBI4s.jpg"></a> <a href="http://i.imgur.com/RQNgw.jpg"><img src="http://i.imgur.com/RQNgws.jpg"></a> <a href="http://i.imgur.com/qH43P.jpg"><img src="http://i.imgur.com/qH43Ps.jpg"></a> <a href="http://i.imgur.com/Z9lzB.jpg"><img src="http://i.imgur.com/Z9lzBs.jpg"></a> <a href="http://i.imgur.com/jaaMm.jpg"><img src="http://i.imgur.com/jaaMms.jpg"></a> <a href="http://i.imgur.com/StvGQ.jpg"><img src="http://i.imgur.com/StvGQs.jpg"></a> <a href="http://i.imgur.com/2BKis.jpg"><img src="http://i.imgur.com/2BKiss.jpg"></a></p>
 
 
 
