@@ -9,7 +9,10 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org $ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/sshd_config &hellip;">
+  <meta name="description" content="1
+2
+$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+$ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +54,10 @@ margin: 0 0 0;
 <meta property="og:title" content="Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/2007/03/03/tunelowanie-zdalnego-pulpitu/" />
-<meta property="og:description" content="$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org $ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/sshd_config). Jeżeli jest wyłączone, to można jeszcze &hellip;" />
+<meta property="og:description" content="1
+2
+$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+$ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/sshd_config). Jeżeli jest wyłączone, to można jeszcze &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -118,17 +124,24 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p><code>$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org<br>
-<br>
-$ rdesktop quiz.game-host.org -p 50000</code><br>
-<br>
-warunek: (GatewayPorts yes w /etc/ssh/sshd_config).<br>
-<br>
-Jeżeli jest wyłączone, to można jeszcze spróbować dodatkowo:<br>
-<br>
-z domu:<br>
-<code>$ ssh -L 3389:localhost:50000 flytothesky@quiz.game-host.org<br>
-$ rdesktop localhost<br></code></p>
+<div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+</span><span class='line'><span class="nv">$ </span>rdesktop quiz.game-host.org -p 50000
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>warunek: (<code>GatewayPorts yes</code> w <code>/etc/ssh/sshd_config</code>).</p>
+
+<p>Jeżeli jest wyłączone, to można jeszcze spróbować dodatkowo:</p>
+
+<p>z domu:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh -L 3389:localhost:50000 flytothesky@quiz.game-host.org
+</span><span class='line'><span class="nv">$ </span>rdesktop localhost
+</span></code></pre></td></tr></table></div></figure>
 
 
 

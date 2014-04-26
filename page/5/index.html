@@ -285,17 +285,24 @@ Grafikiem nie jestem więc wygląda jak wygląda;). Oczywiście chciałem zastos
   </header>
 
 
-  <div class="entry-content"><p><code>$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org<br>
-<br>
-$ rdesktop quiz.game-host.org -p 50000</code><br>
-<br>
-warunek: (GatewayPorts yes w /etc/ssh/sshd_config).<br>
-<br>
-Jeżeli jest wyłączone, to można jeszcze spróbować dodatkowo:<br>
-<br>
-z domu:<br>
-<code>$ ssh -L 3389:localhost:50000 flytothesky@quiz.game-host.org<br>
-$ rdesktop localhost<br></code></p>
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+</span><span class='line'><span class="nv">$ </span>rdesktop quiz.game-host.org -p 50000
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>warunek: (<code>GatewayPorts yes</code> w <code>/etc/ssh/sshd_config</code>).</p>
+
+<p>Jeżeli jest wyłączone, to można jeszcze spróbować dodatkowo:</p>
+
+<p>z domu:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh -L 3389:localhost:50000 flytothesky@quiz.game-host.org
+</span><span class='line'><span class="nv">$ </span>rdesktop localhost
+</span></code></pre></td></tr></table></div></figure>
 
 
 
