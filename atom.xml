@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-30T11:35:49+02:00</updated>
+  <updated>2014-04-30T11:38:59+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -20,7 +20,7 @@
     <id>http://blog.codemonkey.pl/2014/04/30/przekierowanie-portu-windows</id>
     <content type="html"><![CDATA[<p>Przekierowanie lokalnego portu na systemie z Windowsem na zdalny na zewnętrznej maszynie.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>linenos:false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy add v<span class="m">4</span>tov<span class="m">4</span> listenport<span class="o">=</span><span class="m">3390</span> listenaddress<span class="o">=</span><span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">20</span> connectport<span class="o">=</span><span class="m">3389</span> connectaddress<span class="o">=</span><span class="m">81</span>.<span class="m">81</span>.<span class="m">81</span>.<span class="m">81</span>
 </span></code></pre></td></tr></table></div></figure>
 
