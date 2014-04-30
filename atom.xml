@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-30T11:38:59+02:00</updated>
+  <updated>2014-04-30T11:53:34+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -27,10 +27,33 @@
 
 <ul>
 <li>listenport &ndash; port nasłuchujący lokalnie</li>
-<li>listenadress &ndash; adres na lokalnej maszynie, na którym nasłuchiwać</li>
+<li>listenadress &ndash; adres na lokalnej maszynie, na którym nasłuchiwać, można hurtowo 0.0.0.0</li>
 <li>connectport &ndash; port docelowy</li>
 <li>connectaddress &ndash; adres komputera docelowego</li>
 </ul>
+
+
+<p>Aby skasować jedno przekierowanie:</p>
+
+<figure class='code'><figcaption><span>linenos:false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy delete v<span class="m">4</span>tov<span class="m">4</span> listenport<span class="o">=</span><span class="m">3390</span> listenaddress<span class="o">=</span><span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">20</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aby skasować wszystkie:</p>
+
+<figure class='code'><figcaption><span>linenos:false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy reset
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aby zobaczyć stan:</p>
+
+<figure class='code'><figcaption><span>linenos:false</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy show all
+</span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
