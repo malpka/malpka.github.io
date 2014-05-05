@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-04-30T13:51:08+02:00</updated>
+  <updated>2014-05-05T13:09:43+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Howto hide SQL Server databases for specific login in Management Studio]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/"/>
+    <updated>2014-05-05T12:09:55+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio</id>
+    <content type="html"><![CDATA[<p><img class="left" src="http://blog.codemonkey.pl/images/mydb.png" width="373" height="265" title="mydb" ></p>
+
+<p>Default Microsoft SQL Server configuration allows all useres marked as <code>public</code> to see all the databases on the server.</p>
+
+<p>After creating a database we can grant a <code>db_owner</code> role for a server login without allowing it to view another db&rsquo;s.</p>
+
+<p>Assuming that login <code>myuser</code> is created in a server security part.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">USE</span> <span class="n">mydb</span>
+</span><span class='line'><span class="k">ALTER</span> <span class="k">AUTHORIZATION</span> <span class="k">ON</span> <span class="k">DATABASE</span><span class="p">::</span><span class="n">mydb</span> <span class="k">to</span> <span class="n">myuser</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">USE</span> <span class="n">MASTER</span>
+</span><span class='line'><span class="n">DENY</span> <span class="k">VIEW</span> <span class="k">ANY</span> <span class="k">DATABASE</span> <span class="k">TO</span> <span class="n">myuser</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>From now on user can see only the newly created <code>mydb</code> database (and of course to <code>master</code> and <code>tempdb</code>)</p>
+
+<p><a href="http://social.msdn.microsoft.com/Forums/sqlserver/en-US/a989ca87-660d-41c4-9dac-70b29a83ddfb/hide-database-names-from-unauthroized-users-in-ssms?forum=sqlsecurity">Source</a>,
+<a href="http://www.mssqltips.com/sqlservertip/2995/how-to-hide-sql-server-user-databases-in-sql-server-management-studio/">moar source</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Przekierowanie portu Windows]]></title>
@@ -1687,37 +1720,6 @@ f.close()
 
 
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Konwersja galerii phpBB z wersji 2 na 3]]></title>
-    <link href="http://blog.codemonkey.pl/2010/04/21/konwersja-galerii-phpbb-z-wersji-2-na-3/"/>
-    <updated>2010-04-21T12:53:00+02:00</updated>
-    <id>http://blog.codemonkey.pl/2010/04/21/konwersja-galerii-phpbb-z-wersji-2-na-3</id>
-    <content type="html"><![CDATA[<p></p>
-
-
-<pre>
-update phpbb3_gallery_images p3
-join phpbb_album p2 on CONCAT(p3.image_name, '.jpg') = p2.pic_filename
-set p3.image_name_clean = p2.pic_title,
-p3.image_desc = p2.pic_desc,
-p3.image_user_id = p2.pic_user_id,
-p3.image_username = p2.pic_username
-p3.image_time = p2.pic_time
-p3.image_view_count = p2.pic_view_count
-ip3.mage_id = p2.pic_id 
-</pre>
-
-
-<p><p>
-<p>Przy okazji kod do zmiany kodowania:</p>
-<p></p>
-<pre>
-UPDATE <code>phpbb3_posts</code> SET post_text = REPLACE(post_text, &lsquo;Ăą&rsquo;, &lsquo;ń&rsquo;)
-</pre>
-<p></p>
 ]]></content>
   </entry>
   

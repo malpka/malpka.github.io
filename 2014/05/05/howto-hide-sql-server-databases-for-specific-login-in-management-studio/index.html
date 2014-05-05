@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y) - co.de.mon.key</title>
+  <title>Howto hide SQL Server databases for specific login in Management Studio - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Konwersja stron kodowych, wszystko za pomocą linuksowego iconv, który jest również dostępny dla Windows: Najprościej zrobić to po prostu podając &hellip;">
+  <meta name="description" content="Default Microsoft SQL Server configuration allows all useres marked as public to see all the databases on the server. After creating a database we &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,12 +48,11 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y)" />
+<meta property="og:title" content="Howto hide SQL Server databases for specific login in Management Studio" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2/" />
-<meta property="og:description" content="Konwersja stron kodowych, wszystko za pomocą linuksowego iconv, który jest również dostępny dla Windows: Najprościej zrobić to po prostu podając kodowanie docelowe 1
-iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
-
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/" />
+<meta property="og:description" content="Default Microsoft SQL Server configuration allows all useres marked as public to see all the databases on the server. After creating a database we can grant a db_owner role for a server login &hellip;" />
+<meta property="og:image" content="http://blog.codemonkey.pl/images/mydb.png" />
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
 
@@ -93,7 +92,7 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
   
   <header>
     
-      <h1 class="entry-title">Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y)</h1>
+      <h1 class="entry-title">Howto hide SQL Server databases for specific login in Management Studio</h1>
     
     
       <p class="meta">
@@ -109,7 +108,7 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
   
 
 
-<time datetime="2007-02-25T17:44:00+01:00" pubdate data-updated="true">2007-02-25</time>
+<time datetime="2014-05-05T12:09:55+02:00" pubdate data-updated="true">2014-05-05</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -119,41 +118,31 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
   </header>
 
 
-<div class="entry-content"><p>Konwersja stron kodowych, wszystko za pomocą linuksowego <code>iconv</code>, który <a href="http://gnuwin32.sourceforge.net/packages/libiconv.htm">jest również dostępny dla Windows</a>:</p>
+<div class="entry-content"><p><img class="left" src="/images/mydb.png" width="373" height="265" title="mydb" ></p>
 
-<p>Najprościej zrobić to po prostu podając kodowanie docelowe</p>
+<p>Default Microsoft SQL Server configuration allows all useres marked as <code>public</code> to see all the databases on the server.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -t UTF-8 plik_wejsciowy.txt &gt; plik_wyjsciowy.txt</span></code></pre></td></tr></table></div></figure>
+<p>After creating a database we can grant a <code>db_owner</code> role for a server login without allowing it to view another db&rsquo;s.</p>
 
+<p>Assuming that login <code>myuser</code> is created in a server security part.</p>
 
-<p>ale można również wymusić</p>
-
-<h2>Zamiana ISO-8859-2 na Windows-1250</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f CP1250 -t ISO8859-2 plik_cp1250.txt &gt; plik_iso8859-2.txt</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Zamiana Windows-1250 na ISO-8859-2</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f ISO8859-2 -t CP1250 plik_iso8859-2.txt &gt; plik_cp1250.txt</span></code></pre></td></tr></table></div></figure>
-
-
-<h2>Zamiana ISO-8859-2 na UTF-8</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f CP1250 -t UTF-8 plik_cp1250.txt &gt; plik_utf-8.txt</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">USE</span> <span class="n">mydb</span>
+</span><span class='line'><span class="k">ALTER</span> <span class="k">AUTHORIZATION</span> <span class="k">ON</span> <span class="k">DATABASE</span><span class="p">::</span><span class="n">mydb</span> <span class="k">to</span> <span class="n">myuser</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">USE</span> <span class="n">MASTER</span>
+</span><span class='line'><span class="n">DENY</span> <span class="k">VIEW</span> <span class="k">ANY</span> <span class="k">DATABASE</span> <span class="k">TO</span> <span class="n">myuser</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Zamiana Windows-1250 na UTF-8</h2>
+<p>From now on user can see only the newly created <code>mydb</code> database (and of course to <code>master</code> and <code>tempdb</code>)</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f ISO8859-2 -t UTF-8 plik_iso8859-2.txt &gt; plik_utf-8.txt</span></code></pre></td></tr></table></div></figure>
-
-
-
+<p><a href="http://social.msdn.microsoft.com/Forums/sqlserver/en-US/a989ca87-660d-41c4-9dac-70b29a83ddfb/hide-database-names-from-unauthroized-users-in-ssms?forum=sqlsecurity">Source</a>,
+<a href="http://www.mssqltips.com/sqlservertip/2995/how-to-hide-sql-server-user-databases-in-sql-server-management-studio/">moar source</a></p>
 </div>
 
 
@@ -176,12 +165,12 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
   
 
 
-<time datetime="2007-02-25T17:44:00+01:00" pubdate data-updated="true">2007-02-25</time>
+<time datetime="2014-05-05T12:09:55+02:00" pubdate data-updated="true">2014-05-05</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/categories/linux/'>Linux</a>
+    <a class='category' href='/categories/sql/'>sql</a>
   
 </span>
 
@@ -190,7 +179,7 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/" >Tweet</a>
   
   
   
@@ -201,10 +190,8 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/02/21/qmail-php-i-funkcja-mail/" title="Previous Post: qmail - php i funkcja mail()">&laquo; qmail - php i funkcja mail()</a>
+        <a class="basic-alignment left" href="/2014/04/30/przekierowanie-portu-windows/" title="Previous Post: Przekierowanie portu Windows">&laquo; Przekierowanie portu Windows</a>
       
-      
-        <a class="basic-alignment right" href="/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" title="Next Post: Automatyczny skrypt do łączenia (np FTP)">Automatyczny skrypt do łączenia (np FTP) &raquo;</a>
       
     </p>
   </footer>
@@ -285,8 +272,8 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/';
         var disqus_script = 'embed.js';
       
     (function () {
