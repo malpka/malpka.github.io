@@ -99,7 +99,7 @@ x
 7
 8
 9
-10 " />
+10 &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -211,6 +211,56 @@ x
 </span><span class='line'><span class="mi">8</span>
 </span><span class='line'><span class="mi">9</span>
 </span><span class='line'><span class="mi">10</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Równie dobrze możemy przechodzić po datach:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">declare</span> <span class="o">@</span><span class="n">start_date</span> <span class="n">datetime</span> <span class="o">=</span> <span class="s1">&#39;2014-05-06 00:00:00&#39;</span>
+</span><span class='line'><span class="k">declare</span> <span class="o">@</span><span class="n">dest_date</span> <span class="n">datetime</span> <span class="o">=</span> <span class="s1">&#39;2014-05-12 00:00:00&#39;</span>
+</span><span class='line'><span class="p">;</span><span class="k">with</span> <span class="n">date_cte</span> <span class="k">as</span>
+</span><span class='line'><span class="p">(</span>
+</span><span class='line'>  <span class="k">select</span> <span class="o">@</span><span class="n">start_date</span> <span class="k">as</span> <span class="n">mydate</span>
+</span><span class='line'>  <span class="k">union</span> <span class="k">all</span>
+</span><span class='line'>  <span class="k">select</span> <span class="n">DATEADD</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mydate</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">from</span> <span class="n">date_cte</span> <span class="k">c</span>
+</span><span class='line'>  <span class="k">where</span> <span class="n">DATEADD</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mydate</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="o">@</span><span class="n">dest_date</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">select</span> <span class="n">mydate</span> <span class="k">from</span> <span class="n">date_cte</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Wynik:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">mydate</span>
+</span><span class='line'><span class="c1">-----------------------</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">06</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">07</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">08</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">09</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">10</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">11</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
+</span><span class='line'><span class="mi">2014</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">12</span> <span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">.</span><span class="mi">000</span>
 </span></code></pre></td></tr></table></div></figure>
 
 </div>

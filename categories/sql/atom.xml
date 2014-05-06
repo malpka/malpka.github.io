@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/sql/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-06T10:05:10+02:00</updated>
+  <updated>2014-05-06T11:57:53+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -46,6 +46,37 @@ select * from cte
 8
 9
 10
+```</p>
+
+<p>Równie dobrze możemy przechodzić po datach:</p>
+
+<p><code>sql
+declare @start_date datetime = '2014-05-06 00:00:00'
+declare @dest_date datetime = '2014-05-12 00:00:00'
+;with date_cte as
+(
+  select @start_date as mydate
+  union all
+  select DATEADD(dd, 1, mydate)
+  from date_cte c
+  where DATEADD(dd, 1, mydate) &lt;= @dest_date
+)
+select mydate from date_cte
+</code></p>
+
+<p>Wynik:</p>
+
+<p>```</p>
+
+<h2>mydate</h2>
+
+<p>2014-05-06 00:00:00.000
+2014-05-07 00:00:00.000
+2014-05-08 00:00:00.000
+2014-05-09 00:00:00.000
+2014-05-10 00:00:00.000
+2014-05-11 00:00:00.000
+2014-05-12 00:00:00.000
 ```</p>
 ]]></content>
   </entry>
