@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/sql/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-06T09:32:24+02:00</updated>
+  <updated>2014-05-06T10:05:10+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Proste wyliczanki w SQL Server - CTE]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/06/proste-wyliczanki-w-sql-server-cte/"/>
+    <updated>2014-05-06T10:02:46+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/06/proste-wyliczanki-w-sql-server-cte</id>
+    <content type="html"><![CDATA[<p>Odliczanie od 1 do 10.</p>
+
+<p><code>sql
+with cte as
+(
+  select 1 as x
+  union all
+  select x+1 from cte where x &lt; 10
+)
+select * from cte
+</code></p>
+
+<p>Wynik</p>
+
+<p>```</p>
+
+<h2>x</h2>
+
+<p>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Howto hide SQL Server databases for specific login in Management Studio]]></title>

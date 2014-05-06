@@ -9,8 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Prosty skrypt konfiguracji sieci bezprzewodowej echo '#!/bin/bash' &gt; /etc/init.d/wlanstart
-echo 'iwconfig wlan0 essid malpka mode Ad-Hoc channel &hellip;">
+  <meta name="description" content="Czy kiedykolwiek zastanawiałeś się jak hurtem pozamieniać ciągi znaków w pliku? jeżeli chodzi nam o zwyczajny tekst to ostatecznie poradzi sobie z &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,9 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/6/" />
-<meta property="og:description" content="Prosty skrypt konfiguracji sieci bezprzewodowej echo '#!/bin/bash' &gt; /etc/init.d/wlanstart
-echo 'iwconfig wlan0 essid malpka mode Ad-Hoc channel 11' &gt;&gt; /etc/init.d/wlanstart
-chmod +x /etc/ &hellip;" />
+<meta property="og:description" content="Czy kiedykolwiek zastanawiałeś się jak hurtem pozamieniać ciągi znaków w pliku? jeżeli chodzi nam o zwyczajny tekst to ostatecznie poradzi sobie z tym notatnik. Aby operować na znakach końca linii &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -92,6 +89,70 @@ chmod +x /etc/ &hellip;" />
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/01/13/sed-przydatne-narzedzie/">Sed - przydatne narzedzie</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-01-13T01:14:00+01:00" pubdate data-updated="true">2007-01-13</time>
+        
+           | <a href="/2007/01/13/sed-przydatne-narzedzie/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Czy kiedykolwiek zastanawiałeś się jak hurtem pozamieniać ciągi znaków w pliku? jeżeli chodzi nam o zwyczajny tekst to ostatecznie poradzi sobie z tym notatnik. Aby operować na znakach końca linii można wykorzystać Worda z pakietu Office. Jak jednak to zrobić najskuteczniej pod linuxem. Po zabawie z mcedit oraz vi doszedłem do wniosku ze oba mnie pod tym względem nie satysfakcjonują. Google poszło w ruch i naprowadziło mnie na świetne polecenie sed</p>
+
+
+<p><b>sed</b> czyli Stream EDitor to edytor strumieniowy który znakomicie współpracuje z linuxowym bashem.</p>
+
+
+<p>Moim zadaniem była dopisanie po kazdej linijce w pliku tekstowym nowej linijki jedynie za znakiem &#8216;-&#8217;</p>
+
+
+<p>Dodanie po każdej linijce dodatkowej pustej linii</p>
+
+
+<p><code>cat plik.txt | sed G &gt; plik.txt</code></p>
+
+
+<p>Wypełnienie kazdej pustej linii znakiem &#8216;-&#8217;</p>
+
+
+<p><code>cat plik.txt | sed "s/^$/-/" &gt; plik.txt</code></p>
+
+
+<p>sed obsługuje przy wyszukiwaniu wyrażenia regularne.<br>
+Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="http://www.student.northpark.edu/pemente/sed/sed1line.txt" class="external" rel="external">Sed w przykładach</a></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -366,6 +427,10 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
@@ -379,10 +444,6 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     
       <li class="post">
         <a href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/">Sieć WiFi nie działa po wyjściu laptopa z uśpienia</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/09/python-bruteforce-password-generator/">Python bruteforce password generator</a>
       </li>
     
   </ul>

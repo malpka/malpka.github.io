@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Obecnie rozpoczęcie blogowania nie nastręcza wielu trudności &ndash; trzeba zdecydować się na jedną z platform blogowych, jak Blogger czy Wordpress. &hellip;">
+  <meta name="description" content="Czasami zachodzi potrzeba utworzenia kolekcji liczb/obiektów na podstawie zdefiniowanego zakresu liczbowego. Zamiast definiowania tablicy oraz &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,14 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/2/" />
-<meta property="og:description" content="Obecnie rozpoczęcie blogowania nie nastręcza wielu trudności &ndash; trzeba zdecydować się na jedną z platform blogowych, jak Blogger czy Wordpress.com, poświęcić chwilkę na konfigurację oraz &hellip;" />
+<meta property="og:description" content="Czasami zachodzi potrzeba utworzenia kolekcji liczb/obiektów na podstawie zdefiniowanego zakresu liczbowego. Zamiast definiowania tablicy oraz używania pętli: &nbsp; 1
+2
+3
+4
+5
+6
+7
+public static List &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +96,128 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/">C# Generowanie obiektów z zakresu - Enumerable.Range()</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-11T10:37:13+01:00" pubdate data-updated="true">2014-03-11</time>
+        
+           | <a href="/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/03/11/c-sharp-generowanie-obiektow-z-zakresu/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="left" src="http://i.imgur.com/WURz5K4.png" width="128" height="128" title="C Sharp" ></p>
+
+<p>Czasami zachodzi potrzeba utworzenia kolekcji liczb/obiektów na podstawie zdefiniowanego zakresu liczbowego.</p>
+
+<p>Zamiast definiowania tablicy oraz używania pętli:</p>
+
+<p>&nbsp;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">YearClass</span><span class="p">&gt;</span> <span class="n">LoadData</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">List</span><span class="p">&lt;</span><span class="n">YearClass</span><span class="p">&gt;</span> <span class="n">years</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">YearClass</span><span class="p">&gt;();</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">2000</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="m">2015</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>    <span class="n">years</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span> <span class="n">YearClass</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">years</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>można wykorzystać <code>Enumerable.Range(int, int)</code> <a href="http://msdn.microsoft.com/pl-pl/library/system.linq.enumerable.range%28v=vs.110%29.aspx">link MSDN</a></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">public</span> <span class="k">static</span> <span class="n">List</span><span class="p">&lt;</span><span class="n">YearClass</span><span class="p">&gt;</span> <span class="n">LoadData</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'> <span class="k">return</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">2000</span><span class="p">,</span> <span class="m">15</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="k">new</span> <span class="n">YearClass</span><span class="p">(</span><span class="n">x</span><span class="p">)).</span><span class="n">ToList</span><span class="p">&lt;</span><span class="n">YearClass</span><span class="p">&gt;();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Prawda że ładniej? Może nie jest to <a href="http://docs.python.org/2/library/itertools.html">itertools z Pythona</a> ale robi to co trzeba.</p>
+
+<p>Oczywiście metodę można wykorzystać do tworzenia różnego rodzaju ciągów:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="c1">// ciąg arytmetyczny</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">seq1</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">5</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="m">3</span> <span class="p">+</span> <span class="m">2</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 2, 5, 8, 11, 14</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// kwadraty</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">seq2</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">6</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span> <span class="p">*</span> <span class="n">x</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 1, 4, 9, 16, 25, 36</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// potęgi dwójki</span>
+</span><span class='line'><span class="kt">var</span> <span class="n">seq3</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">Math</span><span class="p">.</span><span class="n">Pow</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">x</span><span class="p">)).</span><span class="n">ToList</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// 1, 2, 4, 8, 16, 32, 64, 128, 256, 512</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>również znakowych:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">percentStrArray</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">10</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="m">10</span> <span class="p">*</span> <span class="n">x</span><span class="p">)</span> <span class="p">+</span> <span class="s">&quot;%&quot;</span> <span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// &quot;0%&quot;, &quot;10%&quot;, &quot;20%&quot;, &quot;30%&quot;, &quot;40%&quot;, &quot;50%&quot;, &quot;60%&quot;, &quot;70%&quot;, &quot;80%&quot;, &quot;90%&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Eksperymentalne pobieranie wszystkich małych liter ASCII wygląda następująco:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="kt">var</span> <span class="n">smallASCII</span> <span class="p">=</span> <span class="n">Enumerable</span><span class="p">.</span><span class="n">Range</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;z&#39;</span> <span class="p">-</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="sc">&#39;a&#39;</span> <span class="p">+</span> <span class="m">1</span><span class="p">).</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="n">x</span><span class="p">).</span><span class="n">ToArray</span><span class="p">();</span>
+</span><span class='line'><span class="c1">// &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, ..., &#39;y&#39;, &#39;z&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1318,136 +1447,6 @@ f.close()
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2010/05/11/wybor-klawiatury/">Wybór klawiatury</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-11T21:32:00+02:00" pubdate data-updated="true">2010-05-11</time>
-        
-           | <a href="/2010/05/11/wybor-klawiatury/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2010/05/11/wybor-klawiatury/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Zastanawiam się nad następującymi:</p>
-
-
-<p></p>
-
-
-<p></p>
-
-
-<ul>
-<li><a href="http://www.agito.pl/klawiatury/a4-tech-klawiatura-evo-slim-tablet.0.32613.html">a4tech evo slim tablet hub i audio</a></li>
-<li><a href="http://www.ceneo.pl/953431">logitech wave</a></li>
-<li><a href="http://www.microsoft.com/hardware/mouseandkeyboard/productdetails.aspx?pid=040">microsoft comfort curve 2000 slim ergo</a></li>
-<li><del><a href="http://www.microsoft.com/hardware/mouseandkeyboard/productdetails.aspx?pid=043">MICROSOFT Natural Ergonomic Keyboard 4000</a></del></li>
-</ul>
-
-
-<p></p>
-
-
-<p></p>
-
-
-<p>I <a href="http://www.ceneo.pl/ProductsComparison.aspx?categoryId=440&amp;productId=2746263&amp;productId=3666142&amp;productId=2649925">monitorem</a></p>
-
-
-<p></p>
-
-
-<p>I obudową</p>
-
-
-<p></p>
-
-
-<p></p>
-
-
-<ul>
-<li><a href="http://allegro.pl/item1099589923_obudowa_matx_qoltec_amber_9108b_420w_fvat_wwa.html">obudowa_matx_qoltec_amber_9108b_420w_fvat_wwa.html</a></li>
-<li><a href="http://allegro.pl/item1098785748_obudowa_aerocool_pgs_qs_200_matx_czarna.html">obudowa_aerocool_pgs_qs_200_matx_czarna.html</a></li>
-<li><a href="http://allegro.pl/item1099047254_obudowa_matx_i_box_fornax_500w_6pin_pcie_usb_lcd.html">obudowa_matx_i_box_fornax_500w_6pin_pcie_usb_lcd.html</a></li>
-<li><a href="http://allegro.pl/item1101505013_aerocool_racer_cube_matx_czarno_czerwony_tanio.html">aerocool_racer_cube_matx_czarno_czerwony_tanio.html</a></li>
-</ul>
-
-
-<p></p>
-
-
-<p>A i jeszcze kartą graficzną:</p>
-
-
-<p></p>
-
-
-<p></p>
-
-
-<ul>
-<li>ATI Radeon 4850 512Mb ddr3</li>
-<li>HiS Radeon HD 4670 512 MB IceQ</li>
-<li>GeForce 9600 GT</li>
-</ul>
-
-
-<p></p>
-
-
-<p>Bo <a href="http://www.morele.net/procesor-amd-phenom-ii-x2-555-black-edition-am3-3-2-ghz-7mb-80w-box-hdz555wfgmbox-302620/">procesor</a>, <a href="http://www.morele.net/plyta-glowna-gigabyte-ga-ma785gmt-ud2h-243661/">płytę główną</a> i <a href="http://www.morele.net/pamiec-good-ram-ddr3-2048mb-pc1333-cl9-gr1333d364l9-2g-244558/">pamięć</a> już sobie na imieniny sprawiłem ;)</p>
-
-
-<p>Obecna konfiguracja:</p>
-
-
-<p></p>
-
-
-<ul>
-<li>AMD Phenom II X2 555 Black Edition, AM3, 3,2 GHz, 7MB , 80W, BOX (HDZ555WFGMBOX) - 399 zł</li>
-<li>Gigabyte GA-MA785GMT-UD2H - 324 zł</li>
-<li>Good Ram DDR3 2048MB PC1333 CL9 (GR1333D364L9/2G) - 109 zł</li>
-<li>Good Ram DDR3 4096MB PC1333 CL9 (GR1333D364L9/4G) - 119 zł (lipiec 2013)</li>
-<li>WD Caviar GP-16 1TB WD10EADS 32 MB Green Power 295 zł</li>
-<li>Corsair CMPSU-520HXEU 520W - 239 zł</li>
-<li><a href="http://www.ceneo.pl/10967184">MSI Radeon HD6870 Hawk - 688 zł</a></li>
-</ul>
-
-
-<p></p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -1465,6 +1464,10 @@ f.close()
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
@@ -1478,10 +1481,6 @@ f.close()
     
       <li class="post">
         <a href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/">Sieć WiFi nie działa po wyjściu laptopa z uśpienia</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/09/python-bruteforce-password-generator/">Python bruteforce password generator</a>
       </li>
     
   </ul>
