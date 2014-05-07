@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-07T22:13:11+02:00</updated>
+  <updated>2014-05-07T22:16:09+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -28,6 +28,8 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
 <p>Każdy z systemów posiada pewien czas, ang. <em>initial grace period</em>, w trakcie którego należy dokonać aktywacji. Okres ten może zostać ponowiony (w przypadku Windows Server 2008 R2 nawet pięciokrotnie) poleceniem <code>slmgr.vbs -rearm</code>.</p>
 
 <p>Status aktywacji można sprawdzić przez <code>slmgr.vbs -dli</code></p>
+
+<p><img class="center" src="http://i.imgur.com/bJRZcw2.png" width="350" height="217" title="slmgr.vbs-dli" ></p>
 
 <p>Po aktywacji dostępny jest czas na testy, odpowiednio dla systemów serwerowych 180 dni, dla Windows 8 &ndash; 90 dni. Po upływie wspomnianego okresu tło zmieni się na czarne a komputer będzie wyłączał się co godzinę uniemożliwiając pracę ;).</p>
 
