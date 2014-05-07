@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/sql/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-06T11:57:53+02:00</updated>
+  <updated>2014-05-07T08:37:52+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -78,6 +78,77 @@ select mydate from date_cte
 2014-05-11 00:00:00.000
 2014-05-12 00:00:00.000
 ```</p>
+
+<h2>Standardowe przechodzenie po drzewie</h2>
+
+<h3>Drzewo</h3>
+
+<p>``` sql
+declare @t table
+(
+  id int not null,
+  parent_id int null
+)</p>
+
+<p>insert into @t values (0, null),(1, 0),(2, 1),(3, 1),(4, 3),(5, 0),(6, 0),(7, 6)
+&mdash; 0
+&mdash; +-1
+&mdash; | +-2
+&mdash; | +-3
+&mdash; |   +-4
+&mdash; +-5
+&mdash; +-6
+&mdash;   +7
+```</p>
+
+<p><code>sql
+select * from @t
+</code></p>
+
+<p>```
+id          parent_id</p>
+
+<hr />
+
+<p>0           NULL
+1           0
+2           1
+3           1
+4           3
+5           0
+6           0
+7           6
+```</p>
+
+<h3>Od liścia do korzenia</h3>
+
+<p><code>sql
+;with cte as
+(
+  select id, parent_id from @t where id = 4
+  union all
+  select t.id, t.parent_id
+  from cte c
+  join @t t on c.parent_id = t.id
+)
+select * from cte
+</code></p>
+
+<p>wynik</p>
+
+<p>```
+id          parent_id</p>
+
+<hr />
+
+<p>4           3
+3           1
+1           0
+0           NULL</p>
+
+<p>(4 row(s) affected)</p>
+
+<p>```</p>
 ]]></content>
   </entry>
   
