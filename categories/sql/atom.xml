@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/sql/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-07T22:26:49+02:00</updated>
+  <updated>2014-05-07T22:28:56+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -51,6 +51,9 @@ select * from cte
 ```</p>
 
 <p>Równie dobrze możemy przechodzić po datach:</p>
+
+<!-- more -->
+
 
 <p><code>sql
 declare @start_date datetime = '2014-05-06 00:00:00'
