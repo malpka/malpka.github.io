@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/sql/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-07T08:40:25+02:00</updated>
+  <updated>2014-05-07T08:49:55+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,10 +18,12 @@
     <link href="http://blog.codemonkey.pl/2014/05/06/proste-wyliczanki-w-sql-server-cte/"/>
     <updated>2014-05-06T10:02:46+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/05/06/proste-wyliczanki-w-sql-server-cte</id>
-    <content type="html"><![CDATA[<p>Odliczanie od 1 do 10.</p>
+    <content type="html"><![CDATA[<p>Tylko pamiętajcie o średniku przed <code>with</code>! ;)</p>
+
+<p>Odliczanie od 1 do 10.</p>
 
 <p><code>sql
-with cte as
+;with cte as
 (
   select 1 as x
   union all
