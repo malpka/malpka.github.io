@@ -376,6 +376,48 @@ x
 </span><span class='line'><span class="p">(</span><span class="mi">4</span> <span class="k">row</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">affected</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>Od gałęzi do liści</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="p">;</span><span class="k">with</span> <span class="n">cte</span> <span class="k">as</span>
+</span><span class='line'><span class="p">(</span>
+</span><span class='line'>  <span class="k">select</span> <span class="n">id</span><span class="p">,</span> <span class="n">parent_id</span> <span class="k">from</span> <span class="o">@</span><span class="n">t</span> <span class="k">where</span> <span class="n">parent_id</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>  <span class="k">union</span> <span class="k">all</span>
+</span><span class='line'>  <span class="k">select</span> <span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="n">parent_id</span>
+</span><span class='line'>  <span class="k">from</span> <span class="n">cte</span> <span class="k">c</span>
+</span><span class='line'>  <span class="k">join</span> <span class="o">@</span><span class="n">t</span> <span class="n">t</span> <span class="k">on</span> <span class="n">t</span><span class="p">.</span><span class="n">parent_id</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">id</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cte</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>wynik</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="n">id</span>          <span class="n">parent_id</span>
+</span><span class='line'><span class="c1">----------- -----------</span>
+</span><span class='line'><span class="mi">2</span>           <span class="mi">1</span>
+</span><span class='line'><span class="mi">3</span>           <span class="mi">1</span>
+</span><span class='line'><span class="mi">4</span>           <span class="mi">3</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="mi">3</span> <span class="k">row</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">affected</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
 </div>
 
 
