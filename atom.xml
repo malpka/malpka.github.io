@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-07T18:01:33+02:00</updated>
+  <updated>2014-05-07T22:10:49+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Windows 8 (i nie tylko) za darmo]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/07/windows-8-za-darmo/"/>
+    <updated>2014-05-07T21:38:49+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/07/windows-8-za-darmo</id>
+    <content type="html"><![CDATA[<p><img class="left" src="http://blog.codemonkey.pl/images/windows-8-logo.jpg" width="280" height="200" title="windows-8-logo" ></p>
+
+<p>Oprócz świetnych warunków licencyjnych Dreamspark dla studentów, Microsoft oferuje także możliwość legalnego przetestowania niektórych produktów.
+W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źródła</strong>, na stosunkowo długi czas &ndash; od 90 nawet do 240 dni, z dostępem do aktualizacji.</p>
+
+<p>Z zamieszczonych poniżej linków można pobrać obrazy iso. Posiadają one zintegrowany klucz, nie jest on wymagany podczas instalacji.</p>
+
+<p>Każdy z systemów posiada pewien czas, ang. <em>initial grace period</em>, w trakcie którego należy dokonać aktywacji. Okres ten może zostać ponowiony (w przypadku Windows Server 2008 R2 nawet pięciokrotnie) poleceniem <code>slmgr.vbs -rearm</code>.</p>
+
+<p>Status aktywacji można sprawdzić przez <code>slmgr.vbs -dli</code></p>
+
+<p>Po aktywacji dostępny jest czas na testy, odpowiednio dla systemów serwerowych 180 dni, dla Windows 8 &ndash; 90 dni. Po upływie wspomnianego okresu tło zmieni się na czarne a komputer będzie wyłączał się co godzinę uniemożliwiając pracę ;).</p>
+
+<p>Poniżej lista najciekawszych na chwilę obecną propozycji.</p>
+
+<h2>Windows 8.1 za darmo</h2>
+
+<ul>
+<li>Windows 8.1 Enterprise Evaluation</li>
+<li><a href="http://technet.microsoft.com/en-US/evalcenter/hh699156.aspx">http://technet.microsoft.com/en-US/evalcenter/hh699156.aspx</a></li>
+<li>Konieczna rejestracja do pobrania obrazu.</li>
+<li>Czas pracy: 10 dni (initial grace period) + 90 dni = <strong>100 dni</strong></li>
+<li>Aktywacja najpóźniej do 31 paźniernika 2014!</li>
+</ul>
+
+
+<h2>Windows Server 2012 R2</h2>
+
+<ul>
+<li>Konieczna rejestracja do pobrania obrazu.</li>
+<li><a href="http://technet.microsoft.com/en-US/evalcenter/dn205286">http://technet.microsoft.com/en-US/evalcenter/dn205286</a></li>
+<li>Czas pracy: X (mało informacji na ten temat) * 10 dni + 180 dni = minimum <strong>190 dni</strong></li>
+<li>Konfiguracja jako workstation &ndash; <a href="http://www.win2012workstation.com/">http://www.win2012workstation.com/</a></li>
+</ul>
+
+
+<h2>Windows Server 2008 R2</h2>
+
+<ul>
+<li><a href="http://www.microsoft.com/en-us/download/details.aspx?id=11093">http://www.microsoft.com/en-us/download/details.aspx?id=11093</a></li>
+<li>Czas pracy:6*10 + 180 = <strong>240 dni</strong></li>
+</ul>
+
+
+<p>Najpopularniejszy, z systemów, dobrze opisany, np <a href="http://www.win2008r2workstation.com/">tutaj</a>, <a href="http://www.win2008workstation.com/games-and-entertainment/">lista sprawdzonych gier 2008</a></p>
+
+<h2>Wady</h2>
+
+<p>Oczywiście nie jest aż tak różowo. Oprócz konieczności reinstalacji systemu po 100 &ndash; 240 dniach, wspomniane systemy są dostępne jedynie w ograniczonej liczbie języków (brak polskiego). W przypadku rozwiązań serwerowych należy poświęcić trochę czasu na dopasowanie systemu do komputera użytkowego ;).
+Niektóre z programów nie są kompatbilne z wersjami serwerowymi (przykład: Easeus Partition Manager, niektóre gry).
+Sterowniki do karty graficznej posiadają przynajmniej w moim przypadku (MSI R6870) znacznie mniej ustawień &ndash; nie mogę dopasować sygnału HDMI idącego do odbiornika (przykład &ndash; Overscan)</p>
+
+<h2>Zalety</h2>
+
+<p>Poza wymienionymi wcześniej &ndash; działają gry od Blizzarda &ndash; Diablo 3, Heartstone, działa Injustice, działa Steam ;)</p>
+
+<p><a href="http://imgur.com/1T0Xook"><img src="http://i.imgur.com/1T0Xook.png" title="Hosted by imgur.com" /></a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Proste wyliczanki w SQL Server - CTE]]></title>
@@ -1795,87 +1860,6 @@ f = open('filelist.xml', 'w')
 DOMTree.writexml(f)
 f.close()
 </pre>
-
-
-<p></p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dzień Darmowej Dostawy w Polsce - opisy sklepów.]]></title>
-    <link href="http://blog.codemonkey.pl/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow/"/>
-    <updated>2010-11-18T10:09:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2010/11/18/dzien-darmowej-dostawy-w-polsce-opisy-sklepow</id>
-    <content type="html"><![CDATA[<p>Ostatnio dowiedziałem się o akcji <b>Dzień Darmowej Dostawy</b>, która odbędzie się 1 grudnia 2010 r., wzorowanej na amerykańskim Free Shipping Day. Cel jest oczywisty, a szczegółowe informacje są podane na stronie <a href="http://dziendarmowejdostawy.pl/">http://dziendarmowejdostawy.pl/</a>.</p>
-
-
-<p>Firmy uczestniczące w akcji są wymienione w formie adresów internetowych stron, bez odsyłaczy. Poza bardziej znanymi partnerami akcji jak gram.pl, Vobis, Helion, Komputronik czy Megastore jest sporo sklepów, o których działalności niewiele można powiedzieć po samym adresie internetowym. Parę przykładów - Fnak.pl, DeeZee.pl, Maminek.pl, KissMyKicks.pl czy KolorowaKrowa.pl ! :)</p>
-
-
-<p>W celu szybkiego sprawdzenia tematyki każdego ze sklepów popełniłem mały skypcik w <b>pythonie</b>, w którym widać łatwość z jaką można wkroczyć w tematykę zwaną <a href="http://en.wikipedia.org/wiki/Web_scraping">Web scraping</a></p>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">urllib</span><span class="o">,</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">BeautifulSoup</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">adresDDD</span> <span class="o">=</span> <span class="s">&quot;http://dziendarmowejdostawy.pl/&quot;</span>
-</span><span class='line'><span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">adresDDD</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">li</span> <span class="ow">in</span> <span class="n">soup</span><span class="o">.</span><span class="n">findAll</span><span class="p">(</span><span class="s">&#39;li&#39;</span><span class="p">):</span>
-</span><span class='line'>        <span class="k">try</span><span class="p">:</span>
-</span><span class='line'>                <span class="n">a2</span> <span class="o">=</span> <span class="n">li</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="s">&quot; </span><span class="se">\t\n</span><span class="s">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;utf8&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">print</span> <span class="s">&quot;[http://&quot;</span> <span class="o">+</span> <span class="n">a2</span><span class="o">+</span> <span class="s">&quot;]&quot;</span>
-</span><span class='line'>
-</span><span class='line'>                <span class="n">soup2</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="o">.</span><span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="s">&quot;http://&quot;</span><span class="o">+</span><span class="n">a2</span><span class="p">))</span>
-</span><span class='line'>                <span class="k">try</span><span class="p">:</span>
-</span><span class='line'>                        <span class="k">print</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">soup2</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
-</span><span class='line'>                <span class="k">except</span><span class="p">:</span>
-</span><span class='line'>                        <span class="k">print</span> <span class="n">soup2</span><span class="o">.</span><span class="n">head</span><span class="o">.</span><span class="n">title</span>
-</span><span class='line'>        <span class="k">except</span><span class="p">:</span>
-</span><span class='line'>                <span class="k">continue</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><br></p>
-
-
-<p>Na przykładzie widać najprostsze wyciąganie danych za pomocą <a href="http://www.python.org/">pythona</a> i biblioteki <a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>.</p>
-
-
-<p>Po delikatnym przeformatowaniu w npp można uzyskać coś takiego:</p>
-
-
-<p><br></p>
-
-
-<ul>
-<li><a href="http://Gram.pl">http://Gram.pl</a> - gram.pl - Recenzje, Zapowiedzi, Newsy, Poradniki, Dema. Gry na PC, PS3, X360.</li>
-<li><a href="http://Onepress.pl">http://Onepress.pl</a> - Księgarnia biznesowa Onepress.pl - książki klasy business</li>
-<li><a href="http://Rebel.pl">http://Rebel.pl</a> - Sklep z grami REBEL.pl :: Największy polski sklep z grami - gry rpg, gry planszowe, gry karciane i inne</li>
-<li><a href="http://Pixers.pl">http://Pixers.pl</a> - Fototapety, Obrazy na ścianę, Plakaty, Naklejki, Zdjęcia na płótnie - najciekawszy sklep w Europie - PIXERS</li>
-<li>&#8230;</li>
-</ul>
 
 
 <p></p>
