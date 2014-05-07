@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-07T22:22:29+02:00</updated>
+  <updated>2014-05-07T22:25:14+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -29,7 +29,7 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
 
 <p>Status aktywacji można sprawdzić przez <code>slmgr.vbs -dli</code></p>
 
-<p><img class="center" src="http://i.imgur.com/bJRZcw2.png" width="350" height="217" title="slmgr.vbs-dli" ></p>
+<p><img class="center" src="http://blog.codemonkey.pl/images/slmgr_vbs-dli.png" width="350" height="217" title="slmgr_vbs-dli" ></p>
 
 <p>Po aktywacji dostępny jest czas na testy, odpowiednio dla systemów serwerowych 180 dni, dla Windows 8 &ndash; 90 dni. Po upływie wspomnianego okresu tło zmieni się na czarne a komputer będzie wyłączał się co godzinę uniemożliwiając pracę ;).</p>
 
