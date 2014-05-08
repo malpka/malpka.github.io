@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Mój iPhone 1.1.2 OOTB Już od dawna wzrastała we mnie niepohamowana chęć posiadania tego sprzętu. Nie wiem na czym to polega ale ma w sobie coś &hellip;">
+  <meta name="description" content="Wybierając się do Zakopanego pomyślałem, że przydałaby się mapa tego miejsca. Nie chcąc dać zarobić tym $%^ wyzyskiwaczom (:P) pomyślałem że znajdę &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/5/" />
-<meta property="og:description" content="Mój iPhone 1.1.2 OOTB Już od dawna wzrastała we mnie niepohamowana chęć posiadania tego sprzętu. Nie wiem na czym to polega ale ma w sobie coś przyciągającego .. ten dotykowy ekran, wi-fi, MacOS X &hellip;" />
+<meta property="og:description" content="Wybierając się do Zakopanego pomyślałem, że przydałaby się mapa tego miejsca. Nie chcąc dać zarobić tym $%^ wyzyskiwaczom (:P) pomyślałem że znajdę sobie mapkę na necie Szybka akcja w stylu google.pl &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,84 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/">ImageMagick convert - łączenie wielu obrazków w jeden</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-12-17T18:53:00+01:00" pubdate data-updated="true">2007-12-17</time>
+        
+           | <a href="/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/12/17/imagemagick-convert-laczenie-wielu-obrazkow-w-jeden/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Wybierając się do Zakopanego pomyślałem, że przydałaby się mapa tego miejsca. Nie chcąc dać zarobić tym $%^ wyzyskiwaczom (:P) pomyślałem że znajdę sobie mapkę na necie</p>
+
+
+<p>Szybka akcja w stylu google.pl?q=zakopane+mapa doprowadziła mnie do strony:</p>
+
+
+<p><a href="http://www.mapytatr.net/PRODUKTY/MAPY_TAT/ZAKOPANE/SLICES/zkp_iii.html">http://www.mapytatr.net/PRODUKTY/MAPY_TAT/ZAKOPANE/SLICES/zkp_iii.html</a></p>
+
+
+<p>zapisałem na dysku, jednak doszedłem do wniosku, że lepiej będzie się ją obrabiało gdy będzie w pojedynczym pliku. Parę machnięć w Gimpie i doszedłem do wniosku że nie tędy droga. Przypomniałem sobie że na serwerze mam zainstalowane imagemagick, więc spróbowałem pójść tędy.</p>
+
+
+<p>Początkowa wersja:</p>
+
+
+<p><code>convert +append zkp_01.jpg zkp_02.jpg (...) a.ppm<br>
+convert +append zkp_10.jpg zkp_11.jpg (...) b.ppm</code></p>
+
+
+<p>Cóż, już lepiej, wszystko dzieje się automatycznie, ale nadal czegoś brakuje. Spróbowałem wildcharów / regexpów i okazało się, że poprawna jest konstrukcja:</p>
+
+
+<p><code>convert +append zkp_1[0-8].jpg b.ppm</code></p>
+
+
+<p>Zatem ostatecznie:</p>
+
+
+<p><code>convert +append zkp_0[1-9].jpg a.ppm<br>
+convert +append zkp_1[0-8].jpg b.ppm<br>
+convert +append zkp_19.jpg zkp_2[0-7].jpg c.ppm<br>
+convert +append zkp_2[8-9].jpg zkp_3[0-6].jpg d.ppm<br>
+convert +append zkp_3[7-9].jpg zkp_4[0-5].jpg e.ppm<br>
+convert +append zkp_4[6-9].jpg zkp_5[0-4].jpg f.ppm<br>
+convert +append zkp_5[5-9].jpg zkp_6[0-3].jpg g.ppm<br>
+convert +append zkp_6[4-9].jpg zkp_7[0-2].jpg h.ppm<br>
+convert +append [a-h].ppm mapa.jpg</code></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -673,77 +751,6 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/02/21/qmail-php-i-funkcja-mail/">qmail - php i funkcja mail()</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-02-21T00:45:00+01:00" pubdate data-updated="true">2007-02-21</time>
-        
-           | <a href="/2007/02/21/qmail-php-i-funkcja-mail/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/02/21/qmail-php-i-funkcja-mail/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Problem, który miałem ostatnio do rozwiązania wyglądał następująco:</p>
-
-
-<p>W systemie domyślnym MTA jest qmail. po odebraniu wiadomości email wysłanej za pomocą funkcji mail() w skrypcie php, w treści listu widoczne są znaczniki html oraz nagłówki wiadomości.</p>
-
-
-<p>Okazało się, że qmail nie jest do końca zgodny ze standardami RFC. W przypadku gdy standard wymaga stosowania do oddzielenia poszczególnych nagłówków znaków CRLF ( \r\n ) to on w przypadku linuxa, na którym się znajdował, oczekiwał linuksowego zakończenia linii LF ( \n ). Niestety w skryptach korzystających z mail() używane są przeważnie te pierwsze, co sprawia, że qmail w czasie analizy zamienia pierwszy \r na parę \r\n a co za tym idzie wprowadzając dający opisane wyżej nieciekawe rezultaty, ciąg \r\r\n.</p>
-
-
-<p>przeszukując fora znalazłem sporo informacji na ten temat ale prawie żadnego sensownego rozwiązania. najbardziej przypadło mi do gustu to z postu <a href="http://bugs.php.net/bug.php?id=15841"></a></p>
-
-
-<p><code>/etc/php.ini : sendmail_path = "unix2dos|dos2unix|sendmail -t -i"</code></p>
-
-
-<p>Wszystko byłoby pięknie gdyby nie fakt, że do tej zmiennej w moim przypadku nie dało się wstawić potoków, musiałem więc zrobić to troszkę inaczej</p>
-
-
-<p>stworzyłem dodatkowy skrypt:</p>
-
-
-<p>/var/qmail/bin/sendmailfix<br>
-<code>#!/bin/sh<br>
-sed 's/^M$//' | /var/qmail/bin/sendmail ${1-@}</code></p>
-
-
-<p>plik ten jest własnością grupy qmail chgrp qmail /var/qmail/bin/sendmailfix</p>
-
-
-<p>teraz pozostaje jedynie dopisać ten skrypt jako ścieżka do programu sendmail i gotowe</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -761,6 +768,10 @@ sed 's/^M$//' | /var/qmail/bin/sendmail ${1-@}</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/07/windows-8-za-darmo/">Windows 8 (i nie tylko) za darmo</a>
       </li>
     
@@ -774,10 +785,6 @@ sed 's/^M$//' | /var/qmail/bin/sendmail ${1-@}</code></p>
     
       <li class="post">
         <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/22/git-log-list-all-commits-from-user/">git log - list all commits from user</a>
       </li>
     
   </ul>

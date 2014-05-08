@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-07T22:28:56+02:00</updated>
+  <updated>2014-05-08T11:59:05+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Rabat 10 zł na zamówienie w Plackowej Izbie]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/"/>
+    <updated>2014-05-08T11:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie</id>
+    <content type="html"><![CDATA[<p>Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy przysługuje jedynie nowym klientom.</p>
+
+<p><img class="center" src="http://2.imgland.net/rQTrN.png" width="500" height="354" title="PlackowaIzbaKielce" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Windows 8 (i nie tylko) za darmo]]></title>
@@ -1833,46 +1844,6 @@ version: v2.0.50727</code></p>
 
 
 <p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Pyhon - hurtowa zmiana atrybutów w xml]]></title>
-    <link href="http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml/"/>
-    <updated>2011-01-03T12:33:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2011/01/03/pyhon-hurtowa-zmiana-atrybutow-w-xml</id>
-    <content type="html"><![CDATA[<p>Kolejne kilka linijek, które ułatwią mi kiedyś życie.</p>
-
-
-<p>Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B.C.D. W moim przypadku biblioteki stworzone chyba w delphi miały zwyczaj stosować przecinki zamiast kropek, albo dodawać spacje między liczbami.</p>
-
-
-<p>Ponieważ korzystam z narzędzia, które generuje mi do xmla listę plików w katalogu, z uwzględnieniem sumy kontrolnej i wersji, a nie miałem jego źródeł, trzeba było napisać szybką łatkę na wygenerowane dane.</p>
-
-
-<p></p>
-
-
-<pre>
-from xml.dom import minidom
-DOMTree = minidom.parse('filelist.xml')
-cNodes = DOMTree.childNodes
-for i in cNodes[0].getElementsByTagName("File"):
-        version = i.getAttribute("version")
-        version = version.replace(",", ".")
-        version = version.replace(" ", "")
-        i.setAttribute("version", version)
-
-f = open('filelist.xml', 'w')
-DOMTree.writexml(f)
-f.close()
-</pre>
-
-
-<p></p>
 
 
 

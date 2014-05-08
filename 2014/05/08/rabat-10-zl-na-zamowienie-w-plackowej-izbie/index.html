@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Do zapamiętania: Linuks - szyfrowanie za pomocą dm-crypt / luks - co.de.mon.key</title>
+  <title>Rabat 10 zł na zamówienie w Plackowej Izbie - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem stronę na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś &hellip;">
+  <meta name="description" content="Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,11 +48,11 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Do zapamiętania: Linuks - szyfrowanie za pomocą dm-crypt / luks" />
+<meta property="og:title" content="Rabat 10 zł na zamówienie w Plackowej Izbie" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/" />
-<meta property="og:description" content="Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem stronę na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś pracy ale tym razem to będzie prywatnie dla mnie &hellip;" />
-
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/" />
+<meta property="og:description" content="Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy przysługuje jedynie nowym klientom. " />
+<meta property="og:image" content="http://blog.codemonkey.pl/images/ulotka_small.png" />
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
 
@@ -92,7 +92,7 @@ margin: 0 0 0;
   
   <header>
     
-      <h1 class="entry-title">Do zapamiętania: Linuks - szyfrowanie za pomocą dm-crypt / luks</h1>
+      <h1 class="entry-title">Rabat 10 zł na zamówienie w Plackowej Izbie</h1>
     
     
       <p class="meta">
@@ -108,7 +108,7 @@ margin: 0 0 0;
   
 
 
-<time datetime="2009-08-19T07:56:00+02:00" pubdate data-updated="true">2009-08-19</time>
+<time datetime="2014-05-08T11:47:59+02:00" pubdate data-updated="true">2014-05-08</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -118,67 +118,9 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p>Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem <a href="http://mlawire.blogspot.com/2009/07/encrypted-filesystem-on-loop-device.html">stronę</a> na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś pracy ale tym razem to będzie prywatnie dla mnie do zapamiętania.</p>
+<div class="entry-content"><p>Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy przysługuje jedynie nowym klientom.</p>
 
-
-<p><code>modprobe dm_mod</code></p>
-
-
-<h3>Tworzenie zaszyfrowanego systemu plików:</h3>
-
-
-<p><code># create a 10M file<br>
-$ dd if=/dev/urandom of=testfs bs=1M count=10<br>
-<br>
-# associate it with the loop device<br>
-$ losetup /dev/loop0 testfs<br>
-<br>
-# encrypt it (will ask for password to use)<br>
-$ cryptsetup luksFormat /dev/loop0<br>
-<br>
-# open the encrypted loop device<br>
-$ cryptsetup luksOpen /dev/loop0 testfs<br>
-<br>
-# format it with ext2 (or whatever you prefer)<br>
-$ mkfs.ext2 /dev/mapper/testfs<br>
-<br>
-# mount it<br>
-$ mount /dev/mapper/testfs /mnt/test<br>
-<br>
-# confirm mount<br>
-$ df -h /mnt/test<br>
-Filesystem Size Used Avail Use% Mounted on<br>
-/dev/mapper/testfs 9.2M 88K 8.7M 1% /mnt/test</code></p>
-
-
-<h3>Odmontowanie systemu plików:</h3>
-
-
-<p><code># unmount it<br>
-$ umount /mnt/test<br>
-<br>
-# close encryption<br>
-$ cryptsetup luksClose /dev/mapper/testfs<br>
-<br>
-# release loop device<br>
-$ losetup -d /dev/loop0</code></p>
-
-
-<h3>Montowanie szyfrowanego systemu plików:</h3>
-
-
-<p><code><br>
-# associate file with the loop device<br>
-$ losetup /dev/loop0 testfs<br>
-<br>
-# open the encrypted loop device<br>
-$ cryptsetup luksOpen /dev/loop0 testfs<br>
-<br>
-# mount it<br>
-$ mount /dev/mapper/testfs /mnt/test<br></code></p>
-
-
-
+<p><img class="center" src="http://2.imgland.net/rQTrN.png" width="500" height="354" title="PlackowaIzbaKielce" ></p>
 </div>
 
 
@@ -201,21 +143,15 @@ $ mount /dev/mapper/testfs /mnt/test<br></code></p>
   
 
 
-<time datetime="2009-08-19T07:56:00+02:00" pubdate data-updated="true">2009-08-19</time>
+<time datetime="2014-05-08T11:47:59+02:00" pubdate data-updated="true">2014-05-08</time>
       
-
-<span class="categories">
-  
-    <a class='category' href='/categories/do-zapamietania/'>Do zapamiętania</a>, <a class='category' href='/categories/linux/'>Linux</a>
-  
-</span>
 
 
     </p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/" >Tweet</a>
   
   
   
@@ -226,10 +162,8 @@ $ mount /dev/mapper/testfs /mnt/test<br></code></p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2009/05/23/refleksje-przeniesienie-domeny-z-netart-do-ovh/" title="Previous Post: Refleksje - przeniesienie domeny z netart do ovh">&laquo; Refleksje - przeniesienie domeny z netart do ovh</a>
+        <a class="basic-alignment left" href="/2014/05/07/windows-8-za-darmo/" title="Previous Post: Windows 8 (i nie tylko) za darmo">&laquo; Windows 8 (i nie tylko) za darmo</a>
       
-      
-        <a class="basic-alignment right" href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/" title="Next Post: Automatyczna zamiana nazw plików i zawartości">Automatyczna zamiana nazw plików i zawartości &raquo;</a>
       
     </p>
   </footer>
@@ -310,8 +244,8 @@ $ mount /dev/mapper/testfs /mnt/test<br></code></p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/';
-        var disqus_url = 'http://blog.codemonkey.pl/2009/08/19/do-zapamietania-linuks-szyfrowanie-za-pomoca-dm-crypt-luks/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/';
         var disqus_script = 'embed.js';
       
     (function () {
