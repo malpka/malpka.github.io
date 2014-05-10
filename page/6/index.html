@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Problem, który miałem ostatnio do rozwiązania wyglądał następująco: W systemie domyślnym MTA jest qmail. po odebraniu wiadomości email wysłanej za &hellip;">
+  <meta name="description" content="Konwersja stron kodowych, wszystko za pomocą linuksowego iconv, który jest również dostępny dla Windows: Najprościej zrobić to po prostu podając &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/6/" />
-<meta property="og:description" content="Problem, który miałem ostatnio do rozwiązania wyglądał następująco: W systemie domyślnym MTA jest qmail. po odebraniu wiadomości email wysłanej za pomocą funkcji mail() w skrypcie php, w treści listu &hellip;" />
+<meta property="og:description" content="Konwersja stron kodowych, wszystko za pomocą linuksowego iconv, który jest również dostępny dla Windows: Najprościej zrobić to po prostu podając kodowanie docelowe 1
+iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +90,79 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/02/25/konwersja-windows-1250-na-iso-8859-2/">Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 &#8216;y)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-02-25T17:44:00+01:00" pubdate data-updated="true">2007-02-25</time>
+        
+           | <a href="/2007/02/25/konwersja-windows-1250-na-iso-8859-2/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/02/25/konwersja-windows-1250-na-iso-8859-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Konwersja stron kodowych, wszystko za pomocą linuksowego <code>iconv</code>, który <a href="http://gnuwin32.sourceforge.net/packages/libiconv.htm">jest również dostępny dla Windows</a>:</p>
+
+<p>Najprościej zrobić to po prostu podając kodowanie docelowe</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -t UTF-8 plik_wejsciowy.txt &gt; plik_wyjsciowy.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ale można również wymusić</p>
+
+<h2>Zamiana ISO-8859-2 na Windows-1250</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f CP1250 -t ISO8859-2 plik_cp1250.txt &gt; plik_iso8859-2.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Zamiana Windows-1250 na ISO-8859-2</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f ISO8859-2 -t CP1250 plik_iso8859-2.txt &gt; plik_cp1250.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Zamiana ISO-8859-2 na UTF-8</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f CP1250 -t UTF-8 plik_cp1250.txt &gt; plik_utf-8.txt</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Zamiana Windows-1250 na UTF-8</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>iconv -f ISO8859-2 -t UTF-8 plik_iso8859-2.txt &gt; plik_utf-8.txt</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -543,6 +617,10 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/10/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie+-+Copy/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -556,10 +634,6 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     
       <li class="post">
         <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>

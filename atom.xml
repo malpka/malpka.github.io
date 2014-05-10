@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-10T18:10:22+02:00</updated>
+  <updated>2014-05-10T18:14:30+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress i Dropbox]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox/"/>
+    <updated>2014-05-10T18:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox</id>
+    <content type="html"><![CDATA[<p>Testowy wpis</p>
+
+<p><img class="center" src="http://blog.codemonkey.pl/images/GitGit.png" width="910" height="380" title="gitgit" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rabat 10 zł na zamówienie w Plackowej Izbie]]></title>
@@ -1813,52 +1824,6 @@ intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przys
 dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
 <a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
 czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu]]></title>
-    <link href="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
-    <updated>2012-10-08T10:41:00+02:00</updated>
-    <id>http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
-    <content type="html"><![CDATA[<p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
-
-
-<p></p>
-
-
-<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
-
-
-<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować&#8230; ;)</p>
-
-
-<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
-
-
-<p>Przykładowe wyjście:</p>
-
-
-<p><code>Microsoft.Practices.CompositeUI.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.CompositeUI.WinForms.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
-version: v2.0.50727</code></p>
-
-
-<p></p>
-
-
-<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
-
-
-<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
-
-
-
 ]]></content>
   </entry>
   

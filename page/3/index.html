@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Kolejne kilka linijek, które ułatwią mi kiedyś życie. Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B. &hellip;">
+  <meta name="description" content="Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora. for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p / &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/3/" />
-<meta property="og:description" content="Kolejne kilka linijek, które ułatwią mi kiedyś życie. Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B.C.D. W moim przypadku biblioteki stworzone chyba w &hellip;" />
+<meta property="og:description" content="Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora. for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,82 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-08T10:41:00+02:00" pubdate data-updated="true">2012-10-08</time>
+        
+           | <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
+
+
+<p></p>
+
+
+<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
+
+
+<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować&#8230; ;)</p>
+
+
+<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
+
+
+<p>Przykładowe wyjście:</p>
+
+
+<p><code>Microsoft.Practices.CompositeUI.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.CompositeUI.WinForms.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
+version: v2.0.50727<br>
+Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
+version: v2.0.50727</code></p>
+
+
+<p></p>
+
+
+<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
+
+
+<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1511,66 +1587,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Automatyczna zamiana nazw plików i zawartości</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-23T12:20:00+02:00" pubdate data-updated="true">2009-10-23</time>
-        
-           | <a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
-
-
-<p>Rozwiązanie</p>
-
-
-<p>Zamiana zawartości:</p>
-
-
-<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
-
-
-<p>Zmiana nazw plików</p>
-
-
-<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
-
-
-<p>To ostatnie wywołać kilka razy</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -1588,6 +1604,10 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/10/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie+-+Copy/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -1601,10 +1621,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
     
       <li class="post">
         <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>
