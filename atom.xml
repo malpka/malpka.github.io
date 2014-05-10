@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-10T19:19:17+02:00</updated>
+  <updated>2014-05-10T19:51:46+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -15,9 +15,22 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress i Dropbox]]></title>
-    <link href="http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox/"/>
+    <link href="http://blog.codemonkey.pl/2014/05/11/Octopress-i-Dropbox/"/>
+    <updated>2014-05-11T18:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/11/Octopress-i-Dropbox</id>
+    <content type="html"><![CDATA[<p>Testowy wpis</p>
+
+<p><img class="center" src="http://blog.codemonkey.pl/images/GitGit.png" width="910" height="380" title="gitgit" ></p>
+
+<p>Test dalszy</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress i Dropbox]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox-2/"/>
     <updated>2014-05-10T18:47:59+02:00</updated>
-    <id>http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox</id>
+    <id>http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox-2</id>
     <content type="html"><![CDATA[<p>Testowy wpis</p>
 
 <p><img class="center" src="http://blog.codemonkey.pl/images/GitGit.png" width="910" height="380" title="gitgit" ></p>
@@ -1806,26 +1819,6 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
 <li>zmiana treści na markdown</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://blog.codemonkey.pl/2014/01/03/hello-world/"/>
-    <updated>2014-01-03T13:24:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2014/01/03/hello-world</id>
-    <content type="html"><![CDATA[<p>Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
-zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów raczej nie brak, nawet sporo czeka
-w kolejce na opublikowanie. Jedynie wolny czas będzie ograniczeniem ;&ndash;)</p>
-
-<p>Dodatkowo będzie to miejsce na najciekawsze znaleziska internetowe &ndash; zabawne, praktyczne,
-intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przyszłości a nie ma tego gdzie trzymać
-(obecnie lista zakładek w przeglądarce ma około 880 pozycji, boję się tam zaglądać!).</p>
-
-<p>W planach jest zapoznanie się z <a href="http://daringfireball.net/projects/markdown/">Markdown&#8217;em</a>,
-dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
-<a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
-czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
 ]]></content>
   </entry>
   

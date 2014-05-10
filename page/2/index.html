@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako &hellip;">
+  <meta name="description" content="Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,8 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/2/" />
-<meta property="og:description" content="W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako administrator.
-Domyślnie zamiast katalogu bieżącego &hellip;" />
+<meta property="og:description" content="Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do których zalogowany użytkownik ma pełne &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -90,6 +91,81 @@ Domyślnie zamiast katalogu bieżącego &hellip;" />
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/09/najprostsza-autoaktualizacja/">Najprostsza instalacja i aktualizacja aplikacji skryptem bat</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-09T07:43:53+02:00" pubdate data-updated="true">2014-04-09</time>
+        
+           | <a href="/2014/04/09/najprostsza-autoaktualizacja/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do których zalogowany użytkownik ma pełne uprawnienia.
+W sieci lokalnej da się to zrealizować prostym skryptem batch.</p>
+
+<p>Poniższy skrypt jest nawet bardziej &lsquo;inteligentny&rsquo;, gdyż za pomocą xcopy można kopiować jedynie nowsze pliki,
+co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na uruchomienie właściwej aplikacji.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="s2">&quot;App is starting, please wait...&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">set</span> <span class="nv">targetdir</span><span class="o">=</span><span class="nv">%APPDATA%</span><span class="n">/AppFolder</span>
+</span><span class='line'><span class="k">if</span> not <span class="k">exist</span> <span class="s2">&quot;%targetdir%&quot;</span> (
+</span><span class='line'> mkdir <span class="s2">&quot;%targetdir%&quot;</span>
+</span><span class='line'>)
+</span><span class='line'>xcopy \\<span class="m">192</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>\SourceDir <span class="s2">&quot;%targetdir%&quot;</span> <span class="n">/E</span> <span class="n">/D</span> <span class="n">/C</span> <span class="n">/Y</span>
+</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;%targetdir%&quot;</span>
+</span><span class='line'>App.exe
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://ss64.com/nt/xcopy.html">xcopy</a>.</p>
+
+<ul>
+<li><code>/D</code> &ndash; kopiuje tylko te pliki, które mają nowszą datę modyfikacji</li>
+<li><code>/E</code> &ndash; kopiuje katalogi, również puste</li>
+<li><code>/C</code> &ndash; kontynuacja przy błędzie</li>
+<li><code>/Y</code> &ndash; automatyczne potwierdzanie nadpisania plików</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1523,56 +1599,6 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/03/hello-world/">Hello World</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-03T13:24:00+01:00" pubdate data-updated="true">2014-01-03</time>
-        
-           | <a href="/2014/01/03/hello-world/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/01/03/hello-world/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
-zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów raczej nie brak, nawet sporo czeka
-w kolejce na opublikowanie. Jedynie wolny czas będzie ograniczeniem ;&ndash;)</p>
-
-<p>Dodatkowo będzie to miejsce na najciekawsze znaleziska internetowe &ndash; zabawne, praktyczne,
-intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przyszłości a nie ma tego gdzie trzymać
-(obecnie lista zakładek w przeglądarce ma około 880 pozycji, boję się tam zaglądać!).</p>
-
-<p>W planach jest zapoznanie się z <a href="http://daringfireball.net/projects/markdown/">Markdown&#8217;em</a>,
-dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
-<a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
-czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -1590,7 +1616,11 @@ czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2014/05/10/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+        <a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a>
       </li>
     
       <li class="post">
@@ -1603,10 +1633,6 @@ czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
   </ul>

@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Konwersja stron kodowych, wszystko za pomocą linuksowego iconv, który jest również dostępny dla Windows: Najprościej zrobić to po prostu podając &hellip;">
+  <meta name="description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
+jeśli nie to (Ubuntu) ` &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,8 +52,17 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/6/" />
-<meta property="og:description" content="Konwersja stron kodowych, wszystko za pomocą linuksowego iconv, który jest również dostępny dla Windows: Najprościej zrobić to po prostu podając kodowanie docelowe 1
-iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
+<meta property="og:description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
+jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
+2
+3
+4
+5
+6
+7
+8
+9
+10 &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -90,6 +100,78 @@ iconv -t UTF-8 plik_wejsciowy.txt &hellip;" />
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/">Automatyczny skrypt do łączenia (np FTP)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-03T22:33:00+01:00" pubdate data-updated="true">2007-03-03</time>
+        
+           | <a href="/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)<br>
+jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env expect</span>
+</span><span class='line'>
+</span><span class='line'><span class="nb">set </span>username yourUsername
+</span><span class='line'><span class="nb">set </span>pass yourPasswd
+</span><span class='line'><span class="nb">set </span>host theHost
+</span><span class='line'>
+</span><span class='line'>spawn ftp <span class="k">${</span><span class="nv">username</span><span class="k">}</span>@<span class="k">${</span><span class="nv">host</span><span class="k">}</span>
+</span><span class='line'>expect <span class="s2">&quot;Password:&quot;</span>
+</span><span class='line'>send <span class="s2">&quot;${pass}\r&quot;</span>
+</span><span class='line'>expect <span class="s2">&quot;ftp&amp;gt; &quot;</span>
+</span><span class='line'>interact
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>`</p>
+
+<p>Szczerze mówiąc potrzebna mi była wersja przerobiona na ssh, w połączeniu z powyższym postem. Jeszcze tylko wrzucenie do autostartu i będzie linuxowy &ldquo;trojan&rdquo; ;) dla osoby znajdującej się za natem</p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -617,7 +699,11 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2014/05/10/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+        <a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a>
       </li>
     
       <li class="post">
@@ -630,10 +716,6 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
   </ul>

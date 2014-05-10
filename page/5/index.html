@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów: apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'` Takie rzeczy &hellip;">
+  <meta name="description" content="Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/5/" />
-<meta property="og:description" content="Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów: apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'` Takie rzeczy w dystrybucjach debianopochodnych są po prostu &hellip;" />
+<meta property="og:description" content="Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy brak pliku &#8230; ;) ) quiz:/var/spool/mqueue- &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,92 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/07/rm-fail/">RM fail</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-07T22:18:00+01:00" pubdate data-updated="true">2009-01-07</time>
+        
+           | <a href="/2009/01/07/rm-fail/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/01/07/rm-fail/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy brak pliku &#8230; ;) )</p>
+
+
+<p><code>quiz:/var/spool/mqueue-client# <b>rm *</b><br>
+-bash: /bin/rm: <b>Lista argumentów za długa</b></code></p>
+
+
+<p><EXCERPT><p>hmmm</p></p>
+
+<p><code>quiz:/var/spool/mqueue-client# ls -1 | wc<br>
+13625 13625 231625</code></p>
+
+
+<p>Trochę ponad 10k plików i się remik gubi.<br>
+Powodem był &#8216;odrobinkę&#8217; nieskonfigurowany sendmail</p>
+
+
+<p>Rozwiązaniem może być na przykład skorzystanie z xargs, który wykonuje polecenie z argumentami podanymi przez stdin:</p>
+
+
+<p><code>quiz:/var/spool/mqueue-client# ls -1 | xargs rm ...<br>
+quiz:/var/spool/mqueue-client# ls -1 | wc<br>
+0 0 0</code></p>
+
+
+<p>Mały test innego sposobu: <code># for i in `seq 1 13625` ; do echo "666" &gt; $i; done #tworzenie plikow<br>
+...<br>
+# find . -delete</code><br>
+I co się okazuje:<br>
+<code># time find . -delete<br>
+<br>
+real 0m1.421s<br>
+user 0m0.068s<br>
+sys 0m1.336s<br>
+<br>
+<br>
+# time ls -1 | xargs rm<br>
+<br>
+real 0m2.955s<br>
+user 0m0.440s<br>
+sys 0m2.400s</code><br>
+Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odrobinę dłużej.</p>
+
+
+<p>PS. Niech ktoś coś zrobi z tym certyfikatem &#8230;</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -649,78 +735,6 @@ Grafikiem nie jestem więc wygląda jak wygląda;). Oczywiście chciałem zastos
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/">Automatyczny skrypt do łączenia (np FTP)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-03-03T22:33:00+01:00" pubdate data-updated="true">2007-03-03</time>
-        
-           | <a href="/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)<br>
-jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env expect</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">set </span>username yourUsername
-</span><span class='line'><span class="nb">set </span>pass yourPasswd
-</span><span class='line'><span class="nb">set </span>host theHost
-</span><span class='line'>
-</span><span class='line'>spawn ftp <span class="k">${</span><span class="nv">username</span><span class="k">}</span>@<span class="k">${</span><span class="nv">host</span><span class="k">}</span>
-</span><span class='line'>expect <span class="s2">&quot;Password:&quot;</span>
-</span><span class='line'>send <span class="s2">&quot;${pass}\r&quot;</span>
-</span><span class='line'>expect <span class="s2">&quot;ftp&amp;gt; &quot;</span>
-</span><span class='line'>interact
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>`</p>
-
-<p>Szczerze mówiąc potrzebna mi była wersja przerobiona na ssh, w połączeniu z powyższym postem. Jeszcze tylko wrzucenie do autostartu i będzie linuxowy &ldquo;trojan&rdquo; ;) dla osoby znajdującej się za natem</p></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -738,7 +752,11 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2014/05/10/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+        <a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a>
       </li>
     
       <li class="post">
@@ -751,10 +769,6 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
   </ul>
