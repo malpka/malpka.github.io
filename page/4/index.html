@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania &hellip;">
+  <meta name="description" content="Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem stronę na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/4/" />
-<meta property="og:description" content="Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite &hellip;" />
+<meta property="og:description" content="Zacząłęm to pisać sam, nawet już z pamięci, ale znalazłem stronę na której jest dokładnie to co chciałem. Nie lubię korzystać w taki sposób z czyjejś pracy ale tym razem to będzie prywatnie dla mnie &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,123 +89,6 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-12-29T09:01:00+01:00" pubdate data-updated="true">2009-12-29</time>
-        
-           | <a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
-
-
-<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
-
-
-<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
-
-
-<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
-
-
-<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
-
-
-<p>Sam długo używałem zmiany parametru &#8220;Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie&#8221; w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Automatyczna zamiana nazw plików i zawartości</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-10-23T12:20:00+02:00" pubdate data-updated="true">2009-10-23</time>
-        
-           | <a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
-
-
-<p>Rozwiązanie</p>
-
-
-<p>Zamiana zawartości:</p>
-
-
-<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
-
-
-<p>Zmiana nazw plików</p>
-
-
-<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
-
-
-<p>To ostatnie wywołać kilka razy</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -865,6 +748,135 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/01/07/rm-fail/">RM fail</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-01-07T22:18:00+01:00" pubdate data-updated="true">2009-01-07</time>
+        
+           | <a href="/2009/01/07/rm-fail/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/01/07/rm-fail/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy brak pliku &#8230; ;) )</p>
+
+
+<p><code>quiz:/var/spool/mqueue-client# <b>rm *</b><br>
+-bash: /bin/rm: <b>Lista argumentów za długa</b></code></p>
+
+
+<p><EXCERPT><p>hmmm</p></p>
+
+<p><code>quiz:/var/spool/mqueue-client# ls -1 | wc<br>
+13625 13625 231625</code></p>
+
+
+<p>Trochę ponad 10k plików i się remik gubi.<br>
+Powodem był &#8216;odrobinkę&#8217; nieskonfigurowany sendmail</p>
+
+
+<p>Rozwiązaniem może być na przykład skorzystanie z xargs, który wykonuje polecenie z argumentami podanymi przez stdin:</p>
+
+
+<p><code>quiz:/var/spool/mqueue-client# ls -1 | xargs rm ...<br>
+quiz:/var/spool/mqueue-client# ls -1 | wc<br>
+0 0 0</code></p>
+
+
+<p>Mały test innego sposobu: <code># for i in `seq 1 13625` ; do echo "666" &gt; $i; done #tworzenie plikow<br>
+...<br>
+# find . -delete</code><br>
+I co się okazuje:<br>
+<code># time find . -delete<br>
+<br>
+real 0m1.421s<br>
+user 0m0.068s<br>
+sys 0m1.336s<br>
+<br>
+<br>
+# time ls -1 | xargs rm<br>
+<br>
+real 0m2.955s<br>
+user 0m0.440s<br>
+sys 0m2.400s</code><br>
+Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odrobinę dłużej.</p>
+
+
+<p>PS. Niech ktoś coś zrobi z tym certyfikatem &#8230;</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2008/10/04/tricki-w-debianie/">Tricki w Debianie</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-04T08:54:00+02:00" pubdate data-updated="true">2008-10-04</time>
+        
+           | <a href="/2008/10/04/tricki-w-debianie/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2008/10/04/tricki-w-debianie/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Usuwanie ostatnio zainstalowanych (niepotrzebnie) pakietów:</p>
+
+<p><code>apt-get --purge remove `cat dpkg.log | grep " installed" | awk '{print $5}'`</code></p>
+
+<p>Takie rzeczy w dystrybucjach debianopochodnych są po prostu cudowne</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -882,14 +894,6 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a>
-      </li>
-    
-      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie+-+Copy/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -899,6 +903,14 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>

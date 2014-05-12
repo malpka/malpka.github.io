@@ -9,8 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
-zmagania z &ndash; najczęściej &hellip;">
+  <meta name="description" content="Kolejne kilka linijek, które ułatwią mi kiedyś życie. Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,8 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/3/" />
-<meta property="og:description" content="Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
-zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów &hellip;" />
+<meta property="og:description" content="Kolejne kilka linijek, które ułatwią mi kiedyś życie. Czasem zdarza się, że pobieranie wersji pliku dll w C# zwraca śmieci zamiast standardowych A.B.C.D. W moim przypadku biblioteki stworzone chyba w &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -91,132 +89,6 @@ zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistości�
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/03/hello-world/">Hello World</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-03T13:24:00+01:00" pubdate data-updated="true">2014-01-03</time>
-        
-           | <a href="/2014/01/03/hello-world/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/01/03/hello-world/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
-zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów raczej nie brak, nawet sporo czeka
-w kolejce na opublikowanie. Jedynie wolny czas będzie ograniczeniem ;&ndash;)</p>
-
-<p>Dodatkowo będzie to miejsce na najciekawsze znaleziska internetowe &ndash; zabawne, praktyczne,
-intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przyszłości a nie ma tego gdzie trzymać
-(obecnie lista zakładek w przeglądarce ma około 880 pozycji, boję się tam zaglądać!).</p>
-
-<p>W planach jest zapoznanie się z <a href="http://daringfireball.net/projects/markdown/">Markdown&#8217;em</a>,
-dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
-<a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
-czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T10:41:00+02:00" pubdate data-updated="true">2012-10-08</time>
-        
-           | <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
-
-
-<p></p>
-
-
-<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
-
-
-<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować&#8230; ;)</p>
-
-
-<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
-
-
-<p>Przykładowe wyjście:</p>
-
-
-<p><code>Microsoft.Practices.CompositeUI.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.CompositeUI.WinForms.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
-version: v2.0.50727</code></p>
-
-
-<p></p>
-
-
-<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
-
-
-<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -1582,6 +1454,123 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-29T09:01:00+01:00" pubdate data-updated="true">2009-12-29</time>
+        
+           | <a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
+
+
+<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
+
+
+<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
+
+
+<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
+
+
+<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
+
+
+<p>Sam długo używałem zmiany parametru &#8220;Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie&#8221; w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Automatyczna zamiana nazw plików i zawartości</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-10-23T12:20:00+02:00" pubdate data-updated="true">2009-10-23</time>
+        
+           | <a href="/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/10/23/automatyczna-zamiana-nazw-plikow-i-zawartosci/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą.</p>
+
+
+<p>Rozwiązanie</p>
+
+
+<p>Zamiana zawartości:</p>
+
+
+<p><code>grep -rl NazwaPierwotna . | xargs sed -i -e 's/NazwaPierwotna/NazwaDocelowa/g'</code></p>
+
+
+<p>Zmiana nazw plików</p>
+
+
+<p><code>find . -name "NazwaPierwotna*" -exec rename 's/NazwaPierwotna/NazwaDocelowa/' {} \;</code></p>
+
+
+<p>To ostatnie wywołać kilka razy</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -1599,14 +1588,6 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a>
-      </li>
-    
-      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie+-+Copy/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -1616,6 +1597,14 @@ cd ~<br>wget http://www1.mplayerhq.hu/MPlayer/releases/codecs/all-20061022.tar.b
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>

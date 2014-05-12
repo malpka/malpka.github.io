@@ -9,8 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Testowy wpis Test dalszy
-">
+  <meta name="description" content="Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,8 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Testowy wpis Test dalszy
-" />
+<meta property="og:description" content="Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy przysługuje jedynie nowym klientom. Jeśli powyższy byłby &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -91,92 +89,6 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-11T18:47:59+02:00" pubdate data-updated="true">2014-05-11</time>
-        
-           | <a href="/2014/05/11/Octopress-i-Dropbox/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/05/11/Octopress-i-Dropbox/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Testowy wpis</p>
-
-<p><img class="center" src="/images/GitGit.png" width="910" height="380" title="gitgit" ></p>
-
-<p>Test dalszy</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-10T18:47:59+02:00" pubdate data-updated="true">2014-05-10</time>
-        
-           | <a href="/2014/05/10/Octopress-i-Dropbox-2/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/05/10/Octopress-i-Dropbox-2/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Testowy wpis</p>
-
-<p><img class="center" src="/images/GitGit.png" width="910" height="380" title="gitgit" ></p>
-
-<p>Test dalszy</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -740,6 +652,151 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/09/najprostsza-autoaktualizacja/">Najprostsza instalacja i aktualizacja aplikacji skryptem bat</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-09T07:43:53+02:00" pubdate data-updated="true">2014-04-09</time>
+        
+           | <a href="/2014/04/09/najprostsza-autoaktualizacja/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Najprostszy schemat instalacji i autoaktualizacji aplikacji,
+to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do których zalogowany użytkownik ma pełne uprawnienia.
+W sieci lokalnej da się to zrealizować prostym skryptem batch.</p>
+
+<p>Poniższy skrypt jest nawet bardziej &lsquo;inteligentny&rsquo;, gdyż za pomocą xcopy można kopiować jedynie nowsze pliki,
+co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na uruchomienie właściwej aplikacji.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="s2">&quot;App is starting, please wait...&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">set</span> <span class="nv">targetdir</span><span class="o">=</span><span class="nv">%APPDATA%</span><span class="n">/AppFolder</span>
+</span><span class='line'><span class="k">if</span> not <span class="k">exist</span> <span class="s2">&quot;%targetdir%&quot;</span> (
+</span><span class='line'> mkdir <span class="s2">&quot;%targetdir%&quot;</span>
+</span><span class='line'>)
+</span><span class='line'>xcopy \\<span class="m">192</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>\SourceDir <span class="s2">&quot;%targetdir%&quot;</span> <span class="n">/E</span> <span class="n">/D</span> <span class="n">/C</span> <span class="n">/Y</span>
+</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;%targetdir%&quot;</span>
+</span><span class='line'>App.exe
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://ss64.com/nt/xcopy.html">xcopy</a>.</p>
+
+<ul>
+<li><code>/D</code> &ndash; kopiuje tylko te pliki, które mają nowszą datę modyfikacji</li>
+<li><code>/E</code> &ndash; kopiuje katalogi, również puste</li>
+<li><code>/C</code> &ndash; kontynuacja przy błędzie</li>
+<li><code>/Y</code> &ndash; automatyczne potwierdzanie nadpisania plików</li>
+</ul>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-06T15:47:03+02:00" pubdate data-updated="true">2014-04-06</time>
+        
+           | <a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="left" src="http://i.imgur.com/mNHnpU9.png" width="256" height="256" title="cmd" ></p>
+
+<p>W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako administrator.
+Domyślnie zamiast katalogu bieżącego jest to:</p>
+
+<p><code>%SYSTEM%</code></p>
+
+<p>czyli na przykład</p>
+
+<p><code>C:\Windows\system32</code></p>
+
+<p>Aby przywrócić funkcjonalność starych skryptów można zastosować na początku  przejście do katalogu wywołania:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>setlocal enableextensions
+</span><span class='line'>@cd /d "%~dp0"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>gdzie:</p>
+
+<p><code>@setlocal enableextensions</code> &ndash; <a href="http://ss64.com/nt/setlocal.html">umożliwia dostęp do rozszerzenia CMD</a></p>
+
+<p>Ponieważ:  <code>%0</code> to pełna ścieżka do wywoływanego programu (skryptu)</p>
+
+<p>to:</p>
+
+<p><code>@cd /d "%~dp0"</code> &ndash; przejście do katalogu wywołania, wykorzystujące <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">dodatkowe zmienne skryptowe</a></p>
+
+<p><code>%0</code> to standardowo nazwa pliku (skryptu) wykonywalnego wraz ze ścieżką, a <code>~dp</code> wyciągnięcie z niej litery dysku oraz samej ścieżki do katalogu.</p>
+
+<p><a href="http://www.codeproject.com/Tips/119828/Running-a-bat-file-as-administrator-Correcting-cur">Źródło</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -755,14 +812,6 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/2014/05/11/Octopress-i-Dropbox/">Octopress i Dropbox</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/10/Octopress-i-Dropbox-2/">Octopress i Dropbox</a>
-      </li>
-    
-      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie+-+Copy/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -772,6 +821,14 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>
