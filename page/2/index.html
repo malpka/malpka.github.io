@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="GANZ PixelPro ZN-MB243M IP surveillance Camera supports two live streams (RTSP or MJPEG), that can be enabled and configured directly from control &hellip;">
+  <meta name="description" content="W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,8 +51,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/2/" />
-<meta property="og:description" content="GANZ PixelPro ZN-MB243M IP surveillance Camera supports two live streams (RTSP or MJPEG), that can be enabled and configured directly from control web panel.
-However the manual doesn&rsquo;t mention &hellip;" />
+<meta property="og:description" content="W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako administrator.
+Domyślnie zamiast katalogu bieżącego &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -90,6 +90,76 @@ However the manual doesn&rsquo;t mention &hellip;" />
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-06T15:47:03+02:00" pubdate data-updated="true">2014-04-06</time>
+        
+           | <a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="left" src="http://i.imgur.com/mNHnpU9.png" width="256" height="256" title="cmd" ></p>
+
+<p>W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako administrator.
+Domyślnie zamiast katalogu bieżącego jest to:</p>
+
+<p><code>%SYSTEM%</code></p>
+
+<p>czyli na przykład</p>
+
+<p><code>C:\Windows\system32</code></p>
+
+<p>Aby przywrócić funkcjonalność starych skryptów można zastosować na początku  przejście do katalogu wywołania:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>setlocal enableextensions
+</span><span class='line'>@cd /d "%~dp0"</span></code></pre></td></tr></table></div></figure>
+
+
+<p>gdzie:</p>
+
+<p><code>@setlocal enableextensions</code> &ndash; <a href="http://ss64.com/nt/setlocal.html">umożliwia dostęp do rozszerzenia CMD</a></p>
+
+<p>Ponieważ:  <code>%0</code> to pełna ścieżka do wywoływanego programu (skryptu)</p>
+
+<p>to:</p>
+
+<p><code>@cd /d "%~dp0"</code> &ndash; przejście do katalogu wywołania, wykorzystujące <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">dodatkowe zmienne skryptowe</a></p>
+
+<p><code>%0</code> to standardowo nazwa pliku (skryptu) wykonywalnego wraz ze ścieżką, a <code>~dp</code> wyciągnięcie z niej litery dysku oraz samej ścieżki do katalogu.</p>
+
+<p><a href="http://www.codeproject.com/Tips/119828/Running-a-bat-file-as-administrator-Correcting-cur">Źródło</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1503,82 +1573,6 @@ czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-10-08T10:41:00+02:00" pubdate data-updated="true">2012-10-08</time>
-        
-           | <a href="/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
-
-
-<p></p>
-
-
-<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
-
-
-<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować&#8230; ;)</p>
-
-
-<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
-
-
-<p>Przykładowe wyjście:</p>
-
-
-<p><code>Microsoft.Practices.CompositeUI.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.CompositeUI.WinForms.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
-version: v2.0.50727</code></p>
-
-
-<p></p>
-
-
-<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
-
-
-<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -1596,6 +1590,10 @@ version: v2.0.50727</code></p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -1609,10 +1607,6 @@ version: v2.0.50727</code></p>
     
       <li class="post">
         <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>

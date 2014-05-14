@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-14T10:30:19+02:00</updated>
+  <updated>2014-05-14T11:30:15+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git na apache2 przez davfs]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/"/>
+    <updated>2014-05-14T16:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs</id>
+    <content type="html"><![CDATA[<p>Szybkie repozytorium GIT przez HTTP w Debianie</p>
+
+<p>Tworzymy podkatalog w katalogu VHosta</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /var/www/domain.com
+</span><span class='line'>mkdir myrepo.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Inicjacja repozytorium</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>myrepo.git
+</span><span class='line'>git --bare init
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ustawienie praw dostępu</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chown -R www-data:www-data .
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dostosowanie gita pod http</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git update-server-info
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Włączenie davfs</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>a2enmod dav_fs
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Location</span> <span class="err">/myrepo.git</span><span class="nt">&gt;</span>
+</span><span class='line'>    DAV on
+</span><span class='line'>    AuthType None
+</span><span class='line'><span class="nt">&lt;/Location&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Restart apache</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apache2 -k restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Pierwszy test przez przeglądarkę: <code>http://domain.com/myrepo.git</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Rabat 10 zł na zamówienie w Plackowej Izbie]]></title>
@@ -1813,52 +1883,6 @@ intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przys
 dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
 <a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
 czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[1 liner - pobieranie wersji .NET framework dla bibliotek w katalogu]]></title>
-    <link href="http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata/"/>
-    <updated>2012-10-08T10:41:00+02:00</updated>
-    <id>http://blog.codemonkey.pl/2012/10/08/1-liner-pobieranie-wersji-net-framework-dla-bibliotek-w-kata</id>
-    <content type="html"><![CDATA[<p>Przydatne, gdy trzeba określić ostateczną wersję frameworka, np do wymagań instalatora.</p>
-
-
-<p></p>
-
-
-<p><code>for %p in (*.dll) do @echo %p &amp;&amp; @ildasm.exe %p /metadata[=MDHEADER] /text /noil | grep -E -o "version: v[a-z0-9\.]+"</code></p>
-
-
-<p>Nie ma grepa na Windowsie? Jak tak można w ogóle pracować&#8230; ;)</p>
-
-
-<p><a href="http://gnuwin32.sourceforge.net/packages/grep.htm">http://gnuwin32.sourceforge.net/packages/grep.htm</a></p>
-
-
-<p>Przykładowe wyjście:</p>
-
-
-<p><code>Microsoft.Practices.CompositeUI.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.CompositeUI.WinForms.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Caching.dll<br>
-version: v2.0.50727<br>
-Microsoft.Practices.EnterpriseLibrary.Common.dll<br>
-version: v2.0.50727</code></p>
-
-
-<p></p>
-
-
-<p><a href="http://stackoverflow.com/questions/3460982/determine-net-framework-version-for-dll">Źródło inspiracji</a></p>
-
-
-<p>Oczywiście są również wersje okienkowe, jak wspomniany w odpowiedziach <a href="http://www.jetbrains.com/decompiler/">dotPeek</a>.</p>
-
-
-
 ]]></content>
   </entry>
   

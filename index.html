@@ -9,7 +9,10 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy &hellip;">
+  <meta name="description" content="Szybkie repozytorium GIT przez HTTP w Debianie Tworzymy podkatalog w katalogu VHosta 1
+2
+cd /var/www/domain.com
+mkdir myrepo.git Inicjacja &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +54,13 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Do końca maja ważny jest rabat 10 zł na zamówienie powyżej 25 zł w Plackowej Izbie na Zagórskiej w Kielcach w portalu pyszne.pl. Kod rabatowy przysługuje jedynie nowym klientom. Jeśli powyższy byłby &hellip;" />
+<meta property="og:description" content="Szybkie repozytorium GIT przez HTTP w Debianie Tworzymy podkatalog w katalogu VHosta 1
+2
+cd /var/www/domain.com
+mkdir myrepo.git Inicjacja repozytorium 1
+2
+cd myrepo.git
+git --bare init Ustawienie &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +98,106 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-14T16:47:59+02:00" pubdate data-updated="true">2014-05-14</time>
+        
+           | <a href="/2014/05/14/git-na-apache2-przez-davfs/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Szybkie repozytorium GIT przez HTTP w Debianie</p>
+
+<p>Tworzymy podkatalog w katalogu VHosta</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /var/www/domain.com
+</span><span class='line'>mkdir myrepo.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Inicjacja repozytorium</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>myrepo.git
+</span><span class='line'>git --bare init
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ustawienie praw dostępu</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chown -R www-data:www-data .
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dostosowanie gita pod http</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git update-server-info
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Włączenie davfs</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>a2enmod dav_fs
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Location</span> <span class="err">/myrepo.git</span><span class="nt">&gt;</span>
+</span><span class='line'>    DAV on
+</span><span class='line'>    AuthType None
+</span><span class='line'><span class="nt">&lt;/Location&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Restart apache</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apache2 -k restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Pierwszy test przez przeglądarkę: <code>http://domain.com/myrepo.git</code></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -727,76 +836,6 @@ co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Windows - uruchamianie skryptu bat / cmd jako administrator - problem aktualnej ścieżki wywołania</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-06T15:47:03+02:00" pubdate data-updated="true">2014-04-06</time>
-        
-           | <a href="/2014/04/06/windows-uruchamianie-bat-jako-administrator/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/06/windows-uruchamianie-bat-jako-administrator/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="left" src="http://i.imgur.com/mNHnpU9.png" width="256" height="256" title="cmd" ></p>
-
-<p>W nowych wersjach systemu Windows (8 i 8.1 na pewno, we wcześniejszych nie testowałem) zmienił się katalog wywołania skryptów uruchamianych jako administrator.
-Domyślnie zamiast katalogu bieżącego jest to:</p>
-
-<p><code>%SYSTEM%</code></p>
-
-<p>czyli na przykład</p>
-
-<p><code>C:\Windows\system32</code></p>
-
-<p>Aby przywrócić funkcjonalność starych skryptów można zastosować na początku  przejście do katalogu wywołania:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>setlocal enableextensions
-</span><span class='line'>@cd /d "%~dp0"</span></code></pre></td></tr></table></div></figure>
-
-
-<p>gdzie:</p>
-
-<p><code>@setlocal enableextensions</code> &ndash; <a href="http://ss64.com/nt/setlocal.html">umożliwia dostęp do rozszerzenia CMD</a></p>
-
-<p>Ponieważ:  <code>%0</code> to pełna ścieżka do wywoływanego programu (skryptu)</p>
-
-<p>to:</p>
-
-<p><code>@cd /d "%~dp0"</code> &ndash; przejście do katalogu wywołania, wykorzystujące <a href="http://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/percent.mspx?mfr=true">dodatkowe zmienne skryptowe</a></p>
-
-<p><code>%0</code> to standardowo nazwa pliku (skryptu) wykonywalnego wraz ze ścieżką, a <code>~dp</code> wyciągnięcie z niej litery dysku oraz samej ścieżki do katalogu.</p>
-
-<p><a href="http://www.codeproject.com/Tips/119828/Running-a-bat-file-as-administrator-Correcting-cur">Źródło</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -812,6 +851,10 @@ Domyślnie zamiast katalogu bieżącego jest to:</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
@@ -825,10 +868,6 @@ Domyślnie zamiast katalogu bieżącego jest to:</p>
     
       <li class="post">
         <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a>
       </li>
     
   </ul>

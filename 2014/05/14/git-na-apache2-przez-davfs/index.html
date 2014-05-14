@@ -5,12 +5,14 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Automatyczny skrypt do łączenia (np FTP) - co.de.mon.key</title>
+  <title>Git na apache2 przez davfs - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
-jeśli nie to (Ubuntu) ` &hellip;">
+  <meta name="description" content="Szybkie repozytorium GIT przez HTTP w Debianie Tworzymy podkatalog w katalogu VHosta 1
+2
+cd /var/www/domain.com
+mkdir myrepo.git Inicjacja &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -19,7 +21,7 @@ jeśli nie to (Ubuntu) ` &hellip;">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -49,20 +51,16 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Automatyczny skrypt do łączenia (np FTP)" />
+<meta property="og:title" content="Git na apache2 przez davfs" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" />
-<meta property="og:description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
-jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/" />
+<meta property="og:description" content="Szybkie repozytorium GIT przez HTTP w Debianie Tworzymy podkatalog w katalogu VHosta 1
 2
-3
-4
-5
-6
-7
-8
-9
-10 &hellip;" />
+cd /var/www/domain.com
+mkdir myrepo.git Inicjacja repozytorium 1
+2
+cd myrepo.git
+git --bare init Ustawienie &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -103,7 +101,7 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
   
   <header>
     
-      <h1 class="entry-title">Automatyczny skrypt do łączenia (np FTP)</h1>
+      <h1 class="entry-title">Git na apache2 przez davfs</h1>
     
     
       <p class="meta">
@@ -119,7 +117,7 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
   
 
 
-<time datetime="2007-03-03T22:33:00+01:00" pubdate data-updated="true">2007-03-03</time>
+<time datetime="2014-05-14T16:47:59+02:00" pubdate data-updated="true">2014-05-14</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -129,40 +127,68 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
   </header>
 
 
-<div class="entry-content"><p>Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)<br>
-jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
+<div class="entry-content"><p>Szybkie repozytorium GIT przez HTTP w Debianie</p>
+
+<p>Tworzymy podkatalog w katalogu VHosta</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd</span> /var/www/domain.com
+</span><span class='line'>mkdir myrepo.git
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Inicjacja repozytorium</p>
 
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">cd </span>myrepo.git
+</span><span class='line'>git --bare init
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ustawienie praw dostępu</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chown -R www-data:www-data .
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dostosowanie gita pod http</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git update-server-info
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Włączenie davfs</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>a2enmod dav_fs
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="c">#!/usr/bin/env expect</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">set </span>username yourUsername
-</span><span class='line'><span class="nb">set </span>pass yourPasswd
-</span><span class='line'><span class="nb">set </span>host theHost
-</span><span class='line'>
-</span><span class='line'>spawn ftp <span class="k">${</span><span class="nv">username</span><span class="k">}</span>@<span class="k">${</span><span class="nv">host</span><span class="k">}</span>
-</span><span class='line'>expect <span class="s2">&quot;Password:&quot;</span>
-</span><span class='line'>send <span class="s2">&quot;${pass}\r&quot;</span>
-</span><span class='line'>expect <span class="s2">&quot;ftp&amp;gt; &quot;</span>
-</span><span class='line'>interact
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Location</span> <span class="err">/myrepo.git</span><span class="nt">&gt;</span>
+</span><span class='line'>    DAV on
+</span><span class='line'>    AuthType None
+</span><span class='line'><span class="nt">&lt;/Location&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>`</p>
+<p>Restart apache</p>
 
-<p>Szczerze mówiąc potrzebna mi była wersja przerobiona na ssh, w połączeniu z powyższym postem. Jeszcze tylko wrzucenie do autostartu i będzie linuxowy &ldquo;trojan&rdquo; ;) dla osoby znajdującej się za natem</p></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apache2 -k restart
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Pierwszy test przez przeglądarkę: <code>http://domain.com/myrepo.git</code></p>
 </div>
 
 
@@ -185,12 +211,12 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
   
 
 
-<time datetime="2007-03-03T22:33:00+01:00" pubdate data-updated="true">2007-03-03</time>
+<time datetime="2014-05-14T16:47:59+02:00" pubdate data-updated="true">2014-05-14</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/categories/linux/'>Linux</a>
+    <a class='category' href='/categories/git/'>git</a>, <a class='category' href='/categories/linux/'>linux,</a>
   
 </span>
 
@@ -199,7 +225,7 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/" >Tweet</a>
   
   
   
@@ -210,10 +236,8 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/02/25/konwersja-windows-1250-na-iso-8859-2/" title="Previous Post: Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y)">&laquo; Konwersja znaków z Windows-1250 na ISO-8859-2 (i inne UTF-8 'y)</a>
+        <a class="basic-alignment left" href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/" title="Previous Post: Rabat 10 zł na zamówienie w Plackowej Izbie">&laquo; Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       
-      
-        <a class="basic-alignment right" href="/2007/03/03/tunelowanie-zdalnego-pulpitu/" title="Next Post: Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT">Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT &raquo;</a>
       
     </p>
   </footer>
@@ -294,8 +318,8 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect`</p>
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/03/03/automatyczny-skrypt-do-laczenia-np-ftp/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/';
         var disqus_script = 'embed.js';
       
     (function () {

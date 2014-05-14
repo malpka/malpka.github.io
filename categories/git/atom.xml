@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/git/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-14T10:30:19+02:00</updated>
+  <updated>2014-05-14T11:30:15+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,64 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git na apache2 przez davfs]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/"/>
+    <updated>2014-05-14T16:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs</id>
+    <content type="html"><![CDATA[<p>Szybkie repozytorium GIT przez HTTP w Debianie</p>
+
+<p>Tworzymy podkatalog w katalogu VHosta</p>
+
+<p><code>bash
+cd /var/www/domain.com
+mkdir myrepo.git
+</code></p>
+
+<p>Inicjacja repozytorium</p>
+
+<p><code>bash
+cd myrepo.git
+git --bare init
+</code></p>
+
+<p>Ustawienie praw dostępu</p>
+
+<p><code>bash
+chown -R www-data:www-data .
+</code></p>
+
+<p>Dostosowanie gita pod http</p>
+
+<p><code>bash
+git update-server-info
+</code></p>
+
+<p>Włączenie davfs
+<code>bash
+a2enmod dav_fs
+</code></p>
+
+<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:
+``` xml
+<Location /myrepo.git></p>
+
+<pre><code>DAV on           
+AuthType None    
+</code></pre>
+
+<p></Location>          <br/>
+```</p>
+
+<p>Restart apache
+<code>bash
+apache2 -k restart
+</code></p>
+
+<p>Pierwszy test przez przeglądarkę: <code>http://domain.com/myrepo.git</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[git log - list all commits from user]]></title>
