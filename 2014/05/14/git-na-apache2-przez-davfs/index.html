@@ -181,6 +181,32 @@ git --bare init Ustawienie &hellip;" />
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>lub trochę bardziej bezpieczna:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>htpasswd /etc/apache2/passwords/passwd_git username
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Location</span> <span class="err">/myrepo.git</span><span class="nt">&gt;</span>
+</span><span class='line'>      DAV on
+</span><span class='line'>      AuthType Basic
+</span><span class='line'>      AuthName &quot;Git&quot;
+</span><span class='line'>      AuthUserFile /etc/apache2/passwords/passwd_git
+</span><span class='line'>      Require valid-user
+</span><span class='line'><span class="nt">&lt;/Location&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p>Restart apache</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

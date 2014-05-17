@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-17T17:30:15+02:00</updated>
+  <updated>2014-05-17T17:40:38+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -51,8 +51,9 @@ git update-server-info
 a2enmod dav_fs
 </code></p>
 
-<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:
-``` xml
+<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:</p>
+
+<p>``` xml
 <Location /myrepo.git></p>
 
 <pre><code>DAV on           
@@ -60,6 +61,25 @@ AuthType None
 </code></pre>
 
 <p></Location>          <br/>
+```</p>
+
+<p>lub trochę bardziej bezpieczna:</p>
+
+<p><code>bash
+htpasswd /etc/apache2/passwords/passwd_git username
+</code></p>
+
+<p>``` xml
+<Location /myrepo.git></p>
+
+<pre><code>  DAV on
+  AuthType Basic
+  AuthName "Git"
+  AuthUserFile /etc/apache2/passwords/passwd_git
+  Require valid-user
+</code></pre>
+
+<p></Location>
 ```</p>
 
 <p>Restart apache

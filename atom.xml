@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-05-17T17:30:15+02:00</updated>
+  <updated>2014-05-17T17:40:38+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -68,6 +68,32 @@
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Location</span> <span class="err">/myrepo.git</span><span class="nt">&gt;</span>
 </span><span class='line'>    DAV on
 </span><span class='line'>    AuthType None
+</span><span class='line'><span class="nt">&lt;/Location&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>lub trochę bardziej bezpieczna:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>htpasswd /etc/apache2/passwords/passwd_git username
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;Location</span> <span class="err">/myrepo.git</span><span class="nt">&gt;</span>
+</span><span class='line'>      DAV on
+</span><span class='line'>      AuthType Basic
+</span><span class='line'>      AuthName &quot;Git&quot;
+</span><span class='line'>      AuthUserFile /etc/apache2/passwords/passwd_git
+</span><span class='line'>      Require valid-user
 </span><span class='line'><span class="nt">&lt;/Location&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
