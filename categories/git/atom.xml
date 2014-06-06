@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/git/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-06-06T09:30:07+02:00</updated>
+  <updated>2014-06-06T09:34:15+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git force merge strategy for specific file]]></title>
+    <link href="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/"/>
+    <updated>2014-06-16T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file</id>
+    <content type="html"><![CDATA[<p>In order to set a default strategy for a file(s) in git merge you need to:</p>
+
+<h3>Enable the <code>ours</code> merge driver</h3>
+
+<ul>
+<li>for current repository</li>
+</ul>
+
+
+<p><code>git config merge.ours.driver true</code></p>
+
+<ul>
+<li>globally</li>
+</ul>
+
+
+<p><code>git config --global merge.ours.driver true</code></p>
+
+<h3>Tell git to use the merge strategy for a file</h3>
+
+<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+
+<p>As a result the next pull with conflicts will automagically use ours version.</p>
+
+<p>Just remember that the file will not longer be marked as merge conflict.</p>
+
+<p><a href="http://stackoverflow.com/questions/14093540/tell-git-to-use-ours-merge-strategy-on-specific-files">inspiration</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git na apache2 przez davfs]]></title>
@@ -96,7 +131,7 @@ apache2 -k restart
     <link href="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/"/>
     <updated>2014-04-22T09:50:25+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user</id>
-    <content type="html"><![CDATA[<p><img src="/images/Git-Logo-2Color.png" width="455" height="190" title="git-logo" ></p>
+    <content type="html"><![CDATA[<p>{% img /images/Git-Logo-2Color.png 455 190 git-logo %}</p>
 
 <p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a> is a powerfull command that allows to list all commits with specific criteria.</p>
 

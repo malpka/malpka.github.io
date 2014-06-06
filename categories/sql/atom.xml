@@ -4,7 +4,7 @@
   <title><![CDATA[Category: sql | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/sql/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-06-06T09:30:07+02:00</updated>
+  <updated>2014-06-06T09:34:15+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -190,7 +190,7 @@ id          parent_id</p>
     <link href="http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/"/>
     <updated>2014-05-05T12:09:55+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio</id>
-    <content type="html"><![CDATA[<p><img class="left" src="/images/mydb.png" width="373" height="265" title="mydb" ></p>
+    <content type="html"><![CDATA[<p>{% img left /images/mydb.png 373 265 mydb %}</p>
 
 <p>Default Microsoft SQL Server configuration allows all useres marked as <code>public</code> to see all the databases on the server.</p>
 
