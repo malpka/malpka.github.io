@@ -9,7 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository git config merge.ours. &hellip;">
+  <meta name="description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository 1
+git config merge. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +52,9 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository git config merge.ours.driver true globally git config --global merge. &hellip;" />
+<meta property="og:description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository 1
+git config merge.ours.driver true globally 1
+git config --global merge &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -130,18 +133,27 @@ margin: 0 0 0;
 </ul>
 
 
-<p><code>git config merge.ours.driver true</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config merge.ours.driver <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>globally</li>
 </ul>
 
 
-<p><code>git config --global merge.ours.driver true</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global merge.ours.driver <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h3>Tell git to use the merge strategy for a file</h3>
 
-<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;solutionfolder/file.xml merge=ours&quot;</span> &gt;&gt; .git/info/attributes
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>As a result the next pull with conflicts will automagically use ours version.</p>
 

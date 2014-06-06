@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-06-06T09:39:57+02:00</updated>
+  <updated>2014-06-06T09:47:02+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -27,18 +27,27 @@
 </ul>
 
 
-<p><code>git config merge.ours.driver true</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config merge.ours.driver <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>globally</li>
 </ul>
 
 
-<p><code>git config --global merge.ours.driver true</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>git config --global merge.ours.driver <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h3>Tell git to use the merge strategy for a file</h3>
 
-<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;solutionfolder/file.xml merge=ours&quot;</span> &gt;&gt; .git/info/attributes
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>As a result the next pull with conflicts will automagically use ours version.</p>
 

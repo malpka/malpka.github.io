@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/git/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-06-06T09:39:57+02:00</updated>
+  <updated>2014-06-06T09:47:02+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -27,18 +27,24 @@
 </ul>
 
 
-<p><code>git config merge.ours.driver true</code></p>
+<p><code>bash
+git config merge.ours.driver true
+</code></p>
 
 <ul>
 <li>globally</li>
 </ul>
 
 
-<p><code>git config --global merge.ours.driver true</code></p>
+<p><code>bash
+git config --global merge.ours.driver true
+</code></p>
 
 <h3>Tell git to use the merge strategy for a file</h3>
 
-<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+<p><code>bash
+echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes
+</code></p>
 
 <p>As a result the next pull with conflicts will automagically use ours version.</p>
 
