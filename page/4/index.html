@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć &hellip;">
+  <meta name="description" content="Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/4/" />
-<meta property="og:description" content="Sytuacja z życia, rozwiązanie do zapamiętania. Bazując na starym projekcje o określonym nazewnictwie plików oraz klas, namespace itd. trzeba stworzyć nowy z całkowicie zmienioną jedną frazą na drugą &hellip;" />
+<meta property="og:description" content="Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,63 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Zapobieganie infekcjom wirusów - blokada autouruchamiania autorun.inf</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-12-29T09:01:00+01:00" pubdate data-updated="true">2009-12-29</time>
+        
+           | <a href="/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/12/29/zapobieganie-infekcjom-wirusow-blokada-autouruchamiania-auto/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite ignorowanie pliku <b>autorun.inf</b> następującym wpisem rejestru:</p>
+
+
+<p><code>REGEDIT4 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\IniFileMapping\Autorun.inf] @="@SYS:DoesNotExist"</code></p>
+
+
+<p>Należy skopiować powyższy tekst do pliku .reg (np. NoAutoRun.reg) i podwójnym kliknięciem scalić z rejestrem. Pozwoli to zapobiec jednemu z najczęściej obecnie występujących sposobów infekowania systemu.</p>
+
+
+<p>Trzeba wziąć pod uwagę, że zablokowane zostanie też tworzenie kontekstowego menu oraz ikonki nośnika.</p>
+
+
+<p>Wyjaśnienie dlaczego tak a nie inaczej oraz szczegółowy opis, zawierający zestawienie różnych metod blokowania <a href="http://www.publicsafety.gc.ca/prg/em/ccirc/2008/tr08-004-eng.aspx">tutaj</a>.</p>
+
+
+<p>Sam długo używałem zmiany parametru &#8220;Zasady Komputer Lokalny/Konfiguracja komputera/Szablony administracyjne/System/Wyłącz funkcję Autoodtwarzanie&#8221; w zasadach grup (gpedit.msc), ale to nie powstrzymywało autoodtwarzania po podwójnym kliknięciu dla moich napędów.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -808,92 +865,6 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/01/07/rm-fail/">RM fail</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-01-07T22:18:00+01:00" pubdate data-updated="true">2009-01-07</time>
-        
-           | <a href="/2009/01/07/rm-fail/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2009/01/07/rm-fail/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Dziwne, nigdy nie przypuszczałem, że taka podstawowa komenda jak rm może się nie powieść (oczywiście bez szczególnych przypadków jak uprawnienia czy brak pliku &#8230; ;) )</p>
-
-
-<p><code>quiz:/var/spool/mqueue-client# <b>rm *</b><br>
--bash: /bin/rm: <b>Lista argumentów za długa</b></code></p>
-
-
-<p><EXCERPT><p>hmmm</p></p>
-
-<p><code>quiz:/var/spool/mqueue-client# ls -1 | wc<br>
-13625 13625 231625</code></p>
-
-
-<p>Trochę ponad 10k plików i się remik gubi.<br>
-Powodem był &#8216;odrobinkę&#8217; nieskonfigurowany sendmail</p>
-
-
-<p>Rozwiązaniem może być na przykład skorzystanie z xargs, który wykonuje polecenie z argumentami podanymi przez stdin:</p>
-
-
-<p><code>quiz:/var/spool/mqueue-client# ls -1 | xargs rm ...<br>
-quiz:/var/spool/mqueue-client# ls -1 | wc<br>
-0 0 0</code></p>
-
-
-<p>Mały test innego sposobu: <code># for i in `seq 1 13625` ; do echo "666" &gt; $i; done #tworzenie plikow<br>
-...<br>
-# find . -delete</code><br>
-I co się okazuje:<br>
-<code># time find . -delete<br>
-<br>
-real 0m1.421s<br>
-user 0m0.068s<br>
-sys 0m1.336s<br>
-<br>
-<br>
-# time ls -1 | xargs rm<br>
-<br>
-real 0m2.955s<br>
-user 0m0.440s<br>
-sys 0m2.400s</code><br>
-Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odrobinę dłużej.</p>
-
-
-<p>PS. Niech ktoś coś zrobi z tym certyfikatem &#8230;</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -911,6 +882,10 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
       </li>
     
@@ -924,10 +899,6 @@ Podczas sprawdzania zauważyłem, że pliki za pierwszym razem tworzą się odro
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
   </ul>

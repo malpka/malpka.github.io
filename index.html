@@ -9,10 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Szybkie repozytorium GIT przez HTTP w Debianie Tworzymy podkatalog w katalogu VHosta 1
-2
-cd /var/www/domain.com
-mkdir myrepo.git Inicjacja &hellip;">
+  <meta name="description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository git config merge.ours. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -54,13 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Szybkie repozytorium GIT przez HTTP w Debianie Tworzymy podkatalog w katalogu VHosta 1
-2
-cd /var/www/domain.com
-mkdir myrepo.git Inicjacja repozytorium 1
-2
-cd myrepo.git
-git --bare init Ustawienie &hellip;" />
+<meta property="og:description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository git config merge.ours.driver true globally git config --global merge. &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -98,6 +89,71 @@ git --bare init Ustawienie &hellip;" />
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-16T07:47:59+02:00" pubdate data-updated="true">2014-06-16</time>
+        
+           | <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>In order to set a default strategy for a file(s) in git merge you need to:</p>
+
+<h3>Enable the <code>ours</code> merge driver</h3>
+
+<ul>
+<li>for current repository</li>
+</ul>
+
+
+<p><code>git config merge.ours.driver true</code></p>
+
+<ul>
+<li>globally</li>
+</ul>
+
+
+<p><code>git config --global merge.ours.driver true</code></p>
+
+<h3>Tell git to use the merge strategy for a file</h3>
+
+<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+
+<p>As a result the next pull with conflicts will automagically use ours version.</p>
+
+<p>Just remember that the file will not longer be marked as merge conflict.</p>
+
+<p><a href="http://stackoverflow.com/questions/14093540/tell-git-to-use-ours-merge-strategy-on-specific-files">inspiration</a></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -787,81 +843,6 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/09/najprostsza-autoaktualizacja/">Najprostsza instalacja i aktualizacja aplikacji skryptem bat</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-09T07:43:53+02:00" pubdate data-updated="true">2014-04-09</time>
-        
-           | <a href="/2014/04/09/najprostsza-autoaktualizacja/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/09/najprostsza-autoaktualizacja/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Najprostszy schemat instalacji i autoaktualizacji aplikacji,
-to pobranie najnowszej wersji przed uruchomieniem oraz umieszczanie plików w katalogu do których zalogowany użytkownik ma pełne uprawnienia.
-W sieci lokalnej da się to zrealizować prostym skryptem batch.</p>
-
-<p>Poniższy skrypt jest nawet bardziej &lsquo;inteligentny&rsquo;, gdyż za pomocą xcopy można kopiować jedynie nowsze pliki,
-co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na uruchomienie właściwej aplikacji.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'><span class="k">echo</span> <span class="s2">&quot;App is starting, please wait...&quot;</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">set</span> <span class="nv">targetdir</span><span class="o">=</span><span class="nv">%APPDATA%</span><span class="n">/AppFolder</span>
-</span><span class='line'><span class="k">if</span> not <span class="k">exist</span> <span class="s2">&quot;%targetdir%&quot;</span> (
-</span><span class='line'> mkdir <span class="s2">&quot;%targetdir%&quot;</span>
-</span><span class='line'>)
-</span><span class='line'>xcopy \\<span class="m">192</span>.<span class="m">168</span>.<span class="m">0</span>.<span class="m">1</span>\SourceDir <span class="s2">&quot;%targetdir%&quot;</span> <span class="n">/E</span> <span class="n">/D</span> <span class="n">/C</span> <span class="n">/Y</span>
-</span><span class='line'><span class="k">cd</span> <span class="s2">&quot;%targetdir%&quot;</span>
-</span><span class='line'>App.exe
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://ss64.com/nt/xcopy.html">xcopy</a>.</p>
-
-<ul>
-<li><code>/D</code> &ndash; kopiuje tylko te pliki, które mają nowszą datę modyfikacji</li>
-<li><code>/E</code> &ndash; kopiuje katalogi, również puste</li>
-<li><code>/C</code> &ndash; kontynuacja przy błędzie</li>
-<li><code>/Y</code> &ndash; automatyczne potwierdzanie nadpisania plików</li>
-</ul>
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -877,6 +858,10 @@ co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
       </li>
     
@@ -890,10 +875,6 @@ co w znacznym stopniu ogranicza przesyłaną ilość danych i czas potrzebny na 
     
       <li class="post">
         <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/05/howto-hide-sql-server-databases-for-specific-login-in-management-studio/">Howto hide SQL Server databases for specific login in Management Studio</a>
       </li>
     
   </ul>

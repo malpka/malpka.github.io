@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/git/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-06-06T09:34:15+02:00</updated>
+  <updated>2014-06-06T09:39:57+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -131,7 +131,7 @@ apache2 -k restart
     <link href="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/"/>
     <updated>2014-04-22T09:50:25+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user</id>
-    <content type="html"><![CDATA[<p>{% img /images/Git-Logo-2Color.png 455 190 git-logo %}</p>
+    <content type="html"><![CDATA[<p><img src="/images/Git-Logo-2Color.png" width="455" height="190" title="git-logo" ></p>
 
 <p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a> is a powerfull command that allows to list all commits with specific criteria.</p>
 

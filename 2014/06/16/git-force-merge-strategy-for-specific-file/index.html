@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Zewnętrzne obrazki w MediaWiki - co.de.mon.key</title>
+  <title>Git force merge strategy for specific file - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220; &hellip;">
+  <meta name="description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository git config merge.ours. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,10 +48,10 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Zewnętrzne obrazki w MediaWiki" />
+<meta property="og:title" content="Git force merge strategy for specific file" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/" />
-<meta property="og:description" content="Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220;hotlinkowanie&#8221;, czyli faktyczne wstawienie &hellip;" />
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/" />
+<meta property="og:description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository git config merge.ours.driver true globally git config --global merge. &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -92,7 +92,7 @@ margin: 0 0 0;
   
   <header>
     
-      <h1 class="entry-title">Zewnętrzne obrazki w MediaWiki</h1>
+      <h1 class="entry-title">Git force merge strategy for specific file</h1>
     
     
       <p class="meta">
@@ -108,7 +108,7 @@ margin: 0 0 0;
   
 
 
-<time datetime="2007-07-23T11:58:00+02:00" pubdate data-updated="true">2007-07-23</time>
+<time datetime="2014-06-16T07:47:59+02:00" pubdate data-updated="true">2014-06-16</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -118,11 +118,33 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p>Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220;hotlinkowanie&#8221;, czyli faktyczne wstawienie grafiki na stronę, należy dopisać w pliku konfiguracyjnym <b>LocalSettings.php</b> linię:<br>
-<code>$wgAllowExternalImages = true;</code></p>
+<div class="entry-content"><p>In order to set a default strategy for a file(s) in git merge you need to:</p>
+
+<h3>Enable the <code>ours</code> merge driver</h3>
+
+<ul>
+<li>for current repository</li>
+</ul>
 
 
+<p><code>git config merge.ours.driver true</code></p>
 
+<ul>
+<li>globally</li>
+</ul>
+
+
+<p><code>git config --global merge.ours.driver true</code></p>
+
+<h3>Tell git to use the merge strategy for a file</h3>
+
+<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+
+<p>As a result the next pull with conflicts will automagically use ours version.</p>
+
+<p>Just remember that the file will not longer be marked as merge conflict.</p>
+
+<p><a href="http://stackoverflow.com/questions/14093540/tell-git-to-use-ours-merge-strategy-on-specific-files">inspiration</a></p>
 </div>
 
 
@@ -145,12 +167,12 @@ margin: 0 0 0;
   
 
 
-<time datetime="2007-07-23T11:58:00+02:00" pubdate data-updated="true">2007-07-23</time>
+<time datetime="2014-06-16T07:47:59+02:00" pubdate data-updated="true">2014-06-16</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/categories/ogolne/'>Ogólne</a>
+    <a class='category' href='/categories/git/'>git</a>
   
 </span>
 
@@ -159,7 +181,7 @@ margin: 0 0 0;
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/" >Tweet</a>
   
   
   
@@ -170,10 +192,8 @@ margin: 0 0 0;
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/07/05/serwer-mysql-dostepny-z-zewnatrz/" title="Previous Post: Serwer MySQL dostępny z zewnątrz">&laquo; Serwer MySQL dostępny z zewnątrz</a>
+        <a class="basic-alignment left" href="/2014/05/14/git-na-apache2-przez-davfs/" title="Previous Post: Git na apache2 przez davfs">&laquo; Git na apache2 przez davfs</a>
       
-      
-        <a class="basic-alignment right" href="/2007/10/14/mgr-inz/" title="Next Post: mgr inż. @">mgr inż. @ &raquo;</a>
       
     </p>
   </footer>
@@ -254,8 +274,8 @@ margin: 0 0 0;
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/';
         var disqus_script = 'embed.js';
       
     (function () {

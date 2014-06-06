@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-06-06T09:30:07+02:00</updated>
+  <updated>2014-06-06T09:39:57+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Git force merge strategy for specific file]]></title>
+    <link href="http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file/"/>
+    <updated>2014-06-16T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/06/16/git-force-merge-strategy-for-specific-file</id>
+    <content type="html"><![CDATA[<p>In order to set a default strategy for a file(s) in git merge you need to:</p>
+
+<h3>Enable the <code>ours</code> merge driver</h3>
+
+<ul>
+<li>for current repository</li>
+</ul>
+
+
+<p><code>git config merge.ours.driver true</code></p>
+
+<ul>
+<li>globally</li>
+</ul>
+
+
+<p><code>git config --global merge.ours.driver true</code></p>
+
+<h3>Tell git to use the merge strategy for a file</h3>
+
+<p><code>echo "solutionfolder/file.xml merge=ours" &gt;&gt; .git/info/attributes</code></p>
+
+<p>As a result the next pull with conflicts will automagically use ours version.</p>
+
+<p>Just remember that the file will not longer be marked as merge conflict.</p>
+
+<p><a href="http://stackoverflow.com/questions/14093540/tell-git-to-use-ours-merge-strategy-on-specific-files">inspiration</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git na apache2 przez davfs]]></title>
@@ -1889,26 +1924,6 @@ for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
 <li>zmiana treści na markdown</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Hello World]]></title>
-    <link href="http://blog.codemonkey.pl/2014/01/03/hello-world/"/>
-    <updated>2014-01-03T13:24:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2014/01/03/hello-world</id>
-    <content type="html"><![CDATA[<p>Z nowym rokiem wdrażam w życie plan prowadzenia notatnika online, zawierającego przemyślenia, doświadczenia,
-zmagania z &ndash; najczęściej okołoprogramistyczną &ndash; rzeczywistością. Tematów raczej nie brak, nawet sporo czeka
-w kolejce na opublikowanie. Jedynie wolny czas będzie ograniczeniem ;&ndash;)</p>
-
-<p>Dodatkowo będzie to miejsce na najciekawsze znaleziska internetowe &ndash; zabawne, praktyczne,
-intrygujące &ndash; takie, do których warto / chciałoby się wrócić w przyszłości a nie ma tego gdzie trzymać
-(obecnie lista zakładek w przeglądarce ma około 880 pozycji, boję się tam zaglądać!).</p>
-
-<p>W planach jest zapoznanie się z <a href="http://daringfireball.net/projects/markdown/">Markdown&#8217;em</a>,
-dodanie <a href="http://disqus.com/">disqus&#8217;a</a>, lekka modyfikacja skórki, rozeznanie sie we wnętrznościach
-<a href="http://octopress.org/">Octopressa</a>, możliwe że powiązanie domeny z <a href="http://github.io">github pages</a>
-czy import niektórych wpisów z <a href="http://malpka.jogger.pl">Joggera</a></p>
 ]]></content>
   </entry>
   
