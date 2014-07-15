@@ -9,13 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Check / set up machine&rsquo;s hostname 1
-2
-malpka@codemonkey:~$ hostname
-codemonkey.pl Set up DNS record 1
-2
-codemonkey.pl IN MX 1 codemonkey.pl
-. &hellip;">
+  <meta name="description" content="Virtual domains Add a domain to postfix configuration &ndash; temporary solution 1
+postfix -e mydestination=&quot;example.org, example.com, example. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -57,13 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Check / set up machine&rsquo;s hostname 1
-2
-malpka@codemonkey:~$ hostname
-codemonkey.pl Set up DNS record 1
-2
-codemonkey.pl IN MX 1 codemonkey.pl
-.codemonkey.pl SPF v=spf1 a mx ~all Check SMTP (25) &hellip;" />
+<meta property="og:description" content="Virtual domains Add a domain to postfix configuration &ndash; temporary solution 1
+postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now local users receive mails from all &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -101,6 +91,55 @@ codemonkey.pl IN MX 1 codemonkey.pl
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/07/15/own-mailserver-debian-vps-part-2/">Own mailserver - Debian 7 Wheezy VPS - Part 2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-15T07:47:59+02:00" pubdate data-updated="true">2014-07-15</time>
+        
+           | <a href="/2014/07/15/own-mailserver-debian-vps-part-2/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1>Virtual domains</h1>
+
+<h2>Add a domain to postfix configuration &ndash; temporary solution</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>postfix -e <span class="nv">mydestination</span><span class="o">=</span><span class="s2">&quot;example.org, example.com, example.net&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now local users receive mails from all domans, i.e. user <code>malpka</code> will receive mails from <code>malpka@example.org</code>, <code>malpka@example.com</code> and <code>malpka@example.net</code>.
+Mails are saved in <code>/var/mail/malpka</code></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -820,55 +859,6 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/">Sieć WiFi nie działa po wyjściu laptopa z uśpienia</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-12T08:35:16+02:00" pubdate data-updated="true">2014-04-12</time>
-        
-           | <a href="/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/12/siec-wifi-nie-dziala-po-wyjsciu-laptopa-z-uspienia/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Przy próbie naprawy połączenia można doszukać się komunikatu: &ldquo;System Windows nie mógł automatycznie powiązać stosu protokołu IP z kartą sieciową&rdquo;.
-Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh int ip reset
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Działa w Windows Vista, 7, 8 i 8.1.</p>
-
-<p><a href="http://support.microsoft.com/kb/299357/pl">Źródło</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -884,6 +874,10 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/15/own-mailserver-debian-vps-part-2/">Own mailserver - Debian 7 Wheezy VPS - Part 2</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/15/own-mailserver-debian-vps/">Own mailserver - Debian 7 Wheezy VPS - Part 1</a>
       </li>
     
@@ -897,10 +891,6 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
     
       <li class="post">
         <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/07/windows-8-za-darmo/">Windows 8 (i nie tylko) za darmo</a>
       </li>
     
   </ul>

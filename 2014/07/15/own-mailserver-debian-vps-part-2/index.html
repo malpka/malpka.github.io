@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Sed - przydatne narzedzie - co.de.mon.key</title>
+  <title>Own mailserver - Debian 7 Wheezy VPS - Part 2 - co.de.mon.key</title>
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Czy kiedykolwiek zastanawiałeś się jak hurtem pozamieniać ciągi znaków w pliku? jeżeli chodzi nam o zwyczajny tekst to ostatecznie poradzi sobie z &hellip;">
+  <meta name="description" content="Virtual domains Add a domain to postfix configuration &ndash; temporary solution 1
+postfix -e mydestination=&quot;example.org, example.com, example. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie">
+  <link rel="canonical" href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="co.de.mon.key" type="application/atom+xml">
@@ -48,10 +49,11 @@ margin: 0 0 0;
 }
 </style>
 
-<meta property="og:title" content="Sed - przydatne narzedzie" />
+<meta property="og:title" content="Own mailserver - Debian 7 Wheezy VPS - Part 2" />
 <meta property="og:site_name" content="co.de.mon.key" />
-<meta property="og:url" content="http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie/" />
-<meta property="og:description" content="Czy kiedykolwiek zastanawiałeś się jak hurtem pozamieniać ciągi znaków w pliku? jeżeli chodzi nam o zwyczajny tekst to ostatecznie poradzi sobie z tym notatnik. Aby operować na znakach końca linii &hellip;" />
+<meta property="og:url" content="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/" />
+<meta property="og:description" content="Virtual domains Add a domain to postfix configuration &ndash; temporary solution 1
+postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now local users receive mails from all &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -92,7 +94,7 @@ margin: 0 0 0;
   
   <header>
     
-      <h1 class="entry-title">Sed - przydatne narzedzie</h1>
+      <h1 class="entry-title">Own mailserver - Debian 7 Wheezy VPS - Part 2</h1>
     
     
       <p class="meta">
@@ -108,7 +110,7 @@ margin: 0 0 0;
   
 
 
-<time datetime="2007-01-13T01:14:00+01:00" pubdate data-updated="true">2007-01-13</time>
+<time datetime="2014-07-15T07:47:59+02:00" pubdate data-updated="true">2014-07-15</time>
         
            | <a href="#disqus_thread"
              data-disqus-identifier="http://blog.codemonkey.pl">Comments</a>
@@ -118,32 +120,17 @@ margin: 0 0 0;
   </header>
 
 
-<div class="entry-content"><p>Czy kiedykolwiek zastanawiałeś się jak hurtem pozamieniać ciągi znaków w pliku? jeżeli chodzi nam o zwyczajny tekst to ostatecznie poradzi sobie z tym notatnik. Aby operować na znakach końca linii można wykorzystać Worda z pakietu Office. Jak jednak to zrobić najskuteczniej pod linuxem. Po zabawie z mcedit oraz vi doszedłem do wniosku ze oba mnie pod tym względem nie satysfakcjonują. Google poszło w ruch i naprowadziło mnie na świetne polecenie sed</p>
+<div class="entry-content"><h1>Virtual domains</h1>
+
+<h2>Add a domain to postfix configuration &ndash; temporary solution</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>postfix -e <span class="nv">mydestination</span><span class="o">=</span><span class="s2">&quot;example.org, example.com, example.net&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p><b>sed</b> czyli Stream EDitor to edytor strumieniowy który znakomicie współpracuje z linuxowym bashem.</p>
-
-
-<p>Moim zadaniem była dopisanie po kazdej linijce w pliku tekstowym nowej linijki jedynie za znakiem &#8216;-&#8217;</p>
-
-
-<p>Dodanie po każdej linijce dodatkowej pustej linii</p>
-
-
-<p><code>cat plik.txt | sed G &gt; plik.txt</code></p>
-
-
-<p>Wypełnienie kazdej pustej linii znakiem &#8216;-&#8217;</p>
-
-
-<p><code>cat plik.txt | sed "s/^$/-/" &gt; plik.txt</code></p>
-
-
-<p>sed obsługuje przy wyszukiwaniu wyrażenia regularne.<br>
-Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="http://www.student.northpark.edu/pemente/sed/sed1line.txt" class="external" rel="external">Sed w przykładach</a></p>
-
-
-
+<p>Now local users receive mails from all domans, i.e. user <code>malpka</code> will receive mails from <code>malpka@example.org</code>, <code>malpka@example.com</code> and <code>malpka@example.net</code>.
+Mails are saved in <code>/var/mail/malpka</code></p>
 </div>
 
 
@@ -166,12 +153,12 @@ Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="htt
   
 
 
-<time datetime="2007-01-13T01:14:00+01:00" pubdate data-updated="true">2007-01-13</time>
+<time datetime="2014-07-15T07:47:59+02:00" pubdate data-updated="true">2014-07-15</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/categories/linux/'>Linux</a>
+    <a class='category' href='/categories/linux/'>linux</a>, <a class='category' href='/categories/vps/'>vps,</a>
   
 </span>
 
@@ -180,7 +167,7 @@ Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="htt
     
       <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/" data-via="m_alpka" data-counturl="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/" >Tweet</a>
   
   
   
@@ -191,10 +178,8 @@ Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="htt
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/" title="Previous Post: Debian - dodawanie usług uruchamianych podczas startu">&laquo; Debian - dodawanie usług uruchamianych podczas startu</a>
+        <a class="basic-alignment left" href="/2014/07/15/own-mailserver-debian-vps/" title="Previous Post: Own mailserver - Debian 7 Wheezy VPS - Part 1">&laquo; Own mailserver - Debian 7 Wheezy VPS - Part 1</a>
       
-      
-        <a class="basic-alignment right" href="/2007/02/18/php-w-debianie/" title="Next Post: php w debianie">php w debianie &raquo;</a>
       
     </p>
   </footer>
@@ -275,8 +260,8 @@ Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="htt
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie/';
-        var disqus_url = 'http://blog.codemonkey.pl/2007/01/13/sed-przydatne-narzedzie/';
+        var disqus_identifier = 'http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/';
+        var disqus_url = 'http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/';
         var disqus_script = 'embed.js';
       
     (function () {

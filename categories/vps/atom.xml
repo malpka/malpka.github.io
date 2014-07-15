@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/vps/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T19:30:06+02:00</updated>
+  <updated>2014-07-15T22:30:07+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,24 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2]]></title>
+    <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/"/>
+    <updated>2014-07-15T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
+    <content type="html"><![CDATA[<h1>Virtual domains</h1>
+
+<h2>Add a domain to postfix configuration &ndash; temporary solution</h2>
+
+<p><code>bash
+postfix -e mydestination="example.org, example.com, example.net"
+</code></p>
+
+<p>Now local users receive mails from all domans, i.e. user <code>malpka</code> will receive mails from <code>malpka@example.org</code>, <code>malpka@example.com</code> and <code>malpka@example.net</code>.
+Mails are saved in <code>/var/mail/malpka</code></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1]]></title>
