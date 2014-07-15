@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/vps/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T10:54:37+02:00</updated>
+  <updated>2014-07-15T11:52:42+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<h2>Check /set up machine&rsquo;s hostname</h2>
 
 <p><code>bash
-malpka@codemonkey:~/octopress$ hostname
+malpka@codemonkey:~$ hostname
 codemonkey.pl
 </code></p>
 
@@ -66,6 +66,8 @@ apt-get install mailutils
 
 <h2>Configure mail aliases</h2>
 
+<p>Redirect root mail to another user.</p>
+
 <p>``` bash
 codemonkey:/home/malpka# cat /etc/aliases</p>
 
@@ -89,9 +91,9 @@ root: malpka
 <h2>Remarks</h2>
 
 <ul>
-<li>SMTP not secured</li>
-<li>works for any local user</li>
-<li>uses /var/mail/{username} as a default mailbox location</li>
+<li>SMTP is not secured</li>
+<li>works for any local system user</li>
+<li>uses <code>/var/mail/{username}</code> as a default mailbox location and <code>MBox</code> as a format</li>
 </ul>
 
 ]]></content>

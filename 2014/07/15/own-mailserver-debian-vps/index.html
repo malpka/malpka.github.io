@@ -11,10 +11,11 @@
   
   <meta name="description" content="Check /set up machine&rsquo;s hostname 1
 2
-malpka@codemonkey:~/octopress$ hostname
+malpka@codemonkey:~$ hostname
 codemonkey.pl Set up DNS record 1
 2
-codemonkey.pl IN MX 1 &hellip;">
+codemonkey.pl IN MX 1 codemonkey.pl
+. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -58,11 +59,11 @@ margin: 0 0 0;
 <meta property="og:url" content="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/" />
 <meta property="og:description" content="Check /set up machine&rsquo;s hostname 1
 2
-malpka@codemonkey:~/octopress$ hostname
+malpka@codemonkey:~$ hostname
 codemonkey.pl Set up DNS record 1
 2
 codemonkey.pl IN MX 1 codemonkey.pl
-.codemonkey.pl SPF v=spf1 a mx ~all Check &hellip;" />
+.codemonkey.pl SPF v=spf1 a mx ~all Check SMTP (25) &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -133,7 +134,7 @@ codemonkey.pl IN MX 1 codemonkey.pl
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>malpka@codemonkey:~/octopress<span class="nv">$ </span>hostname
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>malpka@codemonkey:~<span class="nv">$ </span>hostname
 </span><span class='line'>codemonkey.pl
 </span></code></pre></td></tr></table></div></figure>
 
@@ -183,6 +184,8 @@ codemonkey.pl IN MX 1 codemonkey.pl
 
 <h2>Configure mail aliases</h2>
 
+<p>Redirect root mail to another user.</p>
+
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
@@ -219,9 +222,9 @@ codemonkey.pl IN MX 1 codemonkey.pl
 <h2>Remarks</h2>
 
 <ul>
-<li>SMTP not secured</li>
-<li>works for any local user</li>
-<li>uses /var/mail/{username} as a default mailbox location</li>
+<li>SMTP is not secured</li>
+<li>works for any local system user</li>
+<li>uses <code>/var/mail/{username}</code> as a default mailbox location and <code>MBox</code> as a format</li>
 </ul>
 
 </div>
