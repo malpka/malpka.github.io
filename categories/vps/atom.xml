@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/vps/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T10:04:27+02:00</updated>
+  <updated>2014-07-15T10:30:05+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,22 +18,26 @@
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
-    <content type="html"><![CDATA[<h2>Set up DNS record</h2>
+    <content type="html"><![CDATA[<h2>Check machine&rsquo;s hostname</h2>
+
+<p><code>bash
+malpka@codemonkey:~/octopress$ hostname
+codemonkey.pl
+</code></p>
+
+<h2>Set up DNS record</h2>
 
 <p><code>
-codemonkey.pl  IN MX   1 codemonkey.pl
+codemonkey.pl   IN MX   1   codemonkey.pl
+.codemonkey.pl  SPF     v=spf1 a mx a:078088227103.kielce.vectranet.pl ip4:78.88.227.103 ~all
 </code></p>
+
+<h2>Redirect SMTP port</h2>
 
 <h2>Install postfix</h2>
 
 <p><code>
 apt-get install postfix
-</code></p>
-
-<p>Check if we have access to <code>mail</code> command</p>
-
-<p><code>
-apt-get install mailutils
 </code></p>
 
 <p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png</a>"></p>
@@ -42,7 +46,27 @@ apt-get install mailutils
 
 <p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png</a>"></p>
 
+<p>Check if we have access to <code>mail</code> command</p>
+
+<p><code>
+apt-get install mailutils
+</code></p>
+
+<p>and send the mail</p>
+
 <p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png</a>"></p>
+
+<p>Mail received, post reply</p>
+
+<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-mail-received.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-mail-received.png</a>"></p>
+
+<p>After posting the reply</p>
+
+<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png</a>"></p>
+
+<h2>Remarks</h2>
+
+<h2>&ndash; SMTP not secured</h2>
 ]]></content>
   </entry>
   

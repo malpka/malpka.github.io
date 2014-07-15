@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T10:04:27+02:00</updated>
+  <updated>2014-07-15T10:30:05+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,22 +18,31 @@
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
-    <content type="html"><![CDATA[<h2>Set up DNS record</h2>
+    <content type="html"><![CDATA[<h2>Check machine&rsquo;s hostname</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>codemonkey.pl  IN MX   1 codemonkey.pl </span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>malpka@codemonkey:~/octopress<span class="nv">$ </span>hostname
+</span><span class='line'>codemonkey.pl
+</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>Set up DNS record</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
+</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx a:078088227103.kielce.vectranet.pl ip4:78.88.227.103 ~all
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Redirect SMTP port</h2>
 
 <h2>Install postfix</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install postfix</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Check if we have access to <code>mail</code> command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mailutils</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install postfix
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png"></p>
@@ -42,7 +51,28 @@
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png"></p>
 
+<p>Check if we have access to <code>mail</code> command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install mailutils
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and send the mail</p>
+
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png"></p>
+
+<p>Mail received, post reply</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-mail-received.png"></p>
+
+<p>After posting the reply</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png"></p>
+
+<h2>Remarks</h2>
+
+<h2>&ndash; SMTP not secured</h2>
 ]]></content>
   </entry>
   

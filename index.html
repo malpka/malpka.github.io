@@ -9,10 +9,13 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Set up DNS record 1
-codemonkey.pl IN MX 1 codemonkey.pl Install postfix 1
-apt-get install postfix Check if we have access to mail command 1
-apt-get &hellip;">
+  <meta name="description" content="Check machine&rsquo;s hostname 1
+2
+malpka@codemonkey:~/octopress$ hostname
+codemonkey.pl Set up DNS record 1
+2
+codemonkey.pl IN MX 1 codemonkey.pl
+. &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -54,10 +57,13 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Set up DNS record 1
-codemonkey.pl IN MX 1 codemonkey.pl Install postfix 1
-apt-get install postfix Check if we have access to mail command 1
-apt-get install mailutils " />
+<meta property="og:description" content="Check machine&rsquo;s hostname 1
+2
+malpka@codemonkey:~/octopress$ hostname
+codemonkey.pl Set up DNS record 1
+2
+codemonkey.pl IN MX 1 codemonkey.pl
+.codemonkey.pl SPF v=spf1 a mx a:078088227103.kielce &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -127,22 +133,31 @@ apt-get install mailutils " />
   </header>
 
 
-  <div class="entry-content"><h2>Set up DNS record</h2>
+  <div class="entry-content"><h2>Check machine&rsquo;s hostname</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>codemonkey.pl  IN MX   1 codemonkey.pl </span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>malpka@codemonkey:~/octopress<span class="nv">$ </span>hostname
+</span><span class='line'>codemonkey.pl
+</span></code></pre></td></tr></table></div></figure>
 
+
+<h2>Set up DNS record</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
+</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx a:078088227103.kielce.vectranet.pl ip4:78.88.227.103 ~all
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Redirect SMTP port</h2>
 
 <h2>Install postfix</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install postfix</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Check if we have access to <code>mail</code> command</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mailutils</span></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install postfix
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png"></p>
@@ -151,7 +166,28 @@ apt-get install mailutils " />
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png"></p>
 
+<p>Check if we have access to <code>mail</code> command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install mailutils
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>and send the mail</p>
+
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png"></p>
+
+<p>Mail received, post reply</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-mail-received.png"></p>
+
+<p>After posting the reply</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png"></p>
+
+<h2>Remarks</h2>
+
+<h2>&ndash; SMTP not secured</h2>
 </div>
   
   
