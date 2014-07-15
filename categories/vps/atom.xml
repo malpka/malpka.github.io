@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/vps/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T10:30:05+02:00</updated>
+  <updated>2014-07-15T10:54:37+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
-    <content type="html"><![CDATA[<h2>Check machine&rsquo;s hostname</h2>
+    <content type="html"><![CDATA[<h2>Check /set up machine&rsquo;s hostname</h2>
 
 <p><code>bash
 malpka@codemonkey:~/octopress$ hostname
@@ -29,10 +29,10 @@ codemonkey.pl
 
 <p><code>
 codemonkey.pl   IN MX   1   codemonkey.pl
-.codemonkey.pl  SPF     v=spf1 a mx a:078088227103.kielce.vectranet.pl ip4:78.88.227.103 ~all
+.codemonkey.pl  SPF     v=spf1 a mx ~all
 </code></p>
 
-<h2>Redirect SMTP port</h2>
+<h2>Check SMTP (25) port for outside availability</h2>
 
 <h2>Install postfix</h2>
 
@@ -64,9 +64,36 @@ apt-get install mailutils
 
 <p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png</a>"></p>
 
+<h2>Configure mail aliases</h2>
+
+<p>``` bash
+codemonkey:/home/malpka# cat /etc/aliases</p>
+
+<h1>/etc/aliases</h1>
+
+<p>mailer-daemon: postmaster
+postmaster: root
+nobody: root
+hostmaster: root
+usenet: root
+<a href="news:">news:</a> root
+webmaster: root
+www: root
+<a href="ftp:">ftp:</a> root
+abuse: root
+noc: root
+security: root
+root: malpka
+```</p>
+
 <h2>Remarks</h2>
 
-<h2>&ndash; SMTP not secured</h2>
+<ul>
+<li>SMTP not secured</li>
+<li>works for any local user</li>
+<li>uses /var/mail/{username} as a default mailbox location</li>
+</ul>
+
 ]]></content>
   </entry>
   

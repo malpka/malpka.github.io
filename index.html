@@ -9,13 +9,12 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Check machine&rsquo;s hostname 1
+  <meta name="description" content="Check /set up machine&rsquo;s hostname 1
 2
 malpka@codemonkey:~/octopress$ hostname
 codemonkey.pl Set up DNS record 1
 2
-codemonkey.pl IN MX 1 codemonkey.pl
-. &hellip;">
+codemonkey.pl IN MX 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -57,13 +56,13 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Check machine&rsquo;s hostname 1
+<meta property="og:description" content="Check /set up machine&rsquo;s hostname 1
 2
 malpka@codemonkey:~/octopress$ hostname
 codemonkey.pl Set up DNS record 1
 2
 codemonkey.pl IN MX 1 codemonkey.pl
-.codemonkey.pl SPF v=spf1 a mx a:078088227103.kielce &hellip;" />
+.codemonkey.pl SPF v=spf1 a mx ~all Check &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -133,7 +132,7 @@ codemonkey.pl IN MX 1 codemonkey.pl
   </header>
 
 
-  <div class="entry-content"><h2>Check machine&rsquo;s hostname</h2>
+  <div class="entry-content"><h2>Check /set up machine&rsquo;s hostname</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -147,11 +146,11 @@ codemonkey.pl IN MX 1 codemonkey.pl
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
-</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx a:078088227103.kielce.vectranet.pl ip4:78.88.227.103 ~all
+</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx ~all
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Redirect SMTP port</h2>
+<h2>Check SMTP (25) port for outside availability</h2>
 
 <h2>Install postfix</h2>
 
@@ -185,9 +184,49 @@ codemonkey.pl IN MX 1 codemonkey.pl
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png"></p>
 
+<h2>Configure mail aliases</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey:/home/malpka# cat /etc/aliases
+</span><span class='line'><span class="c"># /etc/aliases</span>
+</span><span class='line'>mailer-daemon: postmaster
+</span><span class='line'>postmaster: root
+</span><span class='line'>nobody: root
+</span><span class='line'>hostmaster: root
+</span><span class='line'>usenet: root
+</span><span class='line'>news: root
+</span><span class='line'>webmaster: root
+</span><span class='line'>www: root
+</span><span class='line'>ftp: root
+</span><span class='line'>abuse: root
+</span><span class='line'>noc: root
+</span><span class='line'>security: root
+</span><span class='line'>root: malpka
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>Remarks</h2>
 
-<h2>&ndash; SMTP not secured</h2>
+<ul>
+<li>SMTP not secured</li>
+<li>works for any local user</li>
+<li>uses /var/mail/{username} as a default mailbox location</li>
+</ul>
+
 </div>
   
   

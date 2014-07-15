@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T10:30:05+02:00</updated>
+  <updated>2014-07-15T10:54:37+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
-    <content type="html"><![CDATA[<h2>Check machine&rsquo;s hostname</h2>
+    <content type="html"><![CDATA[<h2>Check /set up machine&rsquo;s hostname</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -32,11 +32,11 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
-</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx a:078088227103.kielce.vectranet.pl ip4:78.88.227.103 ~all
+</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx ~all
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Redirect SMTP port</h2>
+<h2>Check SMTP (25) port for outside availability</h2>
 
 <h2>Install postfix</h2>
 
@@ -70,9 +70,49 @@
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png"></p>
 
+<h2>Configure mail aliases</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey:/home/malpka# cat /etc/aliases
+</span><span class='line'><span class="c"># /etc/aliases</span>
+</span><span class='line'>mailer-daemon: postmaster
+</span><span class='line'>postmaster: root
+</span><span class='line'>nobody: root
+</span><span class='line'>hostmaster: root
+</span><span class='line'>usenet: root
+</span><span class='line'>news: root
+</span><span class='line'>webmaster: root
+</span><span class='line'>www: root
+</span><span class='line'>ftp: root
+</span><span class='line'>abuse: root
+</span><span class='line'>noc: root
+</span><span class='line'>security: root
+</span><span class='line'>root: malpka
+</span></code></pre></td></tr></table></div></figure>
+
+
 <h2>Remarks</h2>
 
-<h2>&ndash; SMTP not secured</h2>
+<ul>
+<li>SMTP not secured</li>
+<li>works for any local user</li>
+<li>uses /var/mail/{username} as a default mailbox location</li>
+</ul>
+
 ]]></content>
   </entry>
   
