@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Check /set up machine&rsquo;s hostname 1
+  <meta name="description" content="Check / set up machine&rsquo;s hostname 1
 2
 malpka@codemonkey:~$ hostname
 codemonkey.pl Set up DNS record 1
@@ -57,7 +57,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Check /set up machine&rsquo;s hostname 1
+<meta property="og:description" content="Check / set up machine&rsquo;s hostname 1
 2
 malpka@codemonkey:~$ hostname
 codemonkey.pl Set up DNS record 1
@@ -133,7 +133,7 @@ codemonkey.pl IN MX 1 codemonkey.pl
   </header>
 
 
-  <div class="entry-content"><h2>Check /set up machine&rsquo;s hostname</h2>
+  <div class="entry-content"><h2>Check / set up machine&rsquo;s hostname</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -166,6 +166,8 @@ codemonkey.pl IN MX 1 codemonkey.pl
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png"></p>
 
+<h2>Voila! ;)</h2>
+
 <p>Check if we have access to <code>mail</code> command</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -173,7 +175,7 @@ codemonkey.pl IN MX 1 codemonkey.pl
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>and send the mail</p>
+<p>and send the mail (end with Ctrl+D)</p>
 
 <p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png"></p>
 
@@ -187,37 +189,11 @@ codemonkey.pl IN MX 1 codemonkey.pl
 
 <h2>Configure mail aliases</h2>
 
-<p>Redirect root mail to another user.</p>
+<h2>In <code>/etc/aliases</code> file we can add redirections between local users</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey:/home/malpka# cat /etc/aliases
-</span><span class='line'><span class="c"># /etc/aliases</span>
-</span><span class='line'>mailer-daemon: postmaster
-</span><span class='line'>postmaster: root
-</span><span class='line'>nobody: root
-</span><span class='line'>hostmaster: root
-</span><span class='line'>usenet: root
-</span><span class='line'>news: root
-</span><span class='line'>webmaster: root
-</span><span class='line'>www: root
-</span><span class='line'>ftp: root
-</span><span class='line'>abuse: root
-</span><span class='line'>noc: root
-</span><span class='line'>security: root
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey:~# tail -n 1 /etc/aliases
 </span><span class='line'>root: malpka
 </span></code></pre></td></tr></table></div></figure>
 

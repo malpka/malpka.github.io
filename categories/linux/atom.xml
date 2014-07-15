@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T11:52:42+02:00</updated>
+  <updated>2014-07-15T12:19:37+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,7 +18,7 @@
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
-    <content type="html"><![CDATA[<h2>Check /set up machine&rsquo;s hostname</h2>
+    <content type="html"><![CDATA[<h2>Check / set up machine&rsquo;s hostname</h2>
 
 <p><code>bash
 malpka@codemonkey:~$ hostname
@@ -46,13 +46,15 @@ apt-get install postfix
 
 <p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png</a>"></p>
 
+<h2>Voila! ;)</h2>
+
 <p>Check if we have access to <code>mail</code> command</p>
 
 <p><code>
 apt-get install mailutils
 </code></p>
 
-<p>and send the mail</p>
+<p>and send the mail (end with Ctrl+D)</p>
 
 <p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png</a>"></p>
 
@@ -66,27 +68,12 @@ apt-get install mailutils
 
 <h2>Configure mail aliases</h2>
 
-<p>Redirect root mail to another user.</p>
+<h2>In <code>/etc/aliases</code> file we can add redirections between local users</h2>
 
-<p>``` bash
-codemonkey:/home/malpka# cat /etc/aliases</p>
-
-<h1>/etc/aliases</h1>
-
-<p>mailer-daemon: postmaster
-postmaster: root
-nobody: root
-hostmaster: root
-usenet: root
-<a href="news:">news:</a> root
-webmaster: root
-www: root
-<a href="ftp:">ftp:</a> root
-abuse: root
-noc: root
-security: root
+<p><code>bash
+codemonkey:~# tail -n 1 /etc/aliases
 root: malpka
-```</p>
+</code></p>
 
 <h2>Remarks</h2>
 
