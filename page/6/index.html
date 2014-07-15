@@ -9,8 +9,10 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
-jeśli nie to (Ubuntu) ` &hellip;">
+  <meta name="description" content="1
+2
+$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+$ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,17 +54,10 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/6/" />
-<meta property="og:description" content="Za pomocą poniższego skryptu możemy zautomatyzować połączenie z serwerem (przy założeniu że mamy zainstalowany pakiet expect)
-jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
+<meta property="og:description" content="1
 2
-3
-4
-5
-6
-7
-8
-9
-10 &hellip;" />
+$ ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+$ rdesktop quiz.game-host.org -p 50000 warunek: (GatewayPorts yes w /etc/ssh/sshd_config). Jeżeli jest wyłączone, to można jeszcze &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -100,6 +95,65 @@ jeśli nie to (Ubuntu) `sudo apt-get install expect` 1
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/03/03/tunelowanie-zdalnego-pulpitu/">Tunelowanie Zdalnego Pulpitu w celu ominięcia NAT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-03-03T22:59:00+01:00" pubdate data-updated="true">2007-03-03</time>
+        
+           | <a href="/2007/03/03/tunelowanie-zdalnego-pulpitu/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/03/03/tunelowanie-zdalnego-pulpitu/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh -R 50000:localhost:3389 flytothesky@quiz.game-host.org
+</span><span class='line'><span class="nv">$ </span>rdesktop quiz.game-host.org -p 50000
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>warunek: (<code>GatewayPorts yes</code> w <code>/etc/ssh/sshd_config</code>).</p>
+
+<p>Jeżeli jest wyłączone, to można jeszcze spróbować dodatkowo:</p>
+
+<p>z domu:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>ssh -L 3389:localhost:50000 flytothesky@quiz.game-host.org
+</span><span class='line'><span class="nv">$ </span>rdesktop localhost
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -635,56 +689,9 @@ Jak wiadomo polityka zabezpieczeń appletów jest słusznie bardzo ograniczona:<
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/01/10/poczatek/">Początek</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-10T23:36:00+01:00" pubdate data-updated="true">2007-01-10</time>
-        
-           | <a href="/2007/01/10/poczatek/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/10/poczatek/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Postanowiłem spróbować prowadzić swojego Joggera. Ostrzegam, że wpisy mogą się pojawiać w bardzo nieregularnych odstępach czasowych.</p>
-
-
-<p>MJogger powstał, ponieważ chciałem sprawdzić rozwijającą się w otchłani internetu manię blogowania, jak też przetestować działanie serwisów tego typu.<br>
-wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w dziedzinie zainteresowań i ułatwi mi wyszukiwanie czegoś, co zrobiłem wieki temu a jest mi niezbędnie potrzebne</p>
-
-
-<p>Mój wybór padł na Joggera z 2 przyczyn: korzysta z niego <a href="http://quiz.jogger.pl">Quiz</a>, oraz posiada ciekawy sposob dodawania wiadomości (kontakt jabbera)</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
+    
+      <a class="prev" href="/page/7/">&larr; Older</a>
     
     <a href="/archives">Blog Archives</a>
     
@@ -697,6 +704,10 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     <section>
   <h1>Ostatnie wpisy</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/07/15/own-mailserver-debian-vps/">Own mailserver - Debian 7 Wheezy VPS - Part 1</a>
+      </li>
     
       <li class="post">
         <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
@@ -712,10 +723,6 @@ wydaje mi się też że będzie dobrym miejscem na zapisywanie moich zmagań w d
     
       <li class="post">
         <a href="/2014/05/07/windows-8-za-darmo/">Windows 8 (i nie tylko) za darmo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
       </li>
     
   </ul>

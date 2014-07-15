@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: linux, | co.de.mon.key]]></title>
+  <title><![CDATA[Category: linux | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T07:30:06+02:00</updated>
+  <updated>2014-07-15T10:04:27+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -14,80 +14,35 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Git na apache2 przez davfs]]></title>
-    <link href="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/"/>
-    <updated>2014-05-14T16:47:59+02:00</updated>
-    <id>http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs</id>
-    <content type="html"><![CDATA[<p>Szybkie repozytorium GIT przez HTTP w Debianie</p>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1]]></title>
+    <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
+    <updated>2014-07-15T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
+    <content type="html"><![CDATA[<h2>Set up DNS record</h2>
 
-<p>Tworzymy podkatalog w katalogu VHosta</p>
-
-<p><code>bash
-cd /var/www/domain.com
-mkdir myrepo.git
+<p><code>
+codemonkey.pl  IN MX   1 codemonkey.pl
 </code></p>
 
-<p>Inicjacja repozytorium</p>
+<h2>Install postfix</h2>
 
-<p><code>bash
-cd myrepo.git
-git --bare init
+<p><code>
+apt-get install postfix
 </code></p>
 
-<p>Ustawienie praw dostępu</p>
+<p>Check if we have access to <code>mail</code> command</p>
 
-<p><code>bash
-chown -R www-data:www-data .
+<p><code>
+apt-get install mailutils
 </code></p>
 
-<p>Dostosowanie gita pod http</p>
+<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png</a>"></p>
 
-<p><code>bash
-git update-server-info
-</code></p>
+<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-2.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-2.png</a>"></p>
 
-<p>Włączenie davfs
-<code>bash
-a2enmod dav_fs
-</code></p>
+<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png</a>"></p>
 
-<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:</p>
-
-<p>``` xml
-<Location /myrepo.git></p>
-
-<pre><code>DAV on           
-AuthType None    
-</code></pre>
-
-<p></Location>          <br/>
-```</p>
-
-<p>lub trochę bardziej bezpieczna:</p>
-
-<p><code>bash
-htpasswd /etc/apache2/passwords/passwd_git username
-</code></p>
-
-<p>``` xml
-<Location /myrepo.git></p>
-
-<pre><code>  DAV on
-  AuthType Basic
-  AuthName "Git"
-  AuthUserFile /etc/apache2/passwords/passwd_git
-  Require valid-user
-</code></pre>
-
-<p></Location>
-```</p>
-
-<p>Restart apache
-<code>bash
-apache2 -k restart
-</code></p>
-
-<p>Pierwszy test przez przeglądarkę: <code>http://domain.com/myrepo.git</code></p>
+<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png</a>"></p>
 ]]></content>
   </entry>
   

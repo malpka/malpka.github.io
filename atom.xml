@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-15T07:30:06+02:00</updated>
+  <updated>2014-07-15T10:04:27+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1]]></title>
+    <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
+    <updated>2014-07-15T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
+    <content type="html"><![CDATA[<h2>Set up DNS record</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>codemonkey.pl  IN MX   1 codemonkey.pl </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install postfix</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install postfix</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check if we have access to <code>mail</code> command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mailutils</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png"></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-2.png"></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png"></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Git force merge strategy for specific file]]></title>
@@ -1759,179 +1792,6 @@ ale okazało się że szybko da się to wykonać z wykorzystaniem klasy
 </span><span class='line'>  <span class="nt">&lt;/xs:element&gt;</span>
 </span><span class='line'><span class="nt">&lt;/xs:schema&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Migracja Jogger - Octopress]]></title>
-    <link href="http://blog.codemonkey.pl/2014/01/05/migracja-jogger-octopress/"/>
-    <updated>2014-01-05T17:06:00+01:00</updated>
-    <id>http://blog.codemonkey.pl/2014/01/05/migracja-jogger-octopress</id>
-    <content type="html"><![CDATA[<h2>tl;dr</h2>
-
-<p><a href="#skrypt">Skrypt</a> w pythonie 3 przetwarzający plik xml z danymi Joggera na pliki .markdown gotowe do wrzucenia do <code>source/_posts/</code> w Octopressie</p>
-
-<h2>Pobieranie danych z Joggera</h2>
-
-<p>Dane z Joggera można pobrać z panelu administracyjnego: <code>Opcje → Eksport → Wygeneruj eksport → Pobierz</code>
-Są one w formacie XML, spakowane gz. Odpowiednio sformatowane prezentują się jak poniżej:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
-</span><span class='line'><span class="nt">&lt;jogger&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;user&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;domain&gt;</span>malpka<span class="nt">&lt;/domain&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;alias/&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/user&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;entry&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;date&gt;</span>2007-01-11 00:29:07<span class="nt">&lt;/date&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;jid&gt;</span>malpka@przykladowy.jid<span class="nt">&lt;/jid&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;level_id&gt;</span>1<span class="nt">&lt;/level_id&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;comment_mode&gt;</span>0<span class="nt">&lt;/comment_mode&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;subject&gt;</span>temat<span class="nt">&lt;/subject&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;body&gt;</span>
-</span><span class='line'>      <span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>tresc tresc tresc<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/body&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;tags/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;permalink&gt;</span>temat<span class="nt">&lt;/permalink&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;trackback/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Ogólne<span class="nt">&lt;/category&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;category&gt;</span>Inna kategoria<span class="nt">&lt;/category&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;comment&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;date&gt;</span>2007-01-11 03:35:52<span class="nt">&lt;/date&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;nick&gt;</span>NickKomentujacy<span class="nt">&lt;/nick&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;nick_url&gt;</span>http://google.pl<span class="nt">&lt;/nick_url&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;body&gt;</span><span class="ni">&amp;lt;</span>p<span class="ni">&amp;gt;</span>*wpadłem bo spać nie mogę :)*<span class="ni">&amp;lt;</span>/p<span class="ni">&amp;gt;</span><span class="nt">&lt;/body&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;ip&gt;</span>127.0.0.1<span class="nt">&lt;/ip&gt;</span>
-</span><span class='line'>      <span class="nt">&lt;trackback/&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;/comment&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;/entry&gt;</span>
-</span><span class='line'>    ...
-</span><span class='line'><span class="nt">&lt;/jogger&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Oczywiście wartość gałęzi <code>body</code> to escapowany html wpisu.</p>
-
-<p>W razie czego można wygenerować sobie <a href="http://blog.codemonkey.pl/2014/01/06/tworzenie-schematu-xsd-z-xml/">XSD z XML</a>.</p>
-
-<h2>Przetwarzanie danych eksportu na wpisy Octopressa</h2>
-
-<p>Skoro już wiadomo co i jak, można pokusić się o wyciągnięcie podstawowych informacji z XML&#8217;a: daty, tytułu, permalinka (który potraktuję jako część nazwy pliku), kategorii i treści wpisu.
-Przy okazji wyszło, że Jogger pozwalał na ustawienie pustego tytułu wpisu, co skutkuje brakiem wartości taga <code>&lt;subject/&gt;</code></p>
-
-<p>Tym razem python 3.</p>
-
-<p><a name="skrypt"></a>
-Sposób użycia:</p>
-
-<ul>
-<li>rozpakować plik z danymi eksportu jako <code>jogger_eksport.xml</code>, najlepiej do osobnego katalogu</li>
-<li>umieścić skrypt razem z plikiem xml</li>
-<li>uruchomić skrypt</li>
-<li>w katalogu dla każdego wpisu powstanie osobny plik <code>.markdown</code>, nazwany zgodnie z regułami Octopressa, z uzupełnionymi polami: tytuł, data, kategorie, oraz z treścią posta wpisaną w HTML&#8217;u</li>
-</ul>
-
-
-<div><script src='https://gist.github.com/8273337.js'></script>
-<noscript><pre><code>import re
-import codecs
-from xml.dom import minidom
-from html.parser import HTMLParser
-
-XMLFILENAME = &#39;jogger_eksport.xml&#39;
-
-def createFileName(date, permalink, subject):
-    &quot;&quot;&quot;Data wymagana, w formacie YYYY-mm-dd&quot;&quot;&quot;
-    fileName = date[:10] + &#39;-&#39;
-    if permalink != None:
-        fileName += permalink
-    else:
-        fileName += re.sub(r&#39;[^a-zA-Z\d\.-]&#39;, &#39;_&#39;, subject.lower())
-    return fileName + &#39;.markdown&#39;
-
-
-DOMTree = minidom.parse(XMLFILENAME)
-cNodes = DOMTree.childNodes
-
-postNo = 1
-for i in cNodes[0].getElementsByTagName(&quot;entry&quot;):
-
-    date = i.getElementsByTagName(&quot;date&quot;)[0].childNodes[0].toxml()
-
-    subject = &#39;Bez tytułu &#39;+str(postNo)
-    postNo = postNo + 1
-    if i.getElementsByTagName(&quot;subject&quot;)[0].firstChild != None:
-        subject = i.getElementsByTagName(&quot;subject&quot;)[0].firstChild.toxml()
-
-    permalink = None
-    if i.getElementsByTagName(&quot;permalink&quot;)[0].firstChild != None:
-        permalink = i.getElementsByTagName(&quot;permalink&quot;)[0].firstChild.toxml()
-
-    fileName = createFileName(date, permalink, subject)
-
-    body = &#39;&#39;
-    if i.getElementsByTagName(&quot;body&quot;)[0].firstChild != None:
-        body = i.getElementsByTagName(&quot;body&quot;)[0].firstChild.toxml()
-    body = HTMLParser().unescape(body)
-
-    categories = []
-    for cat in i.getElementsByTagName(&quot;category&quot;):
-        categories.append(cat.firstChild.nodeValue)
-
-    text_file = codecs.open(fileName, &quot;w&quot;, &quot;utf-8&quot;)
-    text_file.write(&#39;---\n&#39;)
-    text_file.write(&#39;layout: post\n&#39;)
-    text_file.write(&#39;title: &quot;&#39; + subject + &#39;&quot;\n&#39;)
-    text_file.write(&#39;date: &#39; + date[:16] + &#39;\n&#39;)
-    text_file.write(&#39;comments: true\n&#39;)
-    text_file.write(&#39;categories:\n&#39;)
-    for cat in categories:
-        text_file.write(&#39;- &#39; + cat + &#39;\n&#39;)
-    text_file.write(&#39;---\n&#39;)
-    text_file.write(body)
-    text_file.close()</code></pre></noscript></div>
-
-
-<p>TODO:</p>
-
-<ul>
-<li>zachowanie treści szkiców (to już trzeba ręcznie)</li>
-<li>zmiana treści na markdown</li>
-</ul>
 
 ]]></content>
   </entry>

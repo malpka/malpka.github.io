@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania &hellip;">
+  <meta name="description" content="Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies. Code snippet for january :) @ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/4/" />
-<meta property="og:description" content="Pod Windowsem najpewniejszym sposobem na zablokowanie automatycznego uruchamiania się nośników (CD/DVD, pendrive, dyski przenośne) podczas montowania lub podwójnego kliknięcia jest całkowite &hellip;" />
+<meta property="og:description" content="Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies. Code snippet for january :) @echo Offset SSDIR=Y:\set SSUSER=usernameset SSPWD= &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,63 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/">Import projektu z VSS do Bazaar z zachowaniem (częściowym) chronologii zmian</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-02-26T09:23:00+01:00" pubdate data-updated="true">2010-02-26</time>
+        
+           | <a href="/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2010/02/26/import-projektu-z-vss-do-bazaar-z-zachowaniem-czesciowym-chr/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Importing project from Microsoft Visual Sourcesafe (VSS) to Bazaar SCM with partial version preservation for dummies.</p>
+
+
+<p>Code snippet for january :)</p>
+
+
+<p></p>
+
+
+<p></p>
+
+
+<pre>
+@echo Off<br><br>set SSDIR=Y:\<br>set SSUSER=username<br>set SSPWD=<br><br>bzr init<br><br>FOR /L %%d in (1, 1, 31) do (<br>"C:\Program Files\Microsoft Visual SourceSafe\ss.exe" get $/Project -R -GTU -Vd2010/1/%%d<br>bzr add<br>bzr del<br>bzr ci -m "2010/1/%%d"<br>pause<br>)<br>
+</pre>
+
+
+<p><p>
+<p></p></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -823,48 +880,6 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2009/02/09/program-mmc-nie-moze-otworzyc-przystawki-gpedit-msc/">Program mmc nie może otworzyć przystawki gpedit.msc</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-02-09T08:12:00+01:00" pubdate data-updated="true">2009-02-09</time>
-        
-           | <a href="/2009/02/09/program-mmc-nie-moze-otworzyc-przystawki-gpedit-msc/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2009/02/09/program-mmc-nie-moze-otworzyc-przystawki-gpedit-msc/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Problem, oprócz innych czynników, może wynikać z nieprawidłowego ustawienia zmiennej użytkownika PATH Prawym na &#8220;Mój komputer&#8221; / Właściwości / Zakładka zaawansowane / Zmienne środowiskowe /</p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/5/">&larr; Older</a>
@@ -882,6 +897,10 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/15/own-mailserver-debian-vps/">Own mailserver - Debian 7 Wheezy VPS - Part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
       </li>
     
@@ -895,10 +914,6 @@ Osoby leniwe mogą zrezygnować z podstawek (mniej o 100 elementów &ndash; 3 x 
     
       <li class="post">
         <a href="/2014/05/07/windows-8-za-darmo/">Windows 8 (i nie tylko) za darmo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
       </li>
     
   </ul>

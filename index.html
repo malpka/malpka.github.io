@@ -9,8 +9,10 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository 1
-git config merge. &hellip;">
+  <meta name="description" content="Set up DNS record 1
+codemonkey.pl IN MX 1 codemonkey.pl Install postfix 1
+apt-get install postfix Check if we have access to mail command 1
+apt-get &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,9 +54,10 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="In order to set a default strategy for a file(s) in git merge you need to: Enable the ours merge driver for current repository 1
-git config merge.ours.driver true globally 1
-git config --global merge &hellip;" />
+<meta property="og:description" content="Set up DNS record 1
+codemonkey.pl IN MX 1 codemonkey.pl Install postfix 1
+apt-get install postfix Check if we have access to mail command 1
+apt-get install mailutils " />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -92,6 +95,69 @@ git config --global merge &hellip;" />
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/07/15/own-mailserver-debian-vps/">Own mailserver - Debian 7 Wheezy VPS - Part 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-15T07:47:59+02:00" pubdate data-updated="true">2014-07-15</time>
+        
+           | <a href="/2014/07/15/own-mailserver-debian-vps/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Set up DNS record</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>codemonkey.pl  IN MX   1 codemonkey.pl </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Install postfix</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install postfix</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Check if we have access to <code>mail</code> command</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>apt-get install mailutils</span></code></pre></td></tr></table></div></figure>
+
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png"></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-2.png"></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png"></p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png"></p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -749,112 +815,6 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/09/python-bruteforce-password-generator/">Python bruteforce password generator</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-09T21:38:35+02:00" pubdate data-updated="true">2014-04-09</time>
-        
-           | <a href="/2014/04/09/python-bruteforce-password-generator/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/09/python-bruteforce-password-generator/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Generating char combinations is extremely easy with Python&rsquo;s itertools.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">import</span> <span class="nn">string</span>
-</span><span class='line'><span class="kn">import</span> <span class="nn">itertools</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">dict_gen_up_to_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s">&#39;!@#$%^&amp;*()&#39;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">def</span> <span class="nf">dict_gen_exact_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="n">chars</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">ascii_letters</span> <span class="o">+</span> <span class="n">string</span><span class="o">.</span><span class="n">digits</span> <span class="o">+</span> <span class="s">&#39;!@#$%^&amp;*()&#39;</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="s">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">itertools</span><span class="o">.</span><span class="n">product</span><span class="p">(</span><span class="n">chars</span><span class="p">,</span> <span class="n">repeat</span><span class="o">=</span><span class="n">n</span><span class="p">))</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="mi">8</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dict_gen_exact_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># aaaaaaaa</span>
-</span><span class='line'><span class="c"># aaaaaaab</span>
-</span><span class='line'><span class="c"># aaaaaaac</span>
-</span><span class='line'><span class="c"># ...</span>
-</span><span class='line'><span class="c"># ))))))))</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">dict_gen_up_to_len</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-</span><span class='line'>    <span class="k">print</span> <span class="p">(</span><span class="n">word</span><span class="p">)</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># a</span>
-</span><span class='line'><span class="c"># b</span>
-</span><span class='line'><span class="c"># c</span>
-</span><span class='line'><span class="c"># ...</span>
-</span><span class='line'><span class="c"># aa</span>
-</span><span class='line'><span class="c"># ab</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -870,6 +830,10 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/15/own-mailserver-debian-vps/">Own mailserver - Debian 7 Wheezy VPS - Part 1</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
       </li>
     
@@ -883,10 +847,6 @@ Dobrze spróbować zresetować protokół TCP/IP jako administrator:</p>
     
       <li class="post">
         <a href="/2014/05/07/windows-8-za-darmo/">Windows 8 (i nie tylko) za darmo</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/06/proste-wyliczanki-w-sql-server-cte/">Proste wyliczanki w SQL Server - CTE</a>
       </li>
     
   </ul>
