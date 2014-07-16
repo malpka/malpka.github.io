@@ -173,6 +173,8 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>Domain listed in <code>virtual_mailbox_domains</code> must not be present in <code>mydestination</code></p>
+
 <p>Mailbox maps</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -198,6 +200,13 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>Create mailbox folder</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p /var/vmail/testmail.codemonkey.pl/malpka
+</span><span class='line'>mkdir -p /var/vmail/testmail.codemonkey.pl/catchall
+</span></code></pre></td></tr></table></div></figure>
 
 </div>
   

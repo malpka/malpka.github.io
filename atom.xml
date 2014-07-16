@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-16T10:30:06+02:00</updated>
+  <updated>2014-07-16T11:31:05+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -68,6 +68,8 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>Domain listed in <code>virtual_mailbox_domains</code> must not be present in <code>mydestination</code></p>
+
 <p>Mailbox maps</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -93,6 +95,13 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>Create mailbox folder</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p /var/vmail/testmail.codemonkey.pl/malpka
+</span><span class='line'>mkdir -p /var/vmail/testmail.codemonkey.pl/catchall
+</span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
