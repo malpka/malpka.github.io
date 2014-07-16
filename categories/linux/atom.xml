@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-16T11:31:05+02:00</updated>
+  <updated>2014-07-16T11:42:00+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2]]></title>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains]]></title>
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
@@ -43,6 +43,12 @@ chmod u+w /var/vmail
 
 <h3>Reconfigure postfix to use virtual</h3>
 
+<p>Let&rsquo;s add a mail subdomain</p>
+
+<p><code>
+testmail.codemonkey.pl   IN MX  1   codemonkey.pl
+</code></p>
+
 <p>The configuration</p>
 
 <p><code>bash
@@ -64,6 +70,8 @@ echo "malpka@testmail.codemonkey.pl testmail.codemonkey.pl/malpka" &gt;&gt; virt
 echo "@testmail.codemonkey.pl testmail.codemonkey.pl/catchall" &gt;&gt; virtual_mailbox_maps
 </code></p>
 
+<p>If you would like to use Maildir format instead of mailbox, just add slash (testmail.codemonkey.pl/malpka/)</p>
+
 <p>Aliases</p>
 
 <p><code>
@@ -77,17 +85,34 @@ postmap virtual_alias_maps
 postmap virtual_mailbox_maps
 </code></p>
 
-<p>Create mailbox folder</p>
+<p>Create mailbox file and setup permission again.</p>
+
+<p>``` bash
+touch /var/vmail/testmail.codemonkey.pl/malpka
+touch /var/vmail/testmail.codemonkey.pl/catchall</p>
+
+<p>chown -R vmail:vmail /var/vmail
+chmod u+w /var/vmail
+```</p>
+
+<p>Reload postfix configuration</p>
 
 <p><code>bash
-mkdir -p /var/vmail/testmail.codemonkey.pl/malpka
-mkdir -p /var/vmail/testmail.codemonkey.pl/catchall
+postfix reload
+</code></p>
+
+<h3>Test</h3>
+
+<p>Receive mail.</p>
+
+<p><code>bash
+mutt -f /var/vmail/testmail.codemonkey.pl/malpka
 </code></p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1]]></title>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1 - basic mailserver]]></title>
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>

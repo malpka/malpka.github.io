@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-16T11:31:05+02:00</updated>
+  <updated>2014-07-16T11:42:00+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2]]></title>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains]]></title>
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
@@ -49,6 +49,13 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 
 <h3>Reconfigure postfix to use virtual</h3>
 
+<p>Let&rsquo;s add a mail subdomain</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>testmail.codemonkey.pl   IN MX   1   codemonkey.pl
+</span></code></pre></td></tr></table></div></figure>
+
+
 <p>The configuration</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -79,6 +86,8 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>If you would like to use Maildir format instead of mailbox, just add slash (testmail.codemonkey.pl/malpka/)</p>
+
 <p>Aliases</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -95,19 +104,41 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Create mailbox folder</p>
+<p>Create mailbox file and setup permission again.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p /var/vmail/testmail.codemonkey.pl/malpka
-</span><span class='line'>mkdir -p /var/vmail/testmail.codemonkey.pl/catchall
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>touch /var/vmail/testmail.codemonkey.pl/malpka
+</span><span class='line'>touch /var/vmail/testmail.codemonkey.pl/catchall
+</span><span class='line'>
+</span><span class='line'>chown -R vmail:vmail /var/vmail
+</span><span class='line'>chmod u+w /var/vmail
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Reload postfix configuration</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>postfix reload
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Test</h3>
+
+<p>Receive mail.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mutt -f /var/vmail/testmail.codemonkey.pl/malpka
 </span></code></pre></td></tr></table></div></figure>
 
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1]]></title>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1 - basic mailserver]]></title>
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
