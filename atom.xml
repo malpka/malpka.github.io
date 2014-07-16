@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-16T07:30:06+02:00</updated>
+  <updated>2014-07-16T10:30:06+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -20,7 +20,7 @@
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
     <content type="html"><![CDATA[<h1>Virtual domains</h1>
 
-<h2>Add a domain to postfix configuration &ndash; temporary solution</h2>
+<h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>postfix -e <span class="nv">mydestination</span><span class="o">=</span><span class="s2">&quot;example.org, example.com, example.net&quot;</span>
@@ -29,6 +29,71 @@
 
 <p>Now local users receive mails from all domans, i.e. user <code>malpka</code> will receive mails from <code>malpka@example.org</code>, <code>malpka@example.com</code> and <code>malpka@example.net</code>.
 Mails are saved in <code>/var/mail/malpka</code></p>
+
+<h2>Separate mail from UNIX-accounts</h2>
+
+<h3>Add vmail directory and vmail user</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mkdir -p /var/vmail
+</span><span class='line'>groupadd -g 5000 vmail
+</span><span class='line'>useradd -g vmail -u 5000 vmail -d /var/vmail -m
+</span><span class='line'>chown -R vmail:vmail /var/vmail
+</span><span class='line'>chmod u+w /var/vmail
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Reconfigure postfix to use virtual</h3>
+
+<p>The configuration</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>postconf -e <span class="nv">virtual_mailbox_domains</span><span class="o">=</span>testmail.codemonkey.pl
+</span><span class='line'>postconf -e <span class="nv">virtual_mailbox_base</span><span class="o">=</span>/var/vmail
+</span><span class='line'>postconf -e <span class="nv">virtual_mailbox_maps</span><span class="o">=</span><span class="nb">hash</span>:/etc/postfix/virtual_mailbox_maps
+</span><span class='line'>postconf -e <span class="nv">virtual_minimum_uid</span><span class="o">=</span>100
+</span><span class='line'>postconf -e <span class="nv">virtual_uid_maps</span><span class="o">=</span>static:5000
+</span><span class='line'>postconf -e <span class="nv">virtual_gid_maps</span><span class="o">=</span>static:5000
+</span><span class='line'>postconf -e <span class="nv">virtual_alias_maps</span><span class="o">=</span><span class="nb">hash</span>:/etc/postfix/virtual_alias_maps
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Mailbox maps</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;malpka@testmail.codemonkey.pl testmail.codemonkey.pl/malpka&quot;</span> &gt;&gt; virtual_mailbox_maps
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;@testmail.codemonkey.pl testmail.codemonkey.pl/catchall&quot;</span> &gt;&gt; virtual_mailbox_maps
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aliases</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;malpka2@testmail.codemonkey.pl malpka&quot;</span> &gt;&gt; virtual_alias_maps
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Hash configuration files</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>postmap virtual_alias_maps
+</span><span class='line'>postmap virtual_mailbox_maps
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 ]]></content>
   </entry>
   
@@ -97,8 +162,10 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
+<span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey:~# tail -n 1 /etc/aliases
 </span><span class='line'>root: malpka
+</span><span class='line'>codemonkey:~# newaliases
 </span></code></pre></td></tr></table></div></figure>
 
 

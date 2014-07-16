@@ -4,7 +4,7 @@
   <title><![CDATA[Category: linux | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-16T07:30:06+02:00</updated>
+  <updated>2014-07-16T10:30:06+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -20,7 +20,7 @@
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
     <content type="html"><![CDATA[<h1>Virtual domains</h1>
 
-<h2>Add a domain to postfix configuration &ndash; temporary solution</h2>
+<h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
 
 <p><code>bash
 postfix -e mydestination="example.org, example.com, example.net"
@@ -28,6 +28,52 @@ postfix -e mydestination="example.org, example.com, example.net"
 
 <p>Now local users receive mails from all domans, i.e. user <code>malpka</code> will receive mails from <code>malpka@example.org</code>, <code>malpka@example.com</code> and <code>malpka@example.net</code>.
 Mails are saved in <code>/var/mail/malpka</code></p>
+
+<h2>Separate mail from UNIX-accounts</h2>
+
+<h3>Add vmail directory and vmail user</h3>
+
+<p><code>bash
+mkdir -p /var/vmail
+groupadd -g 5000 vmail
+useradd -g vmail -u 5000 vmail -d /var/vmail -m
+chown -R vmail:vmail /var/vmail
+chmod u+w /var/vmail
+</code></p>
+
+<h3>Reconfigure postfix to use virtual</h3>
+
+<p>The configuration</p>
+
+<p><code>bash
+postconf -e virtual_mailbox_domains=testmail.codemonkey.pl
+postconf -e virtual_mailbox_base=/var/vmail
+postconf -e virtual_mailbox_maps=hash:/etc/postfix/virtual_mailbox_maps
+postconf -e virtual_minimum_uid=100
+postconf -e virtual_uid_maps=static:5000
+postconf -e virtual_gid_maps=static:5000
+postconf -e virtual_alias_maps=hash:/etc/postfix/virtual_alias_maps
+</code></p>
+
+<p>Mailbox maps</p>
+
+<p><code>bash
+echo "malpka@testmail.codemonkey.pl testmail.codemonkey.pl/malpka" &gt;&gt; virtual_mailbox_maps
+echo "@testmail.codemonkey.pl testmail.codemonkey.pl/catchall" &gt;&gt; virtual_mailbox_maps
+</code></p>
+
+<p>Aliases</p>
+
+<p><code>
+echo "malpka2@testmail.codemonkey.pl malpka" &gt;&gt; virtual_alias_maps
+</code></p>
+
+<p>Hash configuration files</p>
+
+<p><code>bash
+postmap virtual_alias_maps
+postmap virtual_mailbox_maps
+</code></p>
 ]]></content>
   </entry>
   
@@ -91,6 +137,7 @@ apt-get install mailutils
 <p><code>bash
 codemonkey:~# tail -n 1 /etc/aliases
 root: malpka
+codemonkey:~# newaliases
 </code></p>
 
 <h2>Remarks</h2>
