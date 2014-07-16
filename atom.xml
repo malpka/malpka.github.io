@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-16T11:42:00+02:00</updated>
+  <updated>2014-07-16T13:30:05+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -18,9 +18,7 @@
     <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/"/>
     <updated>2014-07-15T07:47:59+02:00</updated>
     <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
-    <content type="html"><![CDATA[<h1>Virtual domains</h1>
-
-<h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
+    <content type="html"><![CDATA[<h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>postfix -e <span class="nv">mydestination</span><span class="o">=</span><span class="s2">&quot;example.org, example.com, example.net&quot;</span>
@@ -56,7 +54,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The configuration</p>
+<p>Postfix reconfiguration</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -75,6 +73,15 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li><code>virtual_mailbox_domains</code> &ndash; comma separated list of domains that are handled by postfix&#8217; virtual domains mechanism. The rest (from <code>mydestination</code>) is handled as a local mail.</li>
+<li><code>virtual_mailbox_base</code> &ndash; base folder for virtual mailboxes. This is the prefix that is prepended to the items from <code>virtual_mailbox_maps</code></li>
+<li><code>virtual_mailbox_maps</code> &ndash; location of mailboxes for accounts</li>
+<li><code>virtual_minimum_uid</code> &ndash; safety reasons</li>
+<li><code>virtual_uid_maps</code>, <code>virtual_gid_maps</code> &ndash; user/group for writing</li>
+</ul>
+
+
 <p>Domain listed in <code>virtual_mailbox_domains</code> must not be present in <code>mydestination</code></p>
 
 <p>Mailbox maps</p>
@@ -86,7 +93,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>If you would like to use Maildir format instead of mailbox, just add slash (testmail.codemonkey.pl/malpka/)</p>
+<p>If you would like to use Maildir format instead of MBox, just add slash (testmail.codemonkey.pl/malpka/)</p>
 
 <p>Aliases</p>
 
@@ -134,6 +141,12 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>mutt -f /var/vmail/testmail.codemonkey.pl/malpka
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Remarks:
+&ndash; Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.
+&ndash; the mails that you send from a local accounts will still be from <code>$myorigin</code> domain
+&ndash; <a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a>
+&ndash; postfix virtual_* configuration can be moved to a database, when needed (more users)</p>
 ]]></content>
   </entry>
   

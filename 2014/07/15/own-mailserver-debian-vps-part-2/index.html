@@ -9,8 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Virtual domains Add a domain to postfix configuration &ndash; temporary solution src 1
-postfix -e mydestination=&quot;example.org, example.com, &hellip;">
+  <meta name="description" content="Add a domain to postfix configuration &ndash; temporary solution src 1
+postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,8 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/" />
-<meta property="og:description" content="Virtual domains Add a domain to postfix configuration &ndash; temporary solution src 1
-postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now local users receive mails from &hellip;" />
+<meta property="og:description" content="Add a domain to postfix configuration &ndash; temporary solution src 1
+postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now local users receive mails from all domans, i.e. &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -120,9 +120,7 @@ postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now l
   </header>
 
 
-<div class="entry-content"><h1>Virtual domains</h1>
-
-<h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
+<div class="entry-content"><h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>postfix -e <span class="nv">mydestination</span><span class="o">=</span><span class="s2">&quot;example.org, example.com, example.net&quot;</span>
@@ -158,7 +156,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>The configuration</p>
+<p>Postfix reconfiguration</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -177,6 +175,15 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li><code>virtual_mailbox_domains</code> &ndash; comma separated list of domains that are handled by postfix&#8217; virtual domains mechanism. The rest (from <code>mydestination</code>) is handled as a local mail.</li>
+<li><code>virtual_mailbox_base</code> &ndash; base folder for virtual mailboxes. This is the prefix that is prepended to the items from <code>virtual_mailbox_maps</code></li>
+<li><code>virtual_mailbox_maps</code> &ndash; location of mailboxes for accounts</li>
+<li><code>virtual_minimum_uid</code> &ndash; safety reasons</li>
+<li><code>virtual_uid_maps</code>, <code>virtual_gid_maps</code> &ndash; user/group for writing</li>
+</ul>
+
+
 <p>Domain listed in <code>virtual_mailbox_domains</code> must not be present in <code>mydestination</code></p>
 
 <p>Mailbox maps</p>
@@ -188,7 +195,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>If you would like to use Maildir format instead of mailbox, just add slash (testmail.codemonkey.pl/malpka/)</p>
+<p>If you would like to use Maildir format instead of MBox, just add slash (testmail.codemonkey.pl/malpka/)</p>
 
 <p>Aliases</p>
 
@@ -236,6 +243,12 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>mutt -f /var/vmail/testmail.codemonkey.pl/malpka
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>Remarks:
+&ndash; Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.
+&ndash; the mails that you send from a local accounts will still be from <code>$myorigin</code> domain
+&ndash; <a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a>
+&ndash; postfix virtual_* configuration can be moved to a database, when needed (more users)</p>
 </div>
 
 
