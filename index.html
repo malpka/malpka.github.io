@@ -155,7 +155,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <p>Let&rsquo;s add a mail subdomain</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>testmail.codemonkey.pl   IN MX   1   codemonkey.pl
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>example.org   IN MX  1   example.com
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -168,7 +168,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>postconf -e <span class="nv">virtual_mailbox_domains</span><span class="o">=</span>testmail.codemonkey.pl
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>postconf -e <span class="nv">virtual_mailbox_domains</span><span class="o">=</span>example.org
 </span><span class='line'>postconf -e <span class="nv">virtual_mailbox_base</span><span class="o">=</span>/var/vmail
 </span><span class='line'>postconf -e <span class="nv">virtual_mailbox_maps</span><span class="o">=</span><span class="nb">hash</span>:/etc/postfix/virtual_mailbox_maps
 </span><span class='line'>postconf -e <span class="nv">virtual_minimum_uid</span><span class="o">=</span>100
@@ -193,17 +193,17 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;malpka@testmail.codemonkey.pl testmail.codemonkey.pl/malpka&quot;</span> &gt;&gt; virtual_mailbox_maps
-</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;@testmail.codemonkey.pl testmail.codemonkey.pl/catchall&quot;</span> &gt;&gt; virtual_mailbox_maps
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;malpka@example.org example.org/malpka&quot;</span> &gt;&gt; virtual_mailbox_maps
+</span><span class='line'><span class="nb">echo</span> <span class="s2">&quot;@example.org example.org/catchall&quot;</span> &gt;&gt; virtual_mailbox_maps
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>If you would like to use Maildir format instead of MBox, just add slash (testmail.codemonkey.pl/malpka/)</p>
+<p>If you would like to use Maildir format instead of MBox, just add slash (example.org/malpka/)</p>
 
 <p>Aliases</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;malpka2@testmail.codemonkey.pl malpka&quot;</span> &gt;&gt; virtual_alias_maps
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nb">echo</span> <span class="s2">&quot;malpka2@example.org malpka&quot;</span> &gt;&gt; virtual_alias_maps
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -223,8 +223,8 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>touch /var/vmail/testmail.codemonkey.pl/malpka
-</span><span class='line'>touch /var/vmail/testmail.codemonkey.pl/catchall
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>touch /var/vmail/example.org/malpka
+</span><span class='line'>touch /var/vmail/example.org/catchall
 </span><span class='line'>
 </span><span class='line'>chown -R vmail:vmail /var/vmail
 </span><span class='line'>chmod u+w /var/vmail
@@ -243,15 +243,19 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <p>Receive mail.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mutt -f /var/vmail/testmail.codemonkey.pl/malpka
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mutt -f /var/vmail/example.org/malpka
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>Remarks:
-&ndash; Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.
-&ndash; the mails that you send from a local accounts will still be from <code>$myorigin</code> domain
-&ndash; <a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a>
-&ndash; postfix virtual_* configuration can be moved to a database, when needed (more users)</p>
+<h3>Remarks</h3>
+
+<ul>
+<li>Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.</li>
+<li>the mails that you send from a local accounts will still be from <code>$myorigin</code> domain</li>
+<li><a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a></li>
+<li>postfix virtual_* configuration can be moved to a database, when needed (more users)</li>
+</ul>
+
 </div>
   
   

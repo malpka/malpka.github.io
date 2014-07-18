@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/vps/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-18T19:30:05+02:00</updated>
+  <updated>2014-07-18T21:24:05+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -44,13 +44,13 @@ chmod u+w /var/vmail
 <p>Let&rsquo;s add a mail subdomain</p>
 
 <p><code>
-testmail.codemonkey.pl   IN MX  1   codemonkey.pl
+example.org   IN MX 1   example.com
 </code></p>
 
 <p>Postfix reconfiguration</p>
 
 <p><code>bash
-postconf -e virtual_mailbox_domains=testmail.codemonkey.pl
+postconf -e virtual_mailbox_domains=example.org
 postconf -e virtual_mailbox_base=/var/vmail
 postconf -e virtual_mailbox_maps=hash:/etc/postfix/virtual_mailbox_maps
 postconf -e virtual_minimum_uid=100
@@ -73,16 +73,16 @@ postconf -e virtual_alias_maps=hash:/etc/postfix/virtual_alias_maps
 <p>Mailbox maps</p>
 
 <p><code>bash
-echo "malpka@testmail.codemonkey.pl testmail.codemonkey.pl/malpka" &gt;&gt; virtual_mailbox_maps
-echo "@testmail.codemonkey.pl testmail.codemonkey.pl/catchall" &gt;&gt; virtual_mailbox_maps
+echo "malpka@example.org example.org/malpka" &gt;&gt; virtual_mailbox_maps
+echo "@example.org example.org/catchall" &gt;&gt; virtual_mailbox_maps
 </code></p>
 
-<p>If you would like to use Maildir format instead of MBox, just add slash (testmail.codemonkey.pl/malpka/)</p>
+<p>If you would like to use Maildir format instead of MBox, just add slash (example.org/malpka/)</p>
 
 <p>Aliases</p>
 
 <p><code>
-echo "malpka2@testmail.codemonkey.pl malpka" &gt;&gt; virtual_alias_maps
+echo "malpka2@example.org malpka" &gt;&gt; virtual_alias_maps
 </code></p>
 
 <p>Hash configuration files</p>
@@ -95,8 +95,8 @@ postmap virtual_mailbox_maps
 <p>Create mailbox file and setup permission again.</p>
 
 <p>``` bash
-touch /var/vmail/testmail.codemonkey.pl/malpka
-touch /var/vmail/testmail.codemonkey.pl/catchall</p>
+touch /var/vmail/example.org/malpka
+touch /var/vmail/example.org/catchall</p>
 
 <p>chown -R vmail:vmail /var/vmail
 chmod u+w /var/vmail
@@ -113,14 +113,18 @@ postfix reload
 <p>Receive mail.</p>
 
 <p><code>bash
-mutt -f /var/vmail/testmail.codemonkey.pl/malpka
+mutt -f /var/vmail/example.org/malpka
 </code></p>
 
-<p>Remarks:
-&ndash; Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.
-&ndash; the mails that you send from a local accounts will still be from <code>$myorigin</code> domain
-&ndash; <a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a>
-&ndash; postfix virtual_* configuration can be moved to a database, when needed (more users)</p>
+<h3>Remarks</h3>
+
+<ul>
+<li>Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.</li>
+<li>the mails that you send from a local accounts will still be from <code>$myorigin</code> domain</li>
+<li><a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a></li>
+<li>postfix virtual_* configuration can be moved to a database, when needed (more users)</li>
+</ul>
+
 ]]></content>
   </entry>
   
