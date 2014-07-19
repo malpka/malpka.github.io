@@ -9,8 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Add a domain to postfix configuration &ndash; temporary solution src 1
-postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now &hellip;">
+  <meta name="description" content="Let&rsquo;s map the virtual-* postfix configuration into mysql database Create database 1
+mysqladmin -p create mailserver Enter mysql root password 1 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,8 +52,21 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/" />
-<meta property="og:description" content="Add a domain to postfix configuration &ndash; temporary solution src 1
-postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now local users receive mails from all domans, i.e. &hellip;" />
+<meta property="og:description" content="Let&rsquo;s map the virtual-* postfix configuration into mysql database Create database 1
+mysqladmin -p create mailserver Enter mysql root password 1
+mysql -p mailserver 1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13 &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -91,6 +104,284 @@ postfix -e mydestination=&quot;example.org, example.com, example.net&quot; Now l
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/07/15/own-mailserver-debian-vps-part-3-database/">Own mailserver - Debian 7 Wheezy VPS - Part 3 - database</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-15T07:47:59+02:00" pubdate data-updated="true">2014-07-15</time>
+        
+           | <a href="/2014/07/15/own-mailserver-debian-vps-part-3-database/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-3-database/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Let&rsquo;s map the virtual-* postfix configuration into mysql database</p>
+
+<h2>Create database</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysqladmin -p create mailserver
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p></p>
+
+<p>Enter mysql root password</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mysql -p mailserver
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">GRANT</span> <span class="k">SELECT</span> <span class="k">ON</span> <span class="n">mailserver</span><span class="p">.</span><span class="o">*</span>
+</span><span class='line'><span class="k">TO</span> <span class="s1">&#39;mailuser&#39;</span><span class="o">@</span><span class="s1">&#39;127.0.0.1&#39;</span>
+</span><span class='line'><span class="n">IDENTIFIED</span> <span class="k">BY</span> <span class="s1">&#39;passw0rd&#39;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">virtual_domains</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">auto_increment</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">)</span>
+</span><span class='line'><span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">virtual_users</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">auto_increment</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">domain_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">password</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">path</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
+</span><span class='line'>  <span class="k">UNIQUE</span> <span class="k">KEY</span> <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="p">(</span><span class="o">`</span><span class="n">email</span><span class="o">`</span><span class="p">),</span>
+</span><span class='line'>  <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">domain_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">virtual_domains</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+</span><span class='line'><span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">virtual_aliases</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">auto_increment</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">domain_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="k">source</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">destination</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+</span><span class='line'>  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">),</span>
+</span><span class='line'>  <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">domain_id</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">virtual_domains</span><span class="p">(</span><span class="n">id</span><span class="p">)</span> <span class="k">ON</span> <span class="k">DELETE</span> <span class="k">CASCADE</span>
+</span><span class='line'><span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">InnoDB</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class='sql'><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">mailserver</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">virtual_domains</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">name</span><span class="o">`</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">VALUES</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;test.codemonkey.pl&#39;</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">mailserver</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">virtual_users</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">id</span><span class="o">`</span> <span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">domain_id</span><span class="o">`</span> <span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">password</span><span class="o">`</span> <span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">path</span><span class="o">`</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">VALUES</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">MD5</span><span class="p">(</span> <span class="s1">&#39;paSs&#39;</span> <span class="p">)</span> <span class="p">,</span> <span class="s1">&#39;malpka@test.codemonkey.pl&#39;</span><span class="p">,</span> <span class="s1">&#39;test.codemonkey.pl/malpka&#39;</span>
+</span><span class='line'><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">INSERT</span> <span class="k">INTO</span> <span class="o">`</span><span class="n">mailserver</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">virtual_aliases</span><span class="o">`</span> <span class="p">(</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">id</span><span class="o">`</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">domain_id</span><span class="o">`</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="k">source</span><span class="o">`</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">`</span><span class="n">destination</span><span class="o">`</span>
+</span><span class='line'><span class="p">)</span>
+</span><span class='line'><span class="k">VALUES</span> <span class="p">(</span>
+</span><span class='line'>  <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;malpka2@test.codemonkey.pl&#39;</span><span class="p">,</span> <span class="s1">&#39;malpka@test.codemonkey.pl&#39;</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Reconfigure postfix</h2>
+
+<h3>Enable mysql configuration</h3>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>apt-get install postfix-mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Configure mysql for virtual_mailbox_domains</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cat <span class="s">&lt;&lt; EOF &gt; /etc/postfix/virtual_mailbox_domains_mysql</span>
+</span><span class='line'><span class="s">user = mailuser</span>
+</span><span class='line'><span class="s">password = passw0rd</span>
+</span><span class='line'><span class="s">hosts = 127.0.0.1</span>
+</span><span class='line'><span class="s">dbname = mailserver</span>
+</span><span class='line'><span class="s">query = SELECT 1 FROM virtual_domains WHERE name=&#39;%s&#39;</span>
+</span><span class='line'><span class="s">EOF</span>
+</span><span class='line'>
+</span><span class='line'>postconf -e <span class="nv">virtual_mailbox_domains</span><span class="o">=</span>mysql:/etc/postfix/virtual_mailbox_domains_mysql
+</span><span class='line'>postmap /etc/postfix/virtual_mailbox_domains_mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Configure mysql for virtual_mailbox_maps</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cat <span class="s">&lt;&lt; EOF &gt; /etc/postfix/virtual_mailbox_maps_mysql</span>
+</span><span class='line'><span class="s">user = mailuser</span>
+</span><span class='line'><span class="s">password = passw0rd</span>
+</span><span class='line'><span class="s">hosts = 127.0.0.1</span>
+</span><span class='line'><span class="s">dbname = mailserver</span>
+</span><span class='line'><span class="s">query = SELECT path FROM virtual_users WHERE email=&#39;%s&#39;</span>
+</span><span class='line'><span class="s">EOF</span>
+</span><span class='line'>
+</span><span class='line'>postconf -e <span class="nv">virtual_mailbox_maps</span><span class="o">=</span>mysql:/etc/postfix/virtual_mailbox_maps_mysql
+</span><span class='line'>postmap /etc/postfix/virtual_mailbox_maps_mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Default MBox file for the virtual mail is a concatenation of <code>virtual_mailbox_base</code> and the result of above query, so for our example it will be <code>/var/vmail/test.codemonkey.pl/malpka</code>.</p>
+
+<h2>Configure mysql for virtual_alias_maps</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>cat <span class="s">&lt;&lt; EOF &gt; /etc/postfix/virtual_alias_maps_mysql</span>
+</span><span class='line'><span class="s">user = mailuser</span>
+</span><span class='line'><span class="s">password = passw0rd</span>
+</span><span class='line'><span class="s">hosts = 127.0.0.1</span>
+</span><span class='line'><span class="s">dbname = mailserver</span>
+</span><span class='line'><span class="s">query = SELECT destination FROM virtual_aliases WHERE source=&#39;%s&#39;</span>
+</span><span class='line'><span class="s">EOF</span>
+</span><span class='line'>
+</span><span class='line'>postconf -e <span class="nv">virtual_alias_maps</span><span class="o">=</span>mysql:/etc/postfix/virtual_alias_maps_mysql
+</span><span class='line'>postmap /etc/postfix/virtual_alias_maps_mysql
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Final configuration</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>chgrp postfix /etc/postfix/virtual*mysql
+</span><span class='line'>chmod <span class="nv">u</span><span class="o">=</span>rw,g<span class="o">=</span>r,o<span class="o">=</span> /etc/postfix/virtual*mysql
+</span><span class='line'>
+</span><span class='line'>postfix reload
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -914,75 +1205,6 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/22/git-log-list-all-commits-from-user/">git log - list all commits from user</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-22T09:50:25+02:00" pubdate data-updated="true">2014-04-22</time>
-        
-           | <a href="/2014/04/22/git-log-list-all-commits-from-user/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/22/git-log-list-all-commits-from-user/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img src="/images/Git-Logo-2Color.png" width="455" height="190" title="git-logo" ></p>
-
-<p><a href="https://www.kernel.org/pub/software/scm/git/docs/git-log.html">git log</a> is a powerfull command that allows to list all commits with specific criteria.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>git log --pretty<span class="o">=</span>format:<span class="s2">&quot;%ad:%an:%s&quot;</span> --date<span class="o">=</span>short --reverse --all --since<span class="o">=</span>2.months.ago --author<span class="o">=</span>john | grep -v <span class="s2">&quot;Merge branch&quot;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li><code>--all</code> &ndash; from all branches</li>
-<li><code>%ad</code> &ndash; date that respects <code>--date</code> specifier</li>
-<li><code>%an</code> &ndash; author name</li>
-<li><code>%s</code> &ndash; subject</li>
-</ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>...
-</span><span class='line'>2014-04-14:john:Customer entity
-</span><span class='line'>2014-04-15:john:Orders model
-</span><span class='line'>2014-04-18:john:Fixing security flaw
-</span><span class='line'>...
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://stackoverflow.com/questions/10349302/how-to-git-log-from-all-branches-for-the-author-at-once">source</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -998,6 +1220,10 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/07/15/own-mailserver-debian-vps-part-3-database/">Own mailserver - Debian 7 Wheezy VPS - Part 3 - database</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/07/15/own-mailserver-debian-vps-part-2/">Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains</a>
       </li>
     
@@ -1011,10 +1237,6 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
     
       <li class="post">
         <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/08/rabat-10-zl-na-zamowienie-w-plackowej-izbie/">Rabat 10 zł na zamówienie w Plackowej Izbie</a>
       </li>
     
   </ul>

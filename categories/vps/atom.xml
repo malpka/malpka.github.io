@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vps, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/vps/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-19T13:30:08+02:00</updated>
+  <updated>2014-07-19T15:03:01+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -12,6 +12,155 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 3 - database]]></title>
+    <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-3-database/"/>
+    <updated>2014-07-15T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-3-database</id>
+    <content type="html"><![CDATA[<p>Let&rsquo;s map the virtual-* postfix configuration into mysql database</p>
+
+<h2>Create database</h2>
+
+<p><code>bash
+mysqladmin -p create mailserver
+</code></p>
+
+<p>Enter mysql root password</p>
+
+<p><code>bash
+mysql -p mailserver
+</code></p>
+
+<p>``` sql
+GRANT SELECT ON mailserver.*
+TO &lsquo;mailuser&rsquo;@&lsquo;127.0.0.1&rsquo;
+IDENTIFIED BY &lsquo;passw0rd&rsquo;;</p>
+
+<p>CREATE TABLE <code>virtual_domains</code> (
+  <code>id</code> int(11) NOT NULL auto_increment,
+  <code>name</code> varchar(50) NOT NULL,
+  PRIMARY KEY (<code>id</code>)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</p>
+
+<p>CREATE TABLE <code>virtual_users</code> (
+  <code>id</code> int(11) NOT NULL auto_increment,
+  <code>domain_id</code> int(11) NOT NULL,
+  <code>password</code> varchar(32) NOT NULL,
+  <code>email</code> varchar(100) NOT NULL,
+  <code>path</code> varchar(100) NOT NULL,
+  PRIMARY KEY (<code>id</code>),
+  UNIQUE KEY <code>email</code> (<code>email</code>),
+  FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;</p>
+
+<p>CREATE TABLE <code>virtual_aliases</code> (
+  <code>id</code> int(11) NOT NULL auto_increment,
+  <code>domain_id</code> int(11) NOT NULL,
+  <code>source</code> varchar(100) NOT NULL,
+  <code>destination</code> varchar(100) NOT NULL,
+  PRIMARY KEY (<code>id</code>),
+  FOREIGN KEY (domain_id) REFERENCES virtual_domains(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```</p>
+
+<p><code>`` sql
+INSERT INTO</code>mailserver<code>.</code>virtual_domains<code>(
+ </code>id<code>,
+ </code>name`
+)
+VALUES (
+  &lsquo;1&rsquo;, &lsquo;test.codemonkey.pl&rsquo;
+);</p>
+
+<p>INSERT INTO <code>mailserver</code>.<code>virtual_users</code> (
+  <code>id</code> ,
+  <code>domain_id</code> ,
+  <code>password</code> ,
+  <code>email</code> ,
+  <code>path</code>
+)
+VALUES (
+  &lsquo;1&rsquo;, &lsquo;1&rsquo;, MD5( &lsquo;paSs&rsquo; ) , &lsquo;<a href="&#x6d;&#x61;&#105;&#108;&#116;&#x6f;&#x3a;&#109;&#97;&#x6c;&#x70;&#107;&#97;&#64;&#116;&#x65;&#115;&#x74;&#x2e;&#x63;&#111;&#x64;&#x65;&#x6d;&#111;&#110;&#107;&#x65;&#x79;&#46;&#112;&#x6c;">&#x6d;&#97;&#x6c;&#x70;&#x6b;&#x61;&#x40;&#116;&#101;&#x73;&#116;&#46;&#x63;&#111;&#x64;&#x65;&#x6d;&#111;&#x6e;&#x6b;&#101;&#121;&#x2e;&#112;&#108;</a>&rsquo;, &lsquo;test.codemonkey.pl/malpka&rsquo;
+);</p>
+
+<p>INSERT INTO <code>mailserver</code>.<code>virtual_aliases</code> (
+  <code>id</code>,
+  <code>domain_id</code>,
+  <code>source</code>,
+  <code>destination</code>
+)
+VALUES (
+  &lsquo;1&rsquo;, &lsquo;1&rsquo;, &lsquo;<a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x6d;&#97;&#x6c;&#112;&#x6b;&#x61;&#50;&#x40;&#116;&#101;&#x73;&#x74;&#46;&#99;&#111;&#x64;&#x65;&#x6d;&#x6f;&#x6e;&#x6b;&#101;&#x79;&#46;&#x70;&#108;">&#109;&#97;&#x6c;&#x70;&#107;&#97;&#x32;&#x40;&#116;&#x65;&#115;&#x74;&#46;&#99;&#x6f;&#100;&#x65;&#109;&#111;&#110;&#x6b;&#x65;&#x79;&#46;&#112;&#x6c;</a>&rsquo;, &lsquo;<a href="&#109;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#x3a;&#109;&#97;&#x6c;&#112;&#x6b;&#x61;&#x40;&#116;&#x65;&#115;&#x74;&#46;&#x63;&#x6f;&#x64;&#x65;&#x6d;&#x6f;&#x6e;&#x6b;&#x65;&#x79;&#x2e;&#112;&#108;">&#x6d;&#x61;&#x6c;&#112;&#107;&#x61;&#x40;&#116;&#101;&#x73;&#x74;&#x2e;&#99;&#111;&#x64;&#101;&#x6d;&#x6f;&#110;&#107;&#101;&#x79;&#x2e;&#112;&#108;</a>&rsquo;
+);</p>
+
+<p>```</p>
+
+<h2>Reconfigure postfix</h2>
+
+<h3>Enable mysql configuration</h3>
+
+<p><code>bash
+apt-get install postfix-mysql
+</code></p>
+
+<h2>Configure mysql for virtual_mailbox_domains</h2>
+
+<p>``` bash
+cat &lt;&lt; EOF > /etc/postfix/virtual_mailbox_domains_mysql
+user = mailuser
+password = passw0rd
+hosts = 127.0.0.1
+dbname = mailserver
+query = SELECT 1 FROM virtual_domains WHERE name=&lsquo;%s&rsquo;
+EOF</p>
+
+<p>postconf -e virtual_mailbox_domains=mysql:/etc/postfix/virtual_mailbox_domains_mysql
+postmap /etc/postfix/virtual_mailbox_domains_mysql
+```</p>
+
+<h2>Configure mysql for virtual_mailbox_maps</h2>
+
+<p>``` bash
+cat &lt;&lt; EOF > /etc/postfix/virtual_mailbox_maps_mysql
+user = mailuser
+password = passw0rd
+hosts = 127.0.0.1
+dbname = mailserver
+query = SELECT path FROM virtual_users WHERE email=&lsquo;%s&rsquo;
+EOF</p>
+
+<p>postconf -e virtual_mailbox_maps=mysql:/etc/postfix/virtual_mailbox_maps_mysql
+postmap /etc/postfix/virtual_mailbox_maps_mysql
+```</p>
+
+<p>Default MBox file for the virtual mail is a concatenation of <code>virtual_mailbox_base</code> and the result of above query, so for our example it will be <code>/var/vmail/test.codemonkey.pl/malpka</code>.</p>
+
+<h2>Configure mysql for virtual_alias_maps</h2>
+
+<p>``` bash
+cat &lt;&lt; EOF > /etc/postfix/virtual_alias_maps_mysql
+user = mailuser
+password = passw0rd
+hosts = 127.0.0.1
+dbname = mailserver
+query = SELECT destination FROM virtual_aliases WHERE source=&lsquo;%s&rsquo;
+EOF</p>
+
+<p>postconf -e virtual_alias_maps=mysql:/etc/postfix/virtual_alias_maps_mysql
+postmap /etc/postfix/virtual_alias_maps_mysql
+```</p>
+
+<h2>Final configuration</h2>
+
+<p>``` bash
+chgrp postfix /etc/postfix/virtual<em>mysql
+chmod u=rw,g=r,o= /etc/postfix/virtual</em>mysql</p>
+
+<p>postfix reload
+```</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains]]></title>

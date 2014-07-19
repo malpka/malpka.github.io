@@ -295,6 +295,10 @@
         <lastmod>2014-07-18T21:23:02+02:00</lastmod>
     </url>
     <url>
+        <loc>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-3-database/</loc>
+        <lastmod>2014-07-19T15:01:05+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://blog.codemonkey.pl/robots.txt</loc>
         <lastmod>2014-01-06T00:54:13+01:00</lastmod>
     </url>
@@ -304,10 +308,10 @@
     </url>
     <url>
         <loc>http://blog.codemonkey.pl/archives/</loc>
-        <lastmod>2014-07-18T21:23:02+02:00</lastmod>
+        <lastmod>2014-07-19T15:01:05+02:00</lastmod>
     </url>
     <url>
         <loc>http://blog.codemonkey.pl/</loc>
-        <lastmod>2014-07-18T21:23:02+02:00</lastmod>
+        <lastmod>2014-07-19T15:01:05+02:00</lastmod>
     </url>
 </urlset>

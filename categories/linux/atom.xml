@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: linux | co.de.mon.key]]></title>
+  <title><![CDATA[Category: linux, | co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/categories/linux/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-19T13:30:08+02:00</updated>
+  <updated>2014-07-19T15:03:01+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -14,191 +14,80 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains]]></title>
-    <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2/"/>
-    <updated>2014-07-15T07:47:59+02:00</updated>
-    <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps-part-2</id>
-    <content type="html"><![CDATA[<h2>Add a domain to postfix configuration &ndash; temporary solution <a href="http://www.postfix.org/VIRTUAL_README.html#local">src</a></h2>
+    <title type="html"><![CDATA[Git na apache2 przez davfs]]></title>
+    <link href="http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs/"/>
+    <updated>2014-05-14T16:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/05/14/git-na-apache2-przez-davfs</id>
+    <content type="html"><![CDATA[<p>Szybkie repozytorium GIT przez HTTP w Debianie</p>
+
+<p>Tworzymy podkatalog w katalogu VHosta</p>
 
 <p><code>bash
-postfix -e mydestination="example.org, example.com, example.net"
+cd /var/www/domain.com
+mkdir myrepo.git
 </code></p>
 
-<p>Now local users receive mails from all domans, i.e. user <code>malpka</code> will receive mails from <code>malpka@example.org</code>, <code>malpka@example.com</code> and <code>malpka@example.net</code>.
-Mails are saved in <code>/var/mail/malpka</code></p>
-
-<h2>Separate mail from UNIX-accounts</h2>
-
-<h3>Add vmail directory and vmail user</h3>
+<p>Inicjacja repozytorium</p>
 
 <p><code>bash
-mkdir -p /var/vmail
-groupadd -g 5000 vmail
-useradd -g vmail -u 5000 vmail -d /var/vmail -m
-chown -R vmail:vmail /var/vmail
-chmod u+w /var/vmail
+cd myrepo.git
+git --bare init
 </code></p>
 
-<h3>Reconfigure postfix to use virtual</h3>
-
-<p>Let&rsquo;s add a mail subdomain</p>
-
-<p><code>
-example.org   IN MX 1   example.com
-</code></p>
-
-<p>Postfix reconfiguration</p>
+<p>Ustawienie praw dostępu</p>
 
 <p><code>bash
-postconf -e virtual_mailbox_domains=example.org
-postconf -e virtual_mailbox_base=/var/vmail
-postconf -e virtual_mailbox_maps=hash:/etc/postfix/virtual_mailbox_maps
-postconf -e virtual_minimum_uid=100
-postconf -e virtual_uid_maps=static:5000
-postconf -e virtual_gid_maps=static:5000
-postconf -e virtual_alias_maps=hash:/etc/postfix/virtual_alias_maps
+chown -R www-data:www-data .
 </code></p>
 
-<ul>
-<li><code>virtual_mailbox_domains</code> &ndash; comma separated list of domains that are handled by postfix' virtual domains mechanism. The rest (from <code>mydestination</code>) is handled as a local mail.</li>
-<li><code>virtual_mailbox_base</code> &ndash; base folder for virtual mailboxes. This is the prefix that is prepended to the items from <code>virtual_mailbox_maps</code></li>
-<li><code>virtual_mailbox_maps</code> &ndash; location of mailboxes for accounts</li>
-<li><code>virtual_minimum_uid</code> &ndash; safety reasons</li>
-<li><code>virtual_uid_maps</code>, <code>virtual_gid_maps</code> &ndash; user/group for writing</li>
-</ul>
-
-
-<p>Domain listed in <code>virtual_mailbox_domains</code> must not be present in <code>mydestination</code></p>
-
-<p>Mailbox maps</p>
+<p>Dostosowanie gita pod http</p>
 
 <p><code>bash
-echo "malpka@example.org example.org/malpka" &gt;&gt; virtual_mailbox_maps
-echo "@example.org example.org/catchall" &gt;&gt; virtual_mailbox_maps
+git update-server-info
 </code></p>
 
-<p>If you would like to use Maildir format instead of MBox, just add slash (example.org/malpka/)</p>
-
-<p>Aliases</p>
-
-<p><code>
-echo "malpka2@example.org malpka" &gt;&gt; virtual_alias_maps
+<p>Włączenie davfs
+<code>bash
+a2enmod dav_fs
 </code></p>
 
-<p>Hash configuration files</p>
+<p>Dodanie konfiguracji davfs w <code>/etc/apache2/sites-enabled/domain.com</code>, najprostsza wersja bez autoryzacji:</p>
 
-<p><code>bash
-postmap virtual_alias_maps
-postmap virtual_mailbox_maps
-</code></p>
+<p>``` xml
+<Location /myrepo.git></p>
 
-<p>Create mailbox file and setup permission again.</p>
+<pre><code>DAV on           
+AuthType None    
+</code></pre>
 
-<p>``` bash
-touch /var/vmail/example.org/malpka
-touch /var/vmail/example.org/catchall</p>
-
-<p>chown -R vmail:vmail /var/vmail
-chmod u+w /var/vmail
+<p></Location>          <br/>
 ```</p>
 
-<p>Reload postfix configuration</p>
+<p>lub trochę bardziej bezpieczna:</p>
 
 <p><code>bash
-postfix reload
+htpasswd /etc/apache2/passwords/passwd_git username
 </code></p>
 
-<h3>Test</h3>
+<p>``` xml
+<Location /myrepo.git></p>
 
-<p>Receive mail.</p>
+<pre><code>  DAV on
+  AuthType Basic
+  AuthName "Git"
+  AuthUserFile /etc/apache2/passwords/passwd_git
+  Require valid-user
+</code></pre>
 
-<p><code>bash
-mutt -f /var/vmail/example.org/malpka
+<p></Location>
+```</p>
+
+<p>Restart apache
+<code>bash
+apache2 -k restart
 </code></p>
 
-<h3>Remarks</h3>
-
-<ul>
-<li>Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.</li>
-<li>the mails that you send from a local accounts will still be from <code>$myorigin</code> domain</li>
-<li><a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a></li>
-<li>postfix virtual_* configuration can be moved to a database, when needed (more users)</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Own mailserver - Debian 7 Wheezy VPS - Part 1 - basic mailserver]]></title>
-    <link href="http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps/"/>
-    <updated>2014-07-15T07:47:59+02:00</updated>
-    <id>http://blog.codemonkey.pl/2014/07/15/own-mailserver-debian-vps</id>
-    <content type="html"><![CDATA[<h2>Check / set up machine&rsquo;s hostname</h2>
-
-<p><code>bash
-malpka@codemonkey:~$ hostname
-codemonkey.pl
-</code></p>
-
-<h2>Set up DNS record</h2>
-
-<p><code>
-codemonkey.pl   IN MX   1   codemonkey.pl
-.codemonkey.pl  SPF     v=spf1 a mx ~all
-</code></p>
-
-<h2>Check SMTP (25) port for outside availability</h2>
-
-<h2>Install postfix</h2>
-
-<p><code>
-apt-get install postfix
-</code></p>
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-1.png</a>"></p>
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-2.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-2.png</a>"></p>
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-3.png</a>"></p>
-
-<h2>Voila! ;)</h2>
-
-<p>Check if we have access to <code>mail</code> command</p>
-
-<p><code>
-apt-get install mailutils
-</code></p>
-
-<p>and send the mail (end with Ctrl+D)</p>
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/postfix-install-4.png</a>"></p>
-
-<p>Mail received, post reply</p>
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-mail-received.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-mail-received.png</a>"></p>
-
-<p>After posting the reply</p>
-
-<p><img class="<a" src="href="https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png">https://dl.dropboxusercontent.com/u/119311219/blog.codemonkey.pl/images/mailserver/first-reply-received.png</a>"></p>
-
-<h2>Configure mail aliases</h2>
-
-<h2>In <code>/etc/aliases</code> file we can add redirections between local users</h2>
-
-<p><code>bash
-codemonkey:~# tail -n 1 /etc/aliases
-root: malpka
-codemonkey:~# newaliases
-</code></p>
-
-<h2>Remarks</h2>
-
-<ul>
-<li>be aware of STMP relay security! <a href="http://www.postfix.org/SMTPD_ACCESS_README.html">SMTPD_ACCESS_README.html</a></li>
-<li>works for any local system user</li>
-<li>uses <code>/var/mail/{username}</code> as a default mailbox location and <code>MBox</code> as a format</li>
-</ul>
-
+<p>Pierwszy test przez przeglądarkę: <code>http://domain.com/myrepo.git</code></p>
 ]]></content>
   </entry>
   
