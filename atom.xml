@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-07-19T15:03:01+02:00</updated>
+  <updated>2014-07-19T16:30:10+02:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -393,7 +393,7 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <h3>Remarks</h3>
 
 <ul>
-<li>Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 3.</li>
+<li>Despite every email address has it&rsquo;s own place (different MBox/Maildir) you can only access it from the local system (root or vmail user). Fix in Part 4 &ndash; dovecot.</li>
 <li>the mails that you send from a local accounts will still be from <code>$myorigin</code> domain</li>
 <li><a href="http://www.linuxmail.info/mbox-maildir-mail-storage-formats/">MBox vs Maildir war</a></li>
 <li>postfix virtual_* configuration can be moved to a database, when needed (more users)</li>
