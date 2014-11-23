@@ -598,8 +598,8 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
-</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx ~all
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@  IN MX  1  codemonkey.pl
+</span><span class='line'>@  IN TXT <span class="s2">&quot;v=spf1 a mx ~all&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -658,8 +658,62 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <li>be aware of STMP relay security! <a href="http://www.postfix.org/SMTPD_ACCESS_README.html">SMTPD_ACCESS_README.html</a></li>
 <li>works for any local system user</li>
 <li>uses <code>/var/mail/{username}</code> as a default mailbox location and <code>MBox</code> as a format</li>
+<li>mail servers like gmail will reject e-mails from our mailserver until the RevDNS and SPF record are properly configured.</li>
 </ul>
 
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/07/15/missing-ms-sql-configuration-manager/">Missing MS SQL Configuration Manager</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-15T07:47:59+02:00" pubdate data-updated="true">2014-07-15</time>
+        
+           | <a href="/2014/07/15/missing-ms-sql-configuration-manager/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/07/15/missing-ms-sql-configuration-manager/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>If you are unable to find the Configuration Manager, there is a simple way to call it, instead of repairing the installation:</p>
+
+<h3>For SQL Server 2012</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SQLServerManager11.msc</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>For SQL Server 2008</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SQLServerManager10.msc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(credits)[<a href="http://stackoverflow.com/questions/9844771/sql-server-configuration-manager-not-found">http://stackoverflow.com/questions/9844771/sql-server-configuration-manager-not-found</a>]</p>
 </div>
   
   
@@ -1126,85 +1180,6 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-30T11:28:25+02:00" pubdate data-updated="true">2014-04-30</time>
-        
-           | <a href="/2014/04/30/przekierowanie-portu-windows/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/30/przekierowanie-portu-windows/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><img class="left" src="http://i.imgur.com/mNHnpU9.png" width="96" height="96" title="cmd" ></p>
-
-<p>Przekierowanie lokalnego portu na systemie z Windowsem na zdalny na zewnętrznej maszynie.</p>
-
-<p>&nbsp;</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy add v<span class="m">4</span>tov<span class="m">4</span> listenport<span class="o">=</span><span class="m">3390</span> listenaddress<span class="o">=</span><span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">20</span> connectport<span class="o">=</span><span class="m">3389</span> connectaddress<span class="o">=</span><span class="m">81</span>.<span class="m">81</span>.<span class="m">81</span>.<span class="m">81</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<ul>
-<li>listenport &ndash; port nasłuchujący lokalnie</li>
-<li>listenadress &ndash; adres na lokalnej maszynie, na którym nasłuchiwać, można hurtowo 0.0.0.0</li>
-<li>connectport &ndash; port docelowy</li>
-<li>connectaddress &ndash; adres komputera docelowego</li>
-</ul>
-
-
-<p>Aby skasować jedno przekierowanie:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy delete v<span class="m">4</span>tov<span class="m">4</span> listenport<span class="o">=</span><span class="m">3390</span> listenaddress<span class="o">=</span><span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">20</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Aby skasować wszystkie:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy reset
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Aby zobaczyć stan:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy show all
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -1232,11 +1207,11 @@ W prosty sposób można mieć legalny system operacyjny z <strong>pewnego źród
       </li>
     
       <li class="post">
-        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+        <a href="/2014/07/15/missing-ms-sql-configuration-manager/">Missing MS SQL Configuration Manager</a>
       </li>
     
       <li class="post">
-        <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
+        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
       </li>
     
   </ul>

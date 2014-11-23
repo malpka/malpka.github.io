@@ -4,7 +4,7 @@
   <title><![CDATA[co.de.mon.key]]></title>
   <link href="http://blog.codemonkey.pl/atom.xml" rel="self"/>
   <link href="http://blog.codemonkey.pl/"/>
-  <updated>2014-11-02T15:25:14+01:00</updated>
+  <updated>2014-11-23T13:32:20+01:00</updated>
   <id>http://blog.codemonkey.pl/</id>
   <author>
     <name><![CDATA[malpka]]></name>
@@ -420,8 +420,8 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
-</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx ~all
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@  IN MX  1  codemonkey.pl
+</span><span class='line'>@  IN TXT <span class="s2">&quot;v=spf1 a mx ~all&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -480,8 +480,32 @@ Mails are saved in <code>/var/mail/malpka</code></p>
 <li>be aware of STMP relay security! <a href="http://www.postfix.org/SMTPD_ACCESS_README.html">SMTPD_ACCESS_README.html</a></li>
 <li>works for any local system user</li>
 <li>uses <code>/var/mail/{username}</code> as a default mailbox location and <code>MBox</code> as a format</li>
+<li>mail servers like gmail will reject e-mails from our mailserver until the RevDNS and SPF record are properly configured.</li>
 </ul>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Missing MS SQL Configuration Manager]]></title>
+    <link href="http://blog.codemonkey.pl/2014/07/15/missing-ms-sql-configuration-manager/"/>
+    <updated>2014-07-15T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/07/15/missing-ms-sql-configuration-manager</id>
+    <content type="html"><![CDATA[<p>If you are unable to find the Configuration Manager, there is a simple way to call it, instead of repairing the installation:</p>
+
+<h3>For SQL Server 2012</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SQLServerManager11.msc</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>For SQL Server 2008</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SQLServerManager10.msc</span></code></pre></td></tr></table></div></figure>
+
+
+<p>(credits)[<a href="http://stackoverflow.com/questions/9844771/sql-server-configuration-manager-not-found">http://stackoverflow.com/questions/9844771/sql-server-configuration-manager-not-found</a>]</p>
 ]]></content>
   </entry>
   
@@ -1891,59 +1915,6 @@ However the manual doesn&rsquo;t mention about direct stream URL&rsquo;s.</p>
 <li>odrębny mechanizm komentarzy &ndash; Disqus</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Usuwanie danych z tabeli w nHibernate]]></title>
-    <link href="http://blog.codemonkey.pl/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/"/>
-    <updated>2014-01-29T10:00:49+01:00</updated>
-    <id>http://blog.codemonkey.pl/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate</id>
-    <content type="html"><![CDATA[<p>Najbardziej generalny sposób, na jaki trafiłem.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CleanUpTable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">ISessionFactory</span> <span class="n">sessionFactory</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">var</span> <span class="n">metadata</span> <span class="p">=</span> <span class="n">sessionFactory</span><span class="p">.</span><span class="n">GetClassMetadata</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">T</span><span class="p">))</span> <span class="k">as</span> <span class="n">NHibernate</span><span class="p">.</span><span class="n">Persister</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">AbstractEntityPersister</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">string</span> <span class="n">table</span> <span class="p">=</span> <span class="n">metadata</span><span class="p">.</span><span class="n">TableName</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">using</span> <span class="p">(</span><span class="n">ISession</span> <span class="n">session</span> <span class="p">=</span> <span class="n">sessionFactory</span><span class="p">.</span><span class="n">OpenSession</span><span class="p">())</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">transaction</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">BeginTransaction</span><span class="p">())</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="kt">string</span> <span class="n">deleteAll</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;DELETE FROM \&quot;{0}\&quot;&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">);</span>
-</span><span class='line'>            <span class="n">session</span><span class="p">.</span><span class="n">CreateSQLQuery</span><span class="p">(</span><span class="n">deleteAll</span><span class="p">).</span><span class="n">ExecuteUpdate</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="n">transaction</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Sposób użycia:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">CleanUpTable</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;(</span><span class="n">sessionFactory</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://stackoverflow.com/a/16861155/1434646">Źródło</a></p>
 ]]></content>
   </entry>
   

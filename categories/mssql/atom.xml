@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: mssql | co.de.mon.key]]></title>
+  <link href="http://blog.codemonkey.pl/categories/mssql/atom.xml" rel="self"/>
+  <link href="http://blog.codemonkey.pl/"/>
+  <updated>2014-11-23T13:32:20+01:00</updated>
+  <id>http://blog.codemonkey.pl/</id>
+  <author>
+    <name><![CDATA[malpka]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Missing MS SQL Configuration Manager]]></title>
+    <link href="http://blog.codemonkey.pl/2014/07/15/missing-ms-sql-configuration-manager/"/>
+    <updated>2014-07-15T07:47:59+02:00</updated>
+    <id>http://blog.codemonkey.pl/2014/07/15/missing-ms-sql-configuration-manager</id>
+    <content type="html"><![CDATA[<p>If you are unable to find the Configuration Manager, there is a simple way to call it, instead of repairing the installation:</p>
+
+<h3>For SQL Server 2012</h3>
+
+<p><code>
+SQLServerManager11.msc
+</code></p>
+
+<h3>For SQL Server 2008</h3>
+
+<p><code>
+SQLServerManager10.msc
+</code>
+(credits)[<a href="http://stackoverflow.com/questions/9844771/sql-server-configuration-manager-not-found">http://stackoverflow.com/questions/9844771/sql-server-configuration-manager-not-found</a>]</p>
+]]></content>
+  </entry>
+  
+</feed>

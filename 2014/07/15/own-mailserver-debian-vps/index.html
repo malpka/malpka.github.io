@@ -14,8 +14,8 @@
 malpka@codemonkey:~$ hostname
 codemonkey.pl Set up DNS record 1
 2
-codemonkey.pl IN MX 1 codemonkey.pl
-. &hellip;">
+@ IN MX 1 codemonkey.pl
+@ IN TXT &quot; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -62,8 +62,8 @@ margin: 0 0 0;
 malpka@codemonkey:~$ hostname
 codemonkey.pl Set up DNS record 1
 2
-codemonkey.pl IN MX 1 codemonkey.pl
-.codemonkey.pl SPF v=spf1 a mx ~all Check SMTP (25) &hellip;" />
+@ IN MX 1 codemonkey.pl
+@ IN TXT &quot;v=spf1 a mx ~all&quot; Check SMTP (25) port for &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -143,8 +143,8 @@ codemonkey.pl IN MX 1 codemonkey.pl
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>codemonkey.pl   IN MX    1   codemonkey.pl
-</span><span class='line'>.codemonkey.pl  SPF   <span class="nv">v</span><span class="o">=</span>spf1 a mx ~all
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>@  IN MX  1  codemonkey.pl
+</span><span class='line'>@  IN TXT <span class="s2">&quot;v=spf1 a mx ~all&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -203,6 +203,7 @@ codemonkey.pl IN MX 1 codemonkey.pl
 <li>be aware of STMP relay security! <a href="http://www.postfix.org/SMTPD_ACCESS_README.html">SMTPD_ACCESS_README.html</a></li>
 <li>works for any local system user</li>
 <li>uses <code>/var/mail/{username}</code> as a default mailbox location and <code>MBox</code> as a format</li>
+<li>mail servers like gmail will reject e-mails from our mailserver until the RevDNS and SPF record are properly configured.</li>
 </ul>
 
 </div>
@@ -252,7 +253,7 @@ codemonkey.pl IN MX 1 codemonkey.pl
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/2014/06/16/git-force-merge-strategy-for-specific-file/" title="Previous Post: Git force merge strategy for specific file">&laquo; Git force merge strategy for specific file</a>
+        <a class="basic-alignment left" href="/2014/07/15/missing-ms-sql-configuration-manager/" title="Previous Post: Missing MS SQL Configuration Manager">&laquo; Missing MS SQL Configuration Manager</a>
       
       
         <a class="basic-alignment right" href="/2014/07/15/own-mailserver-debian-vps-part-2/" title="Next Post: Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains">Own mailserver - Debian 7 Wheezy VPS - Part 2 - virtual domains &raquo;</a>
@@ -288,11 +289,11 @@ codemonkey.pl IN MX 1 codemonkey.pl
       </li>
     
       <li class="post">
-        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+        <a href="/2014/07/15/missing-ms-sql-configuration-manager/">Missing MS SQL Configuration Manager</a>
       </li>
     
       <li class="post">
-        <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
+        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
       </li>
     
   </ul>

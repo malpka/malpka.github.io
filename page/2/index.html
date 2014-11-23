@@ -9,8 +9,8 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="git log is a powerfull command that allows to list all commits with specific criteria. 1
-git log --pretty=format:&quot;%ad:%an:%s&quot; --date=short &hellip;">
+  <meta name="description" content="Przekierowanie lokalnego portu na systemie z Windowsem na zdalny na zewnętrznej maszynie. &nbsp; 1
+netsh interface portproxy add v4tov4 listenport= &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,8 +52,8 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/2/" />
-<meta property="og:description" content="git log is a powerfull command that allows to list all commits with specific criteria. 1
-git log --pretty=format:&quot;%ad:%an:%s&quot; --date=short --reverse --all --since=2.months.ago --author= &hellip;" />
+<meta property="og:description" content="Przekierowanie lokalnego portu na systemie z Windowsem na zdalny na zewnętrznej maszynie. &nbsp; 1
+netsh interface portproxy add v4tov4 listenport=3390 listenaddress=192.168.1.20 connectport=3389 &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -91,6 +91,85 @@ git log --pretty=format:&quot;%ad:%an:%s&quot; --date=short --reverse --all --si
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/04/30/przekierowanie-portu-windows/">Przekierowanie portu Windows</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-30T11:28:25+02:00" pubdate data-updated="true">2014-04-30</time>
+        
+           | <a href="/2014/04/30/przekierowanie-portu-windows/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2014/04/30/przekierowanie-portu-windows/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><img class="left" src="http://i.imgur.com/mNHnpU9.png" width="96" height="96" title="cmd" ></p>
+
+<p>Przekierowanie lokalnego portu na systemie z Windowsem na zdalny na zewnętrznej maszynie.</p>
+
+<p>&nbsp;</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy add v<span class="m">4</span>tov<span class="m">4</span> listenport<span class="o">=</span><span class="m">3390</span> listenaddress<span class="o">=</span><span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">20</span> connectport<span class="o">=</span><span class="m">3389</span> connectaddress<span class="o">=</span><span class="m">81</span>.<span class="m">81</span>.<span class="m">81</span>.<span class="m">81</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>listenport &ndash; port nasłuchujący lokalnie</li>
+<li>listenadress &ndash; adres na lokalnej maszynie, na którym nasłuchiwać, można hurtowo 0.0.0.0</li>
+<li>connectport &ndash; port docelowy</li>
+<li>connectaddress &ndash; adres komputera docelowego</li>
+</ul>
+
+
+<p>Aby skasować jedno przekierowanie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy delete v<span class="m">4</span>tov<span class="m">4</span> listenport<span class="o">=</span><span class="m">3390</span> listenaddress<span class="o">=</span><span class="m">192</span>.<span class="m">168</span>.<span class="m">1</span>.<span class="m">20</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aby skasować wszystkie:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy reset
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aby zobaczyć stan:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bat'><span class='line'>netsh interface portproxy show all
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -1189,89 +1268,6 @@ However the manual doesn&rsquo;t mention about direct stream URL&rsquo;s.</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Usuwanie danych z tabeli w nHibernate</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-29T10:00:49+01:00" pubdate data-updated="true">2014-01-29</time>
-        
-           | <a href="/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2014/01/29/usuwanie-danych-z-tabeli-w-nhibernate/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Najbardziej generalny sposób, na jaki trafiłem.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="k">private</span> <span class="k">static</span> <span class="k">void</span> <span class="n">CleanUpTable</span><span class="p">&lt;</span><span class="n">T</span><span class="p">&gt;(</span><span class="n">ISessionFactory</span> <span class="n">sessionFactory</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="kt">var</span> <span class="n">metadata</span> <span class="p">=</span> <span class="n">sessionFactory</span><span class="p">.</span><span class="n">GetClassMetadata</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">T</span><span class="p">))</span> <span class="k">as</span> <span class="n">NHibernate</span><span class="p">.</span><span class="n">Persister</span><span class="p">.</span><span class="n">Entity</span><span class="p">.</span><span class="n">AbstractEntityPersister</span><span class="p">;</span>
-</span><span class='line'>    <span class="kt">string</span> <span class="n">table</span> <span class="p">=</span> <span class="n">metadata</span><span class="p">.</span><span class="n">TableName</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">using</span> <span class="p">(</span><span class="n">ISession</span> <span class="n">session</span> <span class="p">=</span> <span class="n">sessionFactory</span><span class="p">.</span><span class="n">OpenSession</span><span class="p">())</span>
-</span><span class='line'>    <span class="p">{</span>
-</span><span class='line'>        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">transaction</span> <span class="p">=</span> <span class="n">session</span><span class="p">.</span><span class="n">BeginTransaction</span><span class="p">())</span>
-</span><span class='line'>        <span class="p">{</span>
-</span><span class='line'>            <span class="kt">string</span> <span class="n">deleteAll</span> <span class="p">=</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;DELETE FROM \&quot;{0}\&quot;&quot;</span><span class="p">,</span> <span class="n">table</span><span class="p">);</span>
-</span><span class='line'>            <span class="n">session</span><span class="p">.</span><span class="n">CreateSQLQuery</span><span class="p">(</span><span class="n">deleteAll</span><span class="p">).</span><span class="n">ExecuteUpdate</span><span class="p">();</span>
-</span><span class='line'>
-</span><span class='line'>            <span class="n">transaction</span><span class="p">.</span><span class="n">Commit</span><span class="p">();</span>
-</span><span class='line'>        <span class="p">}</span>
-</span><span class='line'>    <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Sposób użycia:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='c#'><span class='line'><span class="n">CleanUpTable</span><span class="p">&lt;</span><span class="n">Person</span><span class="p">&gt;(</span><span class="n">sessionFactory</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://stackoverflow.com/a/16861155/1434646">Źródło</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/3/">&larr; Older</a>
@@ -1301,11 +1297,11 @@ However the manual doesn&rsquo;t mention about direct stream URL&rsquo;s.</p>
       </li>
     
       <li class="post">
-        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+        <a href="/2014/07/15/missing-ms-sql-configuration-manager/">Missing MS SQL Configuration Manager</a>
       </li>
     
       <li class="post">
-        <a href="/2014/05/14/git-na-apache2-przez-davfs/">Git na apache2 przez davfs</a>
+        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
       </li>
     
   </ul>
