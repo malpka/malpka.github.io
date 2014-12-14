@@ -9,8 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.
-Według mnie to było kwestią czasu, tak &hellip;">
+  <meta name="description" content="Zdziwiło mnie, że aktualizacja oprogramowania przebiegła pomyślnie. Mogło się nie udać na przykład z tego powodu że wersja DD-WRT którą wybrałem (dd- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -52,8 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/5/" />
-<meta property="og:description" content="Stało się. Jeden z argumentów który zawsze stawiali przeciwnicy tego telefonu padł. Wpis dedykuje właśnie im.
-Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie niezależny od &hellip;" />
+<meta property="og:description" content="Zdziwiło mnie, że aktualizacja oprogramowania przebiegła pomyślnie. Mogło się nie udać na przykład z tego powodu że wersja DD-WRT którą wybrałem (dd-wrt.v24_vpn_generic.bin) zajmowała 3,52 MB, a &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -91,6 +89,76 @@ Według mnie to było kwestią czasu, tak jak kwestią czasu jest całkowicie ni
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/">Zmiana firmware WRT54GL z Tomato na DD-WRT</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-28T20:11:00+01:00" pubdate data-updated="true">2009-03-28</time>
+        
+           | <a href="/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2009/03/28/zmiana-firmware-wrt54gl-z-tomato-na-dd-wrt/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Zdziwiło mnie, że aktualizacja oprogramowania przebiegła pomyślnie.</p>
+
+
+<p>Mogło się nie udać na przykład z tego powodu że wersja DD-WRT którą wybrałem (dd-wrt.v24_vpn_generic.bin) zajmowała 3,52 MB, a Tomato raportował, że ilość pamięci dostępnej na cache&#8217;owanie procesu aktualizacji to około 2,1 MB</p>
+
+
+<p>Na stronie DD wyczytałem, że czasami wymagane jest zainstalowanie najpierw wersji mini, dlatego przezornie ją pobrałem, ale ponieważ &#8220;jestem hardcorem&#8221; zainstalowałem od razu oprogramowanie docelowe.</p>
+
+
+<p>Nie dość, że proces przeszedł pomyślnie, to okazało się że prawie wszystkie ustawienia zostały przywrócone. Chodzi tu m.in. o statyczne DHCP, konfigurację sieci bezprzewodowej - ssid, wep, &#8230; . Jeszcze muszę poszukać gdzie jest przekierowanie portów.</p>
+
+
+<p>Na DD-WRT przeszedłem, bo potrzebny mi VPN, ale też chciałem zobaczyć jak wygląda coś innego niż domyślne oprogramowanie oraz Tomato.</p>
+
+
+<p>Jedyne, co mnie zirytowało to polskie tłumaczenie, często pomieszane z angielskim, albo wplecione w angielski szyk zdania. Szybko przełączyłem się na eng;)</p>
+
+
+<p>Wielkie podziękowania za tak sprawnie działający firmware dla twórców!</p>
+
+
+<p></p>
+
+
+<p>&#8212;&#8212;&#8212; Edit 29.03.2009</p>
+
+
+<p>W nowym oprogramowaniu umieszczenie funkcji jest mniej intuicyjne niż w poprzednim. Myślałem że to kwestia przyzwyczajenia, ale po tych 2 dniach zabawy nadal ciężko mi znaleźć opcję której szukam.<br>
+Jednak konfiguracja przekierowania portów się nie zachowała.</p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -778,49 +846,6 @@ Panel administracyjny (Tomcat, JSP, Struts, Hibernate) miesza w bazie danych (Or
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/07/23/zewnetrzne-obrazki-w-mediawiki/">Zewnętrzne obrazki w MediaWiki</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-07-23T11:58:00+02:00" pubdate data-updated="true">2007-07-23</time>
-        
-           | <a href="/2007/07/23/zewnetrzne-obrazki-w-mediawiki/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220;hotlinkowanie&#8221;, czyli faktyczne wstawienie grafiki na stronę, należy dopisać w pliku konfiguracyjnym <b>LocalSettings.php</b> linię:<br>
-<code>$wgAllowExternalImages = true;</code></p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/6/">&larr; Older</a>
@@ -854,7 +879,7 @@ Panel administracyjny (Tomcat, JSP, Struts, Hibernate) miesza w bazie danych (Or
       </li>
     
       <li class="post">
-        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+        <a href="/2014/07/15/howto-test-local-network-speed/">HOWTO test local network speed</a>
       </li>
     
   </ul>

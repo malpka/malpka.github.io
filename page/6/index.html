@@ -9,7 +9,7 @@
   <meta name="author" content="malpka">
 
   
-  <meta name="description" content="Uczę się obecnie Hibernate i podczas pisania najprostszego programu który operował na pojedynczej tabeli wystąpił błąd połączenia z bazą danych Przy &hellip;">
+  <meta name="description" content="Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -51,7 +51,7 @@ margin: 0 0 0;
 <meta property="og:title" content="co.de.mon.key" />
 <meta property="og:site_name" content="co.de.mon.key" />
 <meta property="og:url" content="http://blog.codemonkey.pl/page/6/" />
-<meta property="og:description" content="Uczę się obecnie Hibernate i podczas pisania najprostszego programu który operował na pojedynczej tabeli wystąpił błąd połączenia z bazą danych Przy korzystaniu ze standardowego connectora do bazy po &hellip;" />
+<meta property="og:description" content="Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220;hotlinkowanie&#8221;, czyli faktyczne wstawienie &hellip;" />
 
 <meta name="google-site-verification" content="nbdv77_NBShnB1HOjXPuwSqR6fyFFXVhZwKmNcv0fxU" />
   
@@ -89,6 +89,49 @@ margin: 0 0 0;
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2007/07/23/zewnetrzne-obrazki-w-mediawiki/">Zewnętrzne obrazki w MediaWiki</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2007-07-23T11:58:00+02:00" pubdate data-updated="true">2007-07-23</time>
+        
+           | <a href="/2007/07/23/zewnetrzne-obrazki-w-mediawiki/#disqus_thread"
+             data-disqus-identifier="http://blog.codemonkey.pl/2007/07/23/zewnetrzne-obrazki-w-mediawiki/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Domyślnie w nowych wersjach MediaWiki dodanie linku do zewnętrznego obrazka powoduje, że widoczny jest jedynie jego adres. Aby umożliwić &#8220;hotlinkowanie&#8221;, czyli faktyczne wstawienie grafiki na stronę, należy dopisać w pliku konfiguracyjnym <b>LocalSettings.php</b> linię:<br>
+<code>$wgAllowExternalImages = true;</code></p>
+
+
+
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -691,65 +734,6 @@ Zamiana ciągów znaków to dopiero początek góry lodowej &#8230; <a href="htt
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/">Debian - dodawanie usług uruchamianych podczas startu</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-01-12T18:35:00+01:00" pubdate data-updated="true">2007-01-12</time>
-        
-           | <a href="/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/#disqus_thread"
-             data-disqus-identifier="http://blog.codemonkey.pl/2007/01/12/debian-dodawanie-uslug-uruchamianych-podczas-startu/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Prosty skrypt konfiguracji sieci bezprzewodowej</p>
-
-
-<p><code>echo '#!/bin/bash' &gt; /etc/init.d/wlanstart<br>
-echo 'iwconfig wlan0 essid malpka mode Ad-Hoc channel 11' &gt;&gt; /etc/init.d/wlanstart<br>
-chmod +x /etc/init.d/wlanstart<br>
-update-rc.d wlanstart defaults</code></p>
-
-
-<p>Serwer mi padł po 7 dniach uptime bo w gniazdku zaczęło mi się iskrzyć. Już naprawione, ale po podniesieniu się systemu wlan nie działał i internetu w całym domu nie miałem .. straszne.</p>
-
-
-<p>edit:<br>
-Poprawka .. kod ustawiający wlan nie powinien być wrzucony do init.d ale do /etc/network/interfaces<br>
-Do konfiguracji interesującego nas interfejsu należy dopisać:</p>
-
-
-<p><code>up /usr/local/bin/wlanstart</code></p>
-
-
-
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/7/">&larr; Older</a>
@@ -783,7 +767,7 @@ Do konfiguracji interesującego nas interfejsu należy dopisać:</p>
       </li>
     
       <li class="post">
-        <a href="/2014/06/16/git-force-merge-strategy-for-specific-file/">Git force merge strategy for specific file</a>
+        <a href="/2014/07/15/howto-test-local-network-speed/">HOWTO test local network speed</a>
       </li>
     
   </ul>
